@@ -1,0 +1,31 @@
+web:
+  image: nginx
+  volumes:
+    - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+
+backend:
+  build: ../../backend/
+  environment:
+    - NODE_ENV=production
+
+backend-dev:
+  image: iojs
+  volumes:
+    - ../../backend:/usr/src/app
+  command: npm --prefix=/usr/src/app run watch
+  environment:
+    - NODE_ENV=development
+
+frontend-dev:
+  image: iojs
+  volumes:
+    - ../../frontend:/usr/src/app
+  command: npm --prefix=/usr/src/app run start
+
+redis:
+  image: redis
+
+postgres:
+  image: postgres
+  volumes:
+    - ./postgres:/docker-entrypoint-initdb.d

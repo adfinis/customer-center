@@ -1,0 +1,56 @@
+web1:
+  extends:
+    file: ./tools/docker/compose.yml
+    service: web
+  volumes:
+    - ./frontend/dist:/usr/share/nginx/html
+  image: nginx
+  links:
+    - backend1
+    - backend2
+    - backend3
+  ports:
+    - "8080:80"
+
+backend1:
+  extends:
+    file: ./tools/docker/compose.yml
+    service: backend
+  links:
+    - redis1
+    - postgres1
+  environment:
+    - TEST=1
+
+backend2:
+  extends:
+    file: ./tools/docker/compose.yml
+    service: backend
+  links:
+    - redis1
+    - postgres1
+  environment:
+    - TEST=2
+
+backend3:
+  extends:
+    file: ./tools/docker/compose.yml
+    service: backend
+  links:
+    - redis1
+    - postgres1
+  environment:
+    - TEST=3
+
+redis1:
+  extends:
+    file: ./tools/docker/compose.yml
+    service: redis
+
+postgres1:
+  extends:
+    file: ./tools/docker/compose.yml
+    service: postgres
+  environment:
+    - POSTGRES_USER=test
+    - POSTGRES_PASSWORD=test

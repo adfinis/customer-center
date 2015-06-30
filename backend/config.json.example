@@ -1,0 +1,14 @@
+{
+  "ldap": {
+    "url": "ldaps://ad.corporate.com:636",
+    "bindDn": "cn=non-person,ou=system,dc=corp,dc=corporate,dc=com",
+    "bindCredentials": "secret"
+  },
+  "login": {
+    "ldap": {
+      "searchBase": "dc=corp,dc=corporate,dc=com",
+      "searchFilter": "&(objectcategory=person)(objectclass=user)(|(samaccountname={{username}})(mail={{username}})))",
+      "searchAttributes": [ "displayName", "mail" ]
+    }
+  }
+}

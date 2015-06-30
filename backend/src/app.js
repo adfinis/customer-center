@@ -28,6 +28,12 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use('/v1', login)
 
+app.use((req, res, next) => {
+  if (req.isAuthenticated()) return next()
+
+  next({ status: 401, message: 'Not Authorized' })
+})
+
 const modulePath = path.join(__dirname, 'modules')
 const resources  = fs.readdirSync(modulePath)
 

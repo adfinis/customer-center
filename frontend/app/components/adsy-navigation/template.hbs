@@ -1,0 +1,30 @@
+<nav class="nav-side">
+  <header class="nav-side-header">
+    <button class="nav-toggle nav-side-toggle" {{action 'toggle'}}></button>
+    <a href="#">
+      <div class="nav-side-header-logo"></div>
+      <div class="nav-side-header-title">Foobar</div>
+    </a>
+  </header>
+  <section class="nav-side-body">
+    <ul class="nav-side-list">
+      <li class="nav-side-list-header">Settings</li>
+      <li class="nav-side-list-item">
+        <a href="#">
+          <i class="fa fa-user"></i>
+          Profile
+        </a>
+      </li>
+    </ul>
+    <ul class="nav-side-list">
+      <li class="nav-side-list-item">
+        <a class="pointer" {{action 'invalidateSession'}}>
+          <i class="fa fa-sign-out"></i>
+          Sign out
+        </a>
+      </li>
+    </ul>
+  </section>
+</nav>
+{{yield}}
+<div class="page-content-overlay" {{action 'close' on='click'}}></div>

@@ -1,8 +1,9 @@
 /* global require, module */
 
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var EmberApp = require('ember-cli/lib/broccoli/ember-app')
+var funnel   = require('broccoli-funnel')
 
-var app = new EmberApp();
+var app = new EmberApp()
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
@@ -17,4 +18,12 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-module.exports = app.toTree();
+app.import('bower_components/adcssy/build/css/adcssy.css')
+
+var adcssyAssets = funnel('bower_components/adcssy/build', {
+  srcDir: '/',
+  include: [ 'fonts/*', 'pictures/**/*' ],
+  destDir: '/'
+})
+
+module.exports = app.toTree(adcssyAssets)

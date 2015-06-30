@@ -1,0 +1,14 @@
+.pointer {
+  cursor: pointer;
+}
+
+.page-content-overlay {
+  background-color: #000;
+  transition: left 0.2s, opacity 0.2s, position 0.2s;
+  opacity: 0;
+  left: 0;
+}
+
+.nav-side--expand + .page-content + .page-content-overlay {
+  opacity: 0.4;
+}

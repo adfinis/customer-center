@@ -11,8 +11,13 @@
   "dependencies": {
     "babel": "^5.4.14",
     "babel-runtime": "^5.6.15",
+    "body-parser": "^1.13.1",
+    "endpoints": "^0.9.0",
     "express": "^4.13.0",
-    "morgan": "^1.6.0"
+    "express-routebuilder": "^2.1.0",
+    "morgan": "^1.6.0",
+    "passport": "^0.2.2",
+    "passport-ldapauth": "^0.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^3.1.19",

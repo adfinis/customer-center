@@ -31,7 +31,6 @@
     "ember-cli-inject-live-reload": "^1.3.0",
     "ember-cli-qunit": "0.3.14",
     "ember-cli-simple-auth": "^0.8.0",
-    "ember-cli-simple-auth-cookie-store": "0.8.0",
     "ember-cli-uglify": "^1.0.1",
     "ember-computed-decorators": "0.1.3",
     "ember-data": "1.13.4",

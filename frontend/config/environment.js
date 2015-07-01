@@ -20,10 +20,6 @@ module.exports = function(environment) {
 
     'simple-auth': {
       serverTokenRevocationEndpoint: '/api/v1/logout'
-    },
-
-    'simple-auth-cookie-store': {
-      cookieName: 'adsycc-session'
     }
   }
 

@@ -7,6 +7,13 @@
       {{input type="password" value=password class="form-control" placeholder="Password" disabled=loading}}
     </div>
     <button type="submit" class="btn btn-primary" disabled={{loading}}>Sign in</button>
+
+    {{#if errorMessage}}
+      <div class="alert alert-danger">
+        {{errorMessage}}
+      </div>
+    {{/if}}
+
     <button type="button" class="login-form-password-reset btn btn-link" {{action 'passwordreset'}}>Forgot password?</button>
   </form>
 </div>

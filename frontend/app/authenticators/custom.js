@@ -19,7 +19,9 @@ export default Base.extend({
     let json = await response.json()
 
     if (!response.ok) {
-      throw new Error(json.message)
+      let [ error ] = json.errors
+
+      throw new Error(error.detail)
     }
 
     return json

@@ -6,13 +6,13 @@ export default Ember.Controller.extend({
       this.set('loading', true)
       this.set('errorMessage', null)
 
-      let credentials = this.getProperties('identification', 'password')
-
       try {
+        let credentials = this.getProperties('identification', 'password')
+
         await this.get('session').authenticate('authenticator:custom', credentials)
       }
       catch (e) {
-        this.set('errorMessage', e.error)
+        this.set('errorMessage', e.message)
       }
       finally {
         this.set('loading', false)

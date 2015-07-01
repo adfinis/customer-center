@@ -9,6 +9,7 @@
       "searchBase": "dc=corp,dc=corporate,dc=com",
       "searchFilter": "&(objectcategory=person)(objectclass=user)(|(samaccountname={{username}})(mail={{username}})))",
       "searchAttributes": [ "displayName", "mail" ]
-    }
+    },
+    "secret": "ponies"
   }
 }

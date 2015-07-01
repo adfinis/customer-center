@@ -23,15 +23,15 @@ export default Base.extend({
     }
 
     return json
-  }
-, async restore(data) {
-    if (Ember.isEmpty(data.sessionId)) {
-      throw new Error('No sessionId to restore found')
+  },
+  async restore(properties) {
+    if (Ember.isEmpty(properties.data.token)) {
+      throw new Error('No token to restore found')
     }
 
-    return data
-  }
-, invalidate() {
+    return properties
+  },
+  invalidate() {
     return fetch('/api/v1/logout', { method: 'post', credentials: 'same-origin' })
   }
 })

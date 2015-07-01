@@ -19,7 +19,8 @@ module.exports = function(environment) {
     },
 
     'simple-auth': {
-      serverTokenRevocationEndpoint: '/api/v1/logout'
+      serverTokenRevocationEndpoint: '/api/v1/logout',
+      authorizer: 'authorizer:custom'
     }
   }
 

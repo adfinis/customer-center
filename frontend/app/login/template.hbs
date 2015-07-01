@@ -1,0 +1,12 @@
+<div class="login-form">
+  <form class="form-inline {{if loading 'form-loading'}}" {{action 'authenticate' on='submit'}}>
+    <div class="form-group login-form-email">
+      <input type="email" class="form-control" placeholder="Email Address" disabled={{loading}}>
+    </div>
+    <div class="form-group login-form-password">
+      <input type="password" class="form-control" placeholder="Password" disabled={{loading}}>
+    </div>
+    <button type="submit" class="btn btn-primary" disabled={{loading}}>Sign in</button>
+    <button type="button" class="login-form-password-reset btn btn-link" {{action 'passwordreset'}}>Forgot password?</button>
+  </form>
+</div>

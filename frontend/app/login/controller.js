@@ -1,13 +1,22 @@
 import Ember from 'ember'
-import LoginControllerMixin from 'simple-auth/mixins/login-controller-mixin'
 
-export default Ember.Controller.extend(LoginControllerMixin, {
-  authenticator: 'authenticator:custom',
+export default Ember.Controller.extend({
   actions: {
-    authenticate() {
+    async authenticate() {
       this.set('loading', true)
+      this.set('errorMessage', null)
 
-      this._super().finally(() => this.set('loading', false))
+      let credentials = this.getProperties('identification', 'password')
+
+      try {
+        await this.get('session').authenticate('authenticator:custom', credentials)
+      }
+      catch (e) {
+        this.set('errorMessage', e.error)
+      }
+      finally {
+        this.set('loading', false)
+      }
     }
   }
 })

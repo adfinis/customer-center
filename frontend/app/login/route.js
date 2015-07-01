@@ -6,5 +6,11 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
     if (this.session.isAuthenticated) {
       this.replaceWith('/')
     }
+  },
+  activate() {
+    Ember.$('body').addClass('page-login')
+  },
+  deactivate() {
+    Ember.$('body').removeClass('page-login')
   }
 })

@@ -1,16 +1,16 @@
 import Ember from 'ember'
+import fetch from 'fetch'
 import Base  from 'simple-auth/authenticators/base'
 
 export default Base.extend({
   async authenticate(credentials) {
-    console.log('auth', credentials)
     let { identification: username, password } = credentials
 
     let response = await fetch('/api/v1/login', {
       method:      'post'
     , credentials: 'same-origin'
     , headers: {
-        'Accept':       'application/json'
+        'Accept':       'application/vnd.api+json'
       , 'Content-Type': 'application/json'
       }
     , body: JSON.stringify({ username, password })

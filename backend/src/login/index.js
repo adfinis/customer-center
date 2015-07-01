@@ -31,7 +31,16 @@ router.post('/login', (req, res, next) =>
       /* istanbul ignore if */
       if (loginError) return next(loginError)
 
-      res.send({ sessionId: req.sessionID, userId: req.user.id })
+      res.set('Content-Type', 'application/vnd.api+json')
+      res.send({ data: { sessionId: req.sessionID, userId: req.user } })
     })
   })(req, res, next)
 )
+
+router.get('/logout', logout)
+      .post('/logout', logout)
+
+function logout(req, res) {
+  req.logout()
+  res.redirect('/login')
+}

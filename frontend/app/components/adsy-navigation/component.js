@@ -10,6 +10,10 @@ export default Ember.Component.extend({
 
     close() {
       this.$('.nav-side').removeClass('nav-side--expand')
+    },
+
+    invalidateSession() {
+      this.get('session').invalidate()
     }
   }
 })

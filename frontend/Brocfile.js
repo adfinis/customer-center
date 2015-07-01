@@ -22,7 +22,7 @@ var app = new EmberApp({
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-app.import('bower_components/babel-polyfill/browser-polyfill.js', { prepend: true })
+app.import('vendor/babel-polyfill.js', { prepend: true })
 
 app.import('bower_components/adcssy/build/css/adcssy.css')
 

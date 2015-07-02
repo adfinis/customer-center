@@ -23,6 +23,7 @@ export default Ember.Controller.extend({
     passwordreset() {
       if (this.get('identification')) {
         // do reset
+        this.notify.success('Instructions to reset your password have been sent to your email')
         return
       }
 

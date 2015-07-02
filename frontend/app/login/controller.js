@@ -17,6 +17,15 @@ export default Ember.Controller.extend({
       finally {
         this.set('loading', false)
       }
+    },
+
+    passwordreset() {
+      if (this.get('identification')) {
+        // do reset
+        return
+      }
+
+      this.transitionTo('login.password-reset')
     }
   }
 })

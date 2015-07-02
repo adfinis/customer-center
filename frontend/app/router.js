@@ -6,7 +6,10 @@ var Router = Ember.Router.extend({
 })
 
 Router.map(function() {
-  this.route('login')
+  this.route('login', function() {
+    this.route('password-reset')
+  })
+
   this.route('protected', { path: '/' }, function() {
     this.resource('index', { path: '/' })
   })

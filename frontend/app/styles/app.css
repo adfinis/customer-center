@@ -30,3 +30,9 @@
   left: 0;
   right: auto;
 }
+
+.liquid-container, .liquid-child {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}

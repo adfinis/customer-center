@@ -1,6 +1,7 @@
 import Ember from 'ember'
 
 export default Ember.Controller.extend({
+  login: Ember.inject.controller(),
   errorMessage: {},
   actions: {
     async passwordreset() {
@@ -19,6 +20,7 @@ export default Ember.Controller.extend({
         // await password reset
 
         this.notify.success('Instructions to reset your password have been sent to your email')
+        this.set('login.identification', identification)
         this.transitionToRoute('login')
       }
       catch (e) {

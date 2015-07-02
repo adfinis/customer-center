@@ -25,7 +25,7 @@ export default Ember.Controller.extend({
         return
       }
 
-      this.transitionTo('login.password-reset')
+      this.transitionToRoute('login.password-reset')
     }
   }
 })

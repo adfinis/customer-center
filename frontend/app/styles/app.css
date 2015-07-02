@@ -12,3 +12,21 @@
 .nav-side--expand + .page-content + .page-content-overlay {
   opacity: 0.4;
 }
+
+.ember-notify-cn .ember-notify {
+  left: -310px;
+}
+
+.ember-notify {
+  opacity: 0;
+  transition: opacity 0.75s;
+}
+
+.ember-notify-show {
+  opacity: 1;
+}
+
+.ember-notify-cn, .ember-notify-cn .ember-notify-show {
+  left: 0;
+  right: auto;
+}

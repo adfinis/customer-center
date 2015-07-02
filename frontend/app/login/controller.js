@@ -1,10 +1,11 @@
 import Ember from 'ember'
 
 export default Ember.Controller.extend({
+  errorMessage: {},
   actions: {
     async authenticate() {
       this.set('loading', true)
-      this.set('errorMessage', null)
+      this.set('errorMessage.visible', null)
 
       try {
         let credentials = this.getProperties('identification', 'password')
@@ -12,7 +13,7 @@ export default Ember.Controller.extend({
         await this.get('session').authenticate('authenticator:custom', credentials)
       }
       catch (e) {
-        this.set('errorMessage', e.message)
+        this.set('errorMessage', this.notify.error(e.message, { closeAfter: null }))
       }
       finally {
         this.set('loading', false)

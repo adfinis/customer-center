@@ -36,6 +36,7 @@
     "ember-data": "1.13.4",
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
-    "ember-fetch": "1.1.1"
+    "ember-fetch": "1.1.1",
+    "ember-notify": "3.3.4"
   }
 }

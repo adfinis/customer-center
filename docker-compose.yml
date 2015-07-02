@@ -21,6 +21,7 @@ backenddev1:
     - redis1
     - postgres1
     - redmine1
+    - rt1
   environment:
     - TEST=1
 
@@ -32,6 +33,7 @@ backenddev2:
     - redis1
     - postgres1
     - redmine1
+    - rt1
   environment:
     - TEST=2
 
@@ -43,6 +45,7 @@ backenddev3:
     - redis1
     - postgres1
     - redmine1
+    - rt1
   environment:
     - TEST=3
 
@@ -86,3 +89,9 @@ redmine1postgres:
   environment:
     - POSTGRES_USER=test
     - POSTGRES_PASSWORD=test
+
+rt1:
+  image: jbfink/rt:latest
+  command: /opt/rt4/sbin/rt-server
+  ports:
+    - "8082:80"

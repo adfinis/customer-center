@@ -7,13 +7,13 @@ export default Base.extend({
     let { identification: username, password } = credentials
 
     let response = await fetch('/api/v1/login', {
-      method:      'post'
-    , credentials: 'same-origin'
-    , headers: {
-        'Accept':       'application/vnd.api+json'
-      , 'Content-Type': 'application/json'
-      }
-    , body: JSON.stringify({ username, password })
+      method:      'post',
+      credentials: 'same-origin',
+      headers: {
+        'Accept':       'application/vnd.api+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
     })
 
     let json = await response.json()

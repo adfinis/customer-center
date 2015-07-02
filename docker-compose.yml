@@ -20,6 +20,7 @@ backenddev1:
   links:
     - redis1
     - postgres1
+    - redmine1
   environment:
     - TEST=1
 
@@ -30,6 +31,7 @@ backenddev2:
   links:
     - redis1
     - postgres1
+    - redmine1
   environment:
     - TEST=2
 
@@ -40,6 +42,7 @@ backenddev3:
   links:
     - redis1
     - postgres1
+    - redmine1
   environment:
     - TEST=3
 
@@ -61,6 +64,25 @@ postgres1:
   extends:
     file: ./tools/docker/compose.yml
     service: postgres
+  environment:
+    - POSTGRES_USER=test
+    - POSTGRES_PASSWORD=test
+
+redmine1:
+  image: sameersbn/redmine:latest
+  links:
+    - redmine1postgres
+  environment:
+    - DB_TYPE=postgres
+    - DB_HOST=redmine1postgres
+    - DB_NAME=redmine
+    - DB_USER=test
+    - DB_PASS=test
+  ports:
+    - "8081:80"
+
+redmine1postgres:
+  image: postgres
   environment:
     - POSTGRES_USER=test
     - POSTGRES_PASSWORD=test

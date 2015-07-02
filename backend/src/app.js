@@ -8,6 +8,7 @@ import redis      from 'redis'
 import jwt        from 'jwt-redis-session'
 import API        from './classes/api'
 import login      from './login'
+import services   from './services'
 import config     from '../config.json'
 
 const app = express()
@@ -53,6 +54,8 @@ for (let resource of resources) {
   API.register(resource)
   app.use(API.endpoint(resource))
 }
+
+app.use(services)
 
 app.get('/v1', (req, res) => {
   res.set('Content-Type', 'application/json')

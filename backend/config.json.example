@@ -20,5 +20,13 @@
     "host": "localhost",
     "port": 6379,
     "options": {}
-  }
+  },
+  "services": [
+    {
+      "type": "redmine",
+      "host": "redmine1",
+      "user": "admin",
+      "password": "admin"
+    }
+  ]
 }

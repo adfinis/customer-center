@@ -38,8 +38,8 @@ router.post('/login', (req, res, next) =>
       if (loginError) return next(loginError)
 
       let claims = {
-        iss: 'Adfinis SyGroup AG - Customer Center',
-        aud: 'customer-center.adfinis-sygroup.ch'
+        iss: config.application.name,
+        aud: config.application.host
       }
 
       req.session.create(claims, (sessionError, token) => {

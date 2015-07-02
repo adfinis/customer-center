@@ -1,4 +1,8 @@
 {
+  "application": {
+    "name": "Customer Center",
+    "host": "customer-center.example.com"
+  },
   "ldap": {
     "url": "ldaps://ad.corporate.com:636",
     "bindDn": "cn=non-person,ou=system,dc=corp,dc=corporate,dc=com",

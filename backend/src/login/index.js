@@ -2,7 +2,6 @@ import fs           from 'fs'
 import express      from 'express'
 import passport     from 'passport'
 import LdapStrategy from 'passport-ldapauth'
-import jwt          from 'jwt-simple'
 import config       from '../../config.json'
 
 const options = {
@@ -38,8 +37,18 @@ router.post('/login', (req, res, next) =>
       /* istanbul ignore if */
       if (loginError) return next(loginError)
 
-      res.set('Content-Type', 'application/vnd.api+json')
-      res.send({ data: { token: jwt.encode(req.user.dn, config.login.secret) } })
+      let claims = {
+        iss: 'Adfinis SyGroup AG - Customer Center',
+        aud: 'customer-center.adfinis-sygroup.ch'
+      }
+
+      req.session.create(claims, (sessionError, token) => {
+        /* istanbul ignore if */
+        if (sessionError) return next(sessionError)
+
+        res.set('Content-Type', 'application/vnd.api+json')
+        res.send({ data: { token } })
+      })
     })
   })(req, res, next)
 )

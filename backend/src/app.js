@@ -4,8 +4,11 @@ import express    from 'express'
 import bodyParser from 'body-parser'
 import morgan     from 'morgan'
 import passport   from 'passport'
+import redis      from 'redis'
+import jwt        from 'jwt-redis-session'
 import API        from './classes/api'
 import login      from './login'
+import config     from '../config.json'
 
 const app = express()
 export default app
@@ -24,6 +27,15 @@ app.use(bodyParser.json({
   type: [ 'application/json', 'application/vnd.api+json' ]
 }))
 
+app.use(jwt({
+  client:    redis.createClient(config.redis.port, config.redis.host, config.redis.options),
+  secret:    'ponies',
+  keyspace:  'session:',
+  maxAge:    86400, // seconds
+  algorithm: 'HS256', // sha256
+  requestKey: 'session',
+  requestArg: 'Authorization'
+}))
 app.use(passport.initialize())
 app.use(passport.session())
 app.use('/v1', login)

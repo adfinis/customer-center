@@ -5,7 +5,7 @@ export default Base.extend({
     let token = this.get('session.content.secure.data.token')
 
     if (token) {
-      jqXHR.setRequestHeader('Authorization', `Bearer ${token}`)
+      jqXHR.setRequestHeader('X-Authorization', token)
     }
   }
 })

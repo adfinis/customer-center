@@ -11,5 +11,10 @@
       "searchAttributes": [ "displayName", "mail" ]
     },
     "secret": "ponies"
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "options": {}
   }
 }

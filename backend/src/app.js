@@ -28,11 +28,11 @@ app.use(bodyParser.json({
 }))
 
 app.use(jwt({
-  client:    redis.createClient(config.redis.port, config.redis.host, config.redis.options),
-  secret:    'ponies',
-  keyspace:  'session:',
-  maxAge:    86400, // seconds
-  algorithm: 'HS256', // sha256
+  client:     redis.createClient(config.redis.port, config.redis.host, config.redis.options),
+  secret:     config.login.secret,
+  keyspace:   'session:',
+  maxAge:     86400, // seconds
+  algorithm:  'HS256', // sha256
   requestKey: 'session',
   requestArg: 'Authorization'
 }))

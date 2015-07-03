@@ -18,6 +18,10 @@ module.exports = function(environment) {
       // when it is created
     },
 
+    i18n: {
+      defaultLocale: 'en'
+    },
+
     'simple-auth': {
       serverTokenRevocationEndpoint: '/api/v1/logout',
       authorizer: 'authorizer:custom'

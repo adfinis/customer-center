@@ -1,13 +1,15 @@
 <div class="login-form login-form--password-reset">
   <form class="fade-in" {{action 'passwordreset' on='submit'}}>
     <div class="form-group login-form-user">
-      {{input type="text" value=identification class="form-control" placeholder="Username" disabled=loading autofocus=true}}
+      {{input type="text" value=identification class="form-control" placeholder=(t "global.Username") disabled=loading autofocus=true}}
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Send new password</button>
+      <button type="submit" class="btn btn-primary">{{t 'login.send-new-password'}}</button>
     </div>
     <div class="form-group">
-      {{#link-to 'login' class='btn btn-link'}}Back to login{{/link-to}}
+      {{#link-to 'login' class='btn btn-link'}}
+        {{t 'login.back-to-login'}}
+      {{/link-to}}
     </div>
   </form>
 </div>

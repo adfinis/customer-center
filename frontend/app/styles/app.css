@@ -36,3 +36,37 @@
   flex-grow: 1;
   flex-direction: column;
 }
+
+.hide {
+  display: none;
+}
+
+@media only screen and (min-width: 30rem) {
+  .xs-hide {
+    display: none;
+  }
+
+  th.xs-show, td.xs-show {
+    display: table-cell;
+  }
+}
+
+@media only screen and (min-width: 48rem) {
+  .sm-hide {
+    display: none;
+  }
+
+  th.sm-show, td.sm-show {
+    display: table-cell;
+  }
+}
+
+@media only screen and (min-width: 62rem) {
+  .md-hide {
+    display: none;
+  }
+
+  th.md-show, td.md-show {
+    display: table-cell;
+  }
+}

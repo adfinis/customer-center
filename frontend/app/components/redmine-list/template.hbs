@@ -1,15 +1,24 @@
 {{#with model.issues as |issues|}}
   <table class="table table--striped">
     <caption>{{t 'redmine.list-caption' host=host}}</caption>
+    <colgroup>
+      <col width="50">
+      <col class="hide xs-show" width="300">
+      <col class="hide xs-show" width="1">
+      <col class="hide sm-show" width="1">
+      <col class="hide md-show" width="1">
+      <col>
+      <col class="hide md-show" width="200">
+    </colgroup>
     <thead>
       <tr>
         <th>{{t 'redmine.id'}}</th>
-        <th>{{t 'redmine.project'}}</th>
-        <th>{{t 'redmine.tracker'}}</th>
-        <th>{{t 'redmine.status'}}</th>
-        <th>{{t 'redmine.priority'}}</th>
+        <th class="hide xs-show">{{t 'redmine.project'}}</th>
+        <th class="hide xs-show">{{t 'redmine.tracker'}}</th>
+        <th class="hide sm-show">{{t 'redmine.status'}}</th>
+        <th class="hide md-show">{{t 'redmine.priority'}}</th>
         <th>{{t 'redmine.subject'}}</th>
-        <th>{{t 'redmine.updated'}}</th>
+        <th class="hide md-show">{{t 'redmine.updated'}}</th>
       </tr>
     </thead>
     {{#if showPager}}
@@ -29,16 +38,16 @@
               #{{issue.id}}
             </a>
           </td>
-          <td>{{issue.project.name}}</td>
-          <td>{{issue.tracker.name}}</td>
-          <td>{{issue.status.name}}</td>
-          <td>{{issue.priority.name}}</td>
+          <td class="hide xs-show">{{issue.project.name}}</td>
+          <td class="hide xs-show">{{issue.tracker.name}}</td>
+          <td class="hide sm-show">{{issue.status.name}}</td>
+          <td class="hide md-show">{{issue.priority.name}}</td>
           <td>
             <a href="https://{{host}}/issues/{{issue.id}}">
               {{issue.subject}}
             </a>
           </td>
-          <td>{{moment issue.updated_on}}</td>
+          <td class="hide md-show">{{moment issue.updated_on}}</td>
         </tr>
       {{/each}}
     </tbody>

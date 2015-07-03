@@ -39,6 +39,7 @@
     "ember-fetch": "1.1.1",
     "ember-i18n": "jamesarosen/ember-i18n",
     "ember-notify": "3.3.4",
+    "font-awesome": "^4.3.0",
     "liquid-fire": "^0.20.4"
   }
 }

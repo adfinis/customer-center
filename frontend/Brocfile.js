@@ -22,14 +22,17 @@ var app = new EmberApp({
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-app.import('vendor/babel-polyfill.js', { prepend: true })
-
-app.import('bower_components/adcssy/build/css/adcssy.css')
-
-var adcssyAssets = funnel('bower_components/adcssy/build', {
+var adcssyAssets = funnel('bower_components/adcssy/assets', {
   srcDir: '/',
   include: [ 'fonts/*', 'pictures/**/*' ],
   destDir: '/'
 })
 
-module.exports = app.toTree(adcssyAssets)
+var fontAwesome = funnel('node_modules/font-awesome/fonts', {
+  destDir: '/fonts'
+})
+
+app.import('vendor/babel-polyfill.js', { prepend: true })
+app.import('bower_components/adcssy/build/css/adcssy.css')
+
+module.exports = app.toTree([ adcssyAssets, fontAwesome ])

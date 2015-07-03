@@ -37,7 +37,7 @@
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
     "ember-fetch": "1.1.1",
-    "ember-i18n": "4.0.0",
+    "ember-i18n": "jamesarosen/ember-i18n",
     "ember-notify": "3.3.4",
     "liquid-fire": "^0.20.4"
   }

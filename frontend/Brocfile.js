@@ -33,6 +33,7 @@ var fontAwesome = funnel('node_modules/font-awesome/fonts', {
 })
 
 app.import('vendor/babel-polyfill.js', { prepend: true })
+app.import('bower_components/moment/locale/de.js')
 app.import('bower_components/adcssy/build/css/adcssy.css')
 
 module.exports = app.toTree([ adcssyAssets, fontAwesome ])

@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export function initialize(instance) {
   let locale = getNavigatorLanguage()
 
@@ -13,6 +15,7 @@ export function initialize(instance) {
     let i18n = instance.container.lookup('service:i18n')
 
     if (i18n.get('locales').includes(locale)) {
+      moment.locale(locale)
       instance.container.lookup('service:i18n').set('locale', locale)
     }
   }

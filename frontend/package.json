@@ -41,6 +41,7 @@
     "ember-moment": "1.2.1",
     "ember-notify": "3.3.4",
     "font-awesome": "^4.3.0",
-    "liquid-fire": "^0.20.4"
+    "liquid-fire": "^0.20.4",
+    "pagination-pager": "2.0.0"
   }
 }

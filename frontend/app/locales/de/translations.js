@@ -18,5 +18,15 @@ export default {
     'logout':   'Logout',
     'settings': 'Einstellungen',
     'profile':  'Profil'
+  },
+
+  'redmine': {
+    'id':       'Nr',
+    'project':  'Projekt',
+    'tracker':  'Tracker',
+    'status':   'Status',
+    'priority': 'Priorität',
+    'subject':  'Betreff',
+    'updated':  'Zuletzt aktualisiert'
   }
 }

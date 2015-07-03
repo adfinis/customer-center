@@ -1,0 +1,46 @@
+{{#with model.issues as |issues|}}
+  <table class="table table--striped">
+    <caption>Redmine issues of {{host}}</caption>
+    <thead>
+      <tr>
+        <th>{{t 'redmine.id'}}</th>
+        <th>{{t 'redmine.project'}}</th>
+        <th>{{t 'redmine.tracker'}}</th>
+        <th>{{t 'redmine.status'}}</th>
+        <th>{{t 'redmine.priority'}}</th>
+        <th>{{t 'redmine.subject'}}</th>
+        <th>{{t 'redmine.updated'}}</th>
+      </tr>
+    </thead>
+    {{#if showPager}}
+      <tfoot>
+        <tr>
+          <td colspan="7">
+            {{pagination-pager current=page count=totalPages}}
+          </td>
+        </tr>
+      </tfoot>
+    {{/if}}
+    <tbody>
+      {{#each model.issues as |issue|}}
+        <tr>
+          <td>
+            <a href="https://{{host}}/issues/{{issue.id}}">
+              #{{issue.id}}
+            </a>
+          </td>
+          <td>{{issue.project.name}}</td>
+          <td>{{issue.tracker.name}}</td>
+          <td>{{issue.status.name}}</td>
+          <td>{{issue.priority.name}}</td>
+          <td>
+            <a href="https://{{host}}/issues/{{issue.id}}">
+              {{issue.subject}}
+            </a>
+          </td>
+          <td>{{moment issue.updated_on}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{/with}}

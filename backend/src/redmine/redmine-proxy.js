@@ -34,7 +34,7 @@ export default class RedmineProxy {
   filter(req, res) {
     let redmineUser = this.getRedmineUser(req.user)
 
-    if (redmineUser) {
+    if (!redmineUser) {
       return false
     }
 

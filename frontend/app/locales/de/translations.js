@@ -27,6 +27,8 @@ export default {
     'status':   'Status',
     'priority': 'Priorität',
     'subject':  'Betreff',
-    'updated':  'Zuletzt aktualisiert'
+    'updated':  'Zuletzt aktualisiert',
+
+    'list-caption': 'Redmine Tickets von {{host}}'
   }
 }

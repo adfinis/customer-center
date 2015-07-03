@@ -27,6 +27,8 @@ export default {
     'status':   'Status',
     'priority': 'Priority',
     'subject':  'Subject',
-    'updated':  'Updated on'
+    'updated':  'Updated on',
+
+    'list-caption': 'Redmine issues of {{host}}'
   }
 }

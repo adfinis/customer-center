@@ -9,5 +9,11 @@ export default {
     'forgot-password':   'Forgot password?',
     'send-new-password': 'Send new password',
     'back-to-login':     'Back to login'
+  },
+
+  'nav': {
+    'logout':   'Sign out',
+    'settings': 'Settings',
+    'profile':  'Profile'
   }
 }

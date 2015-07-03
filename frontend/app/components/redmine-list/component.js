@@ -3,7 +3,7 @@ import Ember from 'ember'
 const { $ } = Ember
 
 export default Ember.Component.extend({
-  limit:   2,
+  limit:  10,
   offset:  0,
   sort:   'updated_on:desc',
 
@@ -19,7 +19,7 @@ export default Ember.Component.extend({
   }),
 
   totalPages: Ember.computed('limit', 'model.total_count', function() {
-    return Math.floor(this.get('model.total_count') / this.get('limit'))
+    return Math.ceil(this.get('model.total_count') / this.get('limit'))
   }),
 
   showPager: Ember.computed('totalPages', function() {

@@ -15,9 +15,10 @@ export default {
   },
 
   'nav': {
-    'logout':   'Sign out',
-    'settings': 'Settings',
-    'profile':  'Profile'
+    'dashboard': 'Dashboard',
+    'settings':  'Settings',
+    'profile':   'Profile',
+    'logout':    'Sign out'
   },
 
   'redmine': {

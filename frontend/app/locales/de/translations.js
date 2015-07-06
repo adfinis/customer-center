@@ -1,7 +1,7 @@
 export default {
   'global': {
     'Username': 'Benutzername',
-    'Password': 'Passwort',
+    'Password': 'Passwort'
   },
 
   'login': {
@@ -15,9 +15,10 @@ export default {
   },
 
   'nav': {
-    'logout':   'Logout',
-    'settings': 'Einstellungen',
-    'profile':  'Profil'
+    'dashboard': 'Übersicht',
+    'settings':  'Einstellungen',
+    'profile':   'Profil',
+    'logout':    'Logout'
   },
 
   'redmine': {

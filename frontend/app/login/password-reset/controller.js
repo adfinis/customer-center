@@ -1,15 +1,22 @@
 import Ember from 'ember'
+import { translationMacro as t } from 'ember-i18n'
 
 export default Ember.Controller.extend({
   login: Ember.inject.controller(),
+  i18n:  Ember.inject.service(),
+
   errorMessage: {},
+
+  successMessage:               t('login.sent-new-password'),
+  missingIdentificationMessage: t('login.missing-identification'),
+
   actions: {
     async passwordreset(identification) {
       this.set('errorMessage.visible', null)
 
       if (!identification) {
         this.set('errorMessage',
-          this.notify.error('Please provide an username', { closeAfter: null }))
+          this.notify.error(this.get('missingIdentificationMessage'), { closeAfter: null }))
         return
       }
 
@@ -17,7 +24,7 @@ export default Ember.Controller.extend({
         // Send mail
         // await password reset
 
-        this.notify.success('Instructions to reset your password have been sent to your email')
+        this.notify.success(this.get('successMessage'))
         this.set('login.identification', identification)
         this.transitionToRoute('login')
       }

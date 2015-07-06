@@ -2,15 +2,16 @@ export default {
   'global': {
     'Username': 'Benutzername',
     'Password': 'Passwort',
-    'Sign in':  'Login'
   },
 
   'login': {
-    'login':             'Login',
-    'logging-in':        'Login',
-    'forgot-password':   'Passwort vergessen?',
-    'send-new-password': 'Neues Passwort senden',
-    'back-to-login':     'Zurück zum Login'
+    'login':                  'Login',
+    'logging-in':             'Login',
+    'forgot-password':        'Passwort vergessen?',
+    'send-new-password':      'Neues Passwort senden',
+    'sent-new-password':      'Anweisungen zum zurücksetzen des Passwortes wurden an Ihre E-Mail geschickt',
+    'missing-identification': 'Bitte geben Sie einen Benutzernamen an',
+    'back-to-login':          'Zurück zum Login'
   },
 
   'nav': {

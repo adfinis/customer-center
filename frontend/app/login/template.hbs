@@ -6,7 +6,15 @@
     <div class="form-group login-form-password">
       {{input type="password" value=password class="form-control" placeholder=(t "global.Password") disabled=loading}}
     </div>
-    <button type="submit" class="btn btn-primary" disabled={{loading}}>{{t 'login.login'}}</button>
-    <button type="button" class="login-form-password-reset btn btn-link" {{action 'passwordreset'}}>{{t 'login.forgot-password'}}</button>
+    <button type="submit" class="btn btn-primary" disabled={{loading}}>
+      {{#if loading}}
+        <span>{{t 'login.logging-in'}}</span><span class="loading-dots"><i>.</i><i>.</i><i>.</i></span>
+      {{else}}
+        {{t 'login.login'}}
+      {{/if}}
+    </button>
   </form>
+  <button type="button" class="login-form-password-reset-btn btn btn-link" {{action 'passwordreset'}}>
+    {{t 'login.forgot-password'}}
+  </button>
 </div>

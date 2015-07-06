@@ -7,6 +7,7 @@ export default {
 
   'login': {
     'login':             'Login',
+    'logging-in':        'Login',
     'forgot-password':   'Passwort vergessen?',
     'send-new-password': 'Neues Passwort senden',
     'back-to-login':     'Zurück zum Login'

@@ -1,7 +1,9 @@
 import Ember from 'ember'
+import { translationMacro as t } from "ember-i18n"
 
 export default Ember.Controller.extend({
   errorMessage: {},
+  passwordReset: Ember.inject.controller('login.password-reset'),
   actions: {
     async authenticate() {
       this.set('loading', true)
@@ -21,9 +23,10 @@ export default Ember.Controller.extend({
     },
 
     passwordreset() {
-      if (this.get('identification')) {
-        // do reset
-        this.notify.success('Instructions to reset your password have been sent to your email')
+      let identification = this.get('identification')
+
+      if (identification) {
+        this.get('passwordReset').send('passwordreset', identification)
         return
       }
 

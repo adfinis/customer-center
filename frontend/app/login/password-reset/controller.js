@@ -4,10 +4,8 @@ export default Ember.Controller.extend({
   login: Ember.inject.controller(),
   errorMessage: {},
   actions: {
-    async passwordreset() {
+    async passwordreset(identification) {
       this.set('errorMessage.visible', null)
-
-      let identification = this.get('identification')
 
       if (!identification) {
         this.set('errorMessage',

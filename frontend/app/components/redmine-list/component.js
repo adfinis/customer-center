@@ -35,9 +35,14 @@ export default Ember.Component.extend({
       sort:   this.get('sort')
     }
 
+    this.set('error', null)
+
     $.getJSON(`/api/proxy/${this.get('host')}/issues.json`, params)
       .then(res =>
         this.set('model', res)
+      )
+      .fail(xhr =>
+        this.set('error', xhr.responseText)
       )
   })
 })

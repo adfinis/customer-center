@@ -27,6 +27,12 @@
       "host": "redmine1",
       "user": "admin",
       "password": "admin"
+    },
+    {
+      "type": "rt",
+      "https://rt.example.com/rt",
+      "username": "admin",
+      "password": "admin"
     }
   ]
 }

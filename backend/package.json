@@ -20,7 +20,8 @@
     "morgan": "^1.6.0",
     "passport": "^0.2.2",
     "passport-ldapauth": "^0.3.0",
-    "redis": "^0.12.1"
+    "redis": "^0.12.1",
+    "request-promise": "^0.4.2"
   },
   "devDependencies": {
     "babel-eslint": "^3.1.19",

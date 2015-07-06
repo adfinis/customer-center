@@ -34,11 +34,47 @@
             <td class="hide md-show">Friday, July 3, 2015 3:27 PM</td>
             <td class="hide lg-show">Friday, July 3, 2015 3:27 PM</td>
           </tr>
+          <tr>
+            <td>#123</td>
+            <td class="hide sm-show">New</td>
+            <td>Somethings wrong!</td>
+            <td class="hide md-show">Friday, July 3, 2015 3:27 PM</td>
+            <td class="hide lg-show">Friday, July 3, 2015 3:27 PM</td>
+          </tr>
+          <tr>
+            <td>#123</td>
+            <td class="hide sm-show">New</td>
+            <td>Somethings wrong!</td>
+            <td class="hide md-show">Friday, July 3, 2015 3:27 PM</td>
+            <td class="hide lg-show">Friday, July 3, 2015 3:27 PM</td>
+          </tr>
         </tbody>
       </table>
     </div>
     <div class="grid-cell grid-cell--3">
-      SyMon
+      <table class="table table--striped">
+        <caption>{{t 'symon.list-caption'}}</caption>
+        <thead>
+          <tr>
+            <th>{{t 'symon.host'}}</th>
+            <th>{{t 'symon.status'}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>topaxi.ch</td>
+            <td>OK</td>
+          </tr>
+          <tr>
+            <td>irc.topaxi.ch</td>
+            <td>OK</td>
+          </tr>
+          <tr>
+            <td>topaxi.codes</td>
+            <td>OK</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <div class="grid grid-cell">
@@ -46,7 +82,25 @@
       {{redmine-list host='redmine1' limit=8}}
     </div>
     <div class="grid-cell grid-cell--3">
-      Timescout
+      <table class="table table--striped">
+        <caption>{{t 'timescout.list-caption'}}</caption>
+        <thead>
+          <tr>
+            <th>{{t 'timescout.subscription'}}</th>
+            <th>{{t 'timescout.remaining-hours'}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SSA Standard</td>
+            <td>12h 30min</td>
+          </tr>
+          <tr>
+            <td>SLA Störungsbehebung</td>
+            <td>24h 15min</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

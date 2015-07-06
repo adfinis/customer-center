@@ -42,5 +42,19 @@ export default {
     'created': 'Created on',
 
     'list-caption': 'Request Tracker'
+  },
+
+  'timescout': {
+    'list-caption': 'Abonnomente',
+
+    'subscription':    'Abo',
+    'remaining-hours': 'Übrige Stunden'
+  },
+
+  'symon': {
+    'list-caption': 'Monitoring',
+
+    'host': 'Host',
+    'status': 'Status'
   }
 }

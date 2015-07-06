@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
 
       if (!identification) {
         this.set('errorMessage',
-          this.notify.error(this.get('missingIdentificationMessage'), { closeAfter: null }))
+          this.notify.error(this.get('missingIdentificationMessage.string'), { closeAfter: null }))
         return
       }
 
@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
         // Send mail
         // await password reset
 
-        this.notify.success(this.get('successMessage'))
+        this.notify.success(this.get('successMessage.string'))
         this.set('login.identification', identification)
         this.transitionToRoute('login')
       }

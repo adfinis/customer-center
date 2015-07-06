@@ -70,3 +70,13 @@
     display: table-cell;
   }
 }
+
+@media only screen and (min-width: 75rem) {
+  .lg-hide {
+    display: none;
+  }
+
+  th.lg-show, td.lg-show {
+    display: table-cell;
+  }
+}

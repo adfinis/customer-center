@@ -32,5 +32,15 @@ export default {
     'updated':  'Zuletzt aktualisiert',
 
     'list-caption': 'Redmine Tickets von {{host}}'
+  },
+
+  'rt': {
+    'id':      'Nr',
+    'status':  'Status',
+    'title':   'Title',
+    'updated': 'Updated on',
+    'created': 'Created on',
+
+    'list-caption': 'Request Tracker'
   }
 }

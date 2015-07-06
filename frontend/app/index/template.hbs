@@ -1,1 +1,52 @@
-{{outlet}}
+<div class="grid grid--col grid--no-gutters">
+  <div class="grid grid-cell">
+    <div class="grid-cell">
+      <table class="table table--striped">
+        <caption>{{t 'rt.list-caption'}}</caption>
+        <thead>
+          <tr>
+            <th>{{t 'rt.id'}}</th>
+            <th class="hide sm-show">{{t 'rt.status'}}</th>
+            <th>{{t 'rt.title'}}</th>
+            <th class="hide md-show">{{t 'rt.updated'}}</th>
+            <th class="hide lg-show">{{t 'rt.created'}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#123</td>
+            <td class="hide sm-show">New</td>
+            <td>Somethings wrong!</td>
+            <td class="hide md-show">Friday, July 3, 2015 3:27 PM</td>
+            <td class="hide lg-show">Friday, July 3, 2015 3:27 PM</td>
+          </tr>
+          <tr>
+            <td>#123</td>
+            <td class="hide sm-show">New</td>
+            <td>Somethings wrong!</td>
+            <td class="hide md-show">Friday, July 3, 2015 3:27 PM</td>
+            <td class="hide lg-show">Friday, July 3, 2015 3:27 PM</td>
+          </tr>
+          <tr>
+            <td>#123</td>
+            <td class="hide sm-show">New</td>
+            <td>Somethings wrong!</td>
+            <td class="hide md-show">Friday, July 3, 2015 3:27 PM</td>
+            <td class="hide lg-show">Friday, July 3, 2015 3:27 PM</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid-cell grid-cell--3">
+      SyMon
+    </div>
+  </div>
+  <div class="grid grid-cell">
+    <div class="grid-cell">
+      {{redmine-list host='redmine1' limit=8}}
+    </div>
+    <div class="grid-cell grid-cell--3">
+      Timescout
+    </div>
+  </div>
+</div>

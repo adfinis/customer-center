@@ -32,5 +32,15 @@ export default {
     'updated':  'Updated on',
 
     'list-caption': 'Redmine issues of {{host}}'
+  },
+
+  'rt': {
+    'id':      'Nr',
+    'status':  'Status',
+    'title':   'Title',
+    'updated': 'Updated on',
+    'created': 'Created on',
+
+    'list-caption': 'Request Tracker'
   }
 }

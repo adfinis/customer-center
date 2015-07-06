@@ -16,6 +16,7 @@ export default {
 
   'nav': {
     'dashboard': 'Dashboard',
+    'redmine':   'Redmine',
     'settings':  'Settings',
     'profile':   'Profile',
     'logout':    'Sign out'

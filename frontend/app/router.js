@@ -12,6 +12,7 @@ Router.map(function() {
 
   this.route('protected', { path: '/' }, function() {
     this.resource('index', { path: '/' })
+    this.resource('redmine')
   })
 })
 

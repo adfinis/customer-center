@@ -93,5 +93,9 @@ redmine1postgres:
 rt1:
   image: jbfink/rt:latest
   command: /opt/rt4/sbin/rt-server
+  volumes:
+    - ./tools/docker/rt4/etc/RT_Config.pm:/opt/rt4/etc/RT_Config.pm
+    - ./tools/docker/rt4/etc/RT_SiteConfig.pm:/opt/rt4/etc/RT_SiteConfig.pm
+    - ./tools/docker/rt4/var/rt4:/opt/rt4/var/rt4
   ports:
-    - "8082:80"
+    - "8082:8082"

@@ -13,6 +13,9 @@ const services = {
   },
   rt: function(service) {
     router.use('/rt', RTProxy.createProxy(service))
+  },
+  timescout: function(service) {
+    router.use('/timescout', TimescoutProxy.createProxy(service))
   }
 }
 

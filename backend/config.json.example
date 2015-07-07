@@ -33,6 +33,11 @@
       "https://rt.example.com/rt",
       "username": "admin",
       "password": "admin"
+    },
+    {
+      "type": "timescout",
+      "host": "https://support.example.com/api",
+      "key": "somerandomkey"
     }
   ]
 }

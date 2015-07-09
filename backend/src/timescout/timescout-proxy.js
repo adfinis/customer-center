@@ -9,9 +9,14 @@ export default class TimescoutProxy {
 
   constructor(t) {
     this.host   = t.host
-    this.apiKey = t.apiKey
+    this.apiKey = t.key
 
+    this.forwardPath = this.forwardPath.bind(this)
     this.decorateRequest = this.decorateRequest.bind(this)
+  }
+
+  forwardPath(req, res) {
+    return url.parse(req.url).path
   }
 
   decorateRequest(req) {

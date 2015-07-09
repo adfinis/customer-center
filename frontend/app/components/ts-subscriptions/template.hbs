@@ -1,0 +1,17 @@
+<table class="table table--striped">
+  <caption>{{t 'timescout.list-caption'}}</caption>
+  <thead>
+    <tr>
+      <th>{{t 'timescout.subscription'}}</th>
+      <th>{{t 'timescout.remaining-hours'}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model as |subscription|}}
+      <tr>
+        <td>{{subscription.name}}</td>
+        <td>{{subscription.availableTime.hours}}h {{subscription.availableTime.minutes}}min</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

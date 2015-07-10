@@ -5,6 +5,7 @@ const { $ } = Ember
 export default Ember.Component.extend({
   limit:  10,
   offset:  0,
+  total:   0,
   sort:   'updated_on:desc',
 
   page: Ember.computed('limit', 'offset', {
@@ -18,15 +19,13 @@ export default Ember.Component.extend({
     }
   }),
 
-  totalPages: Ember.computed('limit', 'model.total_count', function() {
-    return Math.ceil(this.get('model.total_count') / this.get('limit'))
+  totalPages: Ember.computed('limit', 'total', function() {
+    return Math.ceil(this.get('total') / this.get('limit'))
   }),
 
   showPager: Ember.computed('totalPages', function() {
     return this.get('totalPages') > 1
   }),
-
-  model: null,
 
   updateModel: Ember.observer('host', 'limit', 'offset', 'sort', function() {
     let params = {
@@ -38,9 +37,10 @@ export default Ember.Component.extend({
     this.set('error', null)
 
     $.getJSON(`/api/proxy/${this.get('host')}/issues.json`, params)
-      .then(res =>
-        this.set('model', res)
-      )
+      .then(res => {
+        this.set('issues', res.issues)
+        this.set('total',  res.total_count)
+      })
       .fail(xhr =>
         this.set('error', xhr.responseText)
       )

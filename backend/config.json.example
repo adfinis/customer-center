@@ -25,8 +25,13 @@
     {
       "type": "redmine",
       "host": "redmine1",
+      "https": false,
       "user": "admin",
-      "password": "admin"
+      "apiKey": "",
+      "basicAuth": {
+        "username": "admin"
+        "password": "admin"
+      }
     },
     {
       "type": "rt",

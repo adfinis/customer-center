@@ -2,6 +2,10 @@
   cursor: pointer;
 }
 
+.nowrap {
+  white-space: nowrap;
+}
+
 .page-content-overlay {
   background-color: #000;
   transition: left 0.2s, opacity 0.2s, position 0.2s;

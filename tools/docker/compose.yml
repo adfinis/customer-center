@@ -29,3 +29,6 @@ postgres:
   image: postgres
   volumes:
     - ./postgres:/docker-entrypoint-initdb.d
+
+ucs:
+  build: ./ucs

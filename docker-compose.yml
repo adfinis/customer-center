@@ -20,6 +20,7 @@ backenddev1:
   links:
     - redis1
     - postgres1
+    - ucs1
     - redmine1
     - rt1
   environment:
@@ -32,6 +33,7 @@ backenddev2:
   links:
     - redis1
     - postgres1
+    - ucs1
     - redmine1
     - rt1
   environment:
@@ -44,6 +46,7 @@ backenddev3:
   links:
     - redis1
     - postgres1
+    - ucs1
     - redmine1
     - rt1
   environment:
@@ -62,6 +65,16 @@ redis1:
   extends:
     file: ./tools/docker/compose.yml
     service: redis
+
+ucs1:
+  extends:
+    file: ./tools/docker/compose.yml
+    service: ucs
+  hostname: acme-inc
+  environment:
+    - rootpwd=univention
+  ports:
+    - "8083:80"
 
 postgres1:
   extends:

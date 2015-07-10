@@ -46,7 +46,7 @@
             {{issue.subject}}
           </a>
         </td>
-        <td class="hide md-show">{{moment issue.updated_on}}</td>
+        <td class="hide md-show">{{moment issue.updated_on 'L LT'}}</td>
       </tr>
     {{^}}
       <tr class={{if error 'danger'}}>

@@ -1,5 +1,6 @@
 import url       from 'url'
 import httpProxy from 'express-http-proxy'
+import config    from '../../config.json'
 
 const ALLOWED_ENDPOINTS = [
   '/issues.json',
@@ -10,12 +11,15 @@ const ALLOWED_ENDPOINTS = [
 export default class RedmineProxy {
 
   static createProxy(service) {
-    return httpProxy(service.host, new this(service))
+    let host = service.https ? `https://${service.host}` : service.host
+
+    return httpProxy(host, new this(service))
   }
 
   constructor(r) {
-    this.host   = r.host
-    this.apiKey = r.apiKey
+    this.host      = r.host
+    this.apiKey    = r.apiKey
+    this.basicAuth = r.basicAuth
 
     this.filter          = this.filter.bind(this)
     this.intercept       = this.intercept.bind(this)
@@ -54,8 +58,20 @@ export default class RedmineProxy {
   }
 
   decorateRequest(req) {
-    req.headers['X-Redmine-API-Key']     = this.apiKey
     req.headers['X-Redmine-Switch-User'] = req.params.switchUser
+
+    if (this.apiKey) {
+      req.headers['X-Redmine-API-Key'] = this.apiKey
+    }
+
+    if (this.basicAuth) {
+      req.headers.Authorization = this._getBasicAuth(this.basicAuth)
+    }
+  }
+
+  _getBasicAuth({ username, password }) {
+    let encoding = new Buffer(`${username}:${password}`).toString('base64')
+    return `Basic ${encoding}`
   }
 
   intercept(rsp, data, req, res, callback) {

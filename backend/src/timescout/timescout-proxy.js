@@ -9,7 +9,7 @@ export default class TimescoutProxy {
 
   constructor(t) {
     this.host   = t.host
-    this.apiKey = t.key
+    this.apiKey = t.apiKey
 
     this.forwardPath = this.forwardPath.bind(this)
     this.decorateRequest = this.decorateRequest.bind(this)

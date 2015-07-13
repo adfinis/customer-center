@@ -70,10 +70,11 @@ ucs1:
   extends:
     file: ./tools/docker/compose.yml
     service: ucs
-  hostname: acme-inc
+  hostname: adsycc-ucs
   environment:
     - rootpwd=univention
   ports:
+    - "389:389"
     - "8083:80"
 
 postgres1:

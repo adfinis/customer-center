@@ -32,3 +32,5 @@ postgres:
 
 ucs:
   build: ./ucs
+  volumes:
+    - ./ucs/adsycc-ucs.profile:/var/cache/univention-system-setup/profile

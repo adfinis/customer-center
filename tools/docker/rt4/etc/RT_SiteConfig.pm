@@ -33,7 +33,7 @@ Set( $DatabaseUser, 'rt_user' );
 Set( $Organization, 'example.com' );
 Set( $OwnerEmail, '' );
 Set( $SendmailPath, '/usr/sbin/sendmail' );
-Set( $WebDomain, 'rt4' );
+Set( $WebDomain, 'rt1' );
 Set( $WebPort, '8082' );
 Set( $rtname, 'example.com' );
 1;

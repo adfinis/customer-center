@@ -24,7 +24,7 @@ backenddev1:
     - redmine1
     - rt1
   environment:
-    - TEST=1
+    - DEBUG=app:*
 
 backenddev2:
   extends:
@@ -37,7 +37,7 @@ backenddev2:
     - redmine1
     - rt1
   environment:
-    - TEST=2
+    - DEBUG=app:*
 
 backenddev3:
   extends:
@@ -50,7 +50,7 @@ backenddev3:
     - redmine1
     - rt1
   environment:
-    - TEST=3
+    - DEBUG=app:*
 
 frontenddev1:
   extends:

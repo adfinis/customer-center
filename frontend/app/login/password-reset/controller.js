@@ -1,9 +1,11 @@
 import Ember from 'ember'
 import { translationMacro as t } from 'ember-i18n'
 
+const { inject } = Ember
+
 export default Ember.Controller.extend({
-  login: Ember.inject.controller(),
-  i18n:  Ember.inject.service(),
+  login: inject.controller(),
+  i18n:  inject.service(),
 
   errorMessage: {},
 

@@ -1,9 +1,11 @@
 import Ember from 'ember'
-import { translationMacro as t } from "ember-i18n"
+
+const { inject } = Ember
 
 export default Ember.Controller.extend({
-  errorMessage: {},
-  passwordReset: Ember.inject.controller('login.password-reset'),
+  errorMessage:  {},
+  passwordReset: inject.controller('login.password-reset'),
+
   actions: {
     async authenticate() {
       this.set('loading', true)

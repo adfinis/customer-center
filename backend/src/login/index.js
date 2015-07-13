@@ -1,17 +1,16 @@
-import fs           from 'fs'
 import express      from 'express'
 import passport     from 'passport'
 import LdapStrategy from 'passport-ldapauth'
 import config       from '../../config.json'
 
+const tlsOptions = { }
+
+if (config.ldap.cert) {
+  tlsOptions.ca = [ require('fs').readFileSync(config.ldap.cert) ]
+}
+
 const options = {
-  server: Object.assign({}, config.ldap, config.login.ldap, {
-    // tlsOptions: {
-    //   ca: [
-    //     fs.readFileSync('/path/to/root_ca_cert.crt')
-    //   ]
-    // }
-  })
+  server: Object.assign({}, config.ldap, config.login.ldap, { tlsOptions })
 }
 
 passport.use(new LdapStrategy(options))

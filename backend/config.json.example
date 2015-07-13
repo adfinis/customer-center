@@ -6,7 +6,8 @@
   "ldap": {
     "url": "ldap://ucs1:389",
     "bindDn": "uid=Administrator,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
-    "bindCredentials": "univention"
+    "bindCredentials": "univention",
+    "cert": "/path/to/root_ca_cert.crt"
   },
   "login": {
     "ldap": {

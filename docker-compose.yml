@@ -73,6 +73,8 @@ ucs1:
   hostname: adsycc-ucs
   environment:
     - rootpwd=univention
+  volumes:
+    - ./tools/docker/ucs/scripts:/usr/ucs/scripts
   ports:
     - "389:389"
     - "8083:80"

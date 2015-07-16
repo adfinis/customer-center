@@ -4,15 +4,18 @@
     "host": "customer-center.example.com"
   },
   "ldap": {
-    "url": "ldaps://ad.corporate.com:636",
-    "bindDn": "cn=non-person,ou=system,dc=corp,dc=corporate,dc=com",
-    "bindCredentials": "secret"
+    "url": "ldap://ucs1:389",
+    "bindDn": "uid=Administrator,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
+    "bindCredentials": "univention",
+    "cert": "/path/to/root_ca_cert.crt"
   },
   "login": {
     "ldap": {
-      "searchBase": "dc=corp,dc=corporate,dc=com",
-      "searchFilter": "&(objectcategory=person)(objectclass=user)(|(samaccountname={{username}})(mail={{username}})))",
-      "searchAttributes": [ "displayName", "mail" ]
+      "searchBase": "dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
+      "searchFilter": "(uid={{username}})",
+      "searchAttributes": [ "uid" ],
+      "usernameField": "uid",
+      "passwordField": "userpassword"
     },
     "secret": "ponies"
   },

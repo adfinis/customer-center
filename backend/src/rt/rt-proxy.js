@@ -40,6 +40,11 @@ export default class RTProxy {
 
     let data = await this.request('/search/ticket', this.getParams(email))
 
+    if (!data) {
+      res.send({ tickets: [] })
+      return
+    }
+
     let tickets = []
     for (let line of data.split('\n')) {
       let matches = MATCH_SEARCH.exec(line)

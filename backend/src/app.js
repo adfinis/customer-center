@@ -6,6 +6,7 @@ import morgan     from 'morgan'
 import passport   from 'passport'
 import redis      from 'redis'
 import jwt        from 'jwt-redis-session'
+import debug      from 'debug'
 import API        from './classes/api'
 import login      from './login'
 import services   from './services'
@@ -13,6 +14,10 @@ import config     from '../config.json'
 
 const app = express()
 export default app
+
+app.log = {}
+app.log.error = debug('app:error')
+app.log.debug = debug('app:debug')
 
 const env = app.get('env')
 
@@ -67,12 +72,15 @@ app.get('/', (req, res) => {
 })
 
 app.use((err, req, res, next) => {
-  res.status(err.status || 500)
+  let status = err.status || 500
+
+  res.status(status)
+
+  if (status === 500) {
+    app.log.error(err)
+  }
 
   res.send({
-    errors: [ {
-      status: err.status,
-      detail: err.message
-    } ]
+    errors: [ { status, detail: err.message } ]
   })
 })

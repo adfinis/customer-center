@@ -1,0 +1,32 @@
+{{outlet}}
+
+<table class="table table--striped">
+  <caption>{{t 'timed.list-caption' project=project.name}}</caption>
+  <thead>
+    <tr>
+      <th class="hide xs-show" width="100">{{t 'timed.time'}}</th>
+      <th width="300">{{t 'timed.description'}}</th>
+      <th class="hide sm-show" width="1">{{t 'timed.date'}}</th>
+      <th class="hide md-show" width="100">{{t 'timed.doneBy'}}</th>
+    </tr>
+  </thead>
+  {{#if showPager}}
+    <tfoot>
+      <tr>
+        <td colspan="4">
+          {{pagination-pager current=page count=totalPages}}
+        </td>
+      </tr>
+    </tfoot>
+  {{/if}}
+  <tbody>
+    {{#each model.timesheetEntries as |entry|}}
+     <tr>
+      <td class="hide xs-show">{{entry.time.hours}}h {{entry.time.minutes}}min</td>
+      <td>{{entry.description}}</td>
+      <td class="hide sm-show">{{entry.date}}</td>
+      <td class="hide md-show">{{entry.doneBy}}</td>
+     </tr> 
+    {{/each}}
+  </tbody>
+</table>

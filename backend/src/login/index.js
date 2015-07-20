@@ -20,8 +20,15 @@ passport.serializeUser((id, done) => {
   done(null, id)
 })
 passport.deserializeUser((id, done) => {
-  console.log('deserializing', id)
-  done(null, id)
+  let user = {}
+
+  user.username  = id.uid
+  user.shortname = id.sn
+  user.groups    = id._groups.map(g => g.cn)
+
+  console.log('Deserialized user', user)
+
+  done(null, user)
 })
 
 const router = new express.Router

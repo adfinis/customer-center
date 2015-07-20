@@ -90,21 +90,15 @@ postgres1:
 redmine1:
   image: sameersbn/redmine:latest
   links:
-    - redmine1postgres
+    - postgres1
   environment:
     - DB_TYPE=postgres
-    - DB_HOST=redmine1postgres
+    - DB_HOST=postgres1
     - DB_NAME=redmine
     - DB_USER=test
     - DB_PASS=test
   ports:
     - "8081:80"
-
-redmine1postgres:
-  image: postgres
-  environment:
-    - POSTGRES_USER=test
-    - POSTGRES_PASSWORD=test
 
 rt1:
   image: jbfink/rt:latest

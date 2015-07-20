@@ -11,7 +11,7 @@
   },
   "login": {
     "ldap": {
-      "searchBase": "dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
+      "searchBase": "ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
       "searchFilter": "(uid={{username}})",
       "searchAttributes": [ "uid" ],
       "usernameField": "uid",
@@ -32,13 +32,13 @@
       "user": "admin",
       "apiKey": "",
       "basicAuth": {
-        "username": "admin"
+        "username": "admin",
         "password": "admin"
       }
     },
     {
       "type": "rt",
-      "https://rt.example.com/rt",
+      "host": "https://rt.example.com/rt",
       "username": "admin",
       "password": "admin"
     }

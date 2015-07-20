@@ -16,19 +16,19 @@ const options = {
 passport.use(new LdapStrategy(options))
 
 passport.serializeUser((id, done) => {
-  console.log('serializing', id)
-  done(null, id)
-})
-passport.deserializeUser((id, done) => {
   let user = {}
 
   user.username  = id.uid
   user.shortname = id.sn
   user.groups    = id._groups.map(g => g.cn)
 
-  console.log('Deserialized user', user)
+  console.log('Serialized user', user)
 
   done(null, user)
+})
+passport.deserializeUser((id, done) => {
+  console.log('Deserialized user', id)
+  done(null, id)
 })
 
 const router = new express.Router
@@ -44,8 +44,9 @@ router.post('/login', (req, res, next) =>
       if (loginError) return next(loginError)
 
       let claims = {
-        iss: config.application.name,
-        aud: config.application.host
+        iss:    config.application.name,
+        aud:    config.application.host,
+        user:   { groups: req._passport.session.user.groups }
       }
 
       req.session.create(claims, (sessionError, token) => {

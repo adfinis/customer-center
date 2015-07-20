@@ -13,7 +13,8 @@ fullname=$2
 	udm groups/group create --set name=$shortname-mon --set description="Monitoring-Funktion für Kunde $fullname" --position "ou=$shortname,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch"
 
 ### Admin Benutzer erstellen
-password=`pwgen -s 12 1`
+#password=`pwgen -s 12 1`
+password=${shortname}123qwe
 ### Klammern und ^ um ersten Buchstaben gross zu setzen
 adminuser=${shortname^}-admin
         udm users/user create \

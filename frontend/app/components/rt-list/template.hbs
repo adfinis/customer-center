@@ -9,6 +9,15 @@
       <th class="hide lg-show">{{t 'rt.created'}}</th>
     </tr>
   </thead>
+  {{#if showPager}}
+    <tfoot>
+      <tr>
+        <td colspan="7">
+          {{pagination-pager current=page count=totalPages}}
+        </td>
+      </tr>
+    </tfoot>
+  {{/if}}
   <tbody>
     {{#each model.data.tickets as |ticket|}}
       <tr>

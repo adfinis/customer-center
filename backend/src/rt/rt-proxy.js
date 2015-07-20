@@ -35,15 +35,27 @@ export default class RTProxy {
   }
 
   async tickets(req, res, next) {
+    let { offset = 0, limit = 5 } = req.query
+
+    offset = +offset
+    limit  = +limit
+
     let tickets = this.Ticket.query(q => {
       q.where('memberEmail', '=', 'root@localhost')
        .groupBy('id')
        .orderBy('lastUpdated', 'desc')
-       .limit(5)
+       .offset(offset)
+       .limit(limit)
+    })
+
+    let total = this.Ticket.query(q => {
+      q.where('memberEmail', '=', 'root@localhost')
+       .count('DISTINCT id as count')
     })
 
     tickets = await tickets.fetchAll()
+    total   = (await total.fetch()).toJSON().count
 
-    res.send({ data: { tickets } })
+    res.send({ data: { tickets, offset, limit, total } })
   }
 }

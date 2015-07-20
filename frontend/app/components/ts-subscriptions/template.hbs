@@ -9,7 +9,7 @@
   <tbody>
     {{#each model as |subscription|}}
       <tr>
-        <td>{{#link-to 'timescout.timesheet' subscription}}{{subscription.name}}{{/link-to}}</td>
+        <td>{{#link-to 'timescout.timesheet' subscription.id}}{{subscription.name}}{{/link-to}}</td>
         <td>{{subscription.availableTime.hours}}h {{subscription.availableTime.minutes}}min</td>
       </tr>
     {{/each}}

@@ -5,7 +5,7 @@ import config       from '../../config.json'
 
 const tlsOptions = { }
 
-if (config.ldap.cert) {
+if (config.ldap.url.startsWith('ldaps') && config.ldap.cert) {
   tlsOptions.ca = [ require('fs').readFileSync(config.ldap.cert) ]
 }
 

@@ -38,6 +38,7 @@ export default class RTProxy {
     let tickets = this.Ticket.query(q => {
       q.where('memberEmail', '=', 'root@localhost')
        .groupBy('id')
+       .orderBy('lastUpdated', 'desc')
        .limit(5)
     })
 

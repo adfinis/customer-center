@@ -15,4 +15,4 @@
     {{/each}}
   </tbody>
 </table>
-<div>{{#link-to 'timescout'}}{{t 'timescout.history'}}{{/link-to}}</div>
+{{#unless nohistory}}<div>{{#link-to 'timescout'}}{{t 'timescout.history'}}{{/link-to}}</div>{{/unless}}

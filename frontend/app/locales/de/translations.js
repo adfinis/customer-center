@@ -46,9 +46,15 @@ export default {
 
   'timescout': {
     'list-caption': 'Abonnomente',
-
     'subscription':    'Abo',
-    'remaining-hours': 'Übrige Stunden'
+    'remaining-hours': 'Übrige Stunden',
+    'history': 'Verlauf',
+
+    'list-timesheet': 'Übersicht von {{project}}',
+    'time': 'Zeit',
+    'description': 'Beschreibung',
+    'date': 'Datum',
+    'done-by': 'Erledigt durch'
   },
 
   'symon': {

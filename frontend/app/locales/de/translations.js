@@ -17,6 +17,7 @@ export default {
   'nav': {
     'dashboard': 'Übersicht',
     'redmine':   'Redmine',
+    'timescout': 'Timescout',
     'settings':  'Einstellungen',
     'profile':   'Profil',
     'logout':    'Logout'

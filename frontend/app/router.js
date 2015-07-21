@@ -15,7 +15,6 @@ Router.map(function() {
     this.resource('redmine')
     this.resource('timescout', function() {
       this.route('timesheet', { path: 'timesheet/:id' })
-      this.route('history')
     })
   });
 })

@@ -59,7 +59,12 @@ export default {
     'time': 'Zeit',
     'description': 'Beschreibung',
     'date': 'Datum',
-    'done-by': 'Erledigt durch'
+    'done-by': 'Erledigt durch',
+
+    'lease-time': 'Gekaufte Zeit',
+    'lease-date': 'Gekauft am',
+    'acknowledged': 'Bestätigt',
+    'confirmed-by': 'Bestätigt von'
   },
 
   'symon': {

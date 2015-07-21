@@ -1,0 +1,42 @@
+<table class="table table--striped">
+  <caption>{{t 'rt.list-caption'}}</caption>
+  <thead>
+    <tr>
+      <th>{{t 'rt.id'}}</th>
+      <th class="hide sm-show">{{t 'rt.status'}}</th>
+      <th>{{t 'rt.title'}}</th>
+      <th class="hide md-show">{{t 'rt.updated'}}</th>
+      <th class="hide lg-show">{{t 'rt.created'}}</th>
+    </tr>
+  </thead>
+  {{#if showPager}}
+    <tfoot>
+      <tr>
+        <td colspan="7">
+          {{pagination-pager current=page count=totalPages}}
+        </td>
+      </tr>
+    </tfoot>
+  {{/if}}
+  <tbody>
+    {{#each model.data.tickets as |ticket|}}
+      <tr>
+        <td>#{{ticket.id}}</td>
+        <td class="hide sm-show">{{ticket.status}}</td>
+        <td>{{ticket.subject}}</td>
+        <td class="hide md-show">{{moment ticket.lastUpdated 'L LT'}}</td>
+        <td class="hide lg-show">{{moment ticket.created 'L LT'}}</td>
+      </tr>
+    {{^}}
+      <tr class={{if error 'danger'}}>
+        <td colspan="6">
+          {{#unless error}}
+            No tickets found!
+          {{else}}
+            {{error}}
+          {{/unless}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

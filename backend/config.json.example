@@ -12,8 +12,15 @@
   "login": {
     "ldap": {
       "searchBase": "ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
-      "searchFilter": "(uid={{username}})",
-      "searchAttributes": [ "uid" ],
+      "searchFilter": "uid={{username}}",
+      "searchAttributes": [ "uid", "sn" ],
+
+      "groupSearchBase": "ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
+      "groupSearchFilter": "cn={{dn}}-*",
+      "groupSearchScope": "sub",
+      "groupDnProperty": "sn",
+      "groupSearchAttributes": [ "cn" ],
+
       "usernameField": "uid",
       "passwordField": "userpassword"
     },
@@ -40,7 +47,13 @@
       "type": "rt",
       "host": "https://rt.example.com/rt",
       "username": "admin",
-      "password": "admin"
+      "password": "admin",
+      "knex": {
+        "client": "sqlite3",
+        "connection": {
+          "filename": "/var/rt4/rt4"
+        }
+      }
     },
     {
       "type": "timescout",

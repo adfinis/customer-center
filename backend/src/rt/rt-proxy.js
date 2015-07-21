@@ -1,8 +1,6 @@
-import request    from 'request-promise'
+import Bookshelf  from 'bookshelf'
+import knex       from 'knex'
 import { Router } from 'express'
-
-const API_PATH     = '/REST/1.0'
-const MATCH_SEARCH = /^(\d+): (.*)$/
 
 export default class RTProxy {
 
@@ -16,6 +14,11 @@ export default class RTProxy {
     this.host     = r.host
     this.username = r.username
     this.password = r.password
+
+    this.bookshelf = new Bookshelf(knex(r.knex))
+    this.Ticket    = this.bookshelf.Model.extend({
+      tableName: 'adsycc'
+    })
   }
 
   createRouter() {
@@ -31,53 +34,28 @@ export default class RTProxy {
       this[name](req, res, next).catch(next)
   }
 
-  getTicketURL(id) {
-    return `${this.host}/Ticket/Display.html?id=${id}`
-  }
-
   async tickets(req, res, next) {
-    let { email } = { email: 'damian.senn@adfinis-sygroup.ch' } // req.user.email
+    let { offset = 0, limit = 5 } = req.query
 
-    let data = await this.request('/search/ticket', this.getParams(email))
+    offset = +offset
+    limit  = +limit
 
-    if (!data) {
-      res.send({ tickets: [] })
-      return
-    }
+    let tickets = this.Ticket.query(q => {
+      q.where('memberEmail', '=', 'root@localhost')
+       .groupBy('id')
+       .orderBy('lastUpdated', 'desc')
+       .offset(offset)
+       .limit(limit)
+    })
 
-    let tickets = []
-    for (let line of data.split('\n')) {
-      let matches = MATCH_SEARCH.exec(line)
+    let total = this.Ticket.query(q => {
+      q.where('memberEmail', '=', 'root@localhost')
+       .count('DISTINCT id as count')
+    })
 
-      if (!matches) continue
+    tickets = await tickets.fetchAll()
+    total   = (await total.fetch()).toJSON().count
 
-      let [ match, id, title ] = matches
-
-      tickets.push({ id, title, url: this.getTicketURL(id) })
-    }
-
-    res.send({ tickets })
-  }
-
-  getQuery(email) {
-    return `Requestor.EmailAddress LIKE '${email}' OR ` +
-           `Cc.EmailAddress LIKE '${email}' OR ` +
-           `Watcher.EmailAddress LIKE '${email}'`
-  }
-
-  getParams(email) {
-    return {
-      query:       this.getQuery(email),
-      orderby:     '-LastUpdated',
-      format:      's',
-      RowsPerPage: 3,
-      user:        this.username,
-      pass:        this.password
-    }
-  }
-
-  async request(path, qs) {
-    let headers = { Referer: this.host }
-    return request(`${this.host}${API_PATH}${path}`, { qs, headers })
+    res.send({ data: { tickets, offset, limit, total } })
   }
 }

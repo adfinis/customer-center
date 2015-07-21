@@ -3,11 +3,9 @@ import Ember from 'ember'
 const { $, computed, observer } = Ember
 
 export default Ember.Component.extend({
-  limit:  10,
-  offset:  0,
-  total:   0,
-  host:   '',
-  sort:   'updated_on:desc',
+  limit: 1,
+  offset: 0,
+  total: 0,
 
   init(...args) {
     this._super(...args)
@@ -33,24 +31,25 @@ export default Ember.Component.extend({
     return this.get('totalPages') > 1
   }),
 
-  updateModel: observer('host', 'limit', 'offset', 'sort', function() {
+  updateTickets: observer('limit', 'offset', function() {
     this.send('updateModel')
   }),
 
   actions: {
     updateModel() {
-      let params = {
-        limit:  this.get('limit'),
-        offset: this.get('offset'),
-        sort:   this.get('sort')
-      }
+      let limit  = this.get('limit')
+      let offset = this.get('offset')
 
       this.set('error', null)
 
-      $.getJSON(`/api/proxy/${this.get('host')}/issues.json`, params)
+      $.getJSON('/api/rt/tickets', { limit, offset })
         .then(res => {
-          this.set('issues', res.issues)
-          this.set('total',  res.total_count)
+          res.data.tickets.forEach(t =>
+            t.status = `${t.status[0].toUpperCase()}${t.status.slice(1)}`
+          )
+
+          this.set('total', res.data.total)
+          this.set('model', res)
         })
         .fail(xhr =>
           this.set('error', xhr.responseText)

@@ -50,6 +50,11 @@ export default {
     'remaining-hours': 'Übrige Stunden',
     'history': 'Verlauf',
 
+    'project-details': 'Projektdetails',
+    'project-name': 'Projektname',
+    'total-booked': 'Gesamte bezahlte Stunden',
+    'total-used': 'Gesamte verbrauchte Stunden',
+
     'list-timesheet': 'Übersicht von {{project}}',
     'time': 'Zeit',
     'description': 'Beschreibung',

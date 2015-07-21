@@ -50,6 +50,11 @@ export default {
     'remaining-hours': 'Remaining hours',
     'history': 'History',
 
+    'project-details': 'Project details',
+    'project-name': 'Projectname',
+    'total-booked': 'Total hours booked',
+    'total-used': 'Total hours used',
+
     'list-timesheet': 'Timesheet of {{project}}',
     'time': 'Time',
     'description': 'Description',

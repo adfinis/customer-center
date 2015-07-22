@@ -54,6 +54,11 @@
           "filename": "/var/rt4/rt4"
         }
       }
+    },
+    {
+      "type": "timescout",
+      "host": "https://support.example.com/api",
+      "key": "somerandomkey"
     }
   ]
 }

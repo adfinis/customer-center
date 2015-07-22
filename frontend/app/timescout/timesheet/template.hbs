@@ -1,0 +1,40 @@
+{{outlet}}
+
+<h5>{{t 'timescout.project-details'}}</h5>
+<div>
+  {{t 'timescout.project-name'}}: {{project.name}}<br>
+  {{t 'timescout.total-booked'}}: {{project.totalBookedTime.hours}}h {{project.totalBookedTime.minutes}}min<br>
+  {{t 'timescout.total-used'}}: {{project.totalUsedTime.hours}}h {{project.totalUsedTime.minutes}}min<br>
+  {{t 'timescout.remaining-hours'}}: {{project.availableTime.hours}}h {{project.availableTime.minutes}}min
+</div>
+
+<table class="table table--striped">
+  <caption>{{t 'timescout.list-timesheet' project=project.name}}</caption>
+  <thead>
+    <tr>
+      <th class="hide xs-show" width="100">{{t 'timescout.time'}}</th>
+      <th width="300">{{t 'timescout.description'}}</th>
+      <th class="hide sm-show" width="1">{{t 'timescout.date'}}</th>
+      <th class="hide md-show" width="100">{{t 'timescout.done-by'}}</th>
+    </tr>
+  </thead>
+  {{#if showPager}}
+    <tfoot>
+      <tr>
+        <td colspan="4">
+          {{pagination-pager current=page count=totalPages}}
+        </td>
+      </tr>
+    </tfoot>
+  {{/if}}
+  <tbody>
+    {{#each model.timesheetEntries as |entry|}}
+     <tr>
+      <td class="hide xs-show">{{entry.time.hours}}h {{entry.time.minutes}}min</td>
+      <td>{{entry.description}}</td>
+      <td class="hide sm-show">{{entry.date}}</td>
+      <td class="hide md-show">{{entry.doneBy}}</td>
+     </tr> 
+    {{/each}}
+  </tbody>
+</table>

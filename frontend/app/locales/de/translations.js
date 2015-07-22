@@ -17,6 +17,7 @@ export default {
   'nav': {
     'dashboard': 'Übersicht',
     'redmine':   'Redmine',
+    'timescout': 'Timescout',
     'settings':  'Einstellungen',
     'profile':   'Profil',
     'logout':    'Logout'
@@ -46,9 +47,25 @@ export default {
 
   'timescout': {
     'list-caption': 'Abonnomente',
-
     'subscription':    'Abo',
-    'remaining-hours': 'Übrige Stunden'
+    'remaining-hours': 'Übrige Stunden',
+    'history': 'Verlauf',
+
+    'project-details': 'Projektdetails',
+    'project-name': 'Projektname',
+    'total-booked': 'Gesamte bezahlte Stunden',
+    'total-used': 'Gesamte verbrauchte Stunden',
+
+    'list-timesheet': 'Übersicht von {{project}}',
+    'time': 'Zeit',
+    'description': 'Beschreibung',
+    'date': 'Datum',
+    'done-by': 'Erledigt durch',
+
+    'lease-time': 'Gekaufte Zeit',
+    'lease-date': 'Gekauft am',
+    'acknowledged': 'Bestätigt',
+    'confirmed-by': 'Bestätigt von'
   },
 
   'symon': {

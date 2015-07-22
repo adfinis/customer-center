@@ -1,0 +1,36 @@
+{{outlet}}
+
+{{ts-subscriptions user='Fromarte' nohistory=true}}
+
+<table class="table table--striped">
+  <caption>{{t 'timescout.history'}}</caption>
+  <thead>
+    <tr>
+      <th width="300">{{t 'timescout.project-name'}}</th>
+      <th width="50">{{t 'timescout.lease-time'}}</th>
+      <th class="hide md-show" width="1">{{t 'timescout.lease-date'}}</th>
+      <th class="hide sm-show" width="1">{{t 'timescout.acknowledged'}}</th>
+      <th class="hide md-show" width="300">{{t 'timescout.confirmed-by'}}</th>
+    </tr>
+  </thead>
+  {{#if showPager}}
+    <tfoot>
+      <tr>
+        <td colspan="4">
+          {{pagination-pager current=page count=totalPages}}
+        </td>
+      </tr>
+    </tfoot>
+  {{/if}}
+  <tbody>
+    {{#each model as |entry|}}
+     <tr>
+      <td>{{entry.projectName}}</td>
+      <td>{{entry.leaseTime}}h</td>
+      <td class="hide md-show">{{moment entry.leaseStamp 'L'}}</td>
+      <td class="hide sm-show"><i class="{{if entry.acknowledged 'fa fa-check' 'fa-times'}}"></i></td>
+      <td class="hide md-show">{{entry.confirmedBy}}</td>
+     </tr> 
+    {{/each}}
+  </tbody>
+</table>

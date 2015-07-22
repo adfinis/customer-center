@@ -21,7 +21,6 @@ export default Ember.Route.extend({
 
   model({ id, limit, page }) {
     let params = {
-      user: 'Fromarte',
       action: 'timesheet',
       projectID: id,
       page,

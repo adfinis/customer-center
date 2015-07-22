@@ -7,7 +7,7 @@ export default Ember.Route.extend({
   },
 
   model() {
-    let params = {user: "Fromarte", action: "history"}
+    let params = { action: "history" }
 
     return $.getJSON('/api/proxy/timescout/service/api.php', params)
       .then(function(res){

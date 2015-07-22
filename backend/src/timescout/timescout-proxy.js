@@ -21,5 +21,6 @@ export default class TimescoutProxy {
 
   decorateRequest(req) {
     req.headers['X-Timescout-API-Key'] = this.apiKey
+    req.path += '&user=Fromarte'
   }
 }

@@ -3,10 +3,10 @@
   <thead>
     <tr>
       <th>{{t 'rt.id'}}</th>
-      <th class="hide sm-show">{{t 'rt.status'}}</th>
+      <th class="visible-sm">{{t 'rt.status'}}</th>
       <th>{{t 'rt.title'}}</th>
-      <th class="hide md-show">{{t 'rt.updated'}}</th>
-      <th class="hide lg-show">{{t 'rt.created'}}</th>
+      <th class="visible-md">{{t 'rt.updated'}}</th>
+      <th class="visible-lg">{{t 'rt.created'}}</th>
     </tr>
   </thead>
   {{#if showPager}}
@@ -22,10 +22,10 @@
     {{#each model.data.tickets as |ticket|}}
       <tr>
         <td>#{{ticket.id}}</td>
-        <td class="hide sm-show">{{ticket.status}}</td>
+        <td class="visible-sm">{{ticket.status}}</td>
         <td>{{ticket.subject}}</td>
-        <td class="hide md-show">{{moment ticket.lastUpdated 'L LT'}}</td>
-        <td class="hide lg-show">{{moment ticket.created 'L LT'}}</td>
+        <td class="visible-md">{{moment ticket.lastUpdated 'L LT'}}</td>
+        <td class="visible-lg">{{moment ticket.created 'L LT'}}</td>
       </tr>
     {{^}}
       <tr class={{if error 'danger'}}>

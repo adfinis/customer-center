@@ -41,10 +41,6 @@
   flex-direction: column;
 }
 
-.hide {
-  display: none;
-}
-
 .text-danger {
   color: rgb(217, 83, 79);
 }
@@ -55,44 +51,4 @@
 
 .text-success {
   color: rgb(92, 184, 92);
-}
-
-@media only screen and (min-width: 30rem) {
-  .xs-hide {
-    display: none;
-  }
-
-  th.xs-show, td.xs-show {
-    display: table-cell;
-  }
-}
-
-@media only screen and (min-width: 48rem) {
-  .sm-hide {
-    display: none;
-  }
-
-  th.sm-show, td.sm-show {
-    display: table-cell;
-  }
-}
-
-@media only screen and (min-width: 62rem) {
-  .md-hide {
-    display: none;
-  }
-
-  th.md-show, td.md-show {
-    display: table-cell;
-  }
-}
-
-@media only screen and (min-width: 75rem) {
-  .lg-hide {
-    display: none;
-  }
-
-  th.lg-show, td.lg-show {
-    display: table-cell;
-  }
 }

@@ -2,22 +2,22 @@
   <caption>{{t 'redmine.list-caption' host=host}}</caption>
   <colgroup>
     <col width="50">
-    <col class="hide xs-show" width="300">
-    <col class="hide xs-show" width="1">
-    <col class="hide sm-show" width="1">
-    <col class="hide md-show" width="1">
+    <col class="visible-xs" width="300">
+    <col class="visible-xs" width="1">
+    <col class="visible-sm" width="1">
+    <col class="visible-md" width="1">
     <col>
-    <col class="hide md-show" width="200">
+    <col class="visible-md" width="200">
   </colgroup>
   <thead>
     <tr>
       <th>{{t 'redmine.id'}}</th>
-      <th class="hide xs-show">{{t 'redmine.project'}}</th>
-      <th class="hide sm-show">{{t 'redmine.tracker'}}</th>
-      <th class="hide sm-show">{{t 'redmine.status'}}</th>
-      <th class="hide md-show">{{t 'redmine.priority'}}</th>
+      <th class="visible-xs">{{t 'redmine.project'}}</th>
+      <th class="visible-sm">{{t 'redmine.tracker'}}</th>
+      <th class="visible-md">{{t 'redmine.status'}}</th>
+      <th class="visible-md">{{t 'redmine.priority'}}</th>
       <th>{{t 'redmine.subject'}}</th>
-      <th class="hide md-show">{{t 'redmine.updated'}}</th>
+      <th class="visible-md">{{t 'redmine.updated'}}</th>
     </tr>
   </thead>
   {{#if showPager}}
@@ -37,16 +37,16 @@
             #{{issue.id}}
           </a>
         </td>
-        <td class="hide xs-show">{{issue.project.name}}</td>
-        <td class="hide sm-show">{{issue.tracker.name}}</td>
-        <td class="hide sm-show nowrap">{{issue.status.name}}</td>
-        <td class="hide md-show">{{issue.priority.name}}</td>
+        <td class="visible-xs">{{issue.project.name}}</td>
+        <td class="visible-sm">{{issue.tracker.name}}</td>
+        <td class="visible-md">{{issue.status.name}}</td>
+        <td class="visible-md">{{issue.priority.name}}</td>
         <td>
           <a href="https://{{host}}/issues/{{issue.id}}">
             {{issue.subject}}
           </a>
         </td>
-        <td class="hide md-show nowrap">{{moment issue.updated_on 'L LT'}}</td>
+        <td class="visible-md nowrap">{{moment issue.updated_on 'L LT'}}</td>
       </tr>
     {{^}}
       <tr class={{if error 'danger'}}>

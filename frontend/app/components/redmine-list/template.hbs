@@ -3,9 +3,9 @@
   <colgroup>
     <col width="50">
     <col class="visible-xs" width="300">
-    <col class="visible-xs" width="1">
     <col class="visible-sm" width="1">
-    <col class="visible-md" width="1">
+    <col class="visible-lg" width="1">
+    <col class="visible-xl" width="1">
     <col>
     <col class="visible-md" width="200">
   </colgroup>
@@ -14,8 +14,8 @@
       <th>{{t 'redmine.id'}}</th>
       <th class="visible-xs">{{t 'redmine.project'}}</th>
       <th class="visible-sm">{{t 'redmine.tracker'}}</th>
-      <th class="visible-md">{{t 'redmine.status'}}</th>
-      <th class="visible-md">{{t 'redmine.priority'}}</th>
+      <th class="visible-lg">{{t 'redmine.status'}}</th>
+      <th class="visible-xl">{{t 'redmine.priority'}}</th>
       <th>{{t 'redmine.subject'}}</th>
       <th class="visible-md">{{t 'redmine.updated'}}</th>
     </tr>
@@ -39,8 +39,8 @@
         </td>
         <td class="visible-xs">{{issue.project.name}}</td>
         <td class="visible-sm">{{issue.tracker.name}}</td>
-        <td class="visible-md">{{issue.status.name}}</td>
-        <td class="visible-md">{{issue.priority.name}}</td>
+        <td class="visible-lg">{{issue.status.name}}</td>
+        <td class="visible-xl">{{issue.priority.name}}</td>
         <td>
           <a href="https://{{host}}/issues/{{issue.id}}">
             {{issue.subject}}

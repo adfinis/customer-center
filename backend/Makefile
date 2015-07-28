@@ -13,4 +13,8 @@ test-watch:
 		node_modules/.bin/babel-node --harmony \
 		node_modules/.bin/gulp test-watch
 
-.PHONY: test lint test-watch
+migrations:
+	node_modules/.bin/babel-node --harmony \
+		node_modules/.bin/knex migrate:latest
+
+.PHONY: test lint test-watch migrations

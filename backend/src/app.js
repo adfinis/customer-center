@@ -37,7 +37,7 @@ app.use(jwt({
   client:     redis.createClient(config.redis.port, config.redis.host, config.redis.options),
   secret:     config.login.secret,
   keyspace:   'session:',
-  maxAge:     86400, // seconds
+  maxAge:     24 * 60 * 60, // seconds
   algorithm:  'HS256', // sha256
   requestKey: 'session',
   requestArg: 'Authorization'
@@ -50,6 +50,17 @@ app.use((req, res, next) => {
   if (req.isAuthenticated()) return next()
 
   next({ status: 401, message: 'Not Authorized' })
+})
+
+app.get('/v1/user/current', (req, res) => {
+  let user = {
+    username:  req.user.get('username'),
+    shortname: req.user.get('shortname'),
+    groups:    req.user.getGroups(),
+    emails:    req.user.getEmails()
+  }
+
+  res.send({ data: { user } })
 })
 
 const modulePath = path.join(__dirname, 'modules')

@@ -1,6 +1,5 @@
 import url       from 'url'
 import httpProxy from 'express-http-proxy'
-import config    from '../../config.json'
 
 const ALLOWED_ENDPOINTS = [
   '/issues.json',
@@ -8,18 +7,38 @@ const ALLOWED_ENDPOINTS = [
   '/trackers.json'
 ]
 
+/**
+ * Redmine Proxy
+ *
+ * @class RedmineProxy
+ * @public
+ */
 export default class RedmineProxy {
 
+  /**
+   * Creates a new redmine proxy
+   *
+   * @param {Object} service RedmineProxy configuration object
+   * @return {Object} An express http proxy middleware
+   * @public
+   */
   static createProxy(service) {
     let host = service.https ? `https://${service.host}` : service.host
 
     return httpProxy(host, new this(service))
   }
 
-  constructor(r) {
-    this.host      = r.host
-    this.apiKey    = r.apiKey
-    this.basicAuth = r.basicAuth
+  /**
+   * Constructor of Redmine Proxy
+   *
+   * @constructor
+   * @param {Object} service RedmineProxy configuration object
+   * @public
+   */
+  constructor(service) {
+    this.host      = service.host
+    this.apiKey    = service.apiKey
+    this.basicAuth = service.basicAuth
 
     this.filter          = this.filter.bind(this)
     this.intercept       = this.intercept.bind(this)
@@ -27,22 +46,22 @@ export default class RedmineProxy {
     this.decorateRequest = this.decorateRequest.bind(this)
   }
 
-  getRedmineUser(user) {
-    return !user ||
-           !user.services ||
-           !user.services.redmine ||
-           !user.services.redmine[this.host] ||
-           !user.services.redmine[this.host].user
-  }
-
+  /**
+   * Filter unauthorized requests
+   *
+   * @param {express.Request}  req The request object
+   * @param {express.Response} res The response object
+   * @return {boolean}
+   * @public
+   */
   filter(req, res) {
-    let redmineUser = this.getRedmineUser(req.user)
-
-    if (!redmineUser) {
+    if (!req.user.hasRedmineAccess()) {
       return false
     }
 
-    req.params.switchUser = redmineUser
+    // `decorateRequest()` does not have an user object, passing
+    // through `req.params` here as workaround
+    req.params.switchUser = req.user.get('username')
 
     for (let allowed of ALLOWED_ENDPOINTS) {
       if (req.url.startsWith(allowed)) {
@@ -53,11 +72,28 @@ export default class RedmineProxy {
     return false
   }
 
+  /**
+   * The path to forward
+   *
+   * @param {express.Request}  req The request object
+   * @param {express.Response} res The response object
+   * @return {string}
+   * @public
+   */
   forwardPath(req, res) {
     return url.parse(req.url).path
   }
 
+  /**
+   * Decorates the requests and adds some redmine specific headers
+   *
+   * @param {express.Request} req The request object
+   * @return {void}
+   * @public
+   */
   decorateRequest(req) {
+    // `req.params.switchUser` was set in `filter()` as a workaround
+    // to the missing user object on `req`
     req.headers['X-Redmine-Switch-User'] = req.params.switchUser
 
     if (this.apiKey) {
@@ -69,11 +105,29 @@ export default class RedmineProxy {
     }
   }
 
+  /**
+   * Create basic auth header
+   *
+   * @param {Object}
+   * @return string
+   * @private
+   */
   _getBasicAuth({ username, password }) {
     let encoding = new Buffer(`${username}:${password}`).toString('base64')
     return `Basic ${encoding}`
   }
 
+  /**
+   * Intercept the redmine response and remove cookies
+   *
+   * @param {express.Response} rsp The redmine response
+   * @param {string}           data The response data
+   * @param {express.Request}  req The initial request
+   * @param {express.Response} res Our response to the user
+   * @param {Function}         callback Callback to call after the intercept is done
+   * @return {void}
+   * @public
+   */
   intercept(rsp, data, req, res, callback) {
     // Remove redmine cookie from response.
     // I'm not sure if cookie is for the switched user or api access.

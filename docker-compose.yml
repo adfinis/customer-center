@@ -92,11 +92,14 @@ postgres1:
   environment:
     - POSTGRES_USER=test
     - POSTGRES_PASSWORD=test
+  ports:
+    - "5432:5432"
 
 redmine1:
   image: sameersbn/redmine:latest
   links:
     - postgres1
+    - ucs1
   environment:
     - DB_TYPE=postgres
     - DB_HOST=postgres1

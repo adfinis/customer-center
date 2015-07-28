@@ -1,36 +1,46 @@
+{{log user}}
+{{log user.redmine}}
 <div class="grid">
   <div class="grid-cell grid-cell--12of12 grid-cell-sm--8of12 grid-cell-lg--9of12">
-    {{rt-list limit=1}}
+    {{#if user.emails}}
+      {{rt-list emails=user.emails limit=5}}
+    {{/if}}
   </div>
   <div class="grid-cell grid-cell--12of12 grid-cell-sm--4of12 grid-cell-lg--3of12">
-    <table class="table table--striped">
-      <caption>{{t 'symon.list-caption'}}</caption>
-      <thead>
-        <tr>
-          <th>{{t 'symon.host'}}</th>
-          <th>{{t 'symon.status'}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>topaxi.ch</td>
-          <td>OK</td>
-        </tr>
-        <tr>
-          <td>irc.topaxi.ch</td>
-          <td>OK</td>
-        </tr>
-        <tr>
-          <td>topaxi.codes</td>
-          <td>OK</td>
-        </tr>
-      </tbody>
-    </table>
+    {{#if user.monitoring}}
+      <table class="table table--striped">
+        <caption>{{t 'symon.list-caption'}}</caption>
+        <thead>
+          <tr>
+            <th>{{t 'symon.host'}}</th>
+            <th>{{t 'symon.status'}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>topaxi.ch</td>
+            <td>OK</td>
+          </tr>
+          <tr>
+            <td>irc.topaxi.ch</td>
+            <td>OK</td>
+          </tr>
+          <tr>
+            <td>topaxi.codes</td>
+            <td>OK</td>
+          </tr>
+        </tbody>
+      </table>
+    {{/if}}
   </div>
   <div class="grid-cell grid-cell--12of12 grid-cell-sm--8of12 grid-cell-lg--9of12">
-    {{redmine-list host='project.adfinis-sygroup.ch' limit=5}}
+    {{#if user.redmine}}
+      {{redmine-list host='project.adfinis-sygroup.ch' limit=5}}
+    {{/if}}
   </div>
   <div class="grid-cell grid-cell--12of12 grid-cell-sm--4of12 grid-cell-lg--3of12">
-    {{ts-subscriptions user='Fromarte'}}
+    {{#if user.timed}}
+      {{ts-subscriptions user='Fromarte'}}
+    {{/if}}
   </div>
 </div>

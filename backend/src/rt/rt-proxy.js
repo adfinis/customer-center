@@ -36,12 +36,19 @@ export default class RTProxy {
 
   async tickets(req, res, next) {
     let { offset = 0, limit = 5 } = req.query
+    let { content: emails }       = req.user.get('emails')
 
     offset = +offset
     limit  = +limit
 
+    if (req.query.emails) {
+      emails = req.query.emails.filter(email =>
+        emails.includes(email)
+      )
+    }
+
     let tickets = this.Ticket.query(q => {
-      q.where('memberEmail', '=', 'root@localhost')
+      q.where('memberEmail', 'in', emails)
        .groupBy('id')
        .orderBy('lastUpdated', 'desc')
        .offset(offset)
@@ -49,12 +56,12 @@ export default class RTProxy {
     })
 
     let total = this.Ticket.query(q => {
-      q.where('memberEmail', '=', 'root@localhost')
+      q.where('memberEmail', 'in', emails)
        .count('DISTINCT id as count')
     })
 
     tickets = await tickets.fetchAll()
-    total   = (await total.fetch()).toJSON().count
+    total   = (await total.fetch()).get('count')
 
     res.send({ data: { tickets, offset, limit, total } })
   }

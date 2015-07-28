@@ -33,7 +33,11 @@
           {{#unless error}}
             No tickets found!
           {{else}}
-            {{error}}
+            {{#each error.errors as |error|}}
+              {{error.detail}}
+            {{^}}
+              {{error}}
+            {{/each}}
           {{/unless}}
         </td>
       </tr>

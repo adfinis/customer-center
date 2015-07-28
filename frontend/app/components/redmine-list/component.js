@@ -2,6 +2,12 @@ import Ember from 'ember'
 
 const { $, computed, observer } = Ember
 
+/**
+ * Redmine list component
+ *
+ * @class RedmineList
+ * @public
+ */
 export default Ember.Component.extend({
   limit:  10,
   offset:  0,
@@ -53,7 +59,7 @@ export default Ember.Component.extend({
           this.set('total',  res.total_count)
         })
         .fail(xhr =>
-          this.set('error', xhr.responseText)
+          this.set('error', xhr.responseJSON || xhr.responseText)
         )
     }
   }

@@ -39,10 +39,11 @@ export default Ember.Component.extend({
     updateModel() {
       let limit  = this.get('limit')
       let offset = this.get('offset')
+      let emails = this.get('emails')
 
       this.set('error', null)
 
-      $.getJSON('/api/rt/tickets', { limit, offset })
+      $.getJSON('/api/rt/tickets', { emails, limit, offset })
         .then(res => {
           res.data.tickets.forEach(t =>
             t.status = `${t.status[0].toUpperCase()}${t.status.slice(1)}`
@@ -52,7 +53,7 @@ export default Ember.Component.extend({
           this.set('model', res)
         })
         .fail(xhr =>
-          this.set('error', xhr.responseText)
+          this.set('error', xhr.responseJSON || xhr.responseText)
         )
     }
   }

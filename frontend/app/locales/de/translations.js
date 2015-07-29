@@ -47,24 +47,24 @@ export default {
   },
 
   'timescout': {
-    'list-caption': 'Abonnomente',
-    'subscription':    'Abo',
-    'remaining-hours': 'Übrige Stunden',
-    'history': 'Verlauf',
+    'list-caption':        'Abonnomente',
+    'subscription.short':  'Abo',
+    'remaining-hours':     'Übrige Stunden',
+    'history':             'Verlauf',
 
     'project-details': 'Projektdetails',
-    'project-name': 'Projektname',
-    'total-booked': 'Gesamte bezahlte Stunden',
-    'total-used': 'Gesamte verbrauchte Stunden',
+    'project-name':    'Projektname',
+    'total-booked':    'Gesamte bezahlte Stunden',
+    'total-used':      'Gesamte verbrauchte Stunden',
 
     'list-timesheet': 'Übersicht von {{project}}',
-    'time': 'Zeit',
-    'description': 'Beschreibung',
-    'date': 'Datum',
-    'done-by': 'Erledigt durch',
+    'time':           'Zeit',
+    'description':    'Beschreibung',
+    'date':           'Datum',
+    'done-by':        'Erledigt durch',
 
-    'lease-time': 'Gekaufte Zeit',
-    'lease-date': 'Gekauft am',
+    'lease-time':   'Gekaufte Zeit',
+    'lease-date':   'Gekauft am',
     'acknowledged': 'Bestätigt',
     'confirmed-by': 'Bestätigt von'
   },
@@ -72,7 +72,7 @@ export default {
   'symon': {
     'list-caption': 'Monitoring',
 
-    'host': 'Host',
+    'host':   'Host',
     'status': 'Status'
   }
 }

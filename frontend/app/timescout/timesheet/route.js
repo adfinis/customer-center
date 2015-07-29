@@ -1,6 +1,5 @@
-import Ember from 'ember';
-
-const { $ } = Ember
+import Ember from 'ember'
+import ajax  from 'ic-ajax'
 
 export default Ember.Route.extend({
   queryParams: {
@@ -13,13 +12,15 @@ export default Ember.Route.extend({
   },
 
   setupController(controller, model) {
-    let project = this.modelFor('timescout').find(project => project.id == model.meta.projectID)
+    let project = this.modelFor('timescout').find(p =>
+      p.id === model.meta.projectID
+    )
 
     controller.set('project', project)
     controller.set('model',   model)
   },
 
-  model({ id, limit, page }) {
+  async model({ id, limit, page }) {
     let params = {
       action: 'timesheet',
       projectID: id,
@@ -27,10 +28,8 @@ export default Ember.Route.extend({
       limit
     }
 
-    return $.getJSON('/api/proxy/timescout/service/api.php', params)
-      .then(function(res){
-        res.meta = {projectID: id}
-        return res
-      })
+    let res = await ajax('/api/proxy/timescout/service/api.php', { data: params })
+    res.meta = { projectID: id }
+    return res
   }
-});
+})

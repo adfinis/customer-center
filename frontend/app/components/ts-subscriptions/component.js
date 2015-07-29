@@ -1,6 +1,7 @@
 import Ember from 'ember'
+import ajax  from 'ic-ajax'
 
-const { $, on } = Ember
+const { on } = Ember
 
 /**
  * Timescout component
@@ -26,8 +27,8 @@ export default Ember.Component.extend({
   fetchData: on('init', function() {
     let params = { action: this.get('apiAction') }
 
-    $.getJSON('/api/proxy/timescout/service/api.php', params)
+    ajax('/api/proxy/timescout/service/api.php', { data: params })
       .then(res => this.set('model', res))
-      .fail(xhr => this.set('error', xhr.responseText))
+      .catch(xhr => this.set('error', xhr.responseText))
   })
 })

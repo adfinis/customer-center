@@ -1,6 +1,7 @@
 import Ember from 'ember'
+import ajax  from 'ic-ajax'
 
-const { $, computed, observer } = Ember
+const { computed, observer } = Ember
 
 export default Ember.Component.extend({
   limit: 1,
@@ -43,7 +44,7 @@ export default Ember.Component.extend({
 
       this.set('error', null)
 
-      $.getJSON('/api/rt/tickets', { emails, limit, offset })
+      ajax('/api/rt/tickets', { data: { emails, limit, offset } })
         .then(res => {
           res.data.tickets.forEach(t =>
             t.status = `${t.status[0].toUpperCase()}${t.status.slice(1)}`
@@ -52,7 +53,7 @@ export default Ember.Component.extend({
           this.set('total', res.data.total)
           this.set('model', res)
         })
-        .fail(xhr =>
+        .catch(xhr =>
           this.set('error', xhr.responseJSON || xhr.responseText)
         )
     }

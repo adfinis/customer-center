@@ -1,17 +1,15 @@
-import Ember from 'ember';
+import Ember from 'ember'
+import ajax  from 'ic-ajax'
 
 export default Ember.Route.extend({
 
   setupController(controller, model) {
-    controller.set('model',    model)
+    controller.set('model', model)
   },
 
   model() {
-    let params = { action: "history" }
+    let params = { action: 'history' }
 
-    return $.getJSON('/api/proxy/timescout/service/api.php', params)
-      .then(function(res){
-        return res
-      })
+    return ajax('/api/proxy/timescout/service/api.php', { data: params })
   }
-});
+})

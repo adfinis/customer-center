@@ -75,7 +75,7 @@
     {
       "type": "timescout",
       "host": "https://support.example.com/api",
-      "key": "somerandomkey"
+      "apiKey": "somerandomkey"
     }
   ]
 }

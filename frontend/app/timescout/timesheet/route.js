@@ -22,14 +22,14 @@ export default Ember.Route.extend({
 
   async model({ id, limit, page }) {
     let params = {
-      action: 'timesheet',
-      projectID: id,
+      action:    'timesheet',
+      projectID: Number(id),
       page,
       limit
     }
 
     let res = await ajax('/api/proxy/timescout/service/api.php', { data: params })
-    res.meta = { projectID: id }
+    res.meta = { projectID: params.projectID }
     return res
   }
 })

@@ -108,8 +108,8 @@ export default Ember.Component.extend({
       this.set('error', null)
 
       try {
-        let rt      = this.get('rt')
-        let params  = {
+        let rt     = this.get('rt')
+        let params = {
           limit:  this.get('limit'),
           offset: this.get('offset'),
           emails: this.get('emails')

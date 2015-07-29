@@ -41,7 +41,7 @@
     "ember-i18n": "jamesarosen/ember-i18n",
     "ember-moment": "1.2.1",
     "ember-notify": "3.3.4",
-    "font-awesome": "^4.3.0",
+    "font-awesome": "FortAwesome/Font-Awesome#v4.4.0",
     "liquid-fire": "^0.20.4",
     "pagination-pager": "2.0.1"
   }

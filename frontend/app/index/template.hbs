@@ -1,5 +1,3 @@
-{{log user}}
-{{log user.redmine}}
 <div class="grid">
   <div class="grid-cell grid-cell--12of12 grid-cell-sm--8of12 grid-cell-lg--9of12">
     {{#if user.emails}}
@@ -40,7 +38,7 @@
   </div>
   <div class="grid-cell grid-cell--12of12 grid-cell-sm--4of12 grid-cell-lg--3of12">
     {{#if user.timed}}
-      {{ts-subscriptions user='Fromarte'}}
+      {{ts-subscriptions}}
     {{/if}}
   </div>
 </div>

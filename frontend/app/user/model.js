@@ -38,5 +38,16 @@ export default Ember.Object.extend({
    */
   timed: computed(function() {
     return this.groups.find(g => g.endsWith('-timed')) || 1
+  }),
+
+  /**
+   * List of wiki groups
+   *
+   * @property {string[]} wikis
+   * @public
+   */
+  wikis: computed(function() {
+    return this.groups.filter(g => g.endsWith('-wiki'))
+                      .map(g => g.split('-')[0])
   })
 })

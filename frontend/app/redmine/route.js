@@ -2,6 +2,6 @@ import Ember from 'ember'
 
 export default Ember.Route.extend({
   model() {
-    return [ 'redmine1', 'redmine2' ]
+    return this.get('session.user')
   }
 })

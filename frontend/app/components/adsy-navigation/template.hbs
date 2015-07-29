@@ -14,19 +14,36 @@
           {{t 'nav.dashboard'}}
         {{/link-to}}
       </li>
-      <li class="nav-side-list-item">
-        {{#link-to 'redmine'}}
-          <i class="fa fa-bug"></i>
-          {{t 'nav.redmine'}}
-        {{/link-to}}
-      </li>
-      <li>
-        {{#link-to 'timescout'}}
-          <i class="fa fa-clock-o"></i>
-          {{t 'nav.timescout'}}
-        {{/link-to}}
-      </li>
+      {{#if user.redmine}}
+        <li class="nav-side-list-item">
+          {{#link-to 'redmine'}}
+            <i class="fa fa-bug"></i>
+            {{t 'nav.redmine'}}
+          {{/link-to}}
+        </li>
+      {{/if}}
+      {{#if user.timed}}
+        <li>
+          {{#link-to 'timescout'}}
+            <i class="fa fa-clock-o"></i>
+            {{t 'nav.timescout'}}
+          {{/link-to}}
+        </li>
+      {{/if}}
     </ul>
+    {{#with user.wikis as |wikis|}}
+      <ul class="nav-side-list">
+        <li class="nav-side-list-header">{{t 'nav.wikis'}}</li>
+        {{#each wikis as |wiki|}}
+          <li class="nav-side-list-item">
+            <a href="https://wiki.adfinis-sygroup.ch/{{wiki}}">
+              <i class="fa fa-wikipedia-w"></i>
+              <span class="nav-wiki-item">{{wiki}}-Wiki</span>
+            </a>
+          </li>
+        {{/each}}
+      </ul>
+    {{/with}}
     <ul class="nav-side-list">
       <li class="nav-side-list-header">{{t 'nav.settings'}}</li>
       <li class="nav-side-list-item">

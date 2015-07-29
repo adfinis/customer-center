@@ -18,6 +18,7 @@ export default {
     'dashboard': 'Dashboard',
     'redmine':   'Redmine',
     'timescout': 'Timescout',
+    'wikis':     'Wikis',
     'settings':  'Settings',
     'profile':   'Profile',
     'logout':    'Sign out'

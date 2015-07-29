@@ -28,7 +28,9 @@ export default Ember.Service.extend({
 
     return {
       issues: res.issues,
-      total:  res.total_count
+      total:  res.total_count,
+      offset: res.offset,
+      limit:  res.limit
     }
   }
 })

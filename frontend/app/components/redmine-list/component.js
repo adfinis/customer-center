@@ -88,7 +88,7 @@ export default Ember.Component.extend({
   }),
 
   /**
-   * Should there be a pages?
+   * Should there be a pager?
    *
    * @property {boolean} showPager
    * @readOnly

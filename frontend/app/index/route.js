@@ -13,6 +13,14 @@ export default Ember.Route.extend({
   redmine: inject.service(),
 
   /**
+   * RT service to fetch rt issues
+   *
+   * @property {RTService} redmine
+   * @public
+   */
+  rt: inject.service(),
+
+  /**
    * Setup the controller
    *
    * @param {Ember.Controller} controller IndexController
@@ -35,6 +43,10 @@ export default Ember.Route.extend({
 
     if (user.get('redmine')) {
       data.redmine = this.get('redmine').fetchIssues({ limit: 5 })
+    }
+
+    if (user.get('emails.length')) {
+      data.rt = this.get('rt').fetchIssues({ limit: 5 })
     }
 
     return Ember.RSVP.hash(data)

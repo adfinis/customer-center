@@ -1,18 +1,53 @@
 import Ember from 'ember'
-import ajax  from 'ic-ajax'
 
-const { computed, observer } = Ember
+const { computed, observer, inject } = Ember
 
+/**
+ * Request Tracker list component
+ *
+ * @class RTList
+ * @public
+ */
 export default Ember.Component.extend({
-  limit: 1,
+
+  /**
+   * RT service to fetch rt issues
+   *
+   * @property {RTService} rt
+   * @public
+   */
+  rt: inject.service(),
+
+  /**
+   * Limit rt issues
+   *
+   * @property {number} limit
+   * @public
+   */
+  limit: 10,
+
+  /**
+   * RT issue offset
+   *
+   * @property {number} offset
+   * @public
+   */
   offset: 0,
+
+  /**
+   * RT issue total
+   *
+   * @property {number} total
+   * @public
+   */
   total: 0,
 
-  init(...args) {
-    this._super(...args)
-    this.send('updateModel')
-  },
-
+  /**
+   * The current page displayed
+   *
+   * @property {number} page
+   * @public
+   */
   page: computed('limit', 'offset', {
     get() {
       return Math.max(1, this.get('offset') / this.get('limit'))
@@ -24,38 +59,69 @@ export default Ember.Component.extend({
     }
   }),
 
+  /**
+   * The total pages of issues available
+   *
+   * @property {number} totalPages
+   * @readOnly
+   * @public
+   */
   totalPages: computed('limit', 'total', function() {
     return Math.ceil(this.get('total') / this.get('limit'))
   }),
 
+  /**
+   * Should there be a pager?
+   *
+   * @property {boolean} showPager
+   * @readOnly
+   * @private
+   */
   showPager: computed('totalPages', function() {
     return this.get('totalPages') > 1
   }),
 
+  /**
+   * Update the model of this component, refetches new rt issues
+   *
+   * @todo   Trigger on email change (caused some heave retriggering of the observer..)
+   * @return {void}
+   * @private
+   */
   updateTickets: observer('limit', 'offset', function() {
     this.send('updateModel')
   }),
 
+  /**
+   * RTComponent actions
+   *
+   * @property {Object} actions
+   */
   actions: {
-    updateModel() {
-      let limit  = this.get('limit')
-      let offset = this.get('offset')
-      let emails = this.get('emails')
 
+    /**
+     * Update model action, fetches new issues from rt
+     *
+     * @return {void}
+     */
+    async updateModel() {
       this.set('error', null)
 
-      ajax('/api/rt/tickets', { data: { emails, limit, offset } })
-        .then(res => {
-          res.data.tickets.forEach(t =>
-            t.status = `${t.status[0].toUpperCase()}${t.status.slice(1)}`
-          )
+      try {
+        let rt      = this.get('rt')
+        let params  = {
+          limit:  this.get('limit'),
+          offset: this.get('offset'),
+          emails: this.get('emails')
+        }
 
-          this.set('total', res.data.total)
-          this.set('model', res)
-        })
-        .catch(xhr =>
-          this.set('error', xhr.responseJSON || xhr.responseText)
-        )
+        let { issues, total } = await rt.fetchIssues(params)
+        this.set('issues', issues)
+        this.set('total',  total)
+      }
+      catch (e) {
+        this.set('error', e)
+      }
     }
   }
 })

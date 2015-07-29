@@ -24,6 +24,11 @@ export default Ember.Route.extend({
     controller.set('user',  this.modelFor('protected'))
   },
 
+  /**
+   * Index route model, containing all the dashboard data
+   *
+   * @return {Promise}
+   */
   async model() {
     let user = await this.get('session.user')
     let data = {}

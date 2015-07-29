@@ -26,6 +26,22 @@
     },
     "secret": "ponies"
   },
+  "database": {
+    "client": "pg",
+    "connection": {
+      "host": "postgres1",
+      "user": "test",
+      "password": "test",
+      "database": "adsycc"
+    },
+    "pool": {
+      "min": 2,
+      "max": 10
+    },
+    "migrations": {
+      "tableName": "migrations"
+    }
+  },
   "redis": {
     "host": "localhost",
     "port": 6379,

@@ -25,6 +25,11 @@ export default Ember.Component.extend({
    * @return {void}
    */
   fetchData: on('init', async function() {
-    this.set('model', await this.get('timescout').fetchProjects())
+    try {
+      this.set('model', await this.get('timescout').fetchProjects())
+    }
+    catch (e) {
+      this.set('error', e)
+    }
   })
 })

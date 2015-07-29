@@ -19,9 +19,23 @@ export default Ember.Route.extend({
   timescout: inject.service(),
 
   /**
+   * Setup timescout index controller
+   *
+   * @param {TimescoutIndexController} controller The timescout index controller
+   * @param {Object[]} model The history of subscriptions
+   * @return {void}
+   * @public
+   */
+  setupController(controller, model) {
+    controller.set('model', model)
+    controller.set('projects', this.modelFor('timescout'))
+  },
+
+  /**
    * Get timescout history
    *
    * @return {Promise}
+   * @public
    */
   model() {
     return this.get('timescout').fetchHistory()

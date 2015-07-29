@@ -21,6 +21,14 @@ export default Ember.Route.extend({
   rt: inject.service(),
 
   /**
+   * Timescout service
+   *
+   * @property {TimescoutService} timescout
+   * @public
+   */
+  timescout: inject.service(),
+
+  /**
    * Setup the controller
    *
    * @param {Ember.Controller} controller IndexController
@@ -48,6 +56,8 @@ export default Ember.Route.extend({
     if (user.get('emails.length')) {
       data.rt = this.get('rt').fetchIssues({ limit: 5 })
     }
+
+    data.subscriptions = this.get('timescout').fetchProjects()
 
     return Ember.RSVP.hash(data)
   }

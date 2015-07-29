@@ -1,7 +1,7 @@
 import Ember from 'ember'
 import ajax  from 'ic-ajax'
 
-const { on } = Ember
+const { on, inject } = Ember
 
 /**
  * Timescout component
@@ -12,23 +12,19 @@ const { on } = Ember
 export default Ember.Component.extend({
 
   /**
-   * API action to perform
+   * Timescout service
    *
-   * @property {string} apiAction
+   * @property {TimescoutService} timescout
    * @public
    */
-  apiAction: 'projects',
+  timescout: inject.service(),
 
   /**
    * Fetch the timescout data
    *
    * @return {void}
    */
-  fetchData: on('init', function() {
-    let params = { action: this.get('apiAction') }
-
-    ajax('/api/proxy/timescout/service/api.php', { data: params })
-      .then(res => this.set('model', res))
-      .catch(xhr => this.set('error', xhr.responseText))
+  fetchData: on('init', async function() {
+    this.set('model', await this.get('timescout').fetchProjects())
   })
 })

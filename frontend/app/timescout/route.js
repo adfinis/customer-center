@@ -1,11 +1,24 @@
 import Ember from 'ember'
-import ajax  from 'ic-ajax'
+
+const { inject } = Ember
 
 export default Ember.Route.extend({
 
-  model() {
-    let params = { action: 'projects' }
+  /**
+   * Timescout service
+   *
+   * @property {TimescoutService} timescout
+   * @public
+   */
+  timescout: inject.service(),
 
-    return ajax('/api/proxy/timescout/service/api.php', { data: params })
+  /**
+   * Gets timescout projects
+   *
+   * @return {Promise}
+   * @public
+   */
+  model() {
+    return this.get('timescout').fetchProjects()
   }
 })

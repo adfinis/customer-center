@@ -1,12 +1,19 @@
 {{outlet}}
 
 <h5>{{t 'timescout.project-details'}}</h5>
-<div>
-  {{t 'timescout.project-name'}}: {{project.name}}<br>
-  {{t 'timescout.total-booked'}}: {{project.totalBookedTime.hours}}h {{project.totalBookedTime.minutes}}min<br>
-  {{t 'timescout.total-used'}}: {{project.totalUsedTime.hours}}h {{project.totalUsedTime.minutes}}min<br>
-  {{t 'timescout.remaining-hours'}}: {{project.availableTime.hours}}h {{project.availableTime.minutes}}min
-</div>
+<dl>
+  <dt>{{t 'timescout.project-name'}}</dt>
+  <dd>{{project.name}}</dd>
+
+  <dt>{{t 'timescout.total-booked'}}</dt>
+  <dd>{{project.totalBookedTime.hours}}h {{project.totalBookedTime.minutes}}min</dd>
+
+  <dt>{{t 'timescout.total-used'}}</dt>
+  <dd>{{project.totalUsedTime.hours}}h {{project.totalUsedTime.minutes}}min</dd>
+
+  <dt>{{t 'timescout.remaining-hours'}}</dt>
+  <dd>{{project.availableTime.hours}}h {{project.availableTime.minutes}}min</dd>
+</dl>
 
 <table class="table table--striped">
   <caption>{{t 'timescout.list-timesheet' project=project.name}}</caption>

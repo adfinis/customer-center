@@ -1,13 +1,13 @@
 {{outlet}}
 
-{{ts-subscriptions user='Fromarte' nohistory=true}}
+{{ts-subscriptions}}
 
 <table class="table table--striped">
   <caption>{{t 'timescout.history'}}</caption>
   <thead>
     <tr>
       <th width="300">{{t 'timescout.project-name'}}</th>
-      <th width="50">{{t 'timescout.lease-time'}}</th>
+      <th class="nowrap" width="50">{{t 'timescout.lease-time'}}</th>
       <th class="visible-md" width="1">{{t 'timescout.lease-date'}}</th>
       <th class="visible-sm" width="1">{{t 'timescout.acknowledged'}}</th>
       <th class="visible-md" width="300">{{t 'timescout.confirmed-by'}}</th>
@@ -24,13 +24,13 @@
   {{/if}}
   <tbody>
     {{#each model as |entry|}}
-     <tr>
-      <td>{{entry.projectName}}</td>
-      <td>{{entry.leaseTime}}h</td>
-      <td class="visible-md">{{moment entry.leaseStamp 'L'}}</td>
-      <td class="visible-sm"><i class={{if entry.acknowledged 'fa fa-check' 'fa-times'}}></i></td>
-      <td class="visible-md">{{entry.confirmedBy}}</td>
-     </tr>
+      <tr>
+        <td>{{entry.projectName}}</td>
+        <td>{{entry.leaseTime}}h</td>
+        <td class="visible-md">{{moment entry.leaseStamp 'L'}}</td>
+        <td class="visible-sm"><i class={{if entry.acknowledged 'fa fa-check' 'fa-times'}}></i></td>
+        <td class="visible-md">{{entry.confirmedBy}}</td>
+      </tr>
     {{/each}}
   </tbody>
 </table>

@@ -32,8 +32,8 @@
     {{/if}}
   </div>
   <div class="grid-cell grid-cell--12of12 grid-cell-sm--8of12 grid-cell-lg--9of12">
-    {{#if user.redmine}}
-      {{redmine-list host='project.adfinis-sygroup.ch' limit=5}}
+    {{#if model.redmine}}
+      {{redmine-list limit=5 issues=model.redmine.issues total=model.redmine.total}}
     {{/if}}
   </div>
   <div class="grid-cell grid-cell--12of12 grid-cell-sm--4of12 grid-cell-lg--3of12">

@@ -1,6 +1,6 @@
 import Ember from 'ember'
 
-const { $, computed, observer } = Ember
+const { computed, observer, inject } = Ember
 
 /**
  * Redmine list component
@@ -9,17 +9,62 @@ const { $, computed, observer } = Ember
  * @public
  */
 export default Ember.Component.extend({
-  limit:  10,
-  offset:  0,
-  total:   0,
-  host:   '',
-  sort:   'updated_on:desc',
 
-  init(...args) {
-    this._super(...args)
-    this.send('updateModel')
-  },
+  /**
+   * Redmine service to fetch redmine issues
+   *
+   * @property {RedmineService} redmine
+   * @public
+   */
+  redmine: inject.service(),
 
+  /**
+   * Limit redmine issues
+   *
+   * @property {number} limit
+   * @public
+   */
+  limit: 10,
+
+  /**
+   * Redmine issue offset
+   *
+   * @property {number} offset
+   * @public
+   */
+  offset: 0,
+
+  /**
+   * Redmine issue total
+   *
+   * @property {number} total
+   * @public
+   */
+  total: 0,
+
+  /**
+   * Redmine issue sort field/order
+   *
+   * @property {number} sort
+   * @public
+   */
+  sort: 'updated_on:desc',
+
+  /**
+   * Redmine host name
+   *
+   * @property {string} host
+   * @readOnly
+   * @private
+   */
+  host: computed.oneWay('redmine.host'),
+
+  /**
+   * The current page displayed
+   *
+   * @property {number} page
+   * @public
+   */
   page: computed('limit', 'offset', {
     get() {
       return Math.max(1, this.get('offset') / this.get('limit'))
@@ -31,36 +76,68 @@ export default Ember.Component.extend({
     }
   }),
 
+  /**
+   * The total pages of issues available
+   *
+   * @property {number} totalPages
+   * @readOnly
+   * @public
+   */
   totalPages: computed('limit', 'total', function() {
     return Math.ceil(this.get('total') / this.get('limit'))
   }),
 
+  /**
+   * Should there be a pages?
+   *
+   * @property {boolean} showPager
+   * @readOnly
+   * @private
+   */
   showPager: computed('totalPages', function() {
     return this.get('totalPages') > 1
   }),
 
-  updateModel: observer('host', 'limit', 'offset', 'sort', function() {
+  /**
+   * Update the model of this component, refetches new redmine issues
+   *
+   * @return {void}
+   * @private
+   */
+  updateModel: observer('limit', 'offset', 'sort', function() {
     this.send('updateModel')
   }),
 
+  /**
+   * RedmineComponent actions
+   *
+   * @property {Object} actions
+   */
   actions: {
-    updateModel() {
-      let params = {
-        limit:  this.get('limit'),
-        offset: this.get('offset'),
-        sort:   this.get('sort')
-      }
 
+    /**
+     * Update model action, fetches new issues from redmine
+     *
+     * @return {void}
+     */
+    async updateModel() {
       this.set('error', null)
 
-      $.getJSON(`/api/proxy/${this.get('host')}/issues.json`, params)
-        .then(res => {
-          this.set('issues', res.issues)
-          this.set('total',  res.total_count)
-        })
-        .fail(xhr =>
-          this.set('error', xhr.responseJSON || xhr.responseText)
-        )
+      try {
+        let redmine = this.get('redmine')
+        let params  = {
+          limit:  this.get('limit'),
+          offset: this.get('offset'),
+          sort:   this.get('sort')
+        }
+
+        let { issues, total } = await redmine.fetchIssues(params)
+        this.set('issues', issues)
+        this.set('total',  total)
+      }
+      catch (e) {
+        this.set('error', e)
+      }
     }
   }
 })

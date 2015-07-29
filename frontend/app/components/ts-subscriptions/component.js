@@ -1,5 +1,4 @@
 import Ember from 'ember'
-import ajax  from 'ic-ajax'
 
 const { on, inject } = Ember
 

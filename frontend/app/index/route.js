@@ -2,6 +2,12 @@ import Ember from 'ember'
 
 const { inject } = Ember
 
+/**
+ * AdSy Customer Center index route
+ *
+ * @class IndexRoute
+ * @public
+ */
 export default Ember.Route.extend({
 
   /**

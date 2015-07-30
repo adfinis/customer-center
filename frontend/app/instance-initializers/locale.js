@@ -1,4 +1,7 @@
+import Ember  from 'ember'
 import moment from 'moment'
+
+const { $ } = Ember
 
 export function initialize(instance) {
   let locale = getNavigatorLanguage()
@@ -17,6 +20,8 @@ export function initialize(instance) {
     if (i18n.get('locales').includes(locale)) {
       moment.locale(locale)
       instance.container.lookup('service:i18n').set('locale', locale)
+      // Setting html locale to support hyphenation
+      $('html').attr('lang', locale)
     }
   }
 }

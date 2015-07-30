@@ -24,4 +24,9 @@ export default function() {
       use: 'fade'
     })
   )
+
+  this.transition(
+    this.fromRoute('login'),
+    this.use('fade')
+  )
 }

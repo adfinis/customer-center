@@ -12,6 +12,39 @@ th {
   hyphens: none;
 }
 
+.hidden-font,
+.hidden-font a {
+  color: rgba(0,0,0,0);
+}
+
+.loading-mask {
+  position: relative;
+}
+
+.loading-mask::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.5);
+}
+
+.loading-mask::after {
+  content: '';
+  position: absolute;
+  border: 3px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  top:  calc(50% - 50px);
+  left: calc(50% - 50px);
+  -webkit-animation: a 2s infinite linear;
+  animation: a 2s infinite linear;
+}
+
 .pointer {
   cursor: pointer;
 }

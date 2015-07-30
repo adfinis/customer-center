@@ -26,6 +26,12 @@ export default function() {
   )
 
   this.transition(
+    this.fromRoute([ 'redmine.loading', 'rt.loading' ]),
+    this.toRoute([ 'redmine.issues', 'rt.issues' ]),
+    this.use('crossFade')
+  )
+
+  this.transition(
     this.fromRoute('login'),
     this.use('fade')
   )

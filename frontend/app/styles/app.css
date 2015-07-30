@@ -5,6 +5,13 @@
   hyphens: auto;
 }
 
+th {
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
 .pointer {
   cursor: pointer;
 }

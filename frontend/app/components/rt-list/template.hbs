@@ -24,8 +24,8 @@
         <td>#{{issue.id}}</td>
         <td class="visible-sm">{{issue.status}}</td>
         <td>{{issue.subject}}</td>
-        <td class="visible-md">{{moment issue.lastUpdated 'L LT'}}</td>
-        <td class="visible-lg">{{moment issue.created 'L LT'}}</td>
+        <td class="visible-md">{{moment-format issue.lastUpdated 'L LT'}}</td>
+        <td class="visible-lg">{{moment-format issue.created 'L LT'}}</td>
       </tr>
     {{^}}
       <tr class={{if error 'danger'}}>

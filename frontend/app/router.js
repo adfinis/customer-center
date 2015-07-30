@@ -13,7 +13,9 @@ Router.map(function() {
   this.route('protected', { path: '/' }, function() {
     this.resource('index', { path: '/' })
     this.resource('rt')
-    this.resource('redmine')
+    this.resource('redmine', function() {
+      this.route('index', { path: '/' })
+    })
     this.resource('timescout', function() {
       this.route('timesheet', { path: 'timesheet/:id' })
     })

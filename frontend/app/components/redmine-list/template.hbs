@@ -46,7 +46,7 @@
             {{issue.subject}}
           </a>
         </td>
-        <td class="visible-xl nowrap">{{moment issue.updated_on 'L LT'}}</td>
+        <td class="visible-xl nowrap">{{moment-format issue.updated_on 'L LT'}}</td>
       </tr>
     {{^}}
       <tr class={{if error 'danger'}}>

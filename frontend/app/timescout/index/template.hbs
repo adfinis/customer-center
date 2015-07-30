@@ -27,7 +27,7 @@
       <tr>
         <td>{{entry.projectName}}</td>
         <td>{{entry.leaseTime}}h</td>
-        <td class="visible-md">{{moment entry.leaseStamp 'L'}}</td>
+        <td class="visible-md">{{moment-format entry.leaseStamp 'L'}}</td>
         <td class="visible-sm"><i class={{if entry.acknowledged 'fa fa-check' 'fa-times'}}></i></td>
         <td class="visible-md">{{entry.confirmedBy}}</td>
       </tr>

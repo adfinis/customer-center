@@ -14,7 +14,7 @@ Router.map(function() {
     this.resource('index', { path: '/' })
     this.resource('rt')
     this.resource('redmine', function() {
-      this.route('index', { path: '/' })
+      this.route('issues', { path: '/' })
     })
     this.resource('timescout', function() {
       this.route('timesheet', { path: 'timesheet/:id' })

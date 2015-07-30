@@ -17,6 +17,7 @@ export default {
   'nav': {
     'dashboard': 'Dashboard',
     'redmine':   'Redmine',
+    'rt':        'Request Tracker',
     'timescout': 'Timescout',
     'wikis':     'Wikis',
     'settings':  'Settings',

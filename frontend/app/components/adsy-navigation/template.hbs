@@ -14,6 +14,14 @@
           {{t 'nav.dashboard'}}
         {{/link-to}}
       </li>
+      {{#if user.emails.length}}
+        <li class="nav-side-list-item">
+          {{#link-to 'rt'}}
+            <i class="fa fa-envelope"></i>
+            {{t 'nav.rt'}}
+          {{/link-to}}
+        </li>
+      {{/if}}
       {{#if user.redmine}}
         <li class="nav-side-list-item">
           {{#link-to 'redmine'}}

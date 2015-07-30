@@ -45,6 +45,10 @@ th {
   right: auto;
 }
 
+.liquid-container {
+  overflow: visible;
+}
+
 .liquid-container, .liquid-child {
   display: flex;
   flex-grow: 1;

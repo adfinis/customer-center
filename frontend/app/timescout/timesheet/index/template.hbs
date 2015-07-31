@@ -19,12 +19,12 @@
   {{/if}}
   <tbody class={{if loading 'loading-mask'}}>
     {{#each model.timesheetEntries as |entry|}}
-     <tr>
-      <td>{{entry.time.hours}}h {{entry.time.minutes}}min</td>
-      <td>{{entry.description}}</td>
-      <td class="visible-sm">{{entry.date}}</td>
-      <td class="visible-md">{{entry.doneBy}}</td>
-     </tr>
+      <tr>
+        <td>{{entry.time.hours}}h {{entry.time.minutes}}min</td>
+        <td>{{entry.description}}</td>
+        <td class="visible-sm">{{entry.date}}</td>
+        <td class="visible-md">{{entry.doneBy}}</td>
+      </tr>
     {{/each}}
   </tbody>
 </table>

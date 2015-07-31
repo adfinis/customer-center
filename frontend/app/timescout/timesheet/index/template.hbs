@@ -1,0 +1,30 @@
+<table class="timesheet-table table table--striped">
+  <caption>{{t 'timescout.list-timesheet' project=project.name}}</caption>
+  <thead>
+    <tr>
+      <th class="visible-xs" width="100">{{t 'timescout.time'}}</th>
+      <th width="300">{{t 'timescout.description'}}</th>
+      <th class="visible-sm" width="1">{{t 'timescout.date'}}</th>
+      <th class="visible-md" width="100">{{t 'timescout.done-by'}}</th>
+    </tr>
+  </thead>
+  {{#if showPager}}
+    <tfoot>
+      <tr>
+        <td colspan="4">
+          {{pagination-pager current=page count=totalPages}}
+        </td>
+      </tr>
+    </tfoot>
+  {{/if}}
+  <tbody class={{if loading 'loading-mask'}}>
+    {{#each model.timesheetEntries as |entry|}}
+     <tr>
+      <td class="visible-xs">{{entry.time.hours}}h {{entry.time.minutes}}min</td>
+      <td>{{entry.description}}</td>
+      <td class="visible-sm">{{entry.date}}</td>
+      <td class="visible-md">{{entry.doneBy}}</td>
+     </tr>
+    {{/each}}
+  </tbody>
+</table>

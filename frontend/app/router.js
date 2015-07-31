@@ -22,7 +22,9 @@ Router.map(function() {
     })
 
     this.resource('timescout', function() {
-      this.route('timesheet', { path: 'timesheet/:id' })
+      this.route('timesheet', { path: '/timesheet/:id' }, function() {
+        this.route('index', { path: '/' })
+      })
     })
   })
 })

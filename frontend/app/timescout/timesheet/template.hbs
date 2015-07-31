@@ -1,47 +1,16 @@
-{{outlet}}
-
 <h5>{{t 'timescout.project-details'}}</h5>
 <dl>
   <dt>{{t 'timescout.project-name'}}</dt>
-  <dd>{{project.name}}</dd>
+  <dd>{{model.name}}</dd>
 
   <dt>{{t 'timescout.total-booked'}}</dt>
-  <dd>{{project.totalBookedTime.hours}}h {{project.totalBookedTime.minutes}}min</dd>
+  <dd>{{model.totalBookedTime.hours}}h {{model.totalBookedTime.minutes}}min</dd>
 
   <dt>{{t 'timescout.total-used'}}</dt>
-  <dd>{{project.totalUsedTime.hours}}h {{project.totalUsedTime.minutes}}min</dd>
+  <dd>{{model.totalUsedTime.hours}}h {{model.totalUsedTime.minutes}}min</dd>
 
   <dt>{{t 'timescout.remaining-hours'}}</dt>
-  <dd>{{project.availableTime.hours}}h {{project.availableTime.minutes}}min</dd>
+  <dd>{{model.availableTime.hours}}h {{model.availableTime.minutes}}min</dd>
 </dl>
 
-<table class="table table--striped">
-  <caption>{{t 'timescout.list-timesheet' project=project.name}}</caption>
-  <thead>
-    <tr>
-      <th class="visible-xs" width="100">{{t 'timescout.time'}}</th>
-      <th width="300">{{t 'timescout.description'}}</th>
-      <th class="visible-sm" width="1">{{t 'timescout.date'}}</th>
-      <th class="visible-md" width="100">{{t 'timescout.done-by'}}</th>
-    </tr>
-  </thead>
-  {{#if showPager}}
-    <tfoot>
-      <tr>
-        <td colspan="4">
-          {{pagination-pager current=page count=totalPages}}
-        </td>
-      </tr>
-    </tfoot>
-  {{/if}}
-  <tbody>
-    {{#each model.timesheetEntries as |entry|}}
-     <tr>
-      <td class="visible-xs">{{entry.time.hours}}h {{entry.time.minutes}}min</td>
-      <td>{{entry.description}}</td>
-      <td class="visible-sm">{{entry.date}}</td>
-      <td class="visible-md">{{entry.doneBy}}</td>
-     </tr>
-    {{/each}}
-  </tbody>
-</table>
+{{outlet}}

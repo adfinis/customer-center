@@ -26,8 +26,7 @@ export default function() {
   )
 
   this.transition(
-    this.fromRoute([ 'redmine.loading', 'rt.loading' ]),
-    this.toRoute([ 'redmine.issues', 'rt.issues' ]),
+    this.fromRoute(route => route.endsWith('loading')),
     this.use('crossFade')
   )
 

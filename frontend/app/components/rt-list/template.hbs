@@ -18,7 +18,7 @@
       </tr>
     </tfoot>
   {{/if}}
-  <tbody>
+  <tbody class={{if loading 'loading-mask'}}>
     {{#each issues as |issue|}}
       <tr>
         <td>#{{issue.id}}</td>

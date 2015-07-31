@@ -60,6 +60,14 @@ export default Ember.Component.extend({
   host: computed.oneWay('redmine.host'),
 
   /**
+   * Mark component as loading
+   *
+   * @property {boolean} loading
+   * @public
+   */
+  loading: false,
+
+  /**
    * The current page displayed
    *
    * @property {number} page
@@ -122,6 +130,7 @@ export default Ember.Component.extend({
      */
     async updateModel() {
       this.set('error', null)
+      this.set('loading', true)
 
       try {
         let redmine = this.get('redmine')
@@ -137,6 +146,9 @@ export default Ember.Component.extend({
       }
       catch (e) {
         this.set('error', e)
+      }
+      finally {
+        this.set('loading', false)
       }
     }
   }

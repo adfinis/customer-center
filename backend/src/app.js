@@ -1,16 +1,17 @@
-import fs         from 'fs'
-import path       from 'path'
-import express    from 'express'
-import bodyParser from 'body-parser'
-import morgan     from 'morgan'
-import passport   from 'passport'
-import redis      from 'redis'
-import jwt        from 'jwt-redis-session'
-import debug      from 'debug'
-import API        from './classes/api'
-import login      from './login'
-import services   from './services'
-import config     from '../config.json'
+import fs            from 'fs'
+import path          from 'path'
+import express       from 'express'
+import bodyParser    from 'body-parser'
+import morgan        from 'morgan'
+import passport      from 'passport'
+import redis         from 'redis'
+import jwt           from 'jwt-redis-session'
+import debug         from 'debug'
+import API           from './classes/api'
+import login         from './login'
+import passwordreset from './password-reset'
+import services      from './services'
+import config        from '../config.json'
 
 const app = express()
 export default app
@@ -45,6 +46,7 @@ app.use(jwt({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use('/v1', login)
+app.use('/v1', passwordreset)
 
 app.use((req, res, next) => {
   if (req.isAuthenticated()) return next()

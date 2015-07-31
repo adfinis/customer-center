@@ -22,7 +22,7 @@ const VOWEL     = 1 << 1
 const DIPTHONG  = 1 << 2
 const NOT_FIRST = 1 << 3
 
-export class PWGen {
+export default class PWGen {
   constructor() {
     this.maxLength            = 8
     this.includeCapitalLetter = true

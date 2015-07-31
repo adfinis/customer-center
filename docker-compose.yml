@@ -65,7 +65,7 @@ frontenddev1:
   volumes:
     - ./frontend:/usr/src/app
   ports:
-    - "35729:35729"
+    - "49152:49152"
 
 redis1:
   extends:

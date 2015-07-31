@@ -7,8 +7,9 @@ export async function up(knex) {
 
   await knex.schema.createTable('user', table => {
     table.bigIncrements('id').primary().unsigned()
-    table.string('username').unique()
-    table.string('shortname')
+    table.string('username').notNullable().unique()
+    table.string('shortname').notNullable()
+    table.string('email').notNullable().unique()
     table.json('emails', true)
     table.json('groups', true)
   })

@@ -26,6 +26,10 @@ Router.map(function() {
         this.route('index', { path: '/' })
       })
     })
+
+    this.resource('user', function() {
+      this.route('profile')
+    })
   })
 })
 

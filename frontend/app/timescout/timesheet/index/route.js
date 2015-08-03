@@ -41,11 +41,7 @@ export default Ember.Route.extend({
    * @return {void}
    */
   setupController(controller, model) {
-    let project = this.modelFor('timescout').find(p =>
-      p.id === model.meta.projectID
-    )
-
-    controller.set('project', project)
+    controller.set('project', this.modelFor('timescout.timesheet'))
     controller.set('model',   model)
     controller.set('loading', false)
   },

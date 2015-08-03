@@ -7,7 +7,8 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     babel: {
       optional: [ 'es7.asyncFunctions', 'es7.decorators' ]
-    }
+    },
+    hinting: false
   })
 
   var adcssyAssets = funnel('bower_components/adcssy/assets', {

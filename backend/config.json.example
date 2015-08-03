@@ -22,7 +22,7 @@
       "groupSearchAttributes": [ "cn" ],
 
       "usernameField": "uid",
-      "passwordField": "userpassword"
+      "passwordField": "userPassword"
     },
     "secret": "ponies"
   },
@@ -41,6 +41,9 @@
     "migrations": {
       "tableName": "migrations"
     }
+  },
+  "passwordReset": {
+    "expire": 3600
   },
   "redis": {
     "host": "localhost",

@@ -86,14 +86,16 @@ app.get('/', (req, res) => {
 
 app.use((err, req, res, next) => {
   let status = err.status || 500
+  let detail = err.message
 
   res.status(status)
 
   if (status === 500) {
     app.log.error(err)
+    detail = 'Internal server error'
   }
 
   res.send({
-    errors: [ { status, detail: err.message } ]
+    errors: [ { status, detail } ]
   })
 })

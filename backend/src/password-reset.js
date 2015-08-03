@@ -1,6 +1,7 @@
 import crypto     from 'crypto'
 import { Router } from 'express'
 import redis      from 'redis'
+import ldap       from 'ldapjs'
 import PWGen      from './pwgen'
 import User       from './user/model'
 import config     from '../config.json'
@@ -19,13 +20,15 @@ router.post('/send-new-password', async(req, res, next) => {
   try {
     let ident = req.body.identification
     let token = await createToken(token)
-    let user  = await new User({ username: ident }).fetch({ required: true })
+    let user  = await new User({ username: ident }).fetch(/*{ required: true }*/)
 
-    await setToken(ident, token)
+    if (user) {
+      await setToken(ident, token)
 
-    console.log(token)
+      console.log(token)
 
-    // Send email
+      // Send email
+    }
 
     res.send({ data: {
       message: 'Great success!',
@@ -53,7 +56,7 @@ router.get('/reset-password/:token', async(req, res, next) => {
 
     let password = createPassword(12)
 
-    // Set LDAP password
+    await setPassword(ident, password)
 
     res.send({ data: { password } })
   }
@@ -70,7 +73,7 @@ function createPassword(len) {
 
 function createToken() {
   return new Promise((resolve, reject) =>
-    crypto.randomBytes(42, (err, buffer) => {
+    crypto.randomBytes(16, (err, buffer) => {
       if (err) return reject(err)
       resolve(buffer.toString('hex'))
     })
@@ -78,11 +81,12 @@ function createToken() {
 }
 
 function setToken(ident, token) {
-  return new Promise((resolve, reject) =>
+  return new Promise((resolve, reject) => {
     client.set(`pw-reset-token-${token}`, ident, err =>
       err ? reject(err) : resolve()
     )
-  )
+    client.expire(`pw-reset-token-${token}`, config.passwordReset.expire)
+  })
 }
 
 function getIdent(token) {
@@ -91,4 +95,70 @@ function getIdent(token) {
       err ? reject(err) : resolve(ident)
     )
   )
+}
+
+function ldapBind(ldapClient, dn, password) {
+  return new Promise((resolve, reject) =>
+    ldapClient.bind(dn, password, err =>
+      err ? reject(err) : resolve()
+    )
+  )
+}
+
+function ldapFindOne(ldapClient, searchBase, options) {
+  return new Promise((resolve, reject) =>
+    ldapClient.search(searchBase, options, (err, res) => {
+      if (err) return reject(err)
+
+      let searchEntry
+
+      res.once('searchEntry', entry => searchEntry = entry)
+      res.once('error',       reject)
+      res.once('end',         result => resolve(searchEntry))
+    })
+  )
+}
+
+function ldapModify(ldapClient, dn, changes) {
+  return new Promise((resolve, reject) =>
+    ldapClient.modify(dn, changes, err =>
+      err ? reject(err) : resolve()
+    )
+  )
+}
+
+async function setPassword(uid, password) {
+  let { url, bindDn, bindCredentials }            = config.ldap
+  let { passwordField, searchBase, searchFilter } = config.login.ldap
+  let ldapClient = ldap.createClient({ url })
+
+  await ldapBind(ldapClient, bindDn, bindCredentials)
+
+  try {
+    let { dn, attributes } = await ldapFindOne(ldapClient, searchBase, {
+      filter:     searchFilter.replace('{{username}}', uid),
+      attributes: [ 'dn', passwordField ],
+      scope:      'sub'
+    })
+
+    let { vals: [ oldPassword ] } = attributes.find(a => a.type === passwordField)
+
+    await ldapModify(ldapClient, dn, [
+      new ldap.Change({
+        operation: 'delete',
+        modification: {
+          [passwordField]: oldPassword
+        }
+      }),
+      new ldap.Change({
+        operation: 'add',
+        modification: {
+          [passwordField]: password
+        }
+      })
+    ])
+  }
+  finally {
+    ldapClient.unbind()
+  }
 }

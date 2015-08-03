@@ -26,6 +26,21 @@ export default function() {
   )
 
   this.transition(
+    this.fromRoute('login.new-password'),
+    this.toRoute('login'),
+    this.use('explode', {
+      pickOld: '.btn-link',
+      pickNew: '.btn-link',
+
+      use: 'fly-to'
+    }, {
+      pickOld: 'p',
+
+      use: 'fade'
+    })
+  )
+
+  this.transition(
     this.fromRoute(route => route.endsWith('loading')),
     this.use('crossFade')
   )

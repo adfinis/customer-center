@@ -21,6 +21,7 @@ export default Ember.Route.extend({
 
     if (!res.ok) {
       this.transitionTo('login.password-reset')
+      return
     }
 
     let { data } = await res.json()

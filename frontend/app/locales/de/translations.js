@@ -10,6 +10,7 @@ export default {
     'forgot-password':        'Passwort vergessen?',
     'send-new-password':      'Neues Passwort senden',
     'sent-new-password':      'Anweisungen zum zurücksetzen des Passwortes wurden an Ihre E-Mail geschickt',
+    'your-new-password-is:':  'Dein neues Passwort ist:',
     'missing-identification': 'Bitte geben Sie einen Benutzernamen an',
     'back-to-login':          'Zurück zum Login'
   },

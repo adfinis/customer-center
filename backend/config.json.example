@@ -45,6 +45,19 @@
   "passwordReset": {
     "expire": 3600
   },
+  "smtp": {
+    "port": 25,
+    "host": "localhost",
+    "secure": false,
+    "auth": {
+      "user": "username",
+      "pass": "password"
+    },
+    "ignoreTLS": false,
+    "name": "customer-center.example.com",
+    "localAddress": "0.0.0.0",
+    "authMethod": "PLAIN"
+  },
   "redis": {
     "host": "localhost",
     "port": 6379,

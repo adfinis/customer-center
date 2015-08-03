@@ -2,6 +2,9 @@ import crypto     from 'crypto'
 import { Router } from 'express'
 import redis      from 'redis'
 import ldap       from 'ldapjs'
+import nodemailer from 'nodemailer'
+import transport  from 'nodemailer-smtp-transport'
+import app        from './app'
 import PWGen      from './pwgen'
 import User       from './user/model'
 import config     from '../config.json'
@@ -15,6 +18,8 @@ const client = redis.createClient(
   config.redis.options
 )
 
+const mailer = nodemailer.createTransport(transport(config.smtp))
+
 // TODO: Should we report errors on this route?
 router.post('/send-new-password', async(req, res, next) => {
   try {
@@ -22,12 +27,19 @@ router.post('/send-new-password', async(req, res, next) => {
     let token = await createToken(token)
     let user  = await new User({ username: ident }).fetch(/*{ required: true }*/)
 
-    if (user) {
+    if (user && user.get('email')) {
       await setToken(ident, token)
 
-      console.log(token)
-
-      // Send email
+      mailer.sendMail({
+        'from':    `noreply@${config.application.host}`,
+        'to':      user.get('email'),
+        'subject': `Reset password on ${config.application.name}`,
+        'text':    `https://${config.application.host}/login/new-password/${token}`
+      }, err => {
+        if (err) {
+          app.log.error(err)
+        }
+      })
     }
 
     res.send({ data: {

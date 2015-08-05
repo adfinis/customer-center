@@ -1,0 +1,17 @@
+<table class="table table--striped">
+  <caption>{{t 'symon.list-caption'}}</caption>
+  <thead>
+    <tr>
+      <th>{{t 'symon.host'}}</th>
+      <th>{{t 'symon.status'}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each symon as |host|}}
+      <tr>
+        <td>{{host.name}}</td>
+        <td>{{host.status}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

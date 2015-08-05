@@ -26,10 +26,10 @@ export default function() {
     offset = offset | 0
 
     return {
-      issues:      db.redmineIssues.slice(offset, offset + limit),
-      total_count: db.redmineIssues.length,
       limit,
-      offset
+      offset,
+      issues:      db.redmineIssues.slice(offset, offset + limit),
+      total_count: db.redmineIssues.length
     }
   })
 
@@ -41,10 +41,10 @@ export default function() {
 
     return {
       data: {
-        tickets: db.rtIssues.slice(offset, offset + limit),
-        total:   db.rtIssues.length,
         limit,
-        offset
+        offset,
+        tickets: db.rtIssues.slice(offset, offset + limit),
+        total:   db.rtIssues.length
       }
     }
   })
@@ -64,9 +64,13 @@ export default function() {
         page      = page      | 0
         projectID = projectID | 0
 
+        let timesheets = db.timescoutTimesheets.where({ projectID })
+
         return {
-          timesheetEntries: db.timescoutTimesheets.where({ projectID })
-                                                  .slice(page * limit, page * limit + limit)
+          page,
+          limit,
+          total:            timesheets.length,
+          timesheetEntries: timesheets.slice(page * limit, page * limit + limit)
         }
       default:
         return {

@@ -10,6 +10,7 @@ export async function up(knex) {
     table.string('username').notNullable().unique()
     table.string('shortname').notNullable()
     table.string('email').notNullable().unique()
+    table.string('language')
     table.json('emails', true)
     table.json('groups', true)
   })

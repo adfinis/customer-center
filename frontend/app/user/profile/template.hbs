@@ -2,6 +2,23 @@
 
 <form {{action 'saveUser' on='submit'}}>
   <div class="form-group">
-    <input class="form-control">
+    <label for="user-email">{{t 'user.profile.email'}}</label>
+    <input id="user-email" class="form-control" type="email" value={{model.email}} disabled>
+  </div>
+  <div class="form-group">
+    <label for="user-services">{{t 'user.profile.services'}}</label>
+    <select id="user-services" class="form-control" multiple disabled>
+      {{#each model.groups as |group|}}
+        <option selected>{{group}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="user-language">{{t 'user.profile.language'}}</label>
+    <select id="user-language" class="form-control">
+      {{#each i18n.locales as |locale|}}
+        <option selected={{if (is-equal locale user.language) true false}}>{{locale}}</option>
+      {{/each}}
+    </select>
   </div>
 </form>

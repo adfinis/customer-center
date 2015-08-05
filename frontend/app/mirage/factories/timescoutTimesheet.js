@@ -4,7 +4,7 @@ export default Mirage.Factory.extend({
   description: faker.hacker.phrase,
   time: function() {
     return {
-      hours:   faker.random.number({ max: 200 }),
+      hours:   faker.random.number({ max:  8 }),
       minutes: faker.random.number({ max: 59 })
     }
   },

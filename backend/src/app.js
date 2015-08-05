@@ -1,5 +1,3 @@
-import fs            from 'fs'
-import path          from 'path'
 import express       from 'express'
 import bodyParser    from 'body-parser'
 import morgan        from 'morgan'
@@ -11,6 +9,7 @@ import API           from './classes/api'
 import login         from './login'
 import passwordreset from './password-reset'
 import services      from './services'
+import userRoute     from './user/route'
 import config        from '../config.json'
 
 const app = express()
@@ -54,24 +53,7 @@ app.use((req, res, next) => {
   next({ status: 401, message: 'Not Authorized' })
 })
 
-app.get('/v1/user/current', (req, res) => {
-  let user = {
-    username:  req.user.get('username'),
-    shortname: req.user.get('shortname'),
-    groups:    req.user.getGroups(),
-    emails:    req.user.getEmails()
-  }
-
-  res.send({ data: { user } })
-})
-
-const modulePath = path.join(__dirname, 'modules')
-const resources  = fs.readdirSync(modulePath)
-
-for (let resource of resources) {
-  API.register(resource)
-  app.use(API.endpoint(resource))
-}
+app.use('/v1', userRoute)
 
 app.use(services)
 

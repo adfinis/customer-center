@@ -2,19 +2,11 @@ import express      from 'express'
 import passport     from 'passport'
 import LdapStrategy from 'passport-ldapauth'
 import User         from '../user/model'
-import config       from '../../config.json'
+import config       from '../config'
 
-const tlsOptions = { }
-
-if (config.ldap.url.startsWith('ldaps') && config.ldap.cert) {
-  tlsOptions.ca = [ require('fs').readFileSync(config.ldap.cert) ]
-}
-
-const options = {
-  server: Object.assign({}, config.ldap, config.login.ldap, { tlsOptions })
-}
-
-passport.use(new LdapStrategy(options))
+passport.use(new LdapStrategy({
+  server: Object.assign({}, config.ldap, config.login.ldap)
+}))
 
 passport.serializeUser(async(ldap, done) => {
   try {
@@ -39,10 +31,42 @@ passport.deserializeUser(async(uid, done) => {
 const router = new express.Router
 export default router
 
+/**
+ * Get the navigator language
+ *
+ * @param {string} acceptLanguage The accept-language header
+ * @return {string|void}
+ */
+function getLanguage(acceptLanguage) {
+  // Example string: en-US,en-GB;q=0.8,en;q=0.7,de-CH;q=0.5,de-DE;q=0.3,de;q=0.2
+  let languages = acceptLanguage.split(',')
+  let language  = languages.find(l => {
+    if (l.startsWith('en')) {
+      return true
+    }
+
+    if (l.startsWith('de')) {
+      return true
+    }
+  })
+
+  if (language) {
+    language = language.split('-')[0]
+  }
+
+  if ([ 'en', 'de' ].includes(language)) {
+    return language
+  }
+}
+
 router.post('/login', (req, res, next) =>
   passport.authenticate('ldapauth', (err, ldapUser, info, status) => {
     if (err)       return next(err)
     if (!ldapUser) return next({ status, message: info.message })
+
+    if (!ldapUser.lang && req.headers['accept-language']) {
+      ldapUser.lang = getLanguage(req.headers['accept-language'])
+    }
 
     req.login(ldapUser, loginError => {
       /* istanbul ignore if */

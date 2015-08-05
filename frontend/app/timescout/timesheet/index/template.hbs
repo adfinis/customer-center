@@ -22,7 +22,7 @@
       <tr>
         <td>{{entry.time.hours}}h {{entry.time.minutes}}min</td>
         <td>{{entry.description}}</td>
-        <td class="visible-sm">{{entry.date}}</td>
+        <td class="visible-sm">{{moment-format entry.date 'L'}}</td>
         <td class="visible-md">{{entry.doneBy}}</td>
       </tr>
     {{/each}}

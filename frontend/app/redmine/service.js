@@ -1,5 +1,6 @@
-import Ember from 'ember'
-import ajax  from 'ic-ajax'
+import Ember  from 'ember'
+import ajax   from 'ic-ajax'
+import config from '../config/environment'
 
 /**
  * Redmine Service for fetching data from a redmine instance
@@ -15,7 +16,7 @@ export default Ember.Service.extend({
    * @property {string} host
    * @public
    */
-  host: 'project.adfinis-sygroup.ch',
+  host: config.APP.redmine.host,
 
   /**
    * Fetch redmine issues from a host

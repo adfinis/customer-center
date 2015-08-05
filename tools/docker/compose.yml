@@ -20,7 +20,7 @@ frontend-dev:
   image: iojs
   volumes:
     - ../../frontend:/usr/src/app
-  command: npm --prefix=/usr/src/app run start
+  command: npm --prefix=/usr/src/app run start-proxy
 
 redis:
   image: redis

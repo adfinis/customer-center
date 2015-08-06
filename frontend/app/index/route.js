@@ -71,7 +71,7 @@ export default Ember.Route.extend({
       data.rt = this.get('rt').fetchIssues({ limit: 5 })
     }
 
-    if (user.get('symonitoring')) {
+    if (user.get('monitoring')) {
       data.symon = this.get('symon').fetchHosts()
     }
 

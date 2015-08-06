@@ -12,7 +12,7 @@ export default Ember.Service.extend({
   request(params) {
     let data = Object.assign({}, params)
 
-    return ajax('/api/proxy/symon', { data })
+    return ajax('/api/symon/hosts', { data })
   },
 
   /**

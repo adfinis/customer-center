@@ -11,7 +11,7 @@ export default Mirage.Factory.extend({
   },
   tracker: function() {
     return {
-      name: faker.list.random('Bug', 'Task', 'Feature')()
+      name: faker.list.random('Bug', 'Task', 'Feature', 'Support', 'Project')()
     }
   },
   status: function() {

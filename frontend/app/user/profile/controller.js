@@ -1,4 +1,5 @@
 import Ember from 'ember'
+import moment from 'moment'
 
 const { inject } = Ember
 
@@ -35,6 +36,9 @@ export default Ember.Controller.extend({
     setLocale(locale) {
       this.set('model.language', locale)
       this.set('i18n.locale', locale)
+      moment.locale(locale)
+      // Setting html locale to support hyphenation
+      Ember.$('html').attr('lang', locale)
       this.send('save')
     },
 

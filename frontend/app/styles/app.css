@@ -112,3 +112,7 @@ dd + dd::before {
   border-radius: 4px;
   padding: 0.25rem 0.5rem;
 }
+
+.text-center {
+  text-align: center !important;
+}

@@ -18,6 +18,10 @@ module.exports = function(environment) {
       // when it is created
       redmine: {
         host: 'project.adfinis-sygroup.ch'
+      },
+      rt: {
+        host: 'rt.sygroup.ch',
+        mail: 'support@adfinis-sygroup.ch'
       }
     },
 

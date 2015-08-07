@@ -1,4 +1,5 @@
-import Ember from 'ember'
+import Ember  from 'ember'
+import config from '../../config/environment'
 
 const { computed, observer, inject } = Ember
 
@@ -9,6 +10,22 @@ const { computed, observer, inject } = Ember
  * @public
  */
 export default Ember.Component.extend({
+
+  /**
+   * The request tracker host name
+   *
+   * @property {string} host
+   * @public
+   */
+  host: config.APP.rt.host,
+
+  /**
+   * The mail handling the request tracker
+   *
+   * @property {string} mail
+   * @public
+   */
+  mail: config.APP.rt.mail,
 
   /**
    * RT service to fetch rt issues

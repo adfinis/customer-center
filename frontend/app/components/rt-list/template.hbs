@@ -2,7 +2,7 @@
   <caption>{{t 'rt.list-caption'}}</caption>
   <thead>
     <tr>
-      <th>{{t 'rt.id'}}</th>
+      <th></th>
       <th class="visible-sm">{{t 'rt.status'}}</th>
       <th>{{t 'rt.title'}}</th>
       <th class="visible-md">{{t 'rt.updated'}}</th>
@@ -21,11 +21,27 @@
   <tbody class={{if loading 'loading-mask'}}>
     {{#each issues as |issue|}}
       <tr>
-        <td>#{{issue.id}}</td>
+        <td>
+          <a href="mailto:{{mail}}?subject=Re: [{{host}} #{{issue.id}}] {{issue.subject}}">
+            #{{issue.id}}
+          </a>
+        </td>
         <td class="visible-sm">{{issue.status}}</td>
-        <td>{{issue.subject}}</td>
-        <td class="visible-md">{{moment-format issue.lastUpdated 'L LT'}}</td>
-        <td class="visible-lg">{{moment-format issue.created 'L LT'}}</td>
+        <td>
+          <a href="mailto:{{mail}}?subject=Re: [{{host}} #{{issue.id}}] {{issue.subject}}">
+            {{issue.subject}}
+          </a>
+        </td>
+        <td class="visible-md">
+          <time datetime={{moment-format issue.lastUpdated 'YYYY-MM-DDTHH:mm:ssZ'}} title={{moment-format issue.lastUpdated 'L LT'}}>
+            {{moment-format issue.lastUpdated 'YYYY-MM-DD'}}
+          </time>
+        </td>
+        <td class="visible-lg">
+          <time datetime={{moment-format issue.created 'YYYY-MM-DDTHH:mm:ssZ'}} title={{moment-format issue.created 'L LT'}}>
+            {{moment-format issue.created 'YYYY-MM-DD'}}
+          </time>
+        </td>
       </tr>
     {{^}}
       <tr class={{if error 'danger'}}>

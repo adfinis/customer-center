@@ -31,9 +31,7 @@ export default {
   },
 
   'redmine': {
-    'id':       'Nr',
     'project':  'Projekt',
-    'tracker':  'Tracker',
     'status':   'Status',
     'priority': 'Priorität',
     'subject':  'Betreff',
@@ -43,7 +41,6 @@ export default {
   },
 
   'rt': {
-    'id':      'Nr',
     'status':  'Status',
     'title':   'Title',
     'updated': 'Updated on',

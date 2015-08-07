@@ -8,9 +8,13 @@ passport.use(new LdapStrategy({
   server: Object.assign({}, config.ldap, config.login.ldap)
 }))
 
+// Passport doesn't set req.user directly after login
+// save user in weakmap with the ldap response as key
+let users = new WeakMap
+
 passport.serializeUser(async(ldap, done) => {
   try {
-    await User.syncLdap(ldap)
+    users.set(ldap, await User.syncLdap(ldap))
     done(null, ldap.uid)
   }
   catch (e) {
@@ -73,9 +77,9 @@ router.post('/login', (req, res, next) =>
       if (loginError) return next(loginError)
 
       let claims = {
-        iss:  config.application.name,
-        aud:  config.application.host,
-        user: { username: ldapUser.uid }
+        iss: config.application.name,
+        aud: config.application.host,
+        uid: users.get(ldapUser).id
       }
 
       req.session.create(claims, (sessionError, token) => {

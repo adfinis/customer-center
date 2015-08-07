@@ -49,7 +49,7 @@ export default bookshelf.Model.extend({
    * Syncs the ldap user to our database
    *
    * @param {Object} ldap The ldap response with username, shortname and groups
-   * @return {User}
+   * @return {Promise.<User>}
    * @public
    */
   async syncLdap(ldap) {

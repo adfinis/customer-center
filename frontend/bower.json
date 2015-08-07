@@ -1,23 +1,23 @@
 {
   "name": "adsycc",
   "dependencies": {
-    "adcssy": "adfinis-sygroup/adcssy#0.2.13",
+    "adcssy": "adfinis-sygroup/adcssy#master",
     "ember": "1.13.6",
     "ember-cli-shims": "ember-cli/ember-cli-shims#0.0.3",
     "ember-cli-test-loader": "ember-cli-test-loader#0.1.3",
+    "ember-inflector": "^1.3.1",
     "ember-load-initializers": "ember-cli/ember-load-initializers#0.1.5",
     "ember-qunit": "0.4.9",
     "ember-qunit-notifications": "0.0.7",
     "ember-resolver": "~0.1.18",
+    "ember-simple-auth": "0.8.0",
+    "Faker": "^3.0.0",
+    "fastclick": "^1.0.6",
     "jquery": "^2.1.4",
     "loader.js": "ember-cli/loader.js#3.2.1",
-    "qunit": "^1.18.0",
-    "ember-simple-auth": "0.8.0",
-    "moment": "^2.10.6",
-    "fastclick": "^1.0.6",
-    "pretender": "^0.9.0",
-    "ember-inflector": "^1.3.1",
     "lodash": "^3.10.1",
-    "Faker": "^3.0.0"
+    "moment": "^2.10.6",
+    "pretender": "^0.9.0",
+    "qunit": "^1.18.0"
   }
 }

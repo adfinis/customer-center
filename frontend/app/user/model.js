@@ -1,4 +1,5 @@
 import Ember from 'ember'
+import ajax  from 'ic-ajax'
 
 const { computed } = Ember
 
@@ -9,6 +10,47 @@ const { computed } = Ember
  * @public
  */
 export default Ember.Object.extend({
+
+  /**
+   * User rollback
+   *
+   * @return {void}
+   */
+  rollback() {
+    this.setProperties(JSON.parse(this.__rollback).data.user)
+  },
+
+  /**
+   * Save the user
+   *
+   * @return {Promise}
+   */
+  async save() {
+    let res = await ajax('/api/v1/user/current', {
+      type:        'put',
+      data:        JSON.stringify(this),
+      contentType: 'application/json'
+    })
+
+    this.setProperties(res.data.user)
+    this.__rollback = JSON.stringify(res)
+  },
+
+  /**
+   * Transform the user for the backend
+   *
+   * @return {Object}
+   */
+  toJSON() {
+    return {
+      username:  this.username,
+      shortname: this.shortname,
+      email:     this.email,
+      language:  this.language,
+      groups:    this.groups,
+      emails:    this.emails
+    }
+  },
 
   /**
    * Has redmine access

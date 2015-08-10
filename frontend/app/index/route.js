@@ -27,14 +27,6 @@ export default Ember.Route.extend({
   rt: inject.service(),
 
   /**
-   * Symon service
-   *
-   * @property {SymonService} symon
-   * @public
-   */
-  symon: inject.service(),
-
-  /**
    * Timescout service
    *
    * @property {TimescoutService} timescout
@@ -69,10 +61,6 @@ export default Ember.Route.extend({
 
     if (user.get('emails.length')) {
       data.rt = this.get('rt').fetchIssues({ limit: 5 })
-    }
-
-    if (user.get('monitoring')) {
-      data.symon = this.get('symon').fetchHosts()
     }
 
     data.subscriptions = this.get('timescout').fetchProjects()

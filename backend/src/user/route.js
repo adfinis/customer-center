@@ -14,6 +14,8 @@ function userToJSON(user) {
   return {
     username:  user.get('username'),
     shortname: user.get('shortname'),
+    firstName: user.get('firstName'),
+    lastName:  user.get('lastName'),
     email:     user.get('email'),
     language:  user.get('language'),
     groups:    user.getGroups(),

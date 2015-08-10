@@ -49,9 +49,7 @@
           </a>
         </td>
         <td class="visible-xs">{{issue.project.name}}</td>
-        <td class="visible-lg">
-          {{issue.status.name}}
-        </td>
+        <td class="visible-lg">{{issue.status.name}}</td>
         <td class="visible-xl nowrap">
           <time datetime={{moment-format issue.updated_on 'YYYY-MM-DDTHH:mm:ssZ'}} title={{moment-format issue.updated_on 'L LT'}}>
             {{moment-format issue.updated_on 'YYYY-MM-DD'}}

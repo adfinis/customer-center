@@ -42,9 +42,9 @@ export default {
 
   'rt': {
     'status':  'Status',
-    'title':   'Title',
-    'updated': 'Updated on',
-    'created': 'Created on',
+    'subject': 'Betreff',
+    'updated': 'Zuletzt aktualisiert',
+    'created': 'Erstellt am',
 
     'list-caption': 'Request Tracker'
   },

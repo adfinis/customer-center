@@ -3,8 +3,8 @@
   <thead>
     <tr>
       <th></th>
+      <th>{{t 'rt.subject'}}</th>
       <th class="visible-sm">{{t 'rt.status'}}</th>
-      <th>{{t 'rt.title'}}</th>
       <th class="visible-md">{{t 'rt.updated'}}</th>
       <th class="visible-lg">{{t 'rt.created'}}</th>
     </tr>
@@ -26,12 +26,12 @@
             #{{issue.id}}
           </a>
         </td>
-        <td class="visible-sm">{{issue.status}}</td>
         <td>
           <a href="mailto:{{mail}}?subject=Re: [{{host}} #{{issue.id}}] {{issue.subject}}">
             {{issue.subject}}
           </a>
         </td>
+        <td class="visible-sm">{{issue.status}}</td>
         <td class="visible-md">
           <time datetime={{moment-format issue.lastUpdated 'YYYY-MM-DDTHH:mm:ssZ'}} title={{moment-format issue.lastUpdated 'L LT'}}>
             {{moment-format issue.lastUpdated 'YYYY-MM-DD'}}

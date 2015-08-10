@@ -7,10 +7,12 @@
     </tr>
   </thead>
   <tbody>
-    {{#each symon as |host|}}
+    {{#each hosts as |host|}}
       <tr>
         <td>{{host.name}}</td>
-        <td>{{host.status}}</td>
+        <td>
+          <i class="fa fa-circle {{if host.isenabled 'text-success' 'text-danger'}}"></i>
+        </td>
       </tr>
     {{/each}}
   </tbody>

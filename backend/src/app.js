@@ -61,8 +61,7 @@ app.get('/', (req, res) => {
 })
 
 app.use((err, req, res, next) => {
-  let status = err.status || 500
-  let detail = err.message
+  let { message: detail, status = 500 } = err
 
   res.status(status)
 

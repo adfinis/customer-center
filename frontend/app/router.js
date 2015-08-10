@@ -9,7 +9,7 @@ Router.map(function() {
   this.route('login', function() {
     this.route('password-reset')
     this.route('new-password', { path: '/new-password/:token' })
-  })
+  });
 
   this.route('protected', { path: '/' }, function() {
     this.resource('index', { path: '/' })
@@ -22,6 +22,8 @@ Router.map(function() {
       this.route('issues', { path: '/' })
     })
 
+    this.resource('symon')
+
     this.resource('timescout', function() {
       this.route('timesheet', { path: '/timesheet/:id' }, function() {
         this.route('index', { path: '/' })
@@ -31,7 +33,7 @@ Router.map(function() {
     this.resource('user', function() {
       this.route('profile')
     })
-  })
+  });
 })
 
 export default Router

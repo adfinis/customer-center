@@ -2,9 +2,9 @@
   <caption>{{t 'rt.list-caption'}}</caption>
   <thead>
     <tr>
-      <th>{{t 'rt.id'}}</th>
+      <th width="50"></th>
+      <th>{{t 'rt.subject'}}</th>
       <th class="visible-sm">{{t 'rt.status'}}</th>
-      <th>{{t 'rt.title'}}</th>
       <th class="visible-md">{{t 'rt.updated'}}</th>
       <th class="visible-lg">{{t 'rt.created'}}</th>
     </tr>
@@ -13,8 +13,8 @@
     {{#each (adsy-range 1 20) as |value|}}
       <tr>
         <td><a>#12345</a></td>
-        <td class="visible-sm">New</td>
         <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+        <td class="visible-sm">New</td>
         <td class="visible-md">{{moment-format 0 'L LT'}}</td>
         <td class="visible-lg">{{moment-format 0 'L LT'}}</td>
       </tr>

@@ -9,6 +9,8 @@ export async function up(knex) {
     table.bigIncrements('id').primary().unsigned()
     table.string('username').notNullable().unique()
     table.string('shortname').notNullable()
+    table.string('firstName')
+    table.string('lastName')
     table.string('email').notNullable().unique()
     table.string('language')
     table.json('emails', true)

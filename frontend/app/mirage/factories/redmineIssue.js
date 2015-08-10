@@ -16,7 +16,7 @@ export default Mirage.Factory.extend({
   },
   status: function() {
     return {
-      name: faker.list.random('New', 'Taken', 'Closed')()
+      name: faker.list.random('New', 'Taken', 'Closed', 'Needs Feedback')()
     }
   },
   priority: function() {

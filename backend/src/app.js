@@ -5,7 +5,6 @@ import passport      from 'passport'
 import redis         from 'redis'
 import jwt           from 'jwt-redis-session'
 import debug         from 'debug'
-import API           from './classes/api'
 import login         from './login'
 import passwordreset from './password-reset'
 import services      from './services'
@@ -56,11 +55,6 @@ app.use((req, res, next) => {
 app.use('/v1', userRoute)
 
 app.use(services)
-
-app.get('/v1', (req, res) => {
-  res.set('Content-Type', 'application/json')
-  res.send(JSON.stringify(API.index(), null, 2))
-})
 
 app.get('/', (req, res) => {
   res.redirect('/api/v1')

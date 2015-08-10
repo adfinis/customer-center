@@ -2,6 +2,8 @@ import Mirage, { faker } from 'ember-cli-mirage'
 
 export default Mirage.Factory.extend({
   shortname: 'adsy',
+  firstName: faker.name.firstName,
+  lastName:  faker.name.lastName,
   username: function() {
     return `${this.shortname}-${faker.name.firstName()}`
   },

@@ -4,29 +4,20 @@
       {{t 'redmine.list-caption' host=host}}
     </a>
   </caption>
-  <colgroup>
-    <col width="50">
-    <col class="visible-xs" width="300">
-    <col class="visible-lg" width="1">
-    <col class="visible-lg" width="1">
-    <col class="visible-xl" width="1">
-    <col>
-    <col class="visible-xl" width="200">
-  </colgroup>
   <thead>
     <tr>
-      <th></th>
-      <th class="visible-lg"></th>
+      <th width="50"></th>
+      <th width="1" class="visible-lg"></th>
       <th>{{t 'redmine.subject'}}</th>
       <th class="visible-xs">{{t 'redmine.project'}}</th>
-      <th class="visible-lg">{{t 'redmine.status'}}</th>
-      <th class="visible-xl">{{t 'redmine.updated'}}</th>
+      <th width="135" class="visible-lg">{{t 'redmine.status'}}</th>
+      <th width="120" class="visible-xl">{{t 'redmine.updated'}}</th>
     </tr>
   </thead>
   {{#if showPager}}
     <tfoot>
       <tr>
-        <td colspan="7">
+        <td colspan="6">
           {{pagination-pager current=page count=totalPages}}
         </td>
       </tr>

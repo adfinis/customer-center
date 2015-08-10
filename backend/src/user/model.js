@@ -2,7 +2,8 @@ import Bookshelf from 'bookshelf'
 import knex      from 'knex'
 import config    from '../../config.json'
 
-let bookshelf = new Bookshelf(knex(config.database))
+const { isArray } = Array
+const bookshelf = new Bookshelf(knex(config.database))
 
 /**
  * User model
@@ -59,11 +60,14 @@ export default bookshelf.Model.extend({
       user = new this
     }
 
-    let groups = Array.isArray(ldap._groups) ? ldap._groups : [ ldap._groups ]
+    let groups = isArray(ldap._groups) ? ldap._groups : [ ldap._groups ]
+    let [ , companySN ] = /ou=([^,]+)/.exec(ldap.dn)
 
     user.set('username',  ldap.uid)
-    user.set('shortname', ldap.sn)
-    user.set('email',     Array.isArray(ldap.mail) ? ldap.mail[0] : ldap.mail)
+    user.set('shortname', companySN)
+    user.set('firstName', ldap.givenName)
+    user.set('lastName',  ldap.sn)
+    user.set('email',     isArray(ldap.mail) ? ldap.mail[0] : ldap.mail)
     user.set('groups',    { content: groups.map(g => g.cn) })
 
     if (!user.get('language') && ldap.lang) {

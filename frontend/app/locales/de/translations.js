@@ -19,11 +19,24 @@ export default {
     'back-to-login':          'Zurück zum Login'
   },
 
+  'index': {
+    'greeting':          'Guten Tag {{name}}',
+    'our-tools':         'Unsere Tools',
+    'contact-us':        'Kontaktieren Sie uns',
+    'create-ticket':     'Support ticket erstellen',
+    'location':          'Standort {{location}}',
+    'directions':        'Wegbeschreibung',
+    'directions.bs.url': 'http://adfinis-sygroup.ch/de/wegbeschreibung-basel',
+    'directions.be.url': 'http://adfinis-sygroup.ch/de/wegbeschreibung-bern',
+    'fax':               'Fax',
+    'phone':             'Tel'
+  },
+
   'nav': {
     'dashboard': 'Übersicht',
     'redmine':   'Redmine',
     'rt':        'Request Tracker',
-    'timescout': 'Timescout',
+    'timescout': 'SySupport',
     'wikis':     'Wikis',
     'settings':  'Einstellungen',
     'profile':   'Profil',

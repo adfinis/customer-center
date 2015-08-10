@@ -45,6 +45,8 @@ export default Ember.Object.extend({
     return {
       username:  this.username,
       shortname: this.shortname,
+      firstName: this.firstName,
+      lastName:  this.lastName,
       email:     this.email,
       language:  this.language,
       groups:    this.groups,
@@ -53,9 +55,21 @@ export default Ember.Object.extend({
   },
 
   /**
+   * Full name
+   *
+   * @property {string} fullName
+   * @readOnly
+   * @public
+   */
+  fullName: computed(function() {
+    return `${this.firstName} ${this.lastName}`.trim()
+  }),
+
+  /**
    * Has redmine access
    *
    * @property {boolean} redmine
+   * @readOnly
    * @public
    */
   redmine: computed(function() {
@@ -66,6 +80,7 @@ export default Ember.Object.extend({
    * Has monitoring access
    *
    * @property {boolean} monitoring
+   * @readOnly
    * @public
    */
   monitoring: computed(function() {
@@ -76,6 +91,7 @@ export default Ember.Object.extend({
    * Has timed access
    *
    * @property {boolean} timed
+   * @readOnly
    * @public
    */
   timed: computed(function() {
@@ -86,6 +102,7 @@ export default Ember.Object.extend({
    * List of wiki groups
    *
    * @property {string[]} wikis
+   * @readOnly
    * @public
    */
   wikis: computed(function() {

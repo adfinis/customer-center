@@ -19,11 +19,24 @@ export default {
     'back-to-login':          'Back to login'
   },
 
+  'index': {
+    'greeting':          'Hi {{name}}',
+    'our-tools':         'Our tools',
+    'contact-us':        'Contact us',
+    'create-ticket':     'Create support ticket',
+    'location':          'Location {{location}}',
+    'directions':        'Directions',
+    'directions.bs.url': 'http://adfinis-sygroup.ch/en/directions-basel',
+    'directions.be.url': 'http://adfinis-sygroup.ch/en/directions-bern',
+    'fax':               'Fax',
+    'phone':             'Phone'
+  },
+
   'nav': {
     'dashboard': 'Dashboard',
     'redmine':   'Redmine',
     'rt':        'Request Tracker',
-    'timescout': 'Timescout',
+    'timescout': 'SySupport',
     'wikis':     'Wikis',
     'settings':  'Settings',
     'profile':   'Profile',

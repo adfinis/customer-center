@@ -1,45 +1,135 @@
-<div class="grid">
-  <div class="grid-cell grid-cell--12of12 grid-cell-sm--8of12 grid-cell-lg--9of12">
-    {{#if user.emails.length}}
-      {{rt-list emails=user.emails limit=5 issues=model.rt.issues total=model.rt.total}}
-    {{/if}}
-  </div>
-  <div class="grid-cell grid-cell--12of12 grid-cell-sm--4of12 grid-cell-lg--3of12">
-    {{#if user.monitoring}}
-      <table class="table table--striped">
-        <caption>{{t 'symon.list-caption'}}</caption>
-        <thead>
-          <tr>
-            <th>{{t 'symon.host'}}</th>
-            <th>{{t 'symon.status'}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>topaxi.ch</td>
-            <td>OK</td>
-          </tr>
-          <tr>
-            <td>irc.topaxi.ch</td>
-            <td>OK</td>
-          </tr>
-          <tr>
-            <td>topaxi.codes</td>
-            <td>OK</td>
-          </tr>
-        </tbody>
-      </table>
-    {{/if}}
-  </div>
-  <div class="grid-cell grid-cell--12of12 grid-cell-sm--8of12 grid-cell-lg--9of12">
-    {{#if user.redmine}}
-      {{redmine-list limit=5 issues=model.redmine.issues total=model.redmine.total}}
-    {{/if}}
-  </div>
-  <div class="grid-cell grid-cell--12of12 grid-cell-sm--4of12 grid-cell-lg--3of12">
-    {{#if user.timed}}
-      {{ts-subscriptions subscriptions=model.subscriptions}}
-      <div>{{#link-to 'timescout'}}{{t 'timescout.history'}}{{/link-to}}</div>
-    {{/if}}
-  </div>
+<h1>{{t 'index.greeting' name=user.fullName}}</h1>
+
+<div class="alert alert-warning">
+  <p style="margin-bottom:0">Geplante Wartungsarbeiten an unserer Core Router Infrastruktur <strong>am SO 2015-08-27 von 03:00 bis 03:45</strong></p>
 </div>
+
+<section>
+  <h2>{{t 'index.our-tools'}}</h2>
+
+  <table class="table table--condensed" style="width:auto">
+    <colgroup>
+      <col width="160">
+    </colgroup>
+    <tbody>
+      <tr>
+        <th class="text-right">Redmine</th>
+        <td>Verwaltung von Tasks, Bugs, etc.</td>
+      </tr>
+      <tr>
+        <th class="text-right">Gitlab</th>
+        <td>Source Code Verwaltung</td>
+      </tr>
+      <tr>
+        <th class="text-right">Request Tracker</th>
+        <td>Support-Anfragen via Mail</td>
+      </tr>
+      <tr>
+        <th class="text-right">PowerAdmin</th>
+        <td>Verwaltung von DNS Zonen</td>
+      </tr>
+      <tr>
+        <th class="text-right">SyMonitoring</th>
+        <td>Überwachung von Server und Diensten</td>
+      </tr>
+      <tr>
+        <th class="text-right">SySupport Abo</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th class="text-right">PPA</th>
+        <td>Verwaltung ihrer Webhostings</td>
+      </tr>
+      <tr>
+        <th class="text-right">RHEV</th>
+        <td>Verwaltung ihrer virtuellen Server</td>
+      </tr>
+      <tr>
+        <th class="text-right">Mail Cleaner</th>
+        <td>Spam Filter</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>{{t 'index.contact-us'}}</h2>
+  <p>
+    {{t 'index.create-ticket'}}:
+    <a href="mailto:support@adfinis-sygroup.ch">support@adfinis-sygroup.ch</a>
+  </p>
+  <p style="font-size:2rem">
+    <a href="https://facebook.com/AdfinisSyGroup">
+      <i class="fa fa-facebook-square"></i>
+    </a>
+    <a href="https://linkedin.com/company/2610138">
+      <i class="fa fa-linkedin-square"></i>
+    </a>
+    <a href="https://xing.com/companies/adfinissygroupag">
+      <i class="fa fa-xing-square"></i>
+    </a>
+    <a href="https://github.com/adfinis-sygroup">
+      <i class="fa fa-github-square"></i>
+    </a>
+    <a href="https://twitter.com/adfinissygroup">
+      <i class="fa fa-twitter-square"></i>
+    </a>
+  </p>
+  <section class="grid grid--col grid-sm--row grid-sm--4of12">
+    <div class="grid-cell">
+      <h3>{{t 'index.location' location='Basel'}}</h3>
+      <p>
+        Adfinis SyGroup AG<br>
+        Güterstrasse 86<br>
+        CH-4053 Basel
+      </p>
+      <dl>
+        <dt>{{t 'index.phone'}}</dt>
+        <dd>+41 (0) 61 500 31 31</dd>
+
+        <dt>{{t 'index.fax'}}</dt>
+        <dd>+41 (0) 31 550 31 19</dd>
+      </dl>
+      <p>
+        <a href={{t 'index.directions.bs.url'}}>
+          {{t 'index.directions'}}
+        </a>
+      </p>
+    </div>
+    <div class="grid-cell">
+      <h3>{{t 'index.location' location='Bern'}}</h3>
+      <p>
+        Adfinis SyGroup AG<br>
+        Keltenstrasse 98<br>
+        CH-3018 Bern
+      </p>
+      <dl>
+        <dt>{{t 'index.phone'}}</dt>
+        <dd>+41 (0) 31 550 31 11</dd>
+
+        <dt>{{t 'index.fax'}}</dt>
+        <dd>+41 (0) 31 550 31 19</dd>
+      </dl>
+      <p>
+        <a href={{t 'index.directions.be.url'}}>
+          {{t 'index.directions'}}
+        </a>
+      </p>
+    </div>
+    <div class="grid-cell">
+      <h3>{{t 'index.location' location='Zürich'}}</h3>
+      <p>
+        Adfinis SyGroup AG<br>
+        Neptunstrasse 109<br>
+        CH-8032 Zürich
+      </p>
+      <dl>
+        <dt>{{t 'index.phone'}}</dt>
+        <dd>+41 (0) 43 500 38 90</dd>
+
+        <dt>{{t 'index.fax'}}</dt>
+        <dd>+41 (0) 31 550 31 19</dd>
+      </dl>
+    </div>
+  </section>
+</section>

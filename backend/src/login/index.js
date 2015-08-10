@@ -93,10 +93,7 @@ router.post('/login', (req, res, next) =>
   })(req, res, next)
 )
 
-router.get('/logout', logout)
-      .post('/logout', logout)
-
-function logout(req, res) {
+router.post('/logout', (req, res) => {
   req.logout()
   res.redirect('/login')
-}
+})

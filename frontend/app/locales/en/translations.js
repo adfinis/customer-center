@@ -1,7 +1,11 @@
 export default {
+  'de': 'German',
+  'en': 'English',
+
   'global': {
     'Username': 'Username',
-    'Password': 'Password'
+    'Password': 'Password',
+    'save':     'Save'
   },
 
   'login': {
@@ -76,5 +80,11 @@ export default {
 
     'host':   'Host',
     'status': 'Status'
+  },
+
+  'user.profile': {
+    'email':    'Email address',
+    'services': 'Services',
+    'language': 'Language'
   }
 }

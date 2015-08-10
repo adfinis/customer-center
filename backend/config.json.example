@@ -13,7 +13,7 @@
     "ldap": {
       "searchBase": "ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
       "searchFilter": "uid={{username}}",
-      "searchAttributes": [ "uid", "sn" ],
+      "searchAttributes": [ "uid", "sn", "mail" ],
 
       "groupSearchBase": "ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
       "groupSearchFilter": "cn={{dn}}-*",

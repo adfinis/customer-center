@@ -49,7 +49,7 @@ export default bookshelf.Model.extend({
    * Syncs the ldap user to our database
    *
    * @param {Object} ldap The ldap response with username, shortname and groups
-   * @return {User}
+   * @return {Promise.<User>}
    * @public
    */
   async syncLdap(ldap) {
@@ -59,10 +59,16 @@ export default bookshelf.Model.extend({
       user = new this
     }
 
+    let groups = Array.isArray(ldap._groups) ? ldap._groups : [ ldap._groups ]
+
     user.set('username',  ldap.uid)
     user.set('shortname', ldap.sn)
-    user.set('groups',    { content: ldap._groups.map(g => g.cn) })
-    user.set('emails',    { content: [ 'info@example.com', 'root@localhost' ] })
+    user.set('email',     Array.isArray(ldap.mail) ? ldap.mail[0] : ldap.mail)
+    user.set('groups',    { content: groups.map(g => g.cn) })
+
+    if (!user.get('language') && ldap.lang) {
+      user.set('language', ldap.lang)
+    }
 
     await user.save()
 

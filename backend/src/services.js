@@ -20,7 +20,7 @@ const services = {
     router.use('/proxy/timescout', TimescoutProxy.createProxy(service))
   },
   symon: function(service) {
-    router.use('/symon', SymonProxy.createProxy(service))
+    router.use('/proxy/symon', SymonProxy.createProxy(service))
   }
 }
 

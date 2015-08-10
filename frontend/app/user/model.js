@@ -61,7 +61,7 @@ export default Ember.Object.extend({
    * @readOnly
    * @public
    */
-  fullName: computed(function() {
+  fullName: computed('firstName', 'lastName', function() {
     return `${this.firstName} ${this.lastName}`.trim()
   }),
 
@@ -72,7 +72,7 @@ export default Ember.Object.extend({
    * @readOnly
    * @public
    */
-  redmine: computed(function() {
+  redmine: computed('groups.[]', function() {
     return this.groups.find(g => g.endsWith('-redmine'))
   }),
 
@@ -83,7 +83,7 @@ export default Ember.Object.extend({
    * @readOnly
    * @public
    */
-  monitoring: computed(function() {
+  monitoring: computed('groups.[]', function() {
     return this.groups.find(g => g.endsWith('-mon'))
   }),
 
@@ -94,7 +94,7 @@ export default Ember.Object.extend({
    * @readOnly
    * @public
    */
-  timed: computed(function() {
+  timed: computed('groups.[]', function() {
     return this.groups.find(g => g.endsWith('-timed')) || 1
   }),
 
@@ -105,7 +105,7 @@ export default Ember.Object.extend({
    * @readOnly
    * @public
    */
-  wikis: computed(function() {
+  wikis: computed('groups.[]', function() {
     return this.groups.filter(g => g.endsWith('-wiki'))
                       .map(g => g.split('-')[0])
   }),
@@ -117,7 +117,7 @@ export default Ember.Object.extend({
    * @readOnly
    * @public
    */
-  rt: computed(function() {
+  rt: computed('email', 'emails.[]', function() {
     return this.email || this.emails.length
   })
 })

@@ -30,7 +30,13 @@ export default class SymonProxy {
    * @public
    */
   constructor(service) {
-    this.host   = service.host
+    this.host     = service.host
+    this.user     = service.user
+    this.password = service.password
+    this.queues   = service.queues
+    this.app      = service.app
+    this.searchDN = service.searchDN
+    this.ttl      = service.ttl
   }
 
   createRouter() {
@@ -47,15 +53,37 @@ export default class SymonProxy {
   }
 
   async hosts(req, res, next) {
-    let symonGroup = req.user.getGroups().find(g => g.endsWith('mon'))
-    let settings = { app_name: 'adsycc', amq_host: this.host }
+    let symonGroup = req.user.getGroups().find(g => g.endsWith('-mon'))
+    let settings = {
+      app_name: this.app,
+      amq_host: this.host,
+      amq_user: this.user,
+      amq_password: this.password,
+      amq_num_queues: this.queues
+    }
     let syrpc = new SyRPCClient(settings)
     await syrpc.init() 
 
-    let resultID = syrpc.putRequest('get_hosts', { ldap_group: symonGroup })
-    let hosts = await syrpc.getResult(resultID, 60000)
-    console.log(hosts)
+    let searchDN = `cn=${symonGroup},${this.searchDN}`
+    let resultID = syrpc.putRequest('get_host_list_by_ldap_group', { ldap_group: searchDN })
+    let hosts = await syrpc.getResult(resultID, this.ttl)
 
-    res.send({ data: {} })
+    let requests = hosts.data.map(host =>
+      syrpc.putRequest('get_service_list_by_host', { host_id: host.id })
+    )
+    .map(resultID =>
+      syrpc.getResult(resultID, this.ttl)
+    )
+
+    let results = await Promise.all(requests)
+
+    for (let [ key, host ] of hosts.data.entries()) {
+      host.services = results[key].data
+      for (let service of host.services) {
+        service.host = undefined
+      }
+    }
+
+    res.send({ data: hosts })
   }
 }

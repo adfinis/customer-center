@@ -30,7 +30,7 @@
     "pg": "^4.4.0",
     "redis": "^0.12.1",
     "request-promise": "^0.4.3",
-    "syrpc": "^1.0.1"
+    "syrpc": "^1.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^4.0.5",

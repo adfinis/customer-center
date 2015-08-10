@@ -36,7 +36,9 @@ export default class RTProxy {
 
   async tickets(req, res, next) {
     let { offset = 0, limit = 5 } = req.query
-    let { content: emails }       = req.user.get('emails')
+    let { content: emails = [] }  = req.user.get('emails') || {}
+
+    emails.unshift(req.user.get('email'))
 
     offset = +offset
     limit  = +limit

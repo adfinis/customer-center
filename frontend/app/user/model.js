@@ -108,5 +108,16 @@ export default Ember.Object.extend({
   wikis: computed(function() {
     return this.groups.filter(g => g.endsWith('-wiki'))
                       .map(g => g.split('-')[0])
+  }),
+
+  /**
+   * Has redmine access
+   *
+   * @property {boolean} rt
+   * @readOnly
+   * @public
+   */
+  rt: computed(function() {
+    return this.email || this.emails.length
   })
 })

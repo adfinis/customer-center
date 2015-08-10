@@ -23,6 +23,7 @@ export default {
     'dashboard': 'Übersicht',
     'redmine':   'Redmine',
     'rt':        'Request Tracker',
+    'symon':     'SyMonitoring',
     'timescout': 'Timescout',
     'wikis':     'Wikis',
     'settings':  'Einstellungen',

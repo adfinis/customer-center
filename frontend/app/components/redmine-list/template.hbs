@@ -41,19 +41,7 @@
           </a>
         </td>
         <td class="visible-lg text-center">
-          {{#if (is-equal issue.tracker.name 'Task')}}
-            <i class="fa fa-tasks" title="Task"></i>
-          {{else}}{{#if (is-equal issue.tracker.name 'Bug')}}
-            <i class="fa fa-bug" title="Bug"></i>
-          {{else}}{{#if (is-equal issue.tracker.name 'Feature')}}
-            <i class="fa fa-lightbulb-o" title="Feature"></i>
-          {{else}}{{#if (is-equal issue.tracker.name 'Support')}}
-            <i class="fa fa-support" title="Support"></i>
-          {{else}}{{#if (is-equal issue.tracker.name 'Project')}}
-            <i class="fa fa-folder-open-o" title="Project"></i>
-          {{else}}
-          <i class="fa fa-puzzle-piece" title={{issue.tracker.name}}></i>
-          {{/if}}{{/if}}{{/if}}{{/if}}{{/if}}
+          {{redmine-tracker-icon issue.tracker.name}}
         </td>
         <td>
           <a href="https://{{host}}/issues/{{issue.id}}">

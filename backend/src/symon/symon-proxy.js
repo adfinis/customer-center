@@ -84,6 +84,6 @@ export default class SymonProxy {
       }
     }
 
-    res.send({ data: hosts })
+    res.send({ data: { hosts: hosts.data } })
   }
 }

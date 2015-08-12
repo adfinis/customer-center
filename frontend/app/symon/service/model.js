@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Ember from 'ember'
+import { STATE_OK, STATE_WARNING, STATE_ERROR } from 'adsycc/symon/service'
 
 export default Ember.Object.extend({
   name: null,
@@ -23,7 +24,7 @@ export default Ember.Object.extend({
   getNormalizedState() {
     let state = this.get('state')
 
-    if (state < 0 || state > 1) {
+    if (state !== STATE_OK && state !== STATE_WARNING) {
       state = 2
     }
 

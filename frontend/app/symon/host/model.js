@@ -1,4 +1,5 @@
 import Ember from 'ember'
+import { STATE_OK, STATE_WARNING, STATE_ERROR } from 'adsycc/symon/service'
 import Service from 'adsycc/symon/service/model'
 
 export default Ember.Object.extend({
@@ -13,7 +14,7 @@ export default Ember.Object.extend({
   messages: Ember.computed('state', 'services.@each.state', function() {
     let messages = Ember.A()
     
-    if (this.get('state') !== 0) {
+    if (this.get('state') !== STATE_OK) {
       messages.pushObject({
         text: this.get('name'),
         i18n: 'symon.host.state.danger'
@@ -28,20 +29,20 @@ export default Ember.Object.extend({
   }),
 
   globalState: Ember.computed('state', 'services.@each.state', function() {
-    if (this.get('state') !== 0) { return 2 }
+    if (this.get('state') !== STATE_OK) return STATE_ERROR
 
     let badServices = this.get('badServices')
 
-    if (!badServices.length) { return 0 }
+    if (!badServices.length) return STATE_OK
 
-    let hasError = badServices.some(s => s.get('ccState') === 2)
+    let hasError = badServices.some(s => s.get('ccState') === STATE_ERROR)
 
-    return hasError ? 2 : 1
+    return hasError ? STATE_ERROR : STATE_WARNING
   }),
 
   badServices: Ember.computed('services.@each.state', function() {
     return this.get('services').filter(s =>
-      s.get('ccState') > 0
+      s.get('ccState') > STATE_OK
     )
   })
 });

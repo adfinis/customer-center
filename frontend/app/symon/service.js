@@ -1,5 +1,6 @@
 import Ember from 'ember'
 import ajax  from 'ic-ajax'
+import Host from 'adsycc/symon/host/model'
 
 export default Ember.Service.extend({
 
@@ -21,7 +22,11 @@ export default Ember.Service.extend({
    * @return {Object}
    * @public
    */
-  fetchHosts() {
-    return this.request()
+  async fetchHosts() {
+    let hosts = await this.request()
+
+    hosts.data.hosts = hosts.data.hosts.map(h => Host.create(h))
+
+    return hosts
   }
 });

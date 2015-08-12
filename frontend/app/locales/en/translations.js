@@ -29,7 +29,35 @@ export default {
     'directions.bs.url': 'http://adfinis-sygroup.ch/en/directions-basel',
     'directions.be.url': 'http://adfinis-sygroup.ch/en/directions-bern',
     'fax':               'Fax',
-    'phone':             'Phone'
+    'phone':             'Phone',
+    'tools': {
+      'redmine':             'Redmine',
+      'redmine.description': 'Managing tasks, bugs, etc.',
+
+      'gitlab':             'Gitlab',
+      'gitlab.description': 'Code repository',
+
+      'rt':             'Request Tracker',
+      'rt.description': 'Support-Requests by email',
+
+      'poweradmin':             'PowerAdmin',
+      'poweradmin.description': 'DNS zone management',
+
+      'symonitoring':             'SyMonitoring',
+      'symonitoring.description': 'Monitoring of servers and services',
+
+      'sysupport':             'SySupport',
+      'sysupport.description': 'Support subscriptions',
+
+      'ppa':             'PPA',
+      'ppa.description': 'Manage your web-hostings',
+
+      'rhev':             'RHEV',
+      'rhev.description': 'Manage your virtual servers',
+
+      'mailcleaner':             'Mail Cleaner',
+      'mailcleaner.description': 'Spam Filter'
+    }
   },
 
   'nav': {

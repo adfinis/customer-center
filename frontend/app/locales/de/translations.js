@@ -29,7 +29,35 @@ export default {
     'directions.bs.url': 'http://adfinis-sygroup.ch/de/wegbeschreibung-basel',
     'directions.be.url': 'http://adfinis-sygroup.ch/de/wegbeschreibung-bern',
     'fax':               'Fax',
-    'phone':             'Tel'
+    'phone':             'Tel',
+    'tools': {
+      'redmine':             'Redmine',
+      'redmine.description': 'Verwaltung von Tasks, Bugs, etc.',
+
+      'gitlab':             'Gitlab',
+      'gitlab.description': 'Source Code Verwaltung',
+
+      'rt':             'Request Tracker',
+      'rt.description': 'Support-Anfragen via Mail',
+
+      'poweradmin':             'PowerAdmin',
+      'poweradmin.description': 'Verwaltung von DNS Zonen',
+
+      'symonitoring':             'SyMonitoring',
+      'symonitoring.description': 'Überwachung von Server und Diensten',
+
+      'sysupport':             'SySupport',
+      'sysupport.description': 'Support Abonnemente',
+
+      'ppa':             'PPA',
+      'ppa.description': 'Verwaltung ihrer Webhostings',
+
+      'rhev':             'RHEV',
+      'rhev.description': 'Verwaltung ihrer virtuellen Server',
+
+      'mailcleaner':             'Mail Cleaner',
+      'mailcleaner.description': 'Spam Filter'
+    }
   },
 
   'nav': {

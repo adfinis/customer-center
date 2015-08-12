@@ -80,7 +80,17 @@ export default {
     'list-caption': 'Monitoring',
 
     'host':   'Host',
-    'status': 'Status'
+    'status': 'Status',
+    'messages': 'Nachrichten',
+
+    'host.state': {
+      'danger': 'Fehler'
+    },
+
+    'service.state': {
+      'danger':  'Fehler',
+      'warning': 'Warnung'
+    }
   },
 
   'user.profile': {

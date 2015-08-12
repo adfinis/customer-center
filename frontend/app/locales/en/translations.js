@@ -79,8 +79,18 @@ export default {
   'symon': {
     'list-caption': 'Monitoring',
 
-    'host':   'Host',
-    'status': 'Status'
+    'host':     'Host',
+    'status':   'Status',
+    'messages': 'Messages',
+
+    'host.state': {
+      'danger': 'Error'
+    },
+
+    'service.state': {
+      'danger':  'Error',
+      'warning': 'Warning'
+    }
   },
 
   'user.profile': {

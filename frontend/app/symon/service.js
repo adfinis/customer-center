@@ -15,9 +15,7 @@ export default Ember.Service.extend({
    * @private
    */
   request(params) {
-    let data = Object.assign({}, params)
-
-    return ajax('/api/proxy/symon/hosts', { data })
+    return ajax('/api/proxy/symon/hosts', { data: params })
   },
 
   /**

@@ -1,0 +1,27 @@
+<table class="table table--striped">
+  <caption>{{t 'symon.list-caption'}}</caption>
+  <thead>
+    <tr>
+      <th>{{t 'symon.host'}}</th>
+      <th class="text-center" width="80px">{{t 'symon.status'}}</th>
+      <th class="visible-sm">{{t 'symon.messages'}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each hosts as |host|}}
+      <tr>
+        <td>{{host.name}}</td>
+        <td class="text-center">
+          <i class="{{if host.globalState 'fa fa-warning' 'fa fa-circle'}} text-{{symon-state host.globalState}}"></i>
+        </td>
+        <td class="visible-sm">
+          <ul>
+            {{#each host.messages as |message|}}
+              <li>{{#if message.text}}{{message.text}}: {{/if}}{{#if message.i18n}}<span class="text-{{symon-state host.globalState}}">{{t message.i18n}}</span>{{/if}}</li>
+            {{/each}}
+          </ul>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

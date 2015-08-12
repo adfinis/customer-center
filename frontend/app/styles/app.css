@@ -60,6 +60,10 @@ th {
   flex-direction: column;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .text-danger {
   color: rgb(217, 83, 79);
 }
@@ -99,6 +103,10 @@ dd {
 
 dd + dd::before {
   content: ', ';
+}
+
+ul {
+  list-style-type: none;
 }
 
 .new-password p {

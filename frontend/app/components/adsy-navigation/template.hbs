@@ -30,6 +30,14 @@
           {{/link-to}}
         </li>
       {{/if}}
+      {{#if user.monitoring}}
+        <li>
+          {{#link-to 'symon'}}
+            <i class="fa fa-heartbeat"></i>
+            {{t 'nav.symon'}}
+          {{/link-to}}
+        </li>
+      {{/if}}
       {{#if user.timed}}
         <li>
           {{#link-to 'timescout'}}

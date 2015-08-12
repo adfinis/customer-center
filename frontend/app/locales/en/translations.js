@@ -64,6 +64,7 @@ export default {
     'dashboard': 'Dashboard',
     'redmine':   'Redmine',
     'rt':        'Request Tracker',
+    'symon':     'SyMonitoring',
     'timescout': 'SySupport',
     'wikis':     'Wikis',
     'settings':  'Settings',
@@ -117,8 +118,18 @@ export default {
   'symon': {
     'list-caption': 'Monitoring',
 
-    'host':   'Host',
-    'status': 'Status'
+    'host':     'Host',
+    'status':   'Status',
+    'messages': 'Messages',
+
+    'host.state': {
+      'danger': 'Error'
+    },
+
+    'service.state': {
+      'danger':  'Error',
+      'warning': 'Warning'
+    }
   },
 
   'user.profile': {

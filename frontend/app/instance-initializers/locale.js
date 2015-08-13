@@ -47,8 +47,8 @@ function setLocale(i18n, locale) {
  * @return {string}
  */
 function getNavigatorLanguage() {
-  let navigator = window.navigator
-  let locale    = navigator.languages ? navigator.languages[0] : null
+  let { navigator = {} } = window
+  let locale             = navigator.languages ? navigator.languages[0] : null
 
   return locale || navigator.language || navigator.browserLanguage || navigator.userLanguage
 }

@@ -70,7 +70,7 @@ export default function() {
           page,
           limit,
           total:            timesheets.length,
-          timesheetEntries: timesheets.slice(page * limit, page * limit + limit)
+          timesheetEntries: timesheets.slice((page - 1) * limit, (page - 1) * limit + limit)
         }
       default:
         return {

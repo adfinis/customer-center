@@ -39,6 +39,12 @@ export default class SymonProxy {
     this.ttl      = service.ttl
   }
 
+  /**
+   * Create a SymonProxy router
+   *
+   * @return {Object} An express router
+   * @public
+   */
   createRouter() {
     let router = new Router
 
@@ -47,13 +53,30 @@ export default class SymonProxy {
     return router
   }
 
+  /**
+   * Creates a promise aware route callback
+   *
+   * @name {string} Name of the route function
+   * @return {function}
+   * @public
+   */
   route(name) {
     return (req, res, next) =>
       this[name](req, res, next).catch(next)
   }
 
+  /**
+   * Fetch hosts with their services
+   *
+   * @param {express.Request} req Request object
+   * @param {express.Response} res Response object
+   * @param {function} next Express next callback
+   * @return {void}
+   * @public
+   */
   async hosts(req, res, next) {
     let symonGroup = req.user.getGroups().find(g => g.endsWith('-mon'))
+    symonGroup = 'adsy-user'
     let settings = {
       app_name: this.app,
       amq_host: this.host,

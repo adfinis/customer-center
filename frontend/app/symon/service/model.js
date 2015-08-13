@@ -47,7 +47,7 @@ export default Ember.Object.extend({
   message: Ember.computed('state', function() {
     return {
       text: this.get('name'),
-      i18n: this.get('stateText')[this.getNormalizedState()]
+      i18n: this.get('stateText')[this.get('ccState')]
     }
   }),
 
@@ -59,10 +59,6 @@ export default Ember.Object.extend({
    * @public
    */
   ccState: Ember.computed('state', function() {
-    return this.getNormalizedState()
-  }),
-
-  getNormalizedState() {
     let state = this.get('state')
 
     if (state !== STATE_OK && state !== STATE_WARNING) {
@@ -70,5 +66,5 @@ export default Ember.Object.extend({
     }
 
     return state
-  }
+  }),
 });

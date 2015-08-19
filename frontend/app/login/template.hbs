@@ -8,7 +8,7 @@
     </div>
     <button type="submit" class="btn btn-primary" disabled={{loading}}>
       {{#if loading}}
-        <span>{{t 'login.logging-in'}}</span><span class="loading-dots"><i>.</i><i>.</i><i>.</i></span>
+        {{t 'login.logging-in'}}{{sy-loading-dots}}
       {{else}}
         {{t 'login.login'}}
       {{/if}}

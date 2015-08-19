@@ -6,7 +6,7 @@
       <label for="user-language">{{t 'user.profile.language'}}</label>
       <select id="user-language" class="form-control" onchange={{action 'setLocale' value='target.value'}}>
         {{#each i18n.locales as |locale|}}
-          <option selected={{is-equal locale i18n.locale}} value={{locale}}>
+          <option selected={{eq locale i18n.locale}} value={{locale}}>
             {{t locale}}
           </option>
         {{/each}}

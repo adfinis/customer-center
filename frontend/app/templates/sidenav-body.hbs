@@ -1,0 +1,45 @@
+{{#sy-sidenav-list}}
+  {{sy-sidenav-item 'index' 'dashboard' (t 'nav.dashboard')}}
+
+  {{#if user.rt}}
+    {{sy-sidenav-item 'rt' 'envelope' (t 'nav.rt')}}
+  {{/if}}
+
+  {{#if user.redmine}}
+    {{sy-sidenav-item 'redmine' 'bug' (t 'nav.redmine')}}
+  {{/if}}
+
+  {{#if user.monitoring}}
+    {{sy-sidenav-item 'symon' 'heartbeat' (t 'nav.symon')}}
+  {{/if}}
+
+  {{#if user.timed}}
+    {{sy-sidenav-item 'timescout' 'clock-o' (t 'nav.timescout')}}
+  {{/if}}
+{{/sy-sidenav-list}}
+
+{{#with user.wikis as |wikis|}}
+  {{#sy-sidenav-list (t 'nav.wikis')}}
+    {{#each wikis as |wiki|}}
+      {{#sy-sidenav-item}}
+        <a href="https://wiki.adfinis-sygroup.ch/{{wiki}}">
+          <i class="fa fa-wikipedia-w"></i>
+          <span class="nav-wiki-item">{{wiki}}-Wiki</span>
+        </a>
+      {{/sy-sidenav-item}}
+    {{/each}}
+  {{/sy-sidenav-list}}
+{{/with}}
+
+{{#sy-sidenav-list (t 'nav.settings')}}
+  {{sy-sidenav-item 'user.profile' 'user' (t 'nav.profile')}}
+{{/sy-sidenav-list}}
+
+{{#sy-sidenav-list}}
+  {{#sy-sidenav-item}}
+    <a class="pointer" {{action 'invalidateSession'}}>
+      <i class="fa fa-sign-out"></i>
+      {{t 'nav.logout'}}
+    </a>
+  {{/sy-sidenav-item}}
+{{/sy-sidenav-list}}

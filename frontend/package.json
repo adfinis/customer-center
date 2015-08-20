@@ -49,7 +49,6 @@
     "ember-moment": "^3.6.1",
     "ember-notify": "^3.4.0",
     "ember-sy": "adfinis-sygroup/ember-sy#master",
-    "font-awesome": "^4.4.0",
     "liquid-fire": "^0.21.2",
     "pagination-pager": "^2.1.1"
   }

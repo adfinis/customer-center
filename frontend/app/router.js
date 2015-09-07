@@ -33,7 +33,9 @@ Router.map(function() {
     this.resource('user', function() {
       this.route('profile')
     })
-  });
+  })
+
+  this.route('notfound', { path: '/*path' })
 })
 
 export default Router

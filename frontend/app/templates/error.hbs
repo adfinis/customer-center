@@ -1,0 +1,22 @@
+<h3>{{model.name}}</h3>
+<p>{{model.message}}</p>
+
+{{#with model.errors as |errors|}}
+  <section class="typeset">
+    <ul>
+      {{#each errors as |error|}}
+        <li>
+          <strong>{{error.title}}:</strong>
+          <p>{{error.status}} - {{error.detail}}</p>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+{{/with}}
+
+<label style="align-self:flex-start" class="btn btn-link" for="showErrorDetails">Show details</label>
+{{input type='checkbox' id='showErrorDetails' class='hidden' checked=showErrorDetails}}
+
+{{#if showErrorDetails}}
+  <pre style="max-height:560px;overflow:auto">{{model.stack}}</pre>
+{{/if}}

@@ -1,12 +1,11 @@
-<h3>{{model.name}}</h3>
-<p>{{model.message}}</p>
+<h3>{{model.textStatus}}</h3>
+<p>{{model.errorThrown}}</p>
 
-{{#with model.errors as |errors|}}
+{{#with model.jqXHR.responseJSON.errors as |errors|}}
   <section class="typeset">
     <ul>
       {{#each errors as |error|}}
         <li>
-          <strong>{{error.title}}:</strong>
           <p>{{error.status}} - {{error.detail}}</p>
         </li>
       {{/each}}
@@ -14,9 +13,10 @@
   </section>
 {{/with}}
 
+{{!--
 <label style="align-self:flex-start" class="btn btn-link" for="showErrorDetails">Show details</label>
 {{input type='checkbox' id='showErrorDetails' class='hidden' checked=showErrorDetails}}
 
 {{#if showErrorDetails}}
   <pre style="max-height:560px;overflow:auto">{{model.stack}}</pre>
-{{/if}}
+{{/if--}}

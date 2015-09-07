@@ -8,7 +8,6 @@ import config         from '../config.json'
 let router = new express.Router
 export default router
 
-
 const services = {
   redmine: function(service) {
     router.use(`/proxy/${service.host}`, RedmineProxy.createProxy(service))
@@ -25,5 +24,7 @@ const services = {
 }
 
 for (let service of config.services) {
-  services[service.type](service)
+  if (service.type in services) {
+    services[service.type](service)
+  }
 }

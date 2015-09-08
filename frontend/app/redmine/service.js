@@ -45,10 +45,10 @@ export default Ember.Service.extend({
     let res = await ajax(`/api/proxy/${this.host}/projects.json`, { data: params })
 
     return {
-      issues: res.issues,
-      total:  res.total_count,
-      offset: res.offset,
-      limit:  res.limit
+      projects: res.projects,
+      total:    res.total_count,
+      offset:   res.offset,
+      limit:    res.limit
     }
   }
 })

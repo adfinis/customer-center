@@ -4,6 +4,7 @@
     <tr>
       <th>{{t 'timescout.subscription.short'}}</th>
       <th>{{t 'timescout.remaining-hours'}}</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,11 @@
         <td>
           {{subscription.availableTime.hours}}h
           {{subscription.availableTime.minutes}}min
+        </td>
+        <td>
+          {{#link-to 'timescout.abo' subscription.id subscription.abotypeID}}
+            {{t 'timescout.reload'}}
+          {{/link-to}}
         </td>
       </tr>
     {{/each}}

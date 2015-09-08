@@ -17,10 +17,10 @@ export default Ember.Service.extend({
    * @return {Promise}
    * @private
    */
-  request(action, params) {
+  request(action, params, type = 'get') {
     let data = Object.assign({}, params, { action })
 
-    return ajax('/api/proxy/timescout/service/api.php', { data })
+    return ajax('/api/proxy/timescout/service/api.php', { type, data })
   },
 
   /**
@@ -56,5 +56,25 @@ export default Ember.Service.extend({
    */
   fetchHistory() {
     return this.request('history')
+  },
+
+  /**
+   * Fetch timescout abos
+   *
+   * @return {Promise}
+   * @public
+   */
+  fetchAbos(abotypeID) {
+    return this.request('aboreload', { abotypeID })
+  },
+
+  /**
+   * Send abo time reload request
+   *
+   * @return {Promise}
+   * @public
+   */
+  sendTimeLoad(projectID, aboID) {
+    return this.request('load', { projectID, aboID }, 'post')
   }
 })

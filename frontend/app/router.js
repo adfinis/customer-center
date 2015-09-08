@@ -28,6 +28,8 @@ Router.map(function() {
       this.route('timesheet', { path: '/timesheet/:id' }, function() {
         this.route('index', { path: '/' })
       })
+
+      this.route('abo', { path: '/abo/:project_id/:abotype_id'})
     })
 
     this.resource('user', function() {

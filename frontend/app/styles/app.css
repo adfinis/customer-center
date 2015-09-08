@@ -12,6 +12,10 @@ th {
   hyphens: none;
 }
 
+body {
+  counter-reset: pnumber;
+}
+
 .hidden-font,
 .hidden-font a {
   color: rgba(0,0,0,0);
@@ -127,4 +131,37 @@ ul {
 
 .text-right {
   text-align: right !important;
+}
+
+.bg-blue {
+  background-color: rgb(91, 142, 219);
+}
+
+.border-grey {
+  border: 1px solid rgb(162, 155, 150);
+}
+
+.ts-package-title {
+  padding: 5px;
+  color: #FFF;
+}
+
+.ts-package-title::after {
+  counter-increment: pnumber;
+  content: " " counter(pnumber);
+}
+
+.ts-package-content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+}
+
+.ts-package-content .hours {
+  width: 51%;
+}
+
+.ts-btn {
+  margin: 0 auto;
+  margin-bottom: 10px;
 }

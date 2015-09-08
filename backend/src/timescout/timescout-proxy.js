@@ -63,6 +63,7 @@ export default class TimescoutProxy {
 
     // `req.params.username` was set in `forwardPath()` as a workaround
     // to the missing user object on `req`
-    req.path += `&user=${req.params.username}`
+    req.path += req.path.includes('?') ? '&' : '?'
+    req.path += `user=${req.params.username}`
   }
 }

@@ -60,8 +60,8 @@ export default bookshelf.Model.extend({
       user = new this
     }
 
-    let groups = isArray(ldap._groups) ? ldap._groups : [ ldap._groups ]
-    let [ , companySN ] = /ou=([^,]+)/.exec(ldap.dn)
+    let groups    = isArray(ldap._groups) ? ldap._groups : [ ldap._groups ]
+    let companySN = /ou=([^,]+)/.exec(ldap.dn)[1]
 
     user.set('username',  ldap.uid)
     user.set('shortname', companySN)

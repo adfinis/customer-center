@@ -1,3 +1,4 @@
+/* eslint camelcase:0 */
 import { Router } from 'express'
 import { SyRPCClient } from 'syrpc'
 
@@ -8,7 +9,7 @@ import { SyRPCClient } from 'syrpc'
  * @public
  */
 export default class SymonProxy {
- 
+
   /**
    * Creates a new SymonProxy intance
    *
@@ -56,7 +57,7 @@ export default class SymonProxy {
   /**
    * Creates a promise aware route callback
    *
-   * @name {string} Name of the route function
+   * @param {string} name Name of the route function
    * @return {function}
    * @public
    */
@@ -81,11 +82,11 @@ export default class SymonProxy {
       app_name: this.app,
       amq_host: this.host,
       amq_user: this.user,
-      amq_password: this.password,
+      amq_password:   this.password,
       amq_num_queues: this.queues
     }
     let syrpc = new SyRPCClient(settings)
-    await syrpc.init() 
+    await syrpc.init()
 
     let searchDN = `cn=${symonGroup},${this.searchDN}`
     let resultID = syrpc.putRequest('get_host_list_by_ldap_group', { ldap_group: searchDN })
@@ -94,8 +95,8 @@ export default class SymonProxy {
     let requests = hosts.data.map(host =>
       syrpc.putRequest('get_service_list_by_host', { host_id: host.id })
     )
-    .map(resultID =>
-      syrpc.getResult(resultID, this.ttl)
+    .map(requestID =>
+      syrpc.getResult(requestID, this.ttl)
     )
 
     let results = await Promise.all(requests)

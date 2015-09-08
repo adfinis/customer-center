@@ -11,10 +11,6 @@ export default class RTProxy {
   }
 
   constructor(r) {
-    this.host     = r.host
-    this.username = r.username
-    this.password = r.password
-
     this.bookshelf = new Bookshelf(knex(r.knex))
     this.Ticket    = this.bookshelf.Model.extend({
       tableName: 'adsycc'

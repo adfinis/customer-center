@@ -78,9 +78,6 @@
     },
     {
       "type": "rt",
-      "host": "https://rt.example.com/rt",
-      "username": "admin",
-      "password": "admin",
       "knex": {
         "client": "sqlite3",
         "connection": {

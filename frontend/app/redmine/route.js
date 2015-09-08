@@ -15,7 +15,7 @@ export default Ember.Route.extend({
   },
 
   afterModel(model) {
-    if (!model.total_count) {
+    if (!model.total) {
       return Promise.reject({
         textStatus:  this.get('errorName'),
         errorThrown: this.get('errorDetails')

@@ -80,7 +80,10 @@ export default {
     'subject':  'Subject',
     'updated':  'Updated on',
 
-    'list-caption': 'Redmine issues of {{host}}'
+    'list-caption': 'Redmine issues of {{host}}',
+
+    'error':            'Error',
+    'error-noprojects': 'No projects found'
   },
 
   'rt': {

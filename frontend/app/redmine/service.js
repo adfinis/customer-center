@@ -33,5 +33,22 @@ export default Ember.Service.extend({
       offset: res.offset,
       limit:  res.limit
     }
+  },
+
+  /**
+   * Fetch redmine projects from a redmine host
+   *
+   * @param {Object} params Query params to filter projects
+   * @return {Object}
+   */
+  async fetchProjects(params) {
+    let res = await ajax(`/api/proxy/${this.host}/projects.json`, { data: params })
+
+    return {
+      issues: res.issues,
+      total:  res.total_count,
+      offset: res.offset,
+      limit:  res.limit
+    }
   }
 })

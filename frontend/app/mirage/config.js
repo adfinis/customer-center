@@ -22,7 +22,7 @@ export default function() {
   this.get('/proxy/project.adfinis-sygroup.ch/issues.json', function(db, req) {
     let { limit = 20, offset = 0 } = req.queryParams
 
-    limit  = limit | 0
+    limit  = limit  | 0
     offset = offset | 0
 
     return {
@@ -30,6 +30,20 @@ export default function() {
       offset,
       issues:      db.redmineIssues.slice(offset, offset + limit),
       total_count: db.redmineIssues.length
+    }
+  })
+
+  this.get('/proxy/project.adfinis-sygroup.ch/projects.json', function(db, req) {
+    let { limit = 20, offset = 0 } = req.queryParams
+
+    limit  = limit  | 0
+    offset = offset | 0
+
+    return {
+      limit,
+      offset,
+      issues:      db.redmineProjects.slice(offset, offset + limit),
+      total_count: db.redmineProjects.length
     }
   })
 

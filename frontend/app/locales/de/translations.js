@@ -79,7 +79,10 @@ export default {
     'subject':  'Betreff',
     'updated':  'Zuletzt aktualisiert',
 
-    'list-caption': 'Redmine Tickets von {{host}}'
+    'list-caption': 'Redmine Tickets von {{host}}',
+
+    'error':            'Fehler',
+    'error-noprojects': 'Keine Projekte verfügbar'
   },
 
   'rt': {

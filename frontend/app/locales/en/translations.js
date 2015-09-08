@@ -115,7 +115,16 @@ export default {
     'lease-time':   'Lease time',
     'lease-date':   'Lease date',
     'acknowledged': 'Acknowledged',
-    'confirmed-by': 'Confirmed by'
+    'confirmed-by': 'Confirmed by',
+
+    'reload': 'Reload',
+    'abo-reload-title': 'Abo reload',
+    'abo-reload-info': 'You are about to reload your abo. Please choose a package from below.',
+    'abo-reload-success': 'Abo reload success!',
+    'package': 'Package',
+    'hours': 'Hours',
+    'price': 'Price',
+    'choose': 'Choose'
   },
 
   'symon': {

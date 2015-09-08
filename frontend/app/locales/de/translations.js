@@ -114,7 +114,16 @@ export default {
     'lease-time':   'Gekaufte Zeit',
     'lease-date':   'Gekauft am',
     'acknowledged': 'Bestätigt',
-    'confirmed-by': 'Bestätigt von'
+    'confirmed-by': 'Bestätigt von',
+
+    'reload': 'Aufladen',
+    'abo-reload-title': 'Abo aufladen',
+    'abo-reload-info': 'Sie sind dabei Ihr Abonnement aufzuladen. Bitte wählen Sie das gewünschte Aufladepaket.',
+    'abo-reload-success': 'Abo erfolgreich aufgeladen!',
+    'package': 'Paket',
+    'hours': 'Stunden',
+    'price': 'Preis',
+    'choose': 'Auswählen'
   },
 
   'symon': {

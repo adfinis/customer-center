@@ -9,16 +9,16 @@
     "test": "make test"
   },
   "dependencies": {
-    "babel": "^5.8.19",
-    "babel-runtime": "^5.8.19",
-    "body-parser": "^1.13.2",
-    "bookshelf": "^0.8.1",
+    "babel": "^5.8.23",
+    "babel-runtime": "^5.8.20",
+    "body-parser": "^1.13.3",
+    "bookshelf": "^0.8.2",
     "debug": "^2.2.0",
     "deep-freeze": "0.0.1",
-    "express": "^4.13.1",
+    "express": "^4.13.3",
     "express-http-proxy": "^0.6.0",
     "express-routebuilder": "^2.1.0",
-    "handlebars": "^3.0.3",
+    "handlebars": "^4.0.2",
     "jwt-redis-session": "^1.0.2",
     "knex": "^0.8.6",
     "ldapjs": "^0.7.1",
@@ -27,22 +27,22 @@
     "nodemailer-smtp-transport": "^1.0.3",
     "passport": "^0.2.2",
     "passport-ldapauth": "^0.3.0",
-    "pg": "^4.4.0",
+    "pg": "^4.4.1",
     "redis": "^0.12.1",
     "request-promise": "^0.4.3",
     "syrpc": "^1.0.2"
   },
   "devDependencies": {
-    "babel-eslint": "^4.0.5",
+    "babel-eslint": "^4.1.1",
     "chai": "^3.2.0",
     "chai-as-promised": "^5.0.0",
     "chai-http": "^1.0.0",
     "gulp": "^3.8.11",
-    "gulp-eslint": "^0.15.0",
+    "gulp-eslint": "^1.0.0",
     "gulp-istanbul-enforcer": "^1.0.3",
     "gulp-spawn-mocha": "^2.2.1",
-    "mocha": "^2.2.5",
-    "nodemon": "^1.4.0",
-    "sqlite3": "^3.0.9"
+    "mocha": "^2.3.2",
+    "nodemon": "^1.4.1",
+    "sqlite3": "^3.0.10"
   }
 }

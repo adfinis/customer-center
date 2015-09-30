@@ -9,7 +9,7 @@ backend:
     - NODE_ENV=production
 
 backend-dev:
-  image: iojs
+  image: node
   volumes:
     - ../../backend:/usr/src/app
   command: npm --prefix=/usr/src/app run watch

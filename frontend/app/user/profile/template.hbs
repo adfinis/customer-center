@@ -16,6 +16,7 @@
       <label for="user-email">{{t 'user.profile.email'}}</label>
       <input id="user-email" class="form-control" type="email" value={{model.email}} disabled>
     </div>
+    {{!--
     <div class="form-group">
       <label for="user-services">{{t 'user.profile.services'}}</label>
       <select id="user-services" class="form-control" multiple disabled>
@@ -24,7 +25,6 @@
         {{/each}}
       </select>
     </div>
-    {{!--
     <div class="form-group">
       <button class="btn btn-primary {{if loading 'loading'}}">{{t 'global.save'}}</button>
     </div>

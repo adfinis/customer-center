@@ -1,9 +1,12 @@
+import fs         from 'fs'
 import crypto     from 'crypto'
 import { Router } from 'express'
 import redis      from 'redis'
 import ldap       from 'ldapjs'
 import nodemailer from 'nodemailer'
 import transport  from 'nodemailer-smtp-transport'
+import Handlebars from 'handlebars'
+import denodeify  from 'denodeify'
 import app        from './app'
 import PWGen      from './pwgen'
 import User       from './user/model'
@@ -20,6 +23,9 @@ const client = redis.createClient(
 
 const mailer = nodemailer.createTransport(transport(config.smtp))
 
+const sendMail = denodeify(mailer.sendMail.bind(mailer))
+const readFile = denodeify(fs.readFile)
+
 // TODO: Should we report errors on this route?
 router.post('/send-new-password', async(req, res, next) => {
   try {
@@ -30,16 +36,17 @@ router.post('/send-new-password', async(req, res, next) => {
     if (user && user.get('email')) {
       await setToken(ident, token)
 
-      mailer.sendMail({
-        'from':    `noreply@${config.application.host}`,
-        'to':      user.get('email'),
-        'subject': `Reset password on ${config.application.name}`,
-        'text':    `https://${config.application.host}/login/new-password/${token}`
-      }, err => {
-        if (err) {
-          app.log.error(err)
-        }
-      })
+      try {
+        await sendMail({
+          'from':    `noreply@${config.application.host}`,
+          'to':      user.get('email'),
+          'subject': getMailSubject(user.get('language')),
+          'text':    await createMailBody(user, token)
+        })
+      }
+      catch (err) {
+        app.log.error(err.message)
+      }
     }
 
     res.send({ data: {
@@ -76,6 +83,27 @@ router.get('/reset-password/:token', async(req, res, next) => {
     next(e)
   }
 })
+
+function getMailSubject(language = 'en') {
+  switch (language) {
+    case 'de':
+      return `Passwort reset für ${config.application.name}`
+
+    default:
+    case 'en':
+      return `Reset password on ${config.application.name}`
+  }
+}
+
+async function createMailBody(user, token) {
+  let filename = `password-reset.${user.get('language') || 'en'}.hbs`
+  let source   = await readFile(`${__dirname}/../templates/${filename}`, 'utf8')
+  let template = Handlebars.compile(source)
+
+  let url = `https://${config.application.host}/login/new-password/${token}`
+
+  return template({ url })
+}
 
 function createPassword(len) {
   let gen = new PWGen

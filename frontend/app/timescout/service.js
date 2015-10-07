@@ -1,5 +1,6 @@
-import Ember from 'ember'
-import ajax  from 'ic-ajax'
+import Ember  from 'ember'
+import ajax   from 'ic-ajax'
+import moment from 'moment'
 
 /**
  * Timescout service for fetching projects, subscriptions and timesheets
@@ -35,6 +36,10 @@ export default Ember.Service.extend({
   async fetchTimesheets(projectID, page, limit) {
     let res = await this.request('timesheet', { projectID, page, limit })
     res.meta = { projectID: Number(projectID) }
+    res.timesheetEntries = res.timesheetEntries.map(e => {
+      e.date = moment(e.date, 'DD.MM.YYYY')
+      return e
+    })
     return res
   },
 

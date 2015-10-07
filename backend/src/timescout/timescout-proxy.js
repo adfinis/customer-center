@@ -46,7 +46,7 @@ export default class TimescoutProxy {
   forwardPath(req, res) {
     // `decorateRequest()` does not have an user object, passing
     // through `req.params` here as workaround
-    req.params.username = req.user.get('username')
+    req.params.sysupport = req.user.get('sysupport')
 
     return url.parse(req.url).path
   }
@@ -64,6 +64,6 @@ export default class TimescoutProxy {
     // `req.params.username` was set in `forwardPath()` as a workaround
     // to the missing user object on `req`
     req.path += req.path.includes('?') ? '&' : '?'
-    req.path += `user=${req.params.username}`
+    req.path += `user=${req.params.sysupport}`
   }
 }

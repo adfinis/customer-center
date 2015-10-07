@@ -67,6 +67,7 @@ export default bookshelf.Model.extend({
     user.set('shortname', companySN)
     user.set('firstName', ldap.givenName)
     user.set('lastName',  ldap.sn)
+    user.set('sysupport', ldap.univentionFreeAttribute1)
     user.set('email',     isArray(ldap.mail) ? ldap.mail[0] : ldap.mail)
     user.set('groups',    { content: groups.map(g => g.cn) })
 

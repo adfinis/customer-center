@@ -11,7 +11,7 @@ udm groups/group create --set name=$shortname-wiki --set description="Wiki-Funkt
 udm groups/group create --set name=$shortname-redmine --set description="Redmine-Funktion für Kunde $fullname" --position "ou=$shortname,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch"
 udm groups/group create --set name=$shortname-rhev --set description="RHEV-Funktion für Kunde $fullname" --position "ou=$shortname,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch"
 udm groups/group create --set name=$shortname-mon --set description="Monitoring-Funktion für Kunde $fullname" --position "ou=$shortname,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch"
-udm groups/group create --set name=$shortname-timed --set description="Timed-Funktion für Kunde $fullname" --position "ou=$shortname,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch"
+udm groups/group create --set name=$shortname-sysupport --set description="SySupport-Funktion für Kunde $fullname" --position "ou=$shortname,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch"
 
 ### Admin Benutzer erstellen
 #password=`pwgen -s 12 1`
@@ -40,7 +40,7 @@ udm users/user create \
   --set groups="cn=$shortname-wiki,ou=$shortname,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch" \
   --set groups="cn=$shortname-redmine,ou=$shortname,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch" \
   --set groups="cn=$shortname-rhev,ou=$shortname,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch" \
-  --set groups="cn=$shortname-timed,ou=$shortname,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch" \
+  --set groups="cn=$shortname-sysupport,ou=$shortname,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch" \
   --set groups="cn=$shortname-mon,ou=$shortname,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch"
 
 echo ""

@@ -15,7 +15,7 @@ export default Mirage.Factory.extend({
       `${this.shortname}-redmine`,
       `${this.shortname}-mon`,
       `${this.shortname}-rt`,
-      `${this.shortname}-timed`,
+      `${this.shortname}-sysupport`,
       `${this.shortname}-wiki`
     ]
   },

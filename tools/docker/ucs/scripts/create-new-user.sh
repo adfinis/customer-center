@@ -57,6 +57,9 @@ fi
 
 case "$type" in
   customers)
+    echo "SySupport Benutzernamen eingeben:"
+    read sysupport
+
     udm users/user create \
       --position="ou=$shortname,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch" \
       --set username="$username" \
@@ -68,6 +71,7 @@ case "$type" in
       --set e-mail="$email" \
       --set shell="/bin/false"\
       --set CtxCfgTSLogon=0 \
+      --set sysupport=$sysupport \
       --policy-reference "cn=adsy-customer-policy,cn=UMC,cn=policies,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch"\
       --option samba \
       --option kerberos \

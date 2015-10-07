@@ -13,6 +13,7 @@ export async function up(knex) {
     table.string('lastName')
     table.string('email').notNullable().unique()
     table.string('language')
+    table.string('sysupport')
     table.json('emails', true)
     table.json('groups', true)
   })

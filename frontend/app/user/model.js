@@ -47,6 +47,7 @@ export default Ember.Object.extend({
       shortname: this.shortname,
       firstName: this.firstName,
       lastName:  this.lastName,
+      sysupport: this.sysupport,
       email:     this.email,
       language:  this.language,
       groups:    this.groups,
@@ -88,14 +89,14 @@ export default Ember.Object.extend({
   }),
 
   /**
-   * Has timed access
+   * Has sysupport access
    *
-   * @property {boolean} timed
+   * @property {boolean} sysupport
    * @readOnly
    * @public
    */
-  timed: computed('groups.[]', function() {
-    return this.groups.find(g => g.endsWith('-timed')) || 1
+  sysupport: computed('sysupport', 'groups.[]', function() {
+    return this.groups.find(g => g.endsWith('-sysupport')) && this.sysupport
   }),
 
   /**

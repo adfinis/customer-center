@@ -27,7 +27,7 @@
     "nodemailer": "^1.5.0",
     "nodemailer-smtp-transport": "^1.0.3",
     "passport": "^0.3.0",
-    "passport-ldapauth": "^0.3.0",
+    "passport-ldapauth": "^0.3.1",
     "pg": "^4.4.2",
     "redis": "^0.12.1",
     "request-promise": "^0.4.3",

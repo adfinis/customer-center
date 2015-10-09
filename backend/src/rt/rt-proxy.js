@@ -11,10 +11,7 @@ export default class RTProxy {
   }
 
   constructor(r) {
-    this.bookshelf = new Bookshelf(knex(r.knex))
-    this.Ticket    = this.bookshelf.Model.extend({
-      tableName: 'adsycc'
-    })
+    this.knex = r.knex
   }
 
   createRouter() {
@@ -45,7 +42,13 @@ export default class RTProxy {
       )
     }
 
-    let tickets = this.Ticket.query(q => {
+    let connection = knex(this.knex)
+    let bookshelf  = new Bookshelf(connection)
+    let Ticket     = bookshelf.Model.extend({
+      tableName: 'adsycc'
+    })
+
+    let tickets = Ticket.query(q => {
       q.where('memberEmail', 'in', emails)
        .groupBy('id')
        .orderBy('lastUpdated', 'desc')
@@ -53,13 +56,15 @@ export default class RTProxy {
        .limit(limit)
     })
 
-    let total = this.Ticket.query(q => {
+    let total = Ticket.query(q => {
       q.where('memberEmail', 'in', emails)
        .count('DISTINCT id as count')
     })
 
     tickets = await tickets.fetchAll()
     total   = (await total.fetch()).get('count')
+
+    connection.destroy()
 
     res.send({ data: { tickets, offset, limit, total } })
   }

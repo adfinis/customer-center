@@ -108,8 +108,9 @@ export default class RedmineProxy {
   /**
    * Create basic auth header
    *
-   * @param {Object.string} username Username for authentication with redmine
-   * @param {Object.string} password Password for authentication with redmine
+   * @param {Object} auth          The object to authenticate with
+   * @param {string} auth.username Username for authentication with redmine
+   * @param {string} auth.password Password for authentication with redmine
    * @return {string}
    * @private
    */

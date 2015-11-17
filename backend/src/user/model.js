@@ -60,15 +60,15 @@ export default bookshelf.Model.extend({
       user = new this
     }
 
-    let groups    = isArray(ldap._groups) ? ldap._groups : [ ldap._groups ]
+    let groups    = getGroups(ldap)
     let companySN = /ou=([^,]+)/.exec(ldap.dn)[1]
 
     user.set('username',  ldap.uid)
     user.set('shortname', companySN)
     user.set('firstName', ldap.givenName)
     user.set('lastName',  ldap.sn)
-    user.set('sysupport', ldap.univentionFreeAttribute1)
-    user.set('email',     isArray(ldap.mail) ? ldap.mail[0] : ldap.mail)
+    user.set('sysupport', getSySupport(groups))
+    user.set('email',     getEmail(ldap))
     user.set('groups',    { content: groups.map(g => g.cn) })
 
     if (!user.get('language') && ldap.lang) {
@@ -81,27 +81,33 @@ export default bookshelf.Model.extend({
   }
 })
 
-/*
-function getServices(groups) {
-  let services = []
-
-  for (let service of config.services) {
-    if (!service.ldapGroup) {
-      services.push({ type: service.type })
-      continue
-    }
-
-    let userGroups = groups.filter(g =>
-      g.endsWith(service.type)
-    )
-
-    for (let userGroup of userGroups) {
-      let sn = userGroup.split('-')[0]
-
-      services.push({ type: service.type, sn })
-    }
-  }
-
-  return services
+/**
+ * Get email from ldap object, returns the first one if multiple are available
+ *
+ * @param {Object} ldap The ldap response object
+ * @return {string|null} The email address
+ */
+function getEmail(ldap) {
+  return isArray(ldap.mail) ? ldap.mail[0] : ldap.mail || null
 }
-*/
+
+/**
+ * Extract groups from ldap object
+ *
+ * @param {Object} ldap The ldap response object
+ * @return {Object[]} The ldap group objects
+ */
+function getGroups(ldap) {
+  return isArray(ldap._groups) ? ldap._groups : ldap._groups && [ ldap._groups ]
+}
+
+/**
+ * Get the sysupport user name
+ *
+ * @param {Object[]} groups The ldap group objects
+ * @return {string|null} The sysupport user name
+ */
+function getSySupport(groups) {
+  let group = groups.find(g => g.cn.endsWith('-sysupport'))
+  return group ? group.univentionFreeAttribute1 : null
+}

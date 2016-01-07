@@ -59,7 +59,7 @@
     "authMethod": "PLAIN"
   },
   "redis": {
-    "host": "localhost",
+    "host": "redis1",
     "port": 6379,
     "options": {}
   },

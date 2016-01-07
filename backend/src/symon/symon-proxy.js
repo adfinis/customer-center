@@ -77,7 +77,7 @@ export default class SymonProxy {
    */
   async hosts(req, res, next) {
     let symonGroup = req.user.getGroups().find(g => g.endsWith('-mon'))
-    symonGroup = 'adsy-user'
+
     let settings = {
       app_name: this.app,
       amq_host: this.host,

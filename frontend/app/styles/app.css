@@ -54,16 +54,6 @@ body {
   right: auto;
 }
 
-.liquid-container {
-  overflow: visible;
-}
-
-.liquid-container, .liquid-child {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-}
-
 .text-center {
   text-align: center;
 }

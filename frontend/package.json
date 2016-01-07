@@ -21,7 +21,7 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.1.2",
-    "ember-adcssy": "adfinis-sygroup/ember-adcssy#master",
+    "ember-adcssy": "github:adfinis-sygroup/ember-adcssy#master",
     "ember-cli": "^1.13.8",
     "ember-cli-app-version": "0.5.0",
     "ember-cli-babel": "^5.0.0",
@@ -49,7 +49,7 @@
     "ember-konami": "1.0.0",
     "ember-moment": "^3.6.1",
     "ember-notify": "^3.4.0",
-    "ember-sy": "adfinis-sygroup/ember-sy#master",
+    "ember-sy": "github:adfinis-sygroup/ember-sy#v0.2.4",
     "liquid-fire": "^0.21.2",
     "pagination-pager": "^2.1.1"
   }

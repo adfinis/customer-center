@@ -36,7 +36,6 @@ export default class SymonProxy {
     this.password = service.password
     this.queues   = service.queues
     this.app      = service.app
-    this.searchDN = service.searchDN
     this.ttl      = service.ttl
   }
 
@@ -76,7 +75,7 @@ export default class SymonProxy {
    * @public
    */
   async hosts(req, res, next) {
-    let symonGroup = req.user.getGroups().find(g => g.endsWith('-mon'))
+    let symonGroup = req.user.getGroups().find(g => g.cn.endsWith('-mon'))
 
     let settings = {
       app_name: this.app,
@@ -88,8 +87,7 @@ export default class SymonProxy {
     let syrpc = new SyRPCClient(settings)
     await syrpc.init()
 
-    let searchDN = `cn=${symonGroup},${this.searchDN}`
-    let resultID = syrpc.putRequest('get_host_list_by_ldap_group', { ldap_group: searchDN })
+    let resultID = syrpc.putRequest('get_host_list_by_ldap_group', { ldap_group: symonGroup.dn })
     let hosts = await syrpc.getResult(resultID, this.ttl)
 
     let requests = hosts.data.map(host =>

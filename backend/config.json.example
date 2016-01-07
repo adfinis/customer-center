@@ -97,7 +97,6 @@
       "password": "bar",
       "queues": 32,
       "app": "app/queue name",
-      "searchDN": "cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
       "ttl": 10000
     }
   ]

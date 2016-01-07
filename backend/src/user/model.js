@@ -26,14 +26,25 @@ export default bookshelf.Model.extend({
   },
 
   /**
-   * Get user ldap groups
+   * Get user ldap group objects
    *
-   * @return {string[]}
+   * @return {Object[]} ldap group objects
    * @public
    */
   getGroups() {
     let groups = this.get('groups')
     return groups && groups.content
+  },
+
+  /**
+   * Get user ldap group names
+   *
+   * @return {string[]}
+   * @public
+   */
+  getGroupNames() {
+    let groups = this.get('groups')
+    return groups && groups.content.map(g => g.cn)
   },
 
   /**
@@ -69,7 +80,7 @@ export default bookshelf.Model.extend({
     user.set('lastName',  ldap.sn)
     user.set('sysupport', getSySupport(groups))
     user.set('email',     getEmail(ldap))
-    user.set('groups',    { content: groups.map(g => g.cn) })
+    user.set('groups',    { content: groups })
 
     if (!user.get('language') && ldap.lang) {
       user.set('language', ldap.lang)

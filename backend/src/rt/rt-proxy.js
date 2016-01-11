@@ -11,7 +11,8 @@ export default class RTProxy {
   }
 
   constructor(r) {
-    this.knex = r.knex
+    this.knex    = r.knex
+    this.version = r.version
   }
 
   createRouter() {
@@ -49,16 +50,15 @@ export default class RTProxy {
     })
 
     let tickets = Ticket.query(q => {
-      q.where('memberEmail', 'in', emails)
-       .groupBy('id')
-       .orderBy('lastUpdated', 'desc')
+      q.where(this.field('memberEmail'), 'in', emails)
+       .orderBy(this.field('lastUpdated'), 'desc')
        .offset(offset)
        .limit(limit)
     })
 
     let total = Ticket.query(q => {
-      q.where('memberEmail', 'in', emails)
-       .count('DISTINCT id as count')
+      q.where(this.field('memberEmail'), 'in', emails)
+       .count('id as count')
     })
 
     tickets = await tickets.fetchAll()
@@ -67,5 +67,9 @@ export default class RTProxy {
     connection.destroy()
 
     res.send({ data: { tickets, offset, limit, total } })
+  }
+
+  field(name) {
+    return this.version < 4 ? name.toLowerCase() : name
   }
 }

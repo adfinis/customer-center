@@ -78,6 +78,7 @@
     },
     {
       "type": "rt",
+      "version": 4,
       "knex": {
         "client": "sqlite3",
         "connection": {

@@ -54,7 +54,7 @@ export default bookshelf.Model.extend({
    * @public
    */
   hasRedmineAccess() {
-    return this.getGroups().find(g => g.endsWith('redmine'))
+    return this.getGroupNames().find(g => g.endsWith('redmine'))
   }
 }, {
   /**

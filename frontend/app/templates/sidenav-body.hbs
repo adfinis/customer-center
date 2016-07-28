@@ -16,6 +16,9 @@
   {{#if user.sysupport}}
     {{sy-sidenav-item 'timescout' 'clock-o' (t 'nav.timescout')}}
   {{/if}}
+
+  {{sy-sidenav-item 'vault' 'lock' 'Vault'}}
+
 {{/sy-sidenav-list}}
 
 {{#with user.wikis as |wikis|}}

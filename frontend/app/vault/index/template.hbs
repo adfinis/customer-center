@@ -1,0 +1,12 @@
+<ul class="nested-list">
+  {{#each model key="name" as |category|}}
+  <li>
+    <span class="caret"></span> {{name}}
+    <ul>
+      {{#each category as |system|}}
+      <li>{{#link-to "vault.edit"}}{{system}}{{/link-to}}</li>
+      {{/each}}
+    </ul>
+  </li>
+  {{/each}}
+</ul>

@@ -99,6 +99,11 @@
       "queues": 32,
       "app": "app/queue name",
       "ttl": 10000
+    },
+    {
+      "type": "vault",
+      "host": "0.0.0.0",
+      "token": "foo"
     }
   ]
 }

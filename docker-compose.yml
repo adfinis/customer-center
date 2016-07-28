@@ -6,43 +6,11 @@ web1:
     - ./tools/docker/nginx/nginx-dev.conf:/etc/nginx/nginx.conf
   links:
     - backenddev1
-    - backenddev2
-    - backenddev3
     - frontenddev1
   ports:
     - "8080:80"
 
 backenddev1:
-  extends:
-    file: ./tools/docker/compose.yml
-    service: backend-dev
-  volumes:
-    - ./tools/docker/rt4/var/rt4:/var/rt4/rt4
-  links:
-    - redis1
-    - postgres1
-    - ucs1
-    - redmine1
-    - rt1
-  environment:
-    - DEBUG=app:*
-
-backenddev2:
-  extends:
-    file: ./tools/docker/compose.yml
-    service: backend-dev
-  volumes:
-    - ./tools/docker/rt4/var/rt4:/var/rt4/rt4
-  links:
-    - redis1
-    - postgres1
-    - ucs1
-    - redmine1
-    - rt1
-  environment:
-    - DEBUG=app:*
-
-backenddev3:
   extends:
     file: ./tools/docker/compose.yml
     service: backend-dev

@@ -9,7 +9,7 @@ Router.map(function() {
   this.route('login', function() {
     this.route('password-reset')
     this.route('new-password', { path: '/new-password/:token' })
-  });
+  })
 
   this.route('protected', { path: '/' }, function() {
     this.resource('index', { path: '/' })
@@ -38,6 +38,10 @@ Router.map(function() {
   })
 
   this.route('notfound', { path: '/*path' })
+  this.route('vault', function() {
+    this.route('edit')
+    this.route('list')
+  })
 })
 
 export default Router

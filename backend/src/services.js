@@ -3,6 +3,7 @@ import RedmineProxy   from './redmine/redmine-proxy'
 import RTProxy        from './rt/rt-proxy'
 import TimescoutProxy from './timescout/timescout-proxy'
 import SymonProxy     from './symon/symon-proxy'
+import VaultProxy     from './vault/vault-proxy'
 import config         from '../config.json'
 
 let router = new express.Router
@@ -20,6 +21,9 @@ const services = {
   },
   symon: function(service) {
     router.use('/proxy/symon', SymonProxy.createProxy(service))
+  },
+  vault: function(service) {
+    router.use('/proxy/vault', VaultProxy.createProxy(service))
   }
 }
 

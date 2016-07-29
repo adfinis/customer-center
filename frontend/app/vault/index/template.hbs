@@ -1,5 +1,6 @@
+{{log model}}
 <ul class="nested-list">
-  {{#each model key="name" as |category|}}
+  {{#each-in model as |name category|}}
   <li>
     <span class="caret"></span> {{name}}
     <ul>
@@ -8,5 +9,5 @@
       {{/each}}
     </ul>
   </li>
-  {{/each}}
+  {{/each-in}}
 </ul>

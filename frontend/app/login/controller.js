@@ -5,6 +5,8 @@ const { inject } = Ember
 export default Ember.Controller.extend({
   errorMessage:  {},
   passwordReset: inject.controller('login.password-reset'),
+  notify: inject.service(),
+  session: inject.service(),
 
   actions: {
     async authenticate() {

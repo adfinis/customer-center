@@ -12,19 +12,19 @@ Router.map(function() {
   })
 
   this.route('protected', { path: '/' }, function() {
-    this.resource('index', { path: '/' })
+    this.route('index', { path: '/', resetNamespace: true })
 
-    this.resource('rt', function() {
+    this.route('rt', { resetNamespace: true }, function() {
       this.route('issues', { path: '/' })
     })
 
-    this.resource('redmine', function() {
+    this.route('redmine', { resetNamespace: true }, function() {
       this.route('issues', { path: '/' })
     })
 
-    this.resource('symon')
+    this.route('symon', { resetNamespace: true })
 
-    this.resource('timescout', function() {
+    this.route('timescout', { resetNamespace: true }, function() {
       this.route('timesheet', { path: '/timesheet/:id' }, function() {
         this.route('index', { path: '/' })
       })
@@ -32,7 +32,7 @@ Router.map(function() {
       this.route('abo', { path: '/abo/:project_id/:abotype_id'})
     })
 
-    this.resource('user', function() {
+    this.route('user', { resetNamespace: true }, function() {
       this.route('profile')
     })
   })

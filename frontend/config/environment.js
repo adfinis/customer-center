@@ -31,14 +31,8 @@ module.exports = function(environment) {
 
     i18n: {
       defaultLocale: 'en'
-    },
-
-    'simple-auth': {
-      serverTokenRevocationEndpoint: '/api/v1/logout',
-      authorizer: 'authorizer:custom',
-      session: 'session:custom'
     }
-  }
+ }
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;

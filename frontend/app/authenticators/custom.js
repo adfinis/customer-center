@@ -1,8 +1,11 @@
 import Ember from 'ember'
 import fetch from 'fetch'
-import Base  from 'simple-auth/authenticators/base'
+import Base  from 'ember-simple-auth/authenticators/base'
 
 export default Base.extend({
+  serverTokenRevocationEndpoint: '/api/v1/logout',
+  session: 'session:custom',
+
   async authenticate(credentials) {
     let { identification: username, password } = credentials
 

@@ -1,5 +1,4 @@
 import Ember from 'ember'
-import ajax  from 'ic-ajax'
 
 const { inject, on } = Ember
 
@@ -20,13 +19,21 @@ export default Ember.Route.extend({
   session: inject.service(),
 
   /**
+   * Ajax service
+   *
+   * @property {Ajax} ajax
+   * @public
+   */
+  ajax: inject.service(),
+
+  /**
    * The user model
    *
    * @return {User}
    */
   async model() {
     let user = this.modelFor('protected')
-    let res  = await ajax('/api/v1/user/current')
+    let res  = await this.get('ajax').request('/api/v1/user/current')
 
     user.setProperties(res.data.user)
 

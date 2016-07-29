@@ -1,5 +1,4 @@
 import Ember from 'ember'
-import ajax  from 'ic-ajax'
 import Host from 'adsycc/symon/host/model'
 
 export const STATE_OK      = 0
@@ -8,14 +7,17 @@ export const STATE_ERROR   = 2
 
 export default Ember.Service.extend({
 
+  ajax: Ember.inject.service(),
+
   /**
    * Symon service for fetching hosts and services
    *
    * @class SymonService
+   * @param {Object} params Query params
    * @private
    */
   request(params) {
-    return ajax('/api/proxy/symon/hosts', { data: params })
+    return this.get('ajax').request('/api/proxy/symon/hosts', { data: params })
   },
 
   /**
@@ -31,4 +33,4 @@ export default Ember.Service.extend({
 
     return hosts
   }
-});
+})

@@ -4,10 +4,9 @@ import AjaxService from 'ember-ajax/services/ajax'
 export default AjaxService.extend({
   session: Ember.inject.service(),
 
-  // can this be simplified??
-  headers: Ember.computed('session.session.content.authenticated.data.token', {
+  headers: Ember.computed('session.data.token', {
     get() {
-      const token = this.get('session.session.content.authenticated.data.token')
+      const token = this.get('session.data.authenticated.data.token')
       return token ? { 'X-Authorization': token } : {}
     }
   })

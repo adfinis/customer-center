@@ -22,6 +22,7 @@ backenddev1:
     - ucs1
     - redmine1
     - rt1
+    - vault1
   environment:
     - DEBUG=app:*
 
@@ -86,3 +87,11 @@ rt1:
     - ./tools/docker/rt4/var/rt4:/opt/rt4/var/rt4
   ports:
     - "8082:8082"
+
+vault1:
+  image: vault
+  environment:
+    - VAULT_DEV_ROOT_TOKEN_ID=myroot
+    - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
+  ports:
+    - "8200:8200"

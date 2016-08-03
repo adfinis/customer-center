@@ -35,13 +35,13 @@ Router.map(function() {
     this.route('user', { resetNamespace: true }, function() {
       this.route('profile')
     })
+
+    this.route('vault', { resetNamespace: true }, function() {
+      this.route('edit', { path: '/*path' })
+    })
   })
 
   this.route('notfound', { path: '/*path' })
-  this.route('vault', function() {
-    this.route('edit')
-    this.route('list')
-  })
 })
 
 export default Router

@@ -1,7 +1,8 @@
 
 <ol class="breadcrumb">
-  <li>systems</li>
-  <li>vm-customer1-lamp-01.domain.tld</li>
+  {{#each model.path as |segment|}}
+    <li>{{segment}}</li>
+  {{/each}}
 </ol>
 
 <table class="table table--striped">
@@ -13,22 +14,16 @@
     </tr>
   </thead>
   <tbody>
+    {{#each-in model.details.data as |key value|}}
     <tr>
-      <td>secret1</td>
-      <td>foo</td>
+      <td>{{key}}</td>
+      <td>{{value}}</td>
       <td class="text-right">
         <a href="#"><i class="fa fa-pencil"></i></a>
         <a href="#" class="color-danger"><i class="fa fa-times"></i></a>
       </td>
     </tr>
-    <tr>
-      <td>secret2</td>
-      <td>bar</td>
-      <td class="text-right">
-        <a href="#"><i class="fa fa-pencil"></i></a>
-        <a href="#" class="color-danger"><i class="fa fa-times"></i></a>
-      </td>
-    </tr>
+    {{/each-in}}
   </tbody>
 </table>
 <form>

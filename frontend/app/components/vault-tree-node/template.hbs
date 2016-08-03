@@ -5,7 +5,7 @@
   {{#if visible}}
   <ul>
     {{#each-in node.values as |name props|}}
-      <li>{{#link-to "vault.edit"}}{{name}}{{/link-to}}
+    <li>{{#link-to 'vault.edit' props.path}}{{name}}{{/link-to}}
         <ul class="details">
           {{#each-in props as |key value|}}
             <li>{{value}}</li>

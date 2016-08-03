@@ -16,6 +16,7 @@
     "deep-freeze": "0.0.1",
     "denodeify": "^1.2.1",
     "express": "^4.13.3",
+    "express-async-wrap": "^1.0.0",
     "express-http-proxy": "^0.6.0",
     "express-routebuilder": "^2.1.0",
     "handlebars": "^4.0.3",

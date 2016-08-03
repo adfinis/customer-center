@@ -5,6 +5,6 @@ export default Ember.Route.extend({
   vault: Ember.inject.service(),
 
   model() {
-    return this.get('vault').request()
+    return this.get('vault').list()
   }
 })

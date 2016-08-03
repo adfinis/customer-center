@@ -164,3 +164,7 @@ ul.nested-list li {
   margin-left: 2em;
 }
 
+ul.details, ul.details > li {
+  color: rgb(134, 127, 124);
+  display: inline;
+}

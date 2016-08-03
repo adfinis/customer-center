@@ -20,6 +20,6 @@ export default Ember.Service.extend({
    * @private
    */
   request() {
-    return this.get('ajax').request('/api/proxy/vault/v1/secret?list=true')
+    return this.get('ajax').request('/api/proxy/vault/list')
   }
 })

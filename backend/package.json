@@ -29,7 +29,8 @@
     "passport-ldapauth": "^0.5.0",
     "pg": "^4.4.2",
     "redis": "^0.12.1",
-    "request-promise": "^0.4.3",
+    "request": "^2.74.0",
+    "request-promise": "^4.1.0",
     "syrpc": "^1.0.4"
   },
   "devDependencies": {

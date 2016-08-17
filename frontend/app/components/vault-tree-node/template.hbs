@@ -8,7 +8,9 @@
     <li>{{#link-to 'vault.edit' props.path}}{{name}}{{/link-to}}
         <ul class="details">
           {{#each-in props as |key value|}}
-            <li>{{value}}</li>
+            {{#if (not (eq key 'path'))}}
+              <li>{{value}}</li>
+            {{/if}}
           {{/each-in}}
         </ul>
       </li>

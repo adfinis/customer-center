@@ -158,10 +158,19 @@ ul {
 
 ul.nested-list {
   margin-left: -2em;
+  padding: 0.5rem 0;
 }
 
 ul.nested-list li {
   margin-left: 2em;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid #e1e1e1;
+}
+
+ul.details {
+  position: absolute;
+  left: 50%;
 }
 
 ul.details, ul.details > li {

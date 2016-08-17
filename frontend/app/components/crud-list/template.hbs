@@ -1,0 +1,33 @@
+{{log _model}}
+<form>
+  <table class="table table--striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Value</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each _model as |entry index|}}
+      <tr>
+        <td>
+          {{input-or-show value=entry.key edit=entry.edit}}
+        </td>
+        <td>
+          {{input-or-show value=entry.value edit=entry.edit}}
+        </td>
+        <td class="text-right">
+          {{#if entry.edit}}
+          <a href="javascript:void(0)" {{action 'save' index entry}}><i class="fa fa-floppy-o"></i></a>
+          {{else}}
+          <a href="javascript:void(0)" {{action 'edit' index}}><i class="fa fa-pencil"></i></a>
+          <a href="javascript:void(0)" {{action 'delete' index}} class="color-danger"><i class="fa fa-times"></i></a>
+          {{/if}}
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <button class="btn" {{action 'add'}}>Add entry</button>
+</form>

@@ -1,5 +1,8 @@
 import rp   from 'request-promise'
 import wrap from 'express-async-wrap'
+import _flattenDeep from 'lodash/flattenDeep'
+
+import Vault from './model'
 
 let host, token, prefix
 
@@ -13,16 +16,6 @@ function stripPrefix(path) {
   }
   return path
 }
-// helpers for dummy data
-
-function rand(max) {
-  return Math.floor(Math.random() * max)
-}
-
-function getRandomIP() {
-  return `${rand(255)}.${rand(255)}.${rand(255)}.${rand(255)}`
-}
-
 
 async function listVault(path) {
   const rawResponse = await rp(addAuth({
@@ -34,11 +27,7 @@ async function listVault(path) {
     result.values = resp.data.keys
       .filter(key => !key.endsWith('/'))
       .reduce((res, key) => {
-        res[key] = {
-          path: stripPrefix(path + key),
-          ip: getRandomIP(),
-          desc: 'Beschreibung'
-        }
+        res[key] = { path: stripPrefix(path + key) }
         return res
       }, {})
 
@@ -50,7 +39,46 @@ async function listVault(path) {
       })
     )
   }
+
   return result
+}
+
+
+function findPaths(node) {
+  const paths = Object.keys(node.values).map(key => node.values[key].path)
+  return [
+    ...paths,
+    ..._flattenDeep(
+      Object.keys(node.children).map(key => findPaths(node.children[key]))
+    )
+  ]
+}
+
+function addToPath(node, meta) {
+  node.values = Object.keys(node.values).reduce((prev, curr) => {
+    const val = node.values[curr]
+    const metaData = meta[val.path]
+    prev[curr] = Object.assign(val, metaData)
+    return prev
+  }, {})
+  node.children = Object.keys(node.children).reduce((prev, curr) => {
+    const child = node.children[curr]
+    prev[curr] = addToPath(child, meta)
+    return prev
+  }, {})
+  return node
+}
+
+async function aggregateVault(tree) {
+  let meta = await Vault.forge()
+    .where('path', 'in', findPaths(tree))
+    .fetchAll()
+  meta = await meta.reduceThen((prev, curr) => {
+    prev[curr.get('path')] = curr.get('meta')
+    return prev
+  }, {})
+
+  return addToPath(tree, meta)
 }
 
 export default function vaultListhandler(service) {
@@ -59,6 +87,6 @@ export default function vaultListhandler(service) {
   prefix = service.prefix
 
   return wrap(async (req, res) => {
-    res.send(await listVault(service.prefix))
+    res.send(await aggregateVault(await listVault(service.prefix)))
   })
 }

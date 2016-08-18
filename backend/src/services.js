@@ -4,7 +4,7 @@ import RTProxy        from './rt/rt-proxy'
 import TimescoutProxy from './timescout/timescout-proxy'
 import SymonProxy     from './symon/symon-proxy'
 import VaultProxy     from './vault/vault-proxy'
-import vaultListHandler from './vault/vault-list'
+import vaultCustom    from './vault/vault-custom'
 import config         from '../config.json'
 
 let router = new express.Router
@@ -24,7 +24,7 @@ const services = {
     router.use('/proxy/symon', SymonProxy.createProxy(service))
   },
   vault: function(service) {
-    router.get('/vault/list', vaultListHandler(service))
+    router.use('/vault', vaultCustom(service))
     router.use('/proxy/vault', VaultProxy.createProxy(service))
   }
 }

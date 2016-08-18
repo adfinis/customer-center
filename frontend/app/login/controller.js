@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
         await this.get('session').authenticate('authenticator:custom', credentials)
       }
       catch (e) {
-        this.set('errorMessage', this.notify.error(e.message, { closeAfter: null }))
+        this.set('errorMessage', this.get('notify').error(e.message, { closeAfter: null }))
       }
       finally {
         this.set('loading', false)

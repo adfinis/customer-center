@@ -1,5 +1,13 @@
 import Ember  from 'ember'
 
+function jsonify(data) {
+  return {
+    contentType: 'application/json',
+    data: JSON.stringify(data)
+  }
+}
+
+
 /**
  * Vault service for fetching secrets
  *
@@ -15,7 +23,7 @@ export default Ember.Service.extend({
   },
 
   details(path) {
-    return this.get('ajax').request(`/api/proxy/vault/${path}`)
+    return this.get('ajax').request(`/api/vault/get/${path}`)
   },
 
   del(path) {
@@ -23,6 +31,10 @@ export default Ember.Service.extend({
   },
 
   save(path, data) {
-    this.get('ajax').post(`/api/proxy/vault/${path}`, { data: JSON.stringify(data) })
+    return this.get('ajax').post(`/api/proxy/vault/${path}`, jsonify(data))
+  },
+
+  saveMeta(path, data) {
+    return this.get('ajax').post(`/api/vault/meta/${path}`, jsonify(data))
   }
 })

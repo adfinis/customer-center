@@ -5,7 +5,7 @@ import httpProxy from 'express-http-proxy'
 /**
  * Vault Proxy
  *
- * @class RedmineProxy
+ * @class VaultProxy
  * @public
  */
 export default class VaultProxy {

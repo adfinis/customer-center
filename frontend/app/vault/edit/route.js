@@ -18,11 +18,28 @@ export default Ember.Route.extend({
 
   actions: {
 
+    async saveMeta(data) {
+      const path = this.modelFor(this.routeName).rawPath
+      try {
+        await this.get('vault').saveMeta(path, data)
+        this.get('notify').success('Node was saved.')
+      }
+      catch (e) {
+        this.get('notify').error(e.message)
+      }
+    },
+
     async save(secrets) {
       const path = this.modelFor(this.routeName).rawPath
-      await this.get('vault').del(path)
-      await this.get('vault').save(path, secrets)
-      this.get('notify').success('Node was saved.')
+      try {
+        await this.get('vault').del(path)
+        await this.get('vault').save(path, secrets)
+
+        this.get('notify').success('Node was saved.')
+      }
+      catch (e) {
+        this.get('notify').error(e.message)
+      }
     },
 
     async deleteNode() {

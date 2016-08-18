@@ -5,7 +5,13 @@
   {{/each}}
 </ol>
 
-{{crud-list model=model.details.data onUpdate=(route-action 'save')}}
+{{crud-list
+  title="vault.metadata"
+  model=model.details.meta
+  onUpdate=(route-action 'saveMeta')}}
+{{crud-list
+  title="vault.secrets"
+  model=model.details.secret
+  onUpdate=(route-action 'save')}}
 
-<br>
-<p><a class="color-danger" href="javascript:void(0)" {{action (route-action 'deleteNode')}}>Delete node</a></p>
+<p><a class="color-danger" href="javascript:void(0)" {{action (route-action 'deleteNode')}}>{{t 'vault.delete-entry'}}</a></p>

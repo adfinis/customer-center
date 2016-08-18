@@ -1,33 +1,41 @@
-{{log _model}}
-<form>
-  <table class="table table--striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Value</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each _model as |entry index|}}
-      <tr>
-        <td>
-          {{input-or-show value=entry.key edit=entry.edit}}
-        </td>
-        <td>
-          {{input-or-show value=entry.value edit=entry.edit}}
-        </td>
-        <td class="text-right">
-          {{#if entry.edit}}
-          <a href="javascript:void(0)" {{action 'save' index entry}}><i class="fa fa-floppy-o"></i></a>
+<div class="card" style="max-width: 800px">
+  <div class="card-block">
+    <h4>{{t title}}</h4>
+    <form>
+      <table class="table table--striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>{{t 'vault.value'}}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each _model as |entry index|}}
+          <tr>
+            <td style="width:30%">
+              {{input-or-show value=entry.key edit=entry.edit}}
+            </td>
+            <td>
+              {{input-or-show value=entry.value edit=entry.edit}}
+            </td>
+            <td class="text-right">
+              {{#if entry.edit}}
+              <a href="javascript:void(0)" {{action 'save' index entry}}><i class="fa fa-floppy-o"></i></a>
+              {{else}}
+              <a href="javascript:void(0)" {{action 'edit' index}}><i class="fa fa-pencil"></i></a>
+              <a href="javascript:void(0)" {{action 'delete' index}} class="color-danger"><i class="fa fa-times"></i></a>
+              {{/if}}
+            </td>
+          </tr>
           {{else}}
-          <a href="javascript:void(0)" {{action 'edit' index}}><i class="fa fa-pencil"></i></a>
-          <a href="javascript:void(0)" {{action 'delete' index}} class="color-danger"><i class="fa fa-times"></i></a>
-          {{/if}}
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-  <button class="btn" {{action 'add'}}>Add entry</button>
-</form>
+          <tr>
+            <td colspan="3" style="text-align: center">There's nothing to show here - yet!</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <button class="btn" {{action 'add'}}>{{t 'vault.add'}}</button>
+    </form>
+  </div>
+</div>

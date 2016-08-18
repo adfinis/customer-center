@@ -9,11 +9,11 @@ function external(internalModel) {
 
 function internal(model) {
   return Object.keys(model).map(key => {
-    return {
+    return Ember.Object.create({
       key,
       value: model[key],
       edit: false
-    }
+    })
   })
 }
 
@@ -34,7 +34,7 @@ export default Ember.Component.extend({
     },
 
     edit(index) {
-      Ember.set(this.get('_model').get(index), 'edit', true)
+      this.get(`_model.${index}`).set('edit', true)
     },
 
     async delete(index) {

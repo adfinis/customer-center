@@ -168,12 +168,11 @@ ul.nested-list li {
   border-top: 1px solid #e1e1e1;
 }
 
-ul.details {
-  position: absolute;
-  left: 50%;
-}
-
-ul.details, ul.details > li {
+.details {
+  display: block;
+  text-indent: 1rem;
   color: rgb(134, 127, 124);
-  display: inline;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

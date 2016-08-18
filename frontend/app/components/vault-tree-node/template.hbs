@@ -6,13 +6,7 @@
   <ul>
     {{#each-in node.values as |name props|}}
     <li>{{#link-to 'vault.edit' props.path}}{{name}}{{/link-to}}
-        <ul class="details">
-          {{#each-in props as |key value|}}
-            {{#if (not (eq key 'path'))}}
-              <li>{{value}}</li>
-            {{/if}}
-          {{/each-in}}
-        </ul>
+        <span class="details">{{print-props props}}</span>
       </li>
     {{/each-in}}
 

@@ -8,6 +8,8 @@ export default Ember.Route.extend({
 
   notify: Ember.inject.service(),
 
+  i18n: Ember.inject.service(),
+
   model({ path }) {
     return RSVP.hash({
       details: this.get('vault').details(path),
@@ -22,7 +24,7 @@ export default Ember.Route.extend({
       const path = this.modelFor(this.routeName).rawPath
       try {
         await this.get('vault').saveMeta(path, data)
-        this.get('notify').success('Node was saved.')
+        this.get('notify').success(this.get('i18n').t('vault.save-success'))
       }
       catch (e) {
         this.get('notify').error(e.message)
@@ -35,18 +37,12 @@ export default Ember.Route.extend({
         await this.get('vault').del(path)
         await this.get('vault').save(path, secrets)
 
-        this.get('notify').success('Node was saved.')
+        this.get('notify').success(this.get('i18n').t('vault.save-success'))
       }
       catch (e) {
         this.get('notify').error(e.message)
       }
-    },
-
-    async deleteNode() {
-      const path = this.modelFor(this.routeName).rawPath
-      await this.get('vault').del(path)
-      this.get('notify').success('Node was deleted.')
-      this.transitionTo('vault')
     }
+
   }
 })

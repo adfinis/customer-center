@@ -149,7 +149,8 @@ export default {
     'secrets':      'Secrets',
     'add':          'Eintrag hinzufügen',
     'delete-entry': 'Ganzen Eintrag löschen',
-    'value':        'Wert'
+    'value':        'Wert',
+    'save-success': 'Änderungen erfolgreich gespeichert.'
   },
 
 

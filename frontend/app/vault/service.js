@@ -31,7 +31,9 @@ export default Ember.Service.extend({
   },
 
   save(path, data) {
-    return this.get('ajax').post(`/api/proxy/vault/${path}`, jsonify(data))
+    return this.get('ajax').post(`/api/proxy/vault/${path}`, {
+      data: JSON.stringify(data)
+    })
   },
 
   saveMeta(path, data) {

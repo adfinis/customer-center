@@ -150,7 +150,8 @@ export default {
     'secrets':      'Secrets',
     'add':          'Add Entry',
     'delete-entry': 'Delete entire entry',
-    'value'       : 'Value'
+    'value'       : 'Value',
+    'save-success': 'Changes were saved.'
   },
 
   'user.profile': {

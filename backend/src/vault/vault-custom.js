@@ -19,14 +19,11 @@ function getCleanPath(path, method) {
 async function get(req, res) {
   const path = getCleanPath(req.path, '/get/')
 
-  console.log('vault get', path)
   const uri = url.resolve(host, prefix) + path
 
   const rawResponse = await rp(addAuth({ uri }))
   const resp = JSON.parse(rawResponse)
-  console.log('got vault resp.', resp)
   const meta = await Vault.forge().where('path', path).fetch()
-  console.log('meta', meta)
   res.send({
     secret: resp.data,
     meta: meta ? meta.get('meta') : {}
@@ -36,9 +33,7 @@ async function get(req, res) {
 async function setMeta(req, res) {
   const path = getCleanPath(req.path, '/meta/')
   const meta = req.body
-  console.log('saving', path, meta)
   const entry = await Vault.forge().where('path', path).fetch()
-  console.log('entry', entry)
   let result
   if (entry) {
     await entry.set('meta', req.body).save()

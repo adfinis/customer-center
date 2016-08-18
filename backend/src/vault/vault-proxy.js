@@ -47,7 +47,6 @@ export default class VaultProxy {
    */
   forwardPath(req, res) {
     const r = url.parse(path.join(this.prefix, req.url)).path
-    console.log('forwardPath', r)
     return r
   }
 

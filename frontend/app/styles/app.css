@@ -155,3 +155,24 @@ ul {
   margin: 0 auto;
   margin-bottom: 10px;
 }
+
+ul.nested-list {
+  margin-left: -2em;
+  padding: 0.5rem 0;
+}
+
+ul.nested-list li {
+  margin-left: 2em;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid #e1e1e1;
+}
+
+.details {
+  display: block;
+  text-indent: 1rem;
+  color: rgb(134, 127, 124);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

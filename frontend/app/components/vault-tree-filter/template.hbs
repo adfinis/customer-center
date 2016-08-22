@@ -1,0 +1,4 @@
+<form class="form-inline">
+  {{input placeholder=(t "global.search") value=search key-up=(action 'filter') class="form-control"}}
+</form>
+{{yield tree}}

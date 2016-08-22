@@ -6,8 +6,6 @@ web1:
     - ./tools/docker/nginx/nginx-dev.conf:/etc/nginx/nginx.conf
   links:
     - backenddev1
-    - backenddev2
-    - backenddev3
     - frontenddev1
   ports:
     - "8080:80"
@@ -24,36 +22,7 @@ backenddev1:
     - ucs1
     - redmine1
     - rt1
-  environment:
-    - DEBUG=app:*
-
-backenddev2:
-  extends:
-    file: ./tools/docker/compose.yml
-    service: backend-dev
-  volumes:
-    - ./tools/docker/rt4/var/rt4:/var/rt4/rt4
-  links:
-    - redis1
-    - postgres1
-    - ucs1
-    - redmine1
-    - rt1
-  environment:
-    - DEBUG=app:*
-
-backenddev3:
-  extends:
-    file: ./tools/docker/compose.yml
-    service: backend-dev
-  volumes:
-    - ./tools/docker/rt4/var/rt4:/var/rt4/rt4
-  links:
-    - redis1
-    - postgres1
-    - ucs1
-    - redmine1
-    - rt1
+    - vault1
   environment:
     - DEBUG=app:*
 
@@ -118,3 +87,11 @@ rt1:
     - ./tools/docker/rt4/var/rt4:/opt/rt4/var/rt4
   ports:
     - "8082:8082"
+
+vault1:
+  image: vault
+  environment:
+    - VAULT_DEV_ROOT_TOKEN_ID=myroot
+    - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
+  ports:
+    - "8200:8200"

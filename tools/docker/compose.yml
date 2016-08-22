@@ -9,7 +9,7 @@ backend:
     - NODE_ENV=production
 
 backend-dev:
-  image: node
+  image: node:5
   volumes:
     - ../../backend:/usr/src/app
   command: npm --prefix=/usr/src/app run watch
@@ -17,7 +17,7 @@ backend-dev:
     - NODE_ENV=development
 
 frontend-dev:
-  image: iojs
+  image: node
   volumes:
     - ../../frontend:/usr/src/app
   command: npm --prefix=/usr/src/app run start-proxy

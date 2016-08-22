@@ -1,5 +1,4 @@
 import Ember  from 'ember'
-import ajax   from 'ic-ajax'
 import moment from 'moment'
 
 /**
@@ -10,18 +9,21 @@ import moment from 'moment'
  */
 export default Ember.Service.extend({
 
+  ajax: Ember.inject.service(),
+
   /**
    * Timescout API requests
    *
    * @param {string} action The timescout API action
    * @param {Object} params Request query params
+   * @param {string} type   Request type
    * @return {Promise}
    * @private
    */
   request(action, params, type = 'get') {
     let data = Object.assign({}, params, { action })
 
-    return ajax('/api/proxy/timescout/service/api.php', { type, data })
+    return this.get('ajax').request('/api/proxy/timescout/service/api.php', { type, data })
   },
 
   /**

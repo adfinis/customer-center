@@ -1,5 +1,4 @@
 import Ember from 'ember'
-import ajax  from 'ic-ajax'
 
 const { computed } = Ember
 
@@ -10,6 +9,8 @@ const { computed } = Ember
  * @public
  */
 export default Ember.Object.extend({
+
+  ajax: Ember.inject.service(),
 
   /**
    * User rollback
@@ -26,7 +27,7 @@ export default Ember.Object.extend({
    * @return {Promise}
    */
   async save() {
-    let res = await ajax('/api/v1/user/current', {
+    let res = await this.get('ajax').request('/api/v1/user/current', {
       type:        'put',
       data:        JSON.stringify(this),
       contentType: 'application/json'

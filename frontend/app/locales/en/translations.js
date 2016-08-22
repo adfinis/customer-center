@@ -5,7 +5,8 @@ export default {
   'global': {
     'Username': 'Username',
     'Password': 'Password',
-    'save':     'Save'
+    'save':     'Save',
+    'search':   'Search'
   },
 
   'login': {
@@ -142,6 +143,15 @@ export default {
       'danger':  'Error',
       'warning': 'Warning'
     }
+  },
+
+  'vault': {
+    'metadata':     'Metadata',
+    'secrets':      'Secrets',
+    'add':          'Add Entry',
+    'delete-entry': 'Delete entire entry',
+    'value'       : 'Value',
+    'save-success': 'Changes were saved.'
   },
 
   'user.profile': {

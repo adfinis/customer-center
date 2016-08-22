@@ -1,5 +1,4 @@
 import Ember  from 'ember'
-import ajax   from 'ic-ajax'
 import config from '../config/environment'
 
 /**
@@ -9,6 +8,8 @@ import config from '../config/environment'
  * @public
  */
 export default Ember.Service.extend({
+
+  ajax: Ember.inject.service(),
 
   /**
    * Redmine host name
@@ -25,7 +26,7 @@ export default Ember.Service.extend({
    * @return {Object}
    */
   async fetchIssues(params) {
-    let res = await ajax(`/api/proxy/${this.host}/issues.json`, { data: params })
+    let res = await this.get('ajax').request(`/api/proxy/${this.host}/issues.json`, { data: params })
 
     return {
       issues: res.issues,
@@ -42,7 +43,7 @@ export default Ember.Service.extend({
    * @return {Object}
    */
   async fetchProjects(params) {
-    let res = await ajax(`/api/proxy/${this.host}/projects.json`, { data: params })
+    let res = await this.get('ajax').request(`/api/proxy/${this.host}/projects.json`, { data: params })
 
     return {
       projects: res.projects,

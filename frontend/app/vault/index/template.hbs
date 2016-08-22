@@ -1,0 +1,10 @@
+{{#vault-tree-filter model=model as |tree|}}
+
+<ul class="nested-list root">
+  {{#each-in tree.children as |name child|}}
+  {{vault-tree-node node=child name=name}}
+  {{/each-in}}
+</ul>
+<p></p>
+{{/vault-tree-filter}}
+{{log model}}

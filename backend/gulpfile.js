@@ -15,7 +15,7 @@ gulp.task('test', [ 'lint' ], () => {
   return gulp.src(testFiles)
     .pipe(mocha({
       reporter:  'spec'
-    , compilers: 'js:babel/register'
+    , compilers: 'js:babel-register'
     , istanbul:  false
     }))
     //.pipe(coverageEnforcer({

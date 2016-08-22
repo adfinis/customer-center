@@ -5,7 +5,8 @@ export default {
   'global': {
     'Username': 'Benutzername',
     'Password': 'Passwort',
-    'save':     'Speichern'
+    'save':     'Speichern',
+    'search':   'Suchen'
   },
 
   'login': {
@@ -142,6 +143,16 @@ export default {
       'warning': 'Warnung'
     }
   },
+
+  'vault': {
+    'metadata':     'Metadaten',
+    'secrets':      'Secrets',
+    'add':          'Eintrag hinzufügen',
+    'delete-entry': 'Ganzen Eintrag löschen',
+    'value':        'Wert',
+    'save-success': 'Änderungen erfolgreich gespeichert.'
+  },
+
 
   'user.profile': {
     'email':    'E-Mail Adresse',

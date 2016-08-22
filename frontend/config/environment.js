@@ -12,12 +12,16 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       }
     },
+    contentSecurityPolicy: {
+      'style-src': "'self' 'unsafe-inline'"
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
       redmine: {
         host: 'project.adfinis-sygroup.ch'
+        // host: 'redmine1' // docker
       },
       rt: {
         host: 'rt.sygroup.ch',
@@ -27,14 +31,8 @@ module.exports = function(environment) {
 
     i18n: {
       defaultLocale: 'en'
-    },
-
-    'simple-auth': {
-      serverTokenRevocationEndpoint: '/api/v1/logout',
-      authorizer: 'authorizer:custom',
-      session: 'session:custom'
     }
-  }
+ }
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;

@@ -152,6 +152,7 @@ function ldapFindOne(ldapClient, searchBase, options) {
 
       let searchEntry
 
+      // eslint-disable-next-line no-return-assign
       res.once('searchEntry', entry => searchEntry = entry)
       res.once('error',       reject)
       res.once('end',         result => resolve(searchEntry))

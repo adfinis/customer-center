@@ -1,0 +1,18 @@
+  <li>
+    <a {{action "toggle"}} href="javascript:void(0)" style="color:#3d3d3d">
+      <i class="fa fa-caret-{{if visible 'down' 'right'}}"></i> {{name}}
+    </a>
+  {{#if visible}}
+  <ul>
+    {{#each-in node.values as |name props|}}
+    <li>{{#link-to 'vault.edit' props.path}}{{name}}{{/link-to}}
+        <span class="details">{{print-props props}}</span>
+      </li>
+    {{/each-in}}
+
+    {{#each-in node.children as |name child|}}
+      {{vault-tree-node node=child name=name}}
+    {{/each-in}}
+  </ul>
+  {{/if}}
+</li>

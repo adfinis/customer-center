@@ -1,5 +1,4 @@
 import Ember from 'ember'
-import ajax  from 'ic-ajax'
 
 /**
  * RT Service for fetching data from a rt instance
@@ -9,6 +8,8 @@ import ajax  from 'ic-ajax'
  */
 export default Ember.Service.extend({
 
+  ajax: Ember.inject.service(),
+
   /**
    * Fetch rt issues from a host
    *
@@ -16,7 +17,7 @@ export default Ember.Service.extend({
    * @return {Object}
    */
   async fetchIssues(params) {
-    let res = await ajax('/api/rt/tickets', { data: params })
+    let res = await this.get('ajax').request('/api/rt/tickets', { data: params })
 
     return {
       issues: res.data.tickets,

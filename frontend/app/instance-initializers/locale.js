@@ -21,7 +21,7 @@ export function initialize(instance) {
   }
 
   if (locale) {
-    setLocale(instance.container.lookup('service:i18n'), locale)
+    setLocale(instance.lookup('service:i18n'), locale)
   }
 }
 

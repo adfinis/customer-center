@@ -43,8 +43,8 @@ app.use(jwt({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use('/v1', login)
-app.use('/v1', passwordreset)
+app.use('/api/v1', login)
+app.use('/api/v1', passwordreset)
 
 app.use((req, res, next) => {
   if (req.isAuthenticated()) return next()
@@ -52,9 +52,9 @@ app.use((req, res, next) => {
   next({ status: 401, message: 'Not Authorized' })
 })
 
-app.use('/v1', userRoute)
+app.use('/api/v1', userRoute)
 
-app.use(services)
+app.use('/api', services)
 
 app.get('/', (req, res) => {
   res.redirect('/api/v1')

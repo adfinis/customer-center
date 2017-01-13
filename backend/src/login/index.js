@@ -1,4 +1,6 @@
+import * as fs      from 'fs'
 import express      from 'express'
+import rp           from 'request-promise'
 import passport     from 'passport'
 import LdapStrategy from 'passport-ldapauth'
 import User         from '../user/model'
@@ -63,7 +65,7 @@ function getLanguage(acceptLanguage) {
   }
 }
 
-router.post('/login', (req, res, next) =>
+router.post('/login', (req, res, next) => {
   passport.authenticate('ldapauth', (err, ldapUser, info, status) => {
     if (err)       return next(err)
     if (!ldapUser) return next({ status, message: info.message })
@@ -72,8 +74,7 @@ router.post('/login', (req, res, next) =>
       ldapUser.lang = getLanguage(req.headers['accept-language'])
     }
 
-    req.login(ldapUser, loginError => {
-      /* istanbul ignore if */
+    req.login(ldapUser, async (loginError) => {
       if (loginError) return next(loginError)
 
       let claims = {
@@ -82,8 +83,25 @@ router.post('/login', (req, res, next) =>
         uid: users.get(ldapUser).id
       }
 
+      // ldap login to vault
+      const { host, ca } = config.services.find(s => s.type === 'vault')
+      try {
+        const resp = await rp({
+          method: 'POST',
+          uri: `${host}v1/auth/ldap/login/${req.body.username}`,
+          body: {
+            password: req.body.password
+          },
+          json: true,
+          ca: fs.readFileSync(ca)
+        })
+        req.session.vaultToken = resp.auth.client_token
+      }
+      catch (e) {
+        console.log('vault auth error', e)
+      }
+
       req.session.create(claims, (sessionError, token) => {
-        /* istanbul ignore if */
         if (sessionError) return next(sessionError)
 
         res.set('Content-Type', 'application/vnd.api+json')
@@ -91,7 +109,7 @@ router.post('/login', (req, res, next) =>
       })
     })
   })(req, res, next)
-)
+})
 
 router.post('/logout', (req, res) => {
   req.logout()

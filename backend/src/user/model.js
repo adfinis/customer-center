@@ -72,10 +72,10 @@ export default bookshelf.Model.extend({
     }
 
     let groups    = getGroups(ldap)
-    let companySN = /ou=([^,]+)/.exec(ldap.dn)[1]
+    let companySN = /ou=([^,]+)/.exec(ldap.dn)
 
     user.set('username',  ldap.uid)
-    user.set('shortname', companySN)
+    user.set('shortname', companySN ? companySN[1] : null)
     user.set('firstName', ldap.givenName)
     user.set('lastName',  ldap.sn)
     user.set('sysupport', getSySupport(groups))

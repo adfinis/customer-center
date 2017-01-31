@@ -6,9 +6,13 @@ import LdapStrategy from 'passport-ldapauth'
 import User         from '../user/model'
 import config       from '../config'
 
-passport.use(new LdapStrategy({
+passport.use('ldapauth-user', new LdapStrategy({
   server: Object.assign({}, config.ldap, config.login.ldap)
 }))
+passport.use('ldapauth-customer', new LdapStrategy({
+  server: Object.assign({}, config.ldap, config.login.ldap_customer)
+}))
+
 
 // Passport doesn't set req.user directly after login
 // save user in weakmap with the ldap response as key
@@ -66,7 +70,16 @@ function getLanguage(acceptLanguage) {
 }
 
 router.post('/login', (req, res, next) => {
-  passport.authenticate('ldapauth', (err, ldapUser, info, status) => {
+  login('ldapauth-user', req, res, (err) => {
+    if (err) {
+      return login('ldapauth-customer', req, res, next)
+    }
+    return next(...arguments)
+  })
+})
+
+function login(strategy, req, res, next) {
+  passport.authenticate(strategy, (err, ldapUser, info, status) => {
     if (err)       return next(err)
     if (!ldapUser) return next({ status, message: info.message })
 
@@ -109,7 +122,7 @@ router.post('/login', (req, res, next) => {
       })
     })
   })(req, res, next)
-})
+}
 
 router.post('/logout', (req, res) => {
   req.logout()

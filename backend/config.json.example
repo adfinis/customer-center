@@ -11,6 +11,20 @@
   },
   "login": {
     "ldap": {
+      "searchBase": "ou=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
+      "searchFilter": "uid={{username}}",
+      "searchAttributes": [ "uid", "sn", "givenName", "mail" ],
+
+      "groupSearchBase": "ou=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
+      "groupSearchFilter": "memberUid={{dn}}",
+      "groupSearchScope": "sub",
+      "groupDnProperty": "uid",
+      "groupSearchAttributes": [ "cn" ],
+
+      "usernameField": "uid",
+      "passwordField": "userPassword"
+    },
+    "ldap_customer": {
       "searchBase": "ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
       "searchFilter": "uid={{username}}",
       "searchAttributes": [ "uid", "sn", "givenName", "mail" ],

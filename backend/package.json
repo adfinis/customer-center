@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "babel-node bin/app.js",
-    "watch": "nodemon --exec npm run start",
+    "watch": "DEBUG=* nodemon --exec npm run start",
     "test": "make test"
   },
   "dependencies": {
@@ -13,7 +13,6 @@
     "body-parser": "^1.14.1",
     "bookshelf": "^0.8.2",
     "debug": "^2.2.0",
-    "deep-freeze": "0.0.1",
     "denodeify": "^1.2.1",
     "express": "^4.13.3",
     "express-async-wrap": "^1.0.0",

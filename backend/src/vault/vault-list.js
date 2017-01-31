@@ -1,13 +1,17 @@
+import * as fs from 'fs'
 import rp   from 'request-promise'
 import wrap from 'express-async-wrap'
 import _flattenDeep from 'lodash/flattenDeep'
 
 import Vault from './model'
 
-let host, token, prefix
+let host, ca, token, prefix
 
-function addAuth(request) {
-  return Object.assign({}, request, { headers: { 'X-Vault-Token': token }})
+function addAuth(options) {
+  return Object.assign({}, options, {
+    headers: { 'X-Vault-Token': token },
+    ca: fs.readFileSync(ca)
+  })
 }
 
 function stripPrefix(path) {
@@ -19,7 +23,7 @@ function stripPrefix(path) {
 
 async function listVault(path) {
   const rawResponse = await rp(addAuth({
-    uri: `${host}${path}?list=true`
+    uri: `${host}${path}internal?list=true`
   }))
   const resp = JSON.parse(rawResponse)
   const result = {}
@@ -83,10 +87,11 @@ async function aggregateVault(tree) {
 
 export default function vaultListhandler(service) {
   host = service.host
-  token = service.token
+  ca = service.ca
   prefix = service.prefix
 
   return wrap(async (req, res) => {
+    token = req.session.vaultToken
     res.send(await aggregateVault(await listVault(service.prefix)))
   })
 }

@@ -1,3 +1,4 @@
+import * as fs from 'fs'
 import url from 'url'
 import rp   from 'request-promise'
 import { Router } from 'express'
@@ -6,10 +7,19 @@ import bodyParser    from 'body-parser'
 import list from './vault-list'
 import Vault from './model'
 
-let host, token, prefix
+let host, prefix, auth
 
-function addAuth(request) {
-  return Object.assign({}, request, { headers: { 'X-Vault-Token': token }})
+export function getAuthenticator(token, caPath) {
+  if (!caPath) return;
+
+  const ca = fs.readFileSync(caPath)
+
+  return options => {
+    return Object.assign({}, options, {
+      headers: { 'X-Vault-Token': token },
+      ca
+    })
+  }
 }
 
 function getCleanPath(path, method) {
@@ -21,7 +31,7 @@ async function get(req, res) {
 
   const uri = url.resolve(host, prefix) + path
 
-  const rawResponse = await rp(addAuth({ uri }))
+  const rawResponse = await rp(auth({ uri }))
   const resp = JSON.parse(rawResponse)
   const meta = await Vault.forge().where('path', path).fetch()
   res.send({
@@ -47,8 +57,8 @@ async function setMeta(req, res) {
 
 export default function vaultGet(service) {
   host = service.host
-  token = service.token
   prefix = service.prefix
+  auth = getAuthenticator(service.token, service.ca)
 
   const router = new Router
   router.use(bodyParser.json())

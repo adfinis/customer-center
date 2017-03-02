@@ -1,3 +1,4 @@
+import * as fs   from 'fs'
 import url       from 'url'
 import path      from 'path'
 import httpProxy from 'express-http-proxy'
@@ -32,6 +33,7 @@ export default class VaultProxy {
     this.host      = service.host
     this.token     = service.token
     this.prefix    = service.prefix
+    this.ca        = fs.readFileSync(service.ca)
 
     this.forwardPath     = this.forwardPath.bind(this)
     this.decorateRequest = this.decorateRequest.bind(this)
@@ -60,6 +62,7 @@ export default class VaultProxy {
   decorateRequest(req) {
     if (this.token) {
       req.headers['X-Vault-Token'] = this.token
+      req.ca = this.ca
     }
   }
 }

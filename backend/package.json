@@ -4,8 +4,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "babel-node bin/app.js",
+    "start": "babel-node src/index.js",
     "watch": "DEBUG=* nodemon --exec npm run start",
+    "build": "babel src -d dist",
+    "serve": "node dist/index.js",
     "test": "make test"
   },
   "dependencies": {

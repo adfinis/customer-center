@@ -84,6 +84,6 @@ export default function vaultListhandler(service) {
   auth = getAuthenticator(service.token, service.ca)
 
   return wrap(async (req, res) => {
-    res.send(await aggregateVault(await listVault(service.prefix + 'internal/')))
+    res.send(await aggregateVault(await listVault(service.prefix + service.backend)))
   })
 }

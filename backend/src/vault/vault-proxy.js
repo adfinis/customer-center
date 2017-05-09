@@ -33,7 +33,9 @@ export default class VaultProxy {
     this.host      = service.host
     this.token     = service.token
     this.prefix    = service.prefix
-    this.ca        = fs.readFileSync(service.ca)
+    if (service.ca) {
+        this.ca = fs.readFileSync(service.ca)
+    }
 
     this.forwardPath     = this.forwardPath.bind(this)
     this.decorateRequest = this.decorateRequest.bind(this)

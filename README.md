@@ -1,4 +1,28 @@
-Adfinis SyGroup AG - Customer Center
-====================================
+# Adfinis SyGroup AG - Customer Center
 
-Work in progress...
+This is still very much in progress.
+
+## Prerequisites
+
+Before you start, please make sure that the following tools are installed:
+* node + npm
+* bower
+* docker + docker-compose
+
+## Setup
+
+```shell
+make install
+docker-compose up
+
+# setup LDAP structure
+make setup-ldap
+
+# apply DB migrations
+docker exec -it adsycc_backenddev1_1 /bin/bash
+cd /usr/src/app/
+make migrations
+
+# fill vault with dummy data
+make vault-dummy-data
+```

@@ -10,14 +10,10 @@ import Vault from './model'
 let host, prefix, auth
 
 export function getAuthenticator(token, caPath) {
-  if (!caPath) return;
-
-  const ca = fs.readFileSync(caPath)
-
   return options => {
     return Object.assign({}, options, {
       headers: { 'X-Vault-Token': token },
-      ca
+      ca: caPath ? fs.readFileSync(caPath) : undefined
     })
   }
 }

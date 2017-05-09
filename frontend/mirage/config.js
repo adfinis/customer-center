@@ -11,7 +11,7 @@ export default function() {
 
   this.post('/v1/logout', function() { })
 
-  this.get('/v1/user/current', function(db) {
+  this.get('/v1/user/current', function({ db }) {
     return {
       data: {
         user: db.users.find(1)
@@ -19,7 +19,7 @@ export default function() {
     }
   })
 
-  this.get('/proxy/project.adfinis-sygroup.ch/issues.json', function(db, req) {
+  this.get('/proxy/project.adfinis-sygroup.ch/issues.json', function({ db }, req) {
     let { limit = 20, offset = 0 } = req.queryParams
 
     limit  = limit  | 0
@@ -33,7 +33,7 @@ export default function() {
     }
   })
 
-  this.get('/proxy/project.adfinis-sygroup.ch/projects.json', function(db, req) {
+  this.get('/proxy/project.adfinis-sygroup.ch/projects.json', function({ db }, req) {
     let { limit = 20, offset = 0 } = req.queryParams
 
     limit  = limit  | 0
@@ -47,7 +47,7 @@ export default function() {
     }
   })
 
-  this.get('/rt/tickets', function(db, req) {
+  this.get('/rt/tickets', function({ db }, req) {
     let { limit = 20, offset = 0 } = req.queryParams
 
     limit  = limit  | 0
@@ -63,7 +63,7 @@ export default function() {
     }
   })
 
-  this.get('/proxy/timescout/service/api.php', function(db, req) {
+  this.get('/proxy/timescout/service/api.php', function({ db }, req) {
     let { action } = req.queryParams
 
     switch (action) {

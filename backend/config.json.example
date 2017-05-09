@@ -116,8 +116,10 @@
     },
     {
       "type": "vault",
-      "host": "0.0.0.0",
-      "token": "foo"
+      "host": "http://vault1:8200/",
+      "prefix": "/v1/",
+      "backend": "secret/",
+      "token": "myroot"
     }
   ]
 }

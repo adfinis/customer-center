@@ -17,7 +17,7 @@ backend-dev:
     - NODE_ENV=development
 
 frontend-dev:
-  image: node
+  image: node:7
   volumes:
     - ../../frontend:/usr/src/app
   command: npm --prefix=/usr/src/app run start-proxy

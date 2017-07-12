@@ -176,3 +176,27 @@ ul.nested-list li {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+tr.border {
+  border-top: 1px solid rgb(225, 225, 225);
+}
+
+tr.comment > td {
+  padding-top: 0 !important;
+}
+
+td.comment div.value {
+  color: grey;
+  font-size: small;
+  padding-left: 2em !important;
+}
+
+table.table--noborders tr td {
+  border-top: none;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: rgb(225, 225, 225);
+}

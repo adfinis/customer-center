@@ -3,18 +3,29 @@ import Ember from 'ember'
 function external(internalModel) {
   return internalModel.reduce((prev, curr) => {
     prev[curr.key] = curr.value
+    if (curr.comment) {
+      prev[`${curr.key}_comment`] = curr.comment
+    }
     return prev
   }, {})
 }
 
 function internal(model) {
-  return Object.keys(model).map(key => {
-    return Ember.Object.create({
-      key,
-      value: model[key],
-      edit: false
+  return Object.keys(model)
+    .map(key => {
+      return Ember.Object.create({
+        key,
+        value: model[key],
+        edit: false
+      })
     })
-  })
+    .reduce((prev, curr) => {
+      if (curr.key.endsWith('_comment')) {
+        prev[prev.length - 1].comment = curr.value
+        return prev
+      }
+      return [...prev, curr]
+    }, [])
 }
 
 export default Ember.Component.extend({
@@ -28,8 +39,10 @@ export default Ember.Component.extend({
       this.get('_model').pushObject({ edit: true })
     },
 
-    async save(index, { key, value }) {
-      this.get('_model').replace(index, 1, [{ key, value, edit: false }])
+    async save(index, { key, value, comment }) {
+      this.get('_model').replace(index, 1, [
+        Ember.Object.create({ key, value, comment, edit: false })
+      ])
       await this.get('onUpdate')(external(this.get('_model')))
     },
 

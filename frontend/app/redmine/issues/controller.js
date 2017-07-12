@@ -1,14 +1,13 @@
 import Ember from 'ember'
 
 export default Ember.Controller.extend({
-
   /**
    * Query params
    *
    * @property {string[]} queryParams
    * @public
    */
-  queryParams: [ 'limit', 'page' ],
+  queryParams: ['limit', 'page'],
 
   /**
    * Redmine list limit

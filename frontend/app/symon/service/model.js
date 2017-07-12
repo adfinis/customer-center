@@ -8,7 +8,6 @@ import { STATE_OK, STATE_WARNING, STATE_ERROR } from 'adsycc/symon/service'
  * @public
  */
 export default Ember.Object.extend({
-
   /**
    * Name of the Service
    *
@@ -66,5 +65,5 @@ export default Ember.Object.extend({
     }
 
     return state
-  }),
-});
+  })
+})

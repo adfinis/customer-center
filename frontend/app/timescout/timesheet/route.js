@@ -7,7 +7,6 @@ import Ember from 'ember'
  * @public
  */
 export default Ember.Route.extend({
-
   /**
    * Timescout timesheet (project) model
    *

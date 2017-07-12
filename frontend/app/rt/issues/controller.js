@@ -7,14 +7,13 @@ import Ember from 'ember'
  * @public
  */
 export default Ember.Controller.extend({
-
   /**
    * Query params
    *
    * @property {string[]} queryParams
    * @public
    */
-  queryParams: [ 'limit', 'page' ],
+  queryParams: ['limit', 'page'],
 
   /**
    * RT list limit

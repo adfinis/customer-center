@@ -9,7 +9,6 @@ const { inject } = Ember
  * @public
  */
 export default Ember.Route.extend({
-
   /**
    * RT service to fetch RT issues
    *
@@ -25,7 +24,6 @@ export default Ember.Route.extend({
    * @public
    */
   queryParams: {
-
     /**
      * RT query params list limit
      *

@@ -9,7 +9,6 @@ const { computed, observer, inject } = Ember
  * @public
  */
 export default Ember.Component.extend({
-
   /**
    * Redmine service to fetch redmine issues
    *
@@ -122,7 +121,6 @@ export default Ember.Component.extend({
    * @property {Object} actions
    */
   actions: {
-
     /**
      * Update model action, fetches new issues from redmine
      *
@@ -134,20 +132,18 @@ export default Ember.Component.extend({
 
       try {
         let redmine = this.get('redmine')
-        let params  = {
-          limit:  this.get('limit'),
+        let params = {
+          limit: this.get('limit'),
           offset: this.get('offset'),
-          sort:   this.get('sort')
+          sort: this.get('sort')
         }
 
         let { issues, total } = await redmine.fetchIssues(params)
         this.set('issues', issues)
-        this.set('total',  total)
-      }
-      catch (e) {
+        this.set('total', total)
+      } catch (e) {
         this.set('error', e)
-      }
-      finally {
+      } finally {
         this.set('loading', false)
       }
     }

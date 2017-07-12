@@ -1,4 +1,3 @@
-
 export async function up(knex) {
   await knex.schema.createTable('vault', table => {
     table.bigIncrements('id').primary().unsigned()

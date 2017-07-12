@@ -10,7 +10,6 @@ import fetch from 'fetch'
  * @public
  */
 export default Ember.Route.extend({
-
   /**
    * Fetches the new password
    *

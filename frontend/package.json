@@ -20,6 +20,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "babel-eslint": "^7.2.3",
     "broccoli-asset-rev": "^2.4.2",
     "ember-adcssy": "github:adfinis-sygroup/ember-adcssy#master",
     "ember-ajax": "2.4.1",
@@ -54,8 +55,12 @@
     "ember-route-action-helper": "0.3.3",
     "ember-simple-auth": "1.1.0",
     "ember-sy": "github:adfinis-sygroup/ember-sy#v1.0.0",
+    "eslint": "^4.2.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-prettier": "^2.1.2",
     "liquid-fire": "0.24.1",
     "loader.js": "^4.0.1",
-    "pagination-pager": "^2.1.1"
+    "pagination-pager": "^2.1.1",
+    "prettier": "^1.5.2"
   }
 }

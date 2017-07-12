@@ -9,7 +9,6 @@ import { SyRPCClient } from 'syrpc'
  * @public
  */
 export default class SymonProxy {
-
   /**
    * Creates a new SymonProxy intance
    *
@@ -31,12 +30,12 @@ export default class SymonProxy {
    * @public
    */
   constructor(service) {
-    this.host     = service.host
-    this.user     = service.user
+    this.host = service.host
+    this.user = service.user
     this.password = service.password
-    this.queues   = service.queues
-    this.app      = service.app
-    this.ttl      = service.ttl
+    this.queues = service.queues
+    this.app = service.app
+    this.ttl = service.ttl
   }
 
   /**
@@ -46,7 +45,7 @@ export default class SymonProxy {
    * @public
    */
   createRouter() {
-    let router = new Router
+    let router = new Router()
 
     router.get('/hosts', this.route('hosts'))
 
@@ -61,8 +60,7 @@ export default class SymonProxy {
    * @public
    */
   route(name) {
-    return (req, res, next) =>
-      this[name](req, res, next).catch(next)
+    return (req, res, next) => this[name](req, res, next).catch(next)
   }
 
   /**
@@ -74,6 +72,7 @@ export default class SymonProxy {
    * @return {void}
    * @public
    */
+  // eslint-disable-next-line max-statements
   async hosts(req, res, next) {
     let symonGroup = req.user.getGroups().find(g => g.cn.endsWith('-mon'))
 
@@ -81,25 +80,26 @@ export default class SymonProxy {
       app_name: this.app,
       amq_host: this.host,
       amq_user: this.user,
-      amq_password:   this.password,
+      amq_password: this.password,
       amq_num_queues: this.queues
     }
     let syrpc = new SyRPCClient(settings)
     await syrpc.init()
 
-    let resultID = syrpc.putRequest('get_host_list_by_ldap_group', { ldap_group: symonGroup.dn })
+    let resultID = syrpc.putRequest('get_host_list_by_ldap_group', {
+      ldap_group: symonGroup.dn
+    })
     let hosts = await syrpc.getResult(resultID, this.ttl)
 
-    let requests = hosts.data.map(host =>
-      syrpc.putRequest('get_service_list_by_host', { host_id: host.id })
-    )
-    .map(requestID =>
-      syrpc.getResult(requestID, this.ttl)
-    )
+    let requests = hosts.data
+      .map(host =>
+        syrpc.putRequest('get_service_list_by_host', { host_id: host.id })
+      )
+      .map(requestID => syrpc.getResult(requestID, this.ttl))
 
     let results = await Promise.all(requests)
 
-    for (let [ key, host ] of hosts.data.entries()) {
+    for (let [key, host] of hosts.data.entries()) {
       host.services = results[key].data
       for (let service of host.services) {
         service.host = undefined

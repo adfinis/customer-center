@@ -1,15 +1,15 @@
-import express       from 'express'
-import bodyParser    from 'body-parser'
-import morgan        from 'morgan'
-import passport      from 'passport'
-import redis         from 'redis'
-import jwt           from 'jwt-redis-session'
-import debug         from 'debug'
-import login         from './login'
+import express from 'express'
+import bodyParser from 'body-parser'
+import morgan from 'morgan'
+import passport from 'passport'
+import redis from 'redis'
+import jwt from 'jwt-redis-session'
+import debug from 'debug'
+import login from './login'
 import passwordreset from './password-reset'
-import services      from './services'
-import userRoute     from './user/route'
-import config        from '../config.json'
+import services from './services'
+import userRoute from './user/route'
+import config from '../config.json'
 
 const app = express()
 export default app
@@ -23,24 +23,34 @@ const env = app.get('env')
 /* istanbul ignore next */
 if (env === 'production') {
   app.use(morgan('combined'))
-}
-else if (env === 'development') {
+} else if (env === 'development') {
   app.use(morgan('dev'))
 }
 
-app.use(bodyParser.json({
-  type: [ 'application/json', 'application/vnd.api+json' ]
-}))
+app.use(
+  bodyParser.json({
+    type: ['application/json', 'application/vnd.api+json']
+  })
+)
 
-app.use(jwt({
-  client:     redis.createClient(config.redis.port, config.redis.host, config.redis.options),
-  secret:     config.login.secret,
-  keyspace:   'session:',
-  maxAge:     24 * 60 * 60, // seconds
-  algorithm:  'HS256', // sha256
-  requestKey: 'session',
-  requestArg: 'Authorization'
-}))
+// eslint-disable-next-line no-magic-numbers
+const sessionLifeTime = 24 * 60 * 60 // 1 day
+
+app.use(
+  jwt({
+    client: redis.createClient(
+      config.redis.port,
+      config.redis.host,
+      config.redis.options
+    ),
+    secret: config.login.secret,
+    keyspace: 'session:',
+    maxAge: sessionLifeTime,
+    algorithm: 'HS256', // sha256
+    requestKey: 'session',
+    requestArg: 'Authorization'
+  })
+)
 app.use(passport.initialize())
 app.use(passport.session())
 app.use('/api/v1', login)
@@ -49,7 +59,7 @@ app.use('/api/v1', passwordreset)
 app.use((req, res, next) => {
   if (req.isAuthenticated()) return next()
 
-  next({ status: 401, message: 'Not Authorized' })
+  return next({ status: 401, message: 'Not Authorized' })
 })
 
 app.use('/api/v1', userRoute)
@@ -71,6 +81,6 @@ app.use((err, req, res, next) => {
   }
 
   res.send({
-    errors: [ { status, detail } ]
+    errors: [{ status, detail }]
   })
 })

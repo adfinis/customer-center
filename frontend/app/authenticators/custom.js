@@ -1,6 +1,6 @@
 import Ember from 'ember'
 import fetch from 'fetch'
-import Base  from 'ember-simple-auth/authenticators/base'
+import Base from 'ember-simple-auth/authenticators/base'
 
 export default Base.extend({
   serverTokenRevocationEndpoint: '/api/v1/logout',
@@ -10,10 +10,10 @@ export default Base.extend({
     let { identification: username, password } = credentials
 
     let response = await fetch('/api/v1/login', {
-      method:      'post',
+      method: 'post',
       credentials: 'same-origin',
       headers: {
-        'Accept':       'application/vnd.api+json',
+        Accept: 'application/vnd.api+json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ username, password })
@@ -22,7 +22,7 @@ export default Base.extend({
     let json = await response.json()
 
     if (!response.ok) {
-      let { errors: [ { detail } ] } = json
+      let { errors: [{ detail }] } = json
 
       throw new Error(detail)
     }
@@ -37,6 +37,9 @@ export default Base.extend({
     return properties
   },
   invalidate() {
-    return fetch('/api/v1/logout', { method: 'post', credentials: 'same-origin' })
+    return fetch('/api/v1/logout', {
+      method: 'post',
+      credentials: 'same-origin'
+    })
   }
 })

@@ -1,4 +1,4 @@
-import Ember  from 'ember'
+import Ember from 'ember'
 import moment from 'moment'
 
 /**
@@ -8,7 +8,6 @@ import moment from 'moment'
  * @public
  */
 export default Ember.Service.extend({
-
   ajax: Ember.inject.service(),
 
   /**
@@ -23,7 +22,10 @@ export default Ember.Service.extend({
   request(action, params, type = 'get') {
     let data = Object.assign({}, params, { action })
 
-    return this.get('ajax').request('/api/proxy/timescout/service/api.php', { type, data })
+    return this.get('ajax').request('/api/proxy/timescout/service/api.php', {
+      type,
+      data
+    })
   },
 
   /**
@@ -65,22 +67,10 @@ export default Ember.Service.extend({
     return this.request('history')
   },
 
-  /**
-   * Fetch timescout abos
-   *
-   * @return {Promise}
-   * @public
-   */
   fetchAbos(abotypeID) {
     return this.request('aboreload', { abotypeID })
   },
 
-  /**
-   * Send abo time reload request
-   *
-   * @return {Promise}
-   * @public
-   */
   sendTimeLoad(projectID, aboID) {
     return this.request('load', { projectID, aboID }, 'post')
   }

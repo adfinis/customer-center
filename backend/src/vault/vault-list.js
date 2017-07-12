@@ -13,7 +13,6 @@ function stripPrefix(path) {
 }
 
 async function listVault(token, path) {
-  console.log('LIST VAULT', token)
   const rawResponse = await rp(
     auth(token, {
       uri: `${host}${path}?list=true`

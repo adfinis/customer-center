@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import Ember from 'ember'
 import { translationMacro as t } from 'ember-i18n'
 
 const { inject } = Ember
 
 export default Ember.Route.extend({
- 
   /**
    * Timescout service
    *
@@ -25,6 +24,7 @@ export default Ember.Route.extend({
 
   successMessage: t('timescout.abo-reload-success'),
 
+  /* eslint-disable camelcase */
   model({ project_id, abotype_id }) {
     let abos = {
       data: this.get('timescout').fetchAbos(abotype_id),
@@ -40,10 +40,9 @@ export default Ember.Route.extend({
         let value = this.get('timescout').sendTimeLoad(project_id, abo_id)
         this.get('notify').info(this.get('successMessage.string'))
         this.transitionTo('timescout')
-      }
-      catch(err) {
+      } catch (err) {
         this.get('notify').error(err.message)
       }
     }
   }
-});
+})

@@ -7,7 +7,6 @@ import Ember from 'ember'
  * @public
  */
 export default Ember.Route.extend({
-
   /**
    * User route model
    *

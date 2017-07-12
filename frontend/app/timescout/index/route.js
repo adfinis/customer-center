@@ -9,7 +9,6 @@ const { inject } = Ember
  * @public
  */
 export default Ember.Route.extend({
-
   /**
    * Timescout service
    *

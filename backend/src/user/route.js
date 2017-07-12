@@ -1,7 +1,7 @@
 import { Router } from 'express'
 //import User from './user/model'
 
-const router = new Router
+const router = new Router()
 export default router
 
 /**
@@ -12,15 +12,15 @@ export default router
  */
 function userToJSON(user) {
   return {
-    username:  user.get('username'),
+    username: user.get('username'),
     shortname: user.get('shortname'),
     firstName: user.get('firstName'),
-    lastName:  user.get('lastName'),
-    email:     user.get('email'),
-    language:  user.get('language'),
+    lastName: user.get('lastName'),
+    email: user.get('email'),
+    language: user.get('language'),
     sysupport: user.get('sysupport'),
-    groups:    user.getGroupNames(),
-    emails:    user.getEmails()
+    groups: user.getGroupNames(),
+    emails: user.getEmails()
   }
 }
 
@@ -30,7 +30,7 @@ router.get('/user/current', (req, res) => {
   res.send({ data: { user } })
 })
 
-router.put('/user/current', async(req, res, next) => {
+router.put('/user/current', async (req, res, next) => {
   try {
     req.user.set('language', req.body.language)
 
@@ -39,8 +39,7 @@ router.put('/user/current', async(req, res, next) => {
     let user = userToJSON(req.user)
 
     res.send({ data: { user } })
-  }
-  catch (e) {
+  } catch (e) {
     next(e)
   }
 })

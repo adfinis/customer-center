@@ -8,7 +8,8 @@ export default {
     save: 'Speichern',
     delete: 'Löschen',
     edit: 'bearbeiten',
-    search: 'Suchen'
+    search: 'Suchen',
+    empty: 'Keine Einträge gefunden'
   },
 
   login: {

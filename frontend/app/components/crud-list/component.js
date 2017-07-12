@@ -23,9 +23,8 @@ function internal(model) {
       if (curr.key.endsWith('_comment')) {
         prev[prev.length - 1].comment = curr.value
         return prev
-      } else {
-        return [...prev, curr]
       }
+      return [...prev, curr]
     }, [])
 }
 

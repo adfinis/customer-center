@@ -8,7 +8,8 @@ export default {
     save: 'save',
     delete: 'delete',
     edit: 'edit',
-    search: 'Search'
+    search: 'Search',
+    empty: `There's nothing to show here - yet!`
   },
 
   login: {

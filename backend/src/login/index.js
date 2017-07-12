@@ -1,44 +1,47 @@
-import * as fs      from 'fs'
-import express      from 'express'
-import rp           from 'request-promise'
-import passport     from 'passport'
+import * as fs from 'fs'
+import express from 'express'
+import rp from 'request-promise'
+import passport from 'passport'
 import LdapStrategy from 'passport-ldapauth'
-import User         from '../user/model'
-import config       from '../config'
+import User from '../user/model'
+import config from '../config'
 
-passport.use('ldapauth-user', new LdapStrategy({
-  server: Object.assign({}, config.ldap, config.login.ldap)
-}))
-passport.use('ldapauth-customer', new LdapStrategy({
-  server: Object.assign({}, config.ldap, config.login.ldap_customer)
-}))
-
+passport.use(
+  'ldapauth-user',
+  new LdapStrategy({
+    server: Object.assign({}, config.ldap, config.login.ldap)
+  })
+)
+passport.use(
+  'ldapauth-customer',
+  new LdapStrategy({
+    server: Object.assign({}, config.ldap, config.login.ldap_customer)
+  })
+)
 
 // Passport doesn't set req.user directly after login
 // save user in weakmap with the ldap response as key
-let users = new WeakMap
+let users = new WeakMap()
 
-passport.serializeUser(async(ldap, done) => {
+passport.serializeUser(async (ldap, done) => {
   try {
     users.set(ldap, await User.syncLdap(ldap))
     done(null, ldap.uid)
-  }
-  catch (e) {
+  } catch (e) {
     done(e)
   }
 })
-passport.deserializeUser(async(uid, done) => {
+passport.deserializeUser(async (uid, done) => {
   try {
     let user = await new User({ username: uid }).fetch({ required: true })
 
     done(null, user)
-  }
-  catch (e) {
+  } catch (e) {
     done(e)
   }
 })
 
-const router = new express.Router
+const router = new express.Router()
 export default router
 
 /**
@@ -50,7 +53,7 @@ export default router
 function getLanguage(acceptLanguage) {
   // Example string: en-US,en-GB;q=0.8,en;q=0.7,de-CH;q=0.5,de-DE;q=0.3,de;q=0.2
   let languages = acceptLanguage.split(',')
-  let language  = languages.find(l => {
+  let language = languages.find(l => {
     if (l.startsWith('en')) {
       return true
     }
@@ -64,13 +67,13 @@ function getLanguage(acceptLanguage) {
     language = language.split('-')[0]
   }
 
-  if ([ 'en', 'de' ].includes(language)) {
+  if (['en', 'de'].includes(language)) {
     return language
   }
 }
 
 router.post('/login', (req, res, next) => {
-  login('ldapauth-user', req, res, (err) => {
+  login('ldapauth-user', req, res, err => {
     if (err) {
       return login('ldapauth-customer', req, res, next)
     }
@@ -80,14 +83,14 @@ router.post('/login', (req, res, next) => {
 
 function login(strategy, req, res, next) {
   passport.authenticate(strategy, (err, ldapUser, info, status) => {
-    if (err)       return next(err)
+    if (err) return next(err)
     if (!ldapUser) return next({ status, message: info.message })
 
     if (!ldapUser.lang && req.headers['accept-language']) {
       ldapUser.lang = getLanguage(req.headers['accept-language'])
     }
 
-    req.login(ldapUser, async (loginError) => {
+    req.login(ldapUser, async loginError => {
       if (loginError) return next(loginError)
 
       let claims = {
@@ -101,16 +104,15 @@ function login(strategy, req, res, next) {
       try {
         const resp = await rp({
           method: 'POST',
-          uri: `${host}v1/auth/ldap/login/${req.body.username}`,
+          uri: `${host}v1/auth/userpass/login/${req.body.username}`,
           body: {
             password: req.body.password
           },
           json: true,
-          ca: fs.readFileSync(ca)
+          ca: ca ? fs.readFileSync(ca) : undefined
         })
         req.session.vaultToken = resp.auth.client_token
-      }
-      catch (e) {
+      } catch (e) {
         console.log('vault auth error', e)
       }
 

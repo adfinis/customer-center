@@ -36,10 +36,13 @@ export default Base.extend({
 
     return properties
   },
-  invalidate() {
+  invalidate({ data }) {
     return fetch('/api/v1/logout', {
       method: 'post',
-      credentials: 'same-origin'
+      credentials: 'same-origin',
+      headers: {
+        'X-Authorization': data.token
+      }
     })
   }
 })

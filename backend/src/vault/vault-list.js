@@ -13,30 +13,34 @@ function stripPrefix(path) {
 }
 
 async function listVault(token, path) {
-  const rawResponse = await rp(
-    auth(token, {
-      uri: `${host}${path}?list=true`
-    })
-  )
-  const resp = JSON.parse(rawResponse)
-  const result = {}
-  if (resp.data && resp.data.keys) {
-    result.values = resp.data.keys
-      .filter(key => !key.endsWith('/'))
-      .reduce((res, key) => {
-        res[key] = { path: stripPrefix(path + key) }
-        return res
-      }, {})
-
-    result.children = {}
-    await Promise.all(
-      resp.data.keys.filter(key => key.endsWith('/')).map(async key => {
-        result.children[key] = await listVault(token, path + key)
+  try {
+    const rawResponse = await rp(
+      auth(token, {
+        uri: `${host}${path}?list=true`
       })
     )
-  }
+    const resp = JSON.parse(rawResponse)
+    const result = {}
+    if (resp.data && resp.data.keys) {
+      result.values = resp.data.keys
+        .filter(key => !key.endsWith('/'))
+        .reduce((res, key) => {
+          res[key] = { path: stripPrefix(path + key) }
+          return res
+        }, {})
 
-  return result
+      result.children = {}
+      await Promise.all(
+        resp.data.keys.filter(key => key.endsWith('/')).map(async key => {
+          result.children[key] = await listVault(token, path + key)
+        })
+      )
+    }
+
+    return result
+  } catch (e) {
+    throw e
+  }
 }
 
 export default function vaultListhandler(service) {
@@ -45,8 +49,15 @@ export default function vaultListhandler(service) {
   auth = getAuthenticator(service.ca)
 
   return wrap(async (req, res) => {
-    res.send(
-      await listVault(req.session.vaultToken, service.prefix + service.backend)
-    )
+    try {
+      res.send(
+        await listVault(
+          req.session.vaultToken,
+          service.prefix + service.backend
+        )
+      )
+    } catch (e) {
+      res.status(e.statusCode).send(e.message)
+    }
   })
 }

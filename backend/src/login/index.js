@@ -121,7 +121,25 @@ function loginSuccessful(req, res, next, ldapUser) {
     })
   })
 }
-router.post('/logout', (req, res) => {
+router.post('/logout', async (req, res) => {
+  const { host, ca } = config.services.find(s => s.type === 'vault')
+  try {
+    await rp({
+      method: 'POST',
+      uri: `${host}v1/auth/token/revoke`,
+      headers: {
+        'X-Vault-Token': req.session.vaultToken
+      },
+      body: {
+        token: req.session.vaultToken
+      },
+      json: true,
+      ca: ca ? fs.readFileSync(ca) : undefined
+    })
+  } catch (e) {
+    console.error('Vault revoke error:', e.message)
+  }
+
   req.logout()
   res.redirect('/login')
 })

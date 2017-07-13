@@ -1,7 +1,7 @@
 import Ember from 'ember'
 
-export function adsyRange(params/*, hash*/) {
-  let [ start, end, step ] = params
+export function adsyRange(params /*, hash*/) {
+  let [start, end, step] = params
   return range(start, end, step)
 }
 
@@ -15,10 +15,11 @@ export default Ember.Helper.helper(adsyRange)
  * @param {number} step Steps to take
  * @return {Array}
  */
+/* eslint-disable */
 function range(start, end, step = 1) {
-  var range       = []
+  var range = []
   var typeofStart = typeof start
-  var typeofEnd   = typeof end
+  var typeofEnd = typeof end
 
   if (step === 0) {
     throw new TypeError('Step cannot be zero')
@@ -26,8 +27,7 @@ function range(start, end, step = 1) {
 
   if (typeofStart === 'undefined' || typeofEnd === 'undefined') {
     throw new TypeError('Must pass start and end arguments')
-  }
-  else if (typeofStart !== typeofEnd) {
+  } else if (typeofStart !== typeofEnd) {
     throw new TypeError('Start and end arguments must be of same type')
   }
 
@@ -42,9 +42,7 @@ function range(start, end, step = 1) {
       range.push(start)
       start += step
     }
-  }
-  else if (typeofStart === 'string') {
-
+  } else if (typeofStart === 'string') {
     if (start.length !== 1 || end.length !== 1) {
       throw TypeError('Only strings with one character are supported')
     }
@@ -56,8 +54,7 @@ function range(start, end, step = 1) {
       range.push(String.fromCharCode(start))
       start += step
     }
-  }
-  else {
+  } else {
     throw new TypeError('Only string and number types are supported')
   }
 

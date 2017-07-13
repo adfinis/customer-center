@@ -7,7 +7,6 @@ import Ember from 'ember'
  * @public
  */
 export default Ember.Route.extend({
-
   /**
    * Setup the controller
    *
@@ -17,6 +16,6 @@ export default Ember.Route.extend({
    */
   setupController(controller, model) {
     controller.set('model', model)
-    controller.set('user',  this.modelFor('protected'))
+    controller.set('user', this.modelFor('protected'))
   }
 })

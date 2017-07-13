@@ -1,4 +1,4 @@
-import Ember  from 'ember'
+import Ember from 'ember'
 import moment from 'moment'
 
 const { $ } = Ember
@@ -48,9 +48,14 @@ function setLocale(i18n, locale) {
  */
 function getNavigatorLanguage() {
   let { navigator = {} } = window
-  let locale             = navigator.languages ? navigator.languages[0] : null
+  let locale = navigator.languages ? navigator.languages[0] : null
 
-  return locale || navigator.language || navigator.browserLanguage || navigator.userLanguage
+  return (
+    locale ||
+    navigator.language ||
+    navigator.browserLanguage ||
+    navigator.userLanguage
+  )
 }
 
 export default {

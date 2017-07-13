@@ -1,6 +1,6 @@
-import * as fs   from 'fs'
-import url       from 'url'
-import path      from 'path'
+import * as fs from 'fs'
+import url from 'url'
+import path from 'path'
 import httpProxy from 'express-http-proxy'
 
 /**
@@ -10,7 +10,6 @@ import httpProxy from 'express-http-proxy'
  * @public
  */
 export default class VaultProxy {
-
   /**
    * Creates a new vault proxy
    *
@@ -30,14 +29,13 @@ export default class VaultProxy {
    * @public
    */
   constructor(service) {
-    this.host      = service.host
-    this.token     = service.token
-    this.prefix    = service.prefix
+    this.host = service.host
+    this.prefix = service.prefix
     if (service.ca) {
-        this.ca = fs.readFileSync(service.ca)
+      this.ca = fs.readFileSync(service.ca)
     }
 
-    this.forwardPath     = this.forwardPath.bind(this)
+    this.forwardPath = this.forwardPath.bind(this)
     this.decorateRequest = this.decorateRequest.bind(this)
   }
 
@@ -63,8 +61,8 @@ export default class VaultProxy {
    */
   decorateRequest(req) {
     if (this.token) {
-      req.headers['X-Vault-Token'] = this.token
-      req.ca = this.ca
+      req.headers['X-Vault-Token'] = req.session.token
     }
+    req.ca = this.ca
   }
 }

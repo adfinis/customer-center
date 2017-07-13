@@ -9,7 +9,7 @@ export default {
     delete: 'delete',
     edit: 'edit',
     search: 'Search',
-    empty: `There's nothing to show here - yet!`
+    empty: 'There is nothing to show here - yet!'
   },
 
   login: {

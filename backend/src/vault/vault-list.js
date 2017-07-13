@@ -1,6 +1,5 @@
 import rp from 'request-promise'
 import wrap from 'express-async-wrap'
-import _flattenDeep from 'lodash/flattenDeep'
 
 import { getAuthenticator } from './vault-custom'
 
@@ -13,9 +12,9 @@ function stripPrefix(path) {
   return path
 }
 
-async function listVault(path) {
+async function listVault(token, path) {
   const rawResponse = await rp(
-    auth({
+    auth(token, {
       uri: `${host}${path}?list=true`
     })
   )
@@ -32,7 +31,7 @@ async function listVault(path) {
     result.children = {}
     await Promise.all(
       resp.data.keys.filter(key => key.endsWith('/')).map(async key => {
-        result.children[key] = await listVault(path + key)
+        result.children[key] = await listVault(token, path + key)
       })
     )
   }
@@ -40,22 +39,21 @@ async function listVault(path) {
   return result
 }
 
-function findPaths(node) {
-  const paths = Object.keys(node.values).map(key => node.values[key].path)
-  return [
-    ...paths,
-    ..._flattenDeep(
-      Object.keys(node.children).map(key => findPaths(node.children[key]))
-    )
-  ]
-}
-
 export default function vaultListhandler(service) {
   host = service.host
   prefix = service.prefix
-  auth = getAuthenticator(service.token, service.ca)
+  auth = getAuthenticator(service.ca)
 
   return wrap(async (req, res) => {
-    res.send(await listVault(service.prefix + service.backend))
+    try {
+      res.send(
+        await listVault(
+          req.session.vaultToken,
+          service.prefix + service.backend
+        )
+      )
+    } catch (e) {
+      res.status(e.statusCode).send(e.message)
+    }
   })
 }

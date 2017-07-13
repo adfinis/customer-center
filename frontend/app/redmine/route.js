@@ -5,9 +5,9 @@ const { inject } = Ember
 
 export default Ember.Route.extend({
   redmine: inject.service(),
-  i18n:    inject.service(),
+  i18n: inject.service(),
 
-  errorName:    t('redmine.error'),
+  errorName: t('redmine.error'),
   errorDetails: t('redmine.error-noprojects'),
 
   model() {
@@ -17,7 +17,7 @@ export default Ember.Route.extend({
   afterModel(model) {
     if (!model.total) {
       return Promise.reject({
-        textStatus:  this.get('errorName'),
+        textStatus: this.get('errorName'),
         errorThrown: this.get('errorDetails')
       })
     }

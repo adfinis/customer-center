@@ -9,7 +9,6 @@ const { inject } = Ember
  * @public
  */
 export default Ember.Route.extend({
-
   /**
    * Redmine service to fetch redmine issues
    *
@@ -25,7 +24,6 @@ export default Ember.Route.extend({
    * @public
    */
   queryParams: {
-
     /**
      * Redmine query params list limit
      *

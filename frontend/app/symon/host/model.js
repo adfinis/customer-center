@@ -9,14 +9,13 @@ import Service from 'adsycc/symon/service/model'
  * @public
  */
 export default Ember.Object.extend({
-
   /**
    * Name of the Host
    *
    * @property {string} name
    * @public
    */
-  name:  null,
+  name: null,
 
   /**
    * State of the Host
@@ -54,8 +53,9 @@ export default Ember.Object.extend({
    * @public
    */
   messages: Ember.computed('state', 'services.@each.state', function() {
+    // eslint-disable-next-line new-cap
     let messages = Ember.A()
-    
+
     if (this.get('state') !== STATE_OK) {
       messages.pushObject({
         text: this.get('name'),
@@ -97,8 +97,6 @@ export default Ember.Object.extend({
    * @public
    */
   badServices: Ember.computed('services.@each.state', function() {
-    return this.get('services').filter(s =>
-      s.get('ccState') > STATE_OK
-    )
+    return this.get('services').filter(s => s.get('ccState') > STATE_OK)
   })
-});
+})

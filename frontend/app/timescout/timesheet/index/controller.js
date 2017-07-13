@@ -9,14 +9,13 @@ const { computed } = Ember
  * @public
  */
 export default Ember.Controller.extend({
-
   /**
    * Query params of this controller
    *
    * @property {string[]} queryParams
    * @public
    */
-  queryParams: [ 'page', 'limit' ],
+  queryParams: ['page', 'limit'],
 
   /**
    * Current page

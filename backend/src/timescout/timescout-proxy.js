@@ -1,4 +1,4 @@
-import url       from 'url'
+import url from 'url'
 import httpProxy from 'express-http-proxy'
 
 /**
@@ -8,7 +8,6 @@ import httpProxy from 'express-http-proxy'
  * @public
  */
 export default class TimescoutProxy {
-
   /**
    * Creates a new TimescoutProxy intance
    *
@@ -28,10 +27,10 @@ export default class TimescoutProxy {
    * @public
    */
   constructor(service) {
-    this.host   = service.host
+    this.host = service.host
     this.apiKey = service.apiKey
 
-    this.forwardPath     = this.forwardPath.bind(this)
+    this.forwardPath = this.forwardPath.bind(this)
     this.decorateRequest = this.decorateRequest.bind(this)
   }
 

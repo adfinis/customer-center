@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "babel-node src/index.js",
-    "watch": "DEBUG=* nodemon --exec npm run start",
+    "watch": "nodemon --exec npm run start",
     "build": "babel src -d dist",
     "serve": "node dist/index.js",
     "test": "make test"
@@ -38,7 +38,6 @@
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
-    "babel-eslint": "^6",
     "babel-plugin-transform-async-to-generator": "^6.8.0",
     "babel-plugin-transform-es2015-destructuring": "^6.9.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.11.5",

@@ -9,8 +9,10 @@ import Ember from 'ember'
  * @return {boolean}
  */
 function match(name, node, term) {
-  return name.indexOf(term) > -1
-    || Object.keys(node).some(key => node[key].indexOf(term) > -1)
+  return (
+    name.indexOf(term) > -1 ||
+    Object.keys(node).some(key => node[key].indexOf(term) > -1)
+  )
 }
 
 /**
@@ -20,8 +22,10 @@ function match(name, node, term) {
  * @return {boolean}
  */
 function isNotEmpty(node) {
-  return Object.keys(node.values).length > 0
-    || Object.keys(node.children).some(name => isNotEmpty(node.children[name]))
+  return (
+    Object.keys(node.values).length > 0 ||
+    Object.keys(node.children).some(name => isNotEmpty(node.children[name]))
+  )
 }
 
 /**
@@ -71,8 +75,7 @@ export default Ember.Component.extend({
       const term = this.get('search')
       if (term === '') {
         this.set('tree', this.get('model'))
-      }
-      else {
+      } else {
         this.set('tree', deepFilterModel(this.get('model'), term))
       }
     }

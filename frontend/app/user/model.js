@@ -9,7 +9,6 @@ const { computed } = Ember
  * @public
  */
 export default Ember.Object.extend({
-
   ajax: Ember.inject.service(),
 
   /**
@@ -28,8 +27,8 @@ export default Ember.Object.extend({
    */
   async save() {
     let res = await this.get('ajax').request('/api/v1/user/current', {
-      type:        'put',
-      data:        JSON.stringify(this),
+      type: 'put',
+      data: JSON.stringify(this),
       contentType: 'application/json'
     })
 
@@ -44,15 +43,15 @@ export default Ember.Object.extend({
    */
   toJSON() {
     return {
-      username:  this.username,
+      username: this.username,
       shortname: this.shortname,
       firstName: this.firstName,
-      lastName:  this.lastName,
+      lastName: this.lastName,
       sysupport: this.sysupport,
-      email:     this.email,
-      language:  this.language,
-      groups:    this.groups,
-      emails:    this.emails
+      email: this.email,
+      language: this.language,
+      groups: this.groups,
+      emails: this.emails
     }
   },
 
@@ -108,8 +107,9 @@ export default Ember.Object.extend({
    * @public
    */
   wikis: computed('groups.[]', function() {
-    return this.groups.filter(g => g.endsWith('-wiki'))
-                      .map(g => g.split('-')[0])
+    return this.groups
+      .filter(g => g.endsWith('-wiki'))
+      .map(g => g.split('-')[0])
   }),
 
   /**

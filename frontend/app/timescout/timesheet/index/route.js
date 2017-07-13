@@ -9,7 +9,6 @@ const { inject } = Ember
  * @public
  */
 export default Ember.Route.extend({
-
   /**
    * Timescout service
    *
@@ -42,7 +41,7 @@ export default Ember.Route.extend({
    */
   setupController(controller, model) {
     controller.set('project', this.modelFor('timescout.timesheet'))
-    controller.set('model',   model)
+    controller.set('model', model)
     controller.set('loading', false)
   },
 
@@ -63,7 +62,6 @@ export default Ember.Route.extend({
    * @public
    */
   actions: {
-
     /**
      * Set loading state
      *

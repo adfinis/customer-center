@@ -8,8 +8,8 @@ import list from './vault-list'
 
 let host, prefix, auth
 
-export function getAuthenticator(token, caPath) {
-  return options => {
+export function getAuthenticator(caPath) {
+  return (token, options) => {
     return Object.assign({}, options, {
       headers: { 'X-Vault-Token': token },
       ca: caPath ? fs.readFileSync(caPath) : undefined
@@ -26,7 +26,7 @@ async function get(req, res) {
 
   const uri = url.resolve(host, prefix) + path
 
-  const rawResponse = await rp(auth({ uri }))
+  const rawResponse = await rp(auth(req.session.vaultToken, { uri }))
   const resp = JSON.parse(rawResponse)
   res.send({
     secret: resp.data
@@ -36,7 +36,7 @@ async function get(req, res) {
 export default function vaultGet(service) {
   host = service.host
   prefix = service.prefix
-  auth = getAuthenticator(service.token, service.ca)
+  auth = getAuthenticator(service.ca)
 
   const router = new Router()
   router.use(bodyParser.json())

@@ -1,18 +1,18 @@
-import fs         from 'fs'
-import crypto     from 'crypto'
+import fs from 'fs'
+import crypto from 'crypto'
 import { Router } from 'express'
-import redis      from 'redis'
-import ldap       from 'ldapjs'
+import redis from 'redis'
+import ldap from 'ldapjs'
 import nodemailer from 'nodemailer'
-import transport  from 'nodemailer-smtp-transport'
+import transport from 'nodemailer-smtp-transport'
 import Handlebars from 'handlebars'
-import denodeify  from 'denodeify'
-import app        from './app'
-import PWGen      from './pwgen'
-import User       from './user/model'
-import config     from '../config.json'
+import denodeify from 'denodeify'
+import app from './app'
+import PWGen from './pwgen'
+import User from './user/model'
+import config from '../config.json'
 
-const router = new Router
+const router = new Router()
 export default router
 
 const client = redis.createClient(
@@ -27,39 +27,41 @@ const sendMail = denodeify(mailer.sendMail.bind(mailer))
 const readFile = denodeify(fs.readFile)
 
 // TODO: Should we report errors on this route?
-router.post('/send-new-password', async(req, res, next) => {
+// eslint-disable-next-line max-statements
+router.post('/send-new-password', async (req, res, next) => {
   try {
     let ident = req.body.identification
     let token = await createToken(token)
-    let user  = await new User({ username: ident }).fetch(/*{ required: true }*/)
+    let user = await new User({ username: ident }).fetch(/*{ required: true }*/)
 
     if (user && user.get('email')) {
       await setToken(ident, token)
 
       try {
         await sendMail({
-          'from':    `noreply@${config.application.host}`,
-          'to':      user.get('email'),
-          'subject': getMailSubject(user.get('language')),
-          'text':    await createMailBody(user, token)
+          from: `noreply@${config.application.host}`,
+          to: user.get('email'),
+          subject: getMailSubject(user.get('language')),
+          text: await createMailBody(user, token)
         })
-      }
-      catch (err) {
+      } catch (err) {
         app.log.error(err.message)
       }
     }
 
-    res.send({ data: {
-      message: 'Great success!',
-      href: 'https://www.youtube.com/watch?v=J88-RdWnNT0'
-    } })
-  }
-  catch (e) {
+    res.send({
+      data: {
+        message: 'Great success!',
+        href: 'https://www.youtube.com/watch?v=J88-RdWnNT0'
+      }
+    })
+  } catch (e) {
     next(e)
   }
 })
 
-router.get('/reset-password/:token', async(req, res, next) => {
+// eslint-disable-next-line max-statements
+router.get('/reset-password/:token', async (req, res, next) => {
   try {
     if (!req.params.token) {
       return next({ status: 404, message: 'Not found' })
@@ -78,8 +80,7 @@ router.get('/reset-password/:token', async(req, res, next) => {
     await setPassword(ident, password)
 
     res.send({ data: { password } })
-  }
-  catch (e) {
+  } catch (e) {
     next(e)
   }
 })
@@ -97,7 +98,7 @@ function getMailSubject(language = 'en') {
 
 async function createMailBody(user, token) {
   let filename = `password-reset.${user.get('language') || 'en'}.hbs`
-  let source   = await readFile(`${__dirname}/../templates/${filename}`, 'utf8')
+  let source = await readFile(`${__dirname}/../templates/${filename}`, 'utf8')
   let template = Handlebars.compile(source)
 
   let url = `https://${config.application.host}/login/new-password/${token}`
@@ -106,7 +107,7 @@ async function createMailBody(user, token) {
 }
 
 function createPassword(len) {
-  let gen = new PWGen
+  let gen = new PWGen()
   gen.maxLength = len
   return gen.generate()
 }
@@ -122,8 +123,10 @@ function createToken() {
 
 function setToken(ident, token) {
   return new Promise((resolve, reject) => {
-    client.set(`pw-reset-token-${token}`, ident, err =>
-      err ? reject(err) : resolve()
+    client.set(
+      `pw-reset-token-${token}`,
+      ident,
+      err => (err ? reject(err) : resolve())
     )
     client.expire(`pw-reset-token-${token}`, config.passwordReset.expire)
   })
@@ -131,17 +134,16 @@ function setToken(ident, token) {
 
 function getIdent(token) {
   return new Promise((resolve, reject) =>
-    client.get(`pw-reset-token-${token}`, (err, ident) =>
-      err ? reject(err) : resolve(ident)
+    client.get(
+      `pw-reset-token-${token}`,
+      (err, ident) => (err ? reject(err) : resolve(ident))
     )
   )
 }
 
 function ldapBind(ldapClient, dn, password) {
   return new Promise((resolve, reject) =>
-    ldapClient.bind(dn, password, err =>
-      err ? reject(err) : resolve()
-    )
+    ldapClient.bind(dn, password, err => (err ? reject(err) : resolve()))
   )
 }
 
@@ -153,23 +155,21 @@ function ldapFindOne(ldapClient, searchBase, options) {
       let searchEntry
 
       // eslint-disable-next-line no-return-assign
-      res.once('searchEntry', entry => searchEntry = entry)
-      res.once('error',       reject)
-      res.once('end',         result => resolve(searchEntry))
+      res.once('searchEntry', entry => (searchEntry = entry))
+      res.once('error', reject)
+      res.once('end', result => resolve(searchEntry))
     })
   )
 }
 
 function ldapModify(ldapClient, dn, changes) {
   return new Promise((resolve, reject) =>
-    ldapClient.modify(dn, changes, err =>
-      err ? reject(err) : resolve()
-    )
+    ldapClient.modify(dn, changes, err => (err ? reject(err) : resolve()))
   )
 }
 
 async function setPassword(uid, password) {
-  let { url, bindDn, bindCredentials }            = config.ldap
+  let { url, bindDn, bindCredentials } = config.ldap
   let { passwordField, searchBase, searchFilter } = config.login.ldap
   let ldapClient = ldap.createClient({ url })
 
@@ -177,12 +177,12 @@ async function setPassword(uid, password) {
 
   try {
     let { dn, attributes } = await ldapFindOne(ldapClient, searchBase, {
-      filter:     searchFilter.replace('{{username}}', uid),
-      attributes: [ 'dn', passwordField ],
-      scope:      'sub'
+      filter: searchFilter.replace('{{username}}', uid),
+      attributes: ['dn', passwordField],
+      scope: 'sub'
     })
 
-    let { vals: [ oldPassword ] } = attributes.find(a => a.type === passwordField)
+    let { vals: [oldPassword] } = attributes.find(a => a.type === passwordField)
 
     await ldapModify(ldapClient, dn, [
       new ldap.Change({
@@ -198,8 +198,7 @@ async function setPassword(uid, password) {
         }
       })
     ])
-  }
-  finally {
+  } finally {
     ldapClient.unbind()
   }
 }

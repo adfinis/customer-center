@@ -1,11 +1,7 @@
-import url       from 'url'
+import url from 'url'
 import httpProxy from 'express-http-proxy'
 
-const ALLOWED_ENDPOINTS = [
-  '/issues.json',
-  '/projects.json',
-  '/trackers.json'
-]
+const ALLOWED_ENDPOINTS = ['/issues.json', '/projects.json', '/trackers.json']
 
 /**
  * Redmine Proxy
@@ -14,7 +10,6 @@ const ALLOWED_ENDPOINTS = [
  * @public
  */
 export default class RedmineProxy {
-
   /**
    * Creates a new redmine proxy
    *
@@ -36,13 +31,13 @@ export default class RedmineProxy {
    * @public
    */
   constructor(service) {
-    this.host      = service.host
-    this.apiKey    = service.apiKey
+    this.host = service.host
+    this.apiKey = service.apiKey
     this.basicAuth = service.basicAuth
 
-    this.filter          = this.filter.bind(this)
-    this.intercept       = this.intercept.bind(this)
-    this.forwardPath     = this.forwardPath.bind(this)
+    this.filter = this.filter.bind(this)
+    this.intercept = this.intercept.bind(this)
+    this.forwardPath = this.forwardPath.bind(this)
     this.decorateRequest = this.decorateRequest.bind(this)
   }
 

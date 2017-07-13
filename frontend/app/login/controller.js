@@ -3,7 +3,7 @@ import Ember from 'ember'
 const { inject } = Ember
 
 export default Ember.Controller.extend({
-  errorMessage:  {},
+  errorMessage: {},
   passwordReset: inject.controller('login.password-reset'),
   notify: inject.service(),
   session: inject.service(),
@@ -16,12 +16,16 @@ export default Ember.Controller.extend({
       try {
         let credentials = this.getProperties('identification', 'password')
 
-        await this.get('session').authenticate('authenticator:custom', credentials)
-      }
-      catch (e) {
-        this.set('errorMessage', this.get('notify').error(e.message, { closeAfter: null }))
-      }
-      finally {
+        await this.get('session').authenticate(
+          'authenticator:custom',
+          credentials
+        )
+      } catch (e) {
+        this.set(
+          'errorMessage',
+          this.get('notify').error(e.message, { closeAfter: null })
+        )
+      } finally {
         this.set('loading', false)
       }
     },

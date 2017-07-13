@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 const { inject } = Ember
 
@@ -9,7 +9,6 @@ const { inject } = Ember
  * @public
  */
 export default Ember.Route.extend({
-
   /**
    * Symon service to fetch SyMonitoring hosts
    *
@@ -27,4 +26,4 @@ export default Ember.Route.extend({
   model() {
     return this.get('symon').fetchHosts()
   }
-});
+})

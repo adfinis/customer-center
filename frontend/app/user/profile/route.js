@@ -9,7 +9,6 @@ const { inject, on } = Ember
  * @public
  */
 export default Ember.Route.extend({
-
   /**
    * Session service
    *
@@ -33,7 +32,7 @@ export default Ember.Route.extend({
    */
   async model() {
     let user = this.modelFor('protected')
-    let res  = await this.get('ajax').request('/api/v1/user/current')
+    let res = await this.get('ajax').request('/api/v1/user/current')
 
     user.setProperties(res.data.user)
 

@@ -1,4 +1,4 @@
-import Ember  from 'ember'
+import Ember from 'ember'
 import config from '../../config/environment'
 
 const { computed, observer, inject } = Ember
@@ -10,7 +10,6 @@ const { computed, observer, inject } = Ember
  * @public
  */
 export default Ember.Component.extend({
-
   /**
    * The request tracker host name
    *
@@ -123,7 +122,6 @@ export default Ember.Component.extend({
    * @property {Object} actions
    */
   actions: {
-
     /**
      * Update model action, fetches new issues from rt
      *
@@ -134,21 +132,19 @@ export default Ember.Component.extend({
       this.set('loading', true)
 
       try {
-        let rt     = this.get('rt')
+        let rt = this.get('rt')
         let params = {
-          limit:  this.get('limit'),
+          limit: this.get('limit'),
           offset: this.get('offset'),
           emails: this.get('emails')
         }
 
         let { issues, total } = await rt.fetchIssues(params)
         this.set('issues', issues)
-        this.set('total',  total)
-      }
-      catch (e) {
+        this.set('total', total)
+      } catch (e) {
         this.set('error', e)
-      }
-      finally {
+      } finally {
         this.set('loading', false)
       }
     }

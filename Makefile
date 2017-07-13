@@ -26,5 +26,5 @@ setup-ldap:
 create-user:
 	docker exec -it adsycc_ucs1_1 /usr/ucs/scripts/create-new-user.sh
 
-vault-dummy-data:
-	./tools/docker/vault/scripts/fill-dummy-data.sh
+setup-vault:
+	./tools/docker/vault/scripts/init.sh

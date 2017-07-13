@@ -10,7 +10,6 @@ const { inject } = Ember
  * @public
  */
 export default Ember.Controller.extend({
-
   /**
    * I18n service to change user locale
    *
@@ -26,7 +25,6 @@ export default Ember.Controller.extend({
    * @public
    */
   actions: {
-
     /**
      * Sets the current locale
      *
@@ -53,11 +51,9 @@ export default Ember.Controller.extend({
 
       try {
         await this.model.save()
-      }
-      catch (e) {
+      } catch (e) {
         this.set('error', e)
-      }
-      finally {
+      } finally {
         this.set('loading', false)
       }
     }

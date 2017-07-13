@@ -10,7 +10,6 @@ const { inject } = Ember
  * @public
  */
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
-
   /**
    * Session service, we use the session user for our protected model
    *

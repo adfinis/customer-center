@@ -1,10 +1,11 @@
 import Ember from 'ember'
 import config from './config/environment'
 
-var Router = Ember.Router.extend({
+const Router = Ember.Router.extend({
   location: config.locationType
 })
 
+/* eslint-disable array-callback-return, max-nested-callbacks */
 Router.map(function() {
   this.route('login', function() {
     this.route('password-reset')
@@ -29,7 +30,7 @@ Router.map(function() {
         this.route('index', { path: '/' })
       })
 
-      this.route('abo', { path: '/abo/:project_id/:abotype_id'})
+      this.route('abo', { path: '/abo/:project_id/:abotype_id' })
     })
 
     this.route('user', { resetNamespace: true }, function() {

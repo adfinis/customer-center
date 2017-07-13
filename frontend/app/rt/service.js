@@ -7,7 +7,6 @@ import Ember from 'ember'
  * @public
  */
 export default Ember.Service.extend({
-
   ajax: Ember.inject.service(),
 
   /**
@@ -17,13 +16,15 @@ export default Ember.Service.extend({
    * @return {Object}
    */
   async fetchIssues(params) {
-    let res = await this.get('ajax').request('/api/rt/tickets', { data: params })
+    let res = await this.get('ajax').request('/api/rt/tickets', {
+      data: params
+    })
 
     return {
       issues: res.data.tickets,
-      total:  res.data.total,
+      total: res.data.total,
       offset: res.data.offset,
-      limit:  res.data.limit
+      limit: res.data.limit
     }
   }
 })

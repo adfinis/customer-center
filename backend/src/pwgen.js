@@ -12,27 +12,28 @@
  * Public License.
  */
 
+/* eslint-disable */
 const { random, floor } = Math
 
 const INCLUDE_NUMBER = 1
 const INCLUDE_CAPITAL_LETTER = 1 << 1
 
 const CONSONANT = 1
-const VOWEL     = 1 << 1
-const DIPTHONG  = 1 << 2
+const VOWEL = 1 << 1
+const DIPTHONG = 1 << 2
 const NOT_FIRST = 1 << 3
 
 export default class PWGen {
   constructor() {
-    this.maxLength            = 8
+    this.maxLength = 8
     this.includeCapitalLetter = true
-    this.includeNumber        = true
+    this.includeNumber = true
   }
 
   /* eslint complexity: [ 1, 20 ] */
   generate0() {
-    let result  = ''
-    let prev    = 0
+    let result = ''
+    let prev = 0
     let isFirst = true
 
     let requested = 0
@@ -47,8 +48,8 @@ export default class PWGen {
     let shouldBe = random() < 0.5 ? VOWEL : CONSONANT
 
     while (result.length < this.maxLength) {
-      let i     = floor((this.ELEMENTS.length - 1) * random())
-      let str   = this.ELEMENTS[i][0]
+      let i = floor((this.ELEMENTS.length - 1) * random())
+      let str = this.ELEMENTS[i][0]
       let flags = this.ELEMENTS[i][1]
 
       /* Filter on the basic type of the next element */
@@ -72,8 +73,7 @@ export default class PWGen {
       }
 
       if (requested & INCLUDE_CAPITAL_LETTER) {
-        if ((isFirst || flags & CONSONANT) &&
-            random() > 0.3) {
+        if ((isFirst || flags & CONSONANT) && random() > 0.3) {
           str = str.slice(0, 1).toUpperCase() + str.slice(1, str.length)
           requested &= ~INCLUDE_CAPITAL_LETTER
         }
@@ -102,17 +102,16 @@ export default class PWGen {
        */
       if (shouldBe === CONSONANT) {
         shouldBe = VOWEL
-      }
-      else { /* should_be == VOWEL */
+      } else {
+        /* should_be == VOWEL */
         if (prev & VOWEL || flags & DIPTHONG || random() > 0.3) {
           shouldBe = CONSONANT
-        }
-        else {
+        } else {
           shouldBe = VOWEL
         }
       }
 
-      prev    = flags
+      prev = flags
       isFirst = false
     }
 
@@ -135,44 +134,44 @@ export default class PWGen {
 }
 
 PWGen.prototype.ELEMENTS = [
-  [ 'a',  VOWEL ],
-  [ 'ae', VOWEL | DIPTHONG ],
-  [ 'ah', VOWEL | DIPTHONG ],
-  [ 'ai', VOWEL | DIPTHONG ],
-  [ 'b',  CONSONANT ],
-  [ 'c',  CONSONANT ],
-  [ 'ch', CONSONANT | DIPTHONG ],
-  [ 'd',  CONSONANT ],
-  [ 'e',  VOWEL ],
-  [ 'ee', VOWEL | DIPTHONG ],
-  [ 'ei', VOWEL | DIPTHONG ],
-  [ 'f',  CONSONANT ],
-  [ 'g',  CONSONANT ],
-  [ 'gh', CONSONANT | DIPTHONG | NOT_FIRST ],
-  [ 'h',  CONSONANT ],
-  [ 'i',  VOWEL ],
-  [ 'ie', VOWEL | DIPTHONG ],
-  [ 'j',  CONSONANT ],
-  [ 'k',  CONSONANT ],
-  [ 'l',  CONSONANT ],
-  [ 'm',  CONSONANT ],
-  [ 'n',  CONSONANT ],
-  [ 'ng', CONSONANT | DIPTHONG | NOT_FIRST ],
-  [ 'o',  VOWEL ],
-  [ 'oh', VOWEL | DIPTHONG ],
-  [ 'oo', VOWEL | DIPTHONG],
-  [ 'p',  CONSONANT ],
-  [ 'ph', CONSONANT | DIPTHONG ],
-  [ 'qu', CONSONANT | DIPTHONG],
-  [ 'r',  CONSONANT ],
-  [ 's',  CONSONANT ],
-  [ 'sh', CONSONANT | DIPTHONG],
-  [ 't',  CONSONANT ],
-  [ 'th', CONSONANT | DIPTHONG],
-  [ 'u',  VOWEL ],
-  [ 'v',  CONSONANT ],
-  [ 'w',  CONSONANT ],
-  [ 'x',  CONSONANT ],
-  [ 'y',  CONSONANT ],
-  [ 'z',  CONSONANT ]
+  ['a', VOWEL],
+  ['ae', VOWEL | DIPTHONG],
+  ['ah', VOWEL | DIPTHONG],
+  ['ai', VOWEL | DIPTHONG],
+  ['b', CONSONANT],
+  ['c', CONSONANT],
+  ['ch', CONSONANT | DIPTHONG],
+  ['d', CONSONANT],
+  ['e', VOWEL],
+  ['ee', VOWEL | DIPTHONG],
+  ['ei', VOWEL | DIPTHONG],
+  ['f', CONSONANT],
+  ['g', CONSONANT],
+  ['gh', CONSONANT | DIPTHONG | NOT_FIRST],
+  ['h', CONSONANT],
+  ['i', VOWEL],
+  ['ie', VOWEL | DIPTHONG],
+  ['j', CONSONANT],
+  ['k', CONSONANT],
+  ['l', CONSONANT],
+  ['m', CONSONANT],
+  ['n', CONSONANT],
+  ['ng', CONSONANT | DIPTHONG | NOT_FIRST],
+  ['o', VOWEL],
+  ['oh', VOWEL | DIPTHONG],
+  ['oo', VOWEL | DIPTHONG],
+  ['p', CONSONANT],
+  ['ph', CONSONANT | DIPTHONG],
+  ['qu', CONSONANT | DIPTHONG],
+  ['r', CONSONANT],
+  ['s', CONSONANT],
+  ['sh', CONSONANT | DIPTHONG],
+  ['t', CONSONANT],
+  ['th', CONSONANT | DIPTHONG],
+  ['u', VOWEL],
+  ['v', CONSONANT],
+  ['w', CONSONANT],
+  ['x', CONSONANT],
+  ['y', CONSONANT],
+  ['z', CONSONANT]
 ]

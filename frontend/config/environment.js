@@ -18,9 +18,6 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      redmine: {
-        host: 'redmine1' // docker
-      },
       rt: {
         host: 'rt.sygroup.ch',
         mail: 'support@adfinis-sygroup.ch'
@@ -53,7 +50,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.redmine.host = 'project.adfinis-sygroup.ch'
   }
 
   return ENV

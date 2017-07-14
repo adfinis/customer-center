@@ -12,7 +12,7 @@ export default router
 
 const services = {
   redmine(cfg) {
-    router.use(`/proxy/${cfg.host}`, RedmineProxy.createProxy(cfg))
+    router.use(`/proxy/redmine`, RedmineProxy.createProxy(cfg))
   },
   rt(cfg) {
     router.use('/rt', RTProxy.createProxy(cfg))

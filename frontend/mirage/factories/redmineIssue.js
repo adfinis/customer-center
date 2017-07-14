@@ -1,25 +1,26 @@
 import Mirage, { faker } from 'ember-cli-mirage'
 
+/* eslint-disable camelcase */
 export default Mirage.Factory.extend({
   subject: faker.hacker.phrase,
   description: faker.hacker.phrase,
   done_ratio: 0,
-  project: function() {
+  project() {
     return {
       name: `${faker.company.bsAdjective()} ${faker.commerce.productName()} ${faker.hacker.verb()}`
     }
   },
-  tracker: function() {
+  tracker() {
     return {
       name: faker.list.random('Bug', 'Task', 'Feature', 'Support', 'Project')()
     }
   },
-  status: function() {
+  status() {
     return {
       name: faker.list.random('New', 'Taken', 'Closed', 'Needs Feedback')()
     }
   },
-  priority: function() {
+  priority() {
     return {
       name: 'Urgent'
     }

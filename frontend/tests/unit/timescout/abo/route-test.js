@@ -1,11 +1,10 @@
-import { moduleFor, test } from 'ember-qunit';
+import { moduleFor, test } from 'ember-qunit'
 
 moduleFor('route:timescout/abo', 'Unit | Route | timescout/abo', {
-  // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
-});
+  needs: ['service:timescout', 'service:notify', 'service:i18n']
+})
 
 test('it exists', function(assert) {
-  var route = this.subject();
-  assert.ok(route);
-});
+  const route = this.subject()
+  assert.ok(route)
+})

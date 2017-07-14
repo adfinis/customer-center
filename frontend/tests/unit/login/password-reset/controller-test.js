@@ -1,12 +1,11 @@
-import { moduleFor, test } from 'ember-qunit';
+import { moduleFor, test } from 'ember-qunit'
 
 moduleFor('controller:login/password-reset', {
-  // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
-});
+  needs: ['controller:login', 'service:i18n']
+})
 
 // Replace this with your real tests.
 test('it exists', function(assert) {
-  var controller = this.subject();
-  assert.ok(controller);
-});
+  const controller = this.subject()
+  assert.ok(controller)
+})

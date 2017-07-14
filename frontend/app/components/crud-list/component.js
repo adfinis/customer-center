@@ -11,21 +11,23 @@ function external(internalModel) {
 }
 
 function internal(model) {
-  return Object.keys(model)
-    .map(key => {
-      return Ember.Object.create({
-        key,
-        value: model[key],
-        edit: false
-      })
-    })
-    .reduce((prev, curr) => {
-      if (curr.key.endsWith('_comment')) {
-        prev[prev.length - 1].comment = curr.value
-        return prev
-      }
-      return [...prev, curr]
-    }, [])
+  return !model
+    ? null
+    : Object.keys(model)
+        .map(key => {
+          return Ember.Object.create({
+            key,
+            value: model[key],
+            edit: false
+          })
+        })
+        .reduce((prev, curr) => {
+          if (curr.key.endsWith('_comment')) {
+            prev[prev.length - 1].comment = curr.value
+            return prev
+          }
+          return [...prev, curr]
+        }, [])
 }
 
 export default Ember.Component.extend({

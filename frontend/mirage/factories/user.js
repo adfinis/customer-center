@@ -3,14 +3,14 @@ import Mirage, { faker } from 'ember-cli-mirage'
 export default Mirage.Factory.extend({
   shortname: 'adsy',
   firstName: faker.name.firstName,
-  lastName:  faker.name.lastName,
-  username: function() {
+  lastName: faker.name.lastName,
+  username() {
     return `${this.shortname}-${faker.name.firstName()}`
   },
-  email: function() {
+  email() {
     return `${faker.name.firstName()}@${this.shortname}.com`
   },
-  groups: function() {
+  groups() {
     return [
       `${this.shortname}-redmine`,
       `${this.shortname}-mon`,
@@ -19,8 +19,8 @@ export default Mirage.Factory.extend({
       `${this.shortname}-wiki`
     ]
   },
-  emails: function() {
-    let i     = faker.random.number({ min: 1, max: 3 })
+  emails() {
+    let i = faker.random.number({ min: 1, max: 3 })
     let mails = []
 
     while (i--) {

@@ -18,7 +18,7 @@ install:
   - npm install -g bower
   - npm install --prefix ./frontend
   - npm install --prefix ./backend
-  - cd ./frontend && bower install
+  - cd ./frontend && bower install && cd ..
 
 script:
   - npm test --prefix ./frontend

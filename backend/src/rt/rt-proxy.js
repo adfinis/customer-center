@@ -27,7 +27,7 @@ export default class RTProxy {
   }
 
   // eslint-disable-next-line max-statements
-  async tickets(req, res, next) {
+  async tickets(req, res) {
     const defaultLimit = 5
     let { offset = 0, limit = defaultLimit } = req.query
     let { content: emails = [] } = req.user.get('emails') || {}

@@ -2,8 +2,7 @@ import Ember from 'ember'
 
 const {
   Handlebars: { Utils: { escapeExpression } },
-  Helper: { helper },
-  String: { htmlSafe }
+  Helper: { helper }
 } = Ember
 
 export function nl2br([text]) {

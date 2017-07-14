@@ -1,18 +1,5 @@
 import Ember from 'ember'
 
-function jsonify(data) {
-  return {
-    contentType: 'application/json',
-    data: JSON.stringify(data)
-  }
-}
-
-/**
- * Vault service for fetching secrets
- *
- * @class VaultService
- * @public
- */
 export default Ember.Service.extend({
   ajax: Ember.inject.service(),
 

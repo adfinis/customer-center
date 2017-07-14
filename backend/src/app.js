@@ -70,7 +70,7 @@ app.get('/', (req, res) => {
   res.redirect('/api/v1')
 })
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   let { message: detail, status = 500 } = err
 
   res.status(status)

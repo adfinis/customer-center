@@ -1,5 +1,3 @@
-import * as fs from 'fs'
-import url from 'url'
 import httpProxy from 'express-http-proxy'
 
 const ALLOWED_ENDPOINTS = ['/issues.json', '/projects.json', '/trackers.json']
@@ -10,12 +8,8 @@ const getBasicAuth = function({ username, password }) {
 }
 
 function createProxy(config) {
-  const ca = config.ca ? fs.readFileSync(config.ca) : undefined
-
-  let host = config.https ? `https://${config.host}` : config.host
-
   return httpProxy(config.host, {
-    filter(req, res) {
+    filter(req) {
       if (!req.user.hasRedmineAccess()) {
         return false
       }
@@ -24,8 +18,6 @@ function createProxy(config) {
     },
 
     proxyReqOptDecorator(req, srcReq) {
-      // `req.params.switchUser` was set in `filter()` as a workaround
-      // to the missing user object on `req`
       req.headers['X-Redmine-Switch-User'] = srcReq.user.get('username')
 
       if (config.apiKey) {

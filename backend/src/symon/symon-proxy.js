@@ -73,7 +73,7 @@ export default class SymonProxy {
    * @public
    */
   // eslint-disable-next-line max-statements
-  async hosts(req, res, next) {
+  async hosts(req, res) {
     let symonGroup = req.user.getGroups().find(g => g.cn.endsWith('-mon'))
 
     let settings = {

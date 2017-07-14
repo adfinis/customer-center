@@ -1,5 +1,5 @@
 import Ember from 'ember'
-import { STATE_OK, STATE_WARNING, STATE_ERROR } from 'adsycc/symon/service'
+import { STATE_OK, STATE_WARNING } from 'adsycc/symon/service'
 
 /**
  * Symon Service model

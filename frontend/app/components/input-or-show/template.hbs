@@ -10,6 +10,6 @@
       <i class="fa fa-clipboard"></i> <span class="value">{{value}}</span>
     </a>
   {{else}}
-    <div class="value">{{nl2br value}}</div>
+    <div class="value">{{autolink (nl2br value) true}}</div>
   {{/if}}
 {{/if}}

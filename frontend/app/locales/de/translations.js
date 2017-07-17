@@ -25,7 +25,7 @@ export default {
   },
 
   index: {
-    greeting: 'Guten Tag {{name}}',
+    greeting: 'Willkommen im Customer Center',
     'our-tools': 'Unsere Tools',
     'contact-us': 'Kontaktieren Sie uns',
     'create-ticket': 'Support ticket erstellen',

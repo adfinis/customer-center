@@ -25,7 +25,7 @@ export default {
   },
 
   index: {
-    greeting: 'Hi {{name}}',
+    greeting: 'Welcome',
     'our-tools': 'Our tools',
     'contact-us': 'Contact us',
     'create-ticket': 'Create support ticket',

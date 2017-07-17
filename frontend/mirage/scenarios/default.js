@@ -1,5 +1,4 @@
 export default function(server) {
-
   // Seed your development database using your factories. This
   // data will not be loaded in your tests.
 
@@ -8,7 +7,10 @@ export default function(server) {
   server.createList('rtIssue', 128)
 
   for (let project of server.createList('timescoutProject', 3)) {
-    server.create('timescoutHistory', { projectID: project.id, projectName: project.name })
+    server.create('timescoutHistory', {
+      projectID: project.id,
+      projectName: project.name
+    })
     server.createList('timescoutTimesheet', 96, { projectID: project.id })
   }
 }

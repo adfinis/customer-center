@@ -1,5 +1,6 @@
 import Mirage, { faker } from 'ember-cli-mirage'
 
+/* eslint-disable camelcase */
 export default Mirage.Factory.extend({
   name: faker.hacker.phrase,
   identifier: faker.hacker.phrase,

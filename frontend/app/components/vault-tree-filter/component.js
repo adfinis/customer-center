@@ -50,7 +50,8 @@ function deepFilterModel(model, term) {
 
   const children = Object.keys(model.children)
     .map(name => [name, deepFilterModel(model.children[name], term)])
-    .filter(([key, filteredChild]) => isNotEmpty(filteredChild))
+    // eslint-disable-next-line no-unused-vars
+    .filter(([_, filteredChild]) => isNotEmpty(filteredChild))
     .reduce((res, [key, filteredChild]) => {
       res[key] = filteredChild
       return res

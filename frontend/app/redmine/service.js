@@ -1,5 +1,4 @@
 import Ember from 'ember'
-import config from '../config/environment'
 
 /**
  * Redmine Service for fetching data from a redmine instance

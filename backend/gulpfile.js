@@ -1,7 +1,7 @@
 import gulp from 'gulp'
 import eslint from 'gulp-eslint'
 import mocha from 'gulp-spawn-mocha'
-import coverageEnforcer from 'gulp-istanbul-enforcer'
+// import coverageEnforcer from 'gulp-istanbul-enforcer'
 
 let src = ['src/**/*.js', 'routes/**/*.js', 'middleware/*.js']
 

@@ -37,7 +37,7 @@ export default Ember.Route.extend({
   actions: {
     async load(abo_id, project_id) {
       try {
-        let value = this.get('timescout').sendTimeLoad(project_id, abo_id)
+        this.get('timescout').sendTimeLoad(project_id, abo_id)
         this.get('notify').info(this.get('successMessage.string'))
         this.transitionTo('timescout')
       } catch (err) {

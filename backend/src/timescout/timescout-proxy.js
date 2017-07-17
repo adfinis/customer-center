@@ -42,7 +42,7 @@ export default class TimescoutProxy {
    * @return {string}
    * @public
    */
-  forwardPath(req, res) {
+  forwardPath(req) {
     // `decorateRequest()` does not have an user object, passing
     // through `req.params` here as workaround
     req.params.sysupport = req.user.get('sysupport')

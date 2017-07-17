@@ -2,18 +2,15 @@ import Ember from 'ember'
 
 const {
   Handlebars: { Utils: { escapeExpression } },
-  Helper: { helper },
-  String: { htmlSafe }
+  Helper: { helper }
 } = Ember
 
 export function nl2br([text]) {
   const breakTag = '<br />'
   // eslint-disable-next-line new-cap
-  return new htmlSafe(
-    `${escapeExpression(text)}`.replace(
-      /([^>\r\n]?)(\r\n|\n\r|\r|\n)/g,
-      `$1${breakTag}$2`
-    )
+  return `${escapeExpression(text)}`.replace(
+    /([^>\r\n]?)(\r\n|\n\r|\r|\n)/g,
+    `$1${breakTag}$2`
   )
 }
 

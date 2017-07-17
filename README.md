@@ -26,5 +26,5 @@ cd /usr/src/app/
 make migrations
 
 # fill vault with dummy data
-make vault-dummy-data
+make setup-vault
 ```

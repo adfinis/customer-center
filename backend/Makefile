@@ -1,7 +1,7 @@
 test:
 	NODE_ENV=testing \
 		node_modules/.bin/babel-node \
-		node_modules/.bin/gulp test
+		node_modules/.bin/gulp lint
 
 lint:
 	NODE_ENV=testing \

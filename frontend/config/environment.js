@@ -1,5 +1,4 @@
-/* jshint node: true */
-
+/* eslint-disable */
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'adsycc',
@@ -19,10 +18,6 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      redmine: {
-        host: 'project.adfinis-sygroup.ch'
-        // host: 'redmine1' // docker
-      },
       rt: {
         host: 'rt.sygroup.ch',
         mail: 'support@adfinis-sygroup.ch'
@@ -32,7 +27,7 @@ module.exports = function(environment) {
     i18n: {
       defaultLocale: 'en'
     }
- }
+  }
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -55,7 +50,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
   }
 
   return ENV

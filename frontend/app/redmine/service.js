@@ -11,24 +11,15 @@ export default Ember.Service.extend({
   ajax: Ember.inject.service(),
 
   /**
-   * Redmine host name
-   *
-   * @property {string} host
-   * @public
-   */
-  host: config.APP.redmine.host,
-
-  /**
    * Fetch redmine issues from a host
    *
    * @param {Object} params Query params to filter issues
    * @return {Object}
    */
   async fetchIssues(params) {
-    let res = await this.get('ajax').request(
-      `/api/proxy/${this.host}/issues.json`,
-      { data: params }
-    )
+    let res = await this.get('ajax').request('/api/proxy/redmine/issues.json', {
+      data: params
+    })
 
     return {
       issues: res.issues,
@@ -45,10 +36,9 @@ export default Ember.Service.extend({
    * @return {Object}
    */
   async fetchProjects(params) {
-    let res = await this.get('ajax').request(
-      `/api/proxy/${this.host}/projects.json`,
-      { data: params }
-    )
+    let res = await this.get(
+      'ajax'
+    ).request('/api/proxy/redmine/projects.json', { data: params })
 
     return {
       projects: res.projects,

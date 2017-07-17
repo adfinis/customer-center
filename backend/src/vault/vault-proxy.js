@@ -3,66 +3,26 @@ import url from 'url'
 import path from 'path'
 import httpProxy from 'express-http-proxy'
 
-/**
- * Vault Proxy
- *
- * @class VaultProxy
- * @public
- */
-export default class VaultProxy {
-  /**
-   * Creates a new vault proxy
-   *
-   * @param {Object} service VaultProxy configuration object
-   * @return {Object} An express http proxy middleware
-   * @public
-   */
-  static createProxy(service) {
-    return httpProxy(service.host, new this(service))
-  }
+function createProxy(config) {
+  const ca = config.ca ? fs.readFileSync(config.ca) : undefined
 
-  /**
-   * Constructor of Vault Proxy
-   *
-   * @constructor
-   * @param {Object} service VaultProxy configuration object
-   * @public
-   */
-  constructor(service) {
-    this.host = service.host
-    this.prefix = service.prefix
-    if (service.ca) {
-      this.ca = fs.readFileSync(service.ca)
+  return httpProxy(config.host, {
+    parseReqBody: false,
+
+    proxyReqPathResolver(req) {
+      return url.parse(path.join(config.prefix, req.url)).path
+    },
+
+    proxyReqOptDecorator(proxyReqOpts, { session: { vaultToken } }) {
+      if (vaultToken) {
+        proxyReqOpts.headers['X-Vault-Token'] = vaultToken
+      }
+      if (ca) {
+        proxyReqOpts.ca = ca
+      }
+      return proxyReqOpts
     }
-
-    this.forwardPath = this.forwardPath.bind(this)
-    this.decorateRequest = this.decorateRequest.bind(this)
-  }
-
-  /**
-   * The path to forward
-   *
-   * @param {express.Request}  req The request object
-   * @param {express.Response} res The response object
-   * @return {string}
-   * @public
-   */
-  forwardPath(req, res) {
-    const r = url.parse(path.join(this.prefix, req.url)).path
-    return r
-  }
-
-  /**
-   * Adds vault specific headers
-   *
-   * @param {express.Request} req The request object
-   * @return {void}
-   * @public
-   */
-  decorateRequest(req) {
-    if (this.token) {
-      req.headers['X-Vault-Token'] = req.session.token
-    }
-    req.ca = this.ca
-  }
+  })
 }
+
+module.exports = { createProxy }

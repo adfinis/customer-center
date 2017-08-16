@@ -74,7 +74,7 @@ export default Ember.Object.extend({
    * @public
    */
   redmine: computed('groups.[]', function() {
-    return this.groups.find(g => g.endsWith('-redmine'))
+    return this._checkGroup('redmine')
   }),
 
   /**
@@ -85,7 +85,7 @@ export default Ember.Object.extend({
    * @public
    */
   monitoring: computed('groups.[]', function() {
-    return this.groups.find(g => g.endsWith('-mon'))
+    return this._checkGroup('mon')
   }),
 
   /**
@@ -96,7 +96,7 @@ export default Ember.Object.extend({
    * @public
    */
   sysupport: computed('sysupport', 'groups.[]', function() {
-    return this.groups.find(g => g.endsWith('-sysupport')) && this.sysupport
+    return this._checkGroup('sysupport') && this.sysupport
   }),
 
   /**
@@ -113,7 +113,7 @@ export default Ember.Object.extend({
   }),
 
   /**
-   * Has redmine access
+   * Has rt access
    *
    * @property {boolean} rt
    * @readOnly
@@ -121,5 +121,14 @@ export default Ember.Object.extend({
    */
   rt: computed('email', 'emails.[]', function() {
     return this.email || this.emails.length
-  })
+  }),
+
+  /**
+   * Check if the entry is in the group
+   * @param  {{String}} name  the name of the service. eg redmine, mon etc
+   * @return {{Boolean}}      true if found in the user groups
+   */
+  _checkGroup(name) {
+    return this.groups.find(g => g.endsWith(`-${name}`))
+  }
 })

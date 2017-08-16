@@ -1,9 +1,11 @@
 #!/bin/bash
+cd "$(dirname "$0")"
 
 export VAULT_ADDR=http://127.0.0.1:8200
 vault auth myroot
 vault auth-enable userpass
-vault write auth/userpass/users/Test1-admin password=test1123qwe policies=root
+vault write sys/policy/my-policy rules=@my-policy.hcl
+vault write auth/userpass/users/Test1-admin password=test1123qwe policies=my-policy
 
 # write some secrets
 for i in {1..4}

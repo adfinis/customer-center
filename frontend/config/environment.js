@@ -27,7 +27,9 @@ module.exports = function(environment) {
       rt: {
         host: 'rt.sygroup.ch',
         mail: 'support@adfinis-sygroup.ch'
-      }
+      },
+      // Services : redmine, mon, sysupport, wiki, rt, vault
+      enabledServices: ['vault']
     },
 
     i18n: {

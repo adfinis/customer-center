@@ -1,39 +1,41 @@
 {{#sy-sidenav-list}}
   {{sy-sidenav-item 'index' 'dashboard' (t 'nav.dashboard')}}
 
-  {{#if user.rt}}
+  {{#if (and user.rt (service-enabled 'rt'))}}
     {{sy-sidenav-item 'rt' 'envelope' (t 'nav.rt')}}
   {{/if}}
 
-  {{#if user.redmine}}
+  {{#if (and user.redmine (service-enabled 'redmine'))}}
     {{sy-sidenav-item 'redmine' 'bug' (t 'nav.redmine')}}
   {{/if}}
 
-  {{#if user.monitoring}}
+  {{#if (and user.monitoring (service-enabled 'mon'))}}
     {{sy-sidenav-item 'symon' 'heartbeat' (t 'nav.symon')}}
   {{/if}}
 
-  {{#if user.sysupport}}
+  {{#if (and user.sysupport (service-enabled 'sysupport'))}}
     {{sy-sidenav-item 'timescout' 'clock-o' (t 'nav.timescout')}}
   {{/if}}
 
-  {{sy-sidenav-item 'vault' 'lock' 'Vault'}}
+  {{#if (service-enabled 'vault')}}
+    {{sy-sidenav-item 'vault' 'lock' 'Vault'}}
+  {{/if}}
 
 {{/sy-sidenav-list}}
-
-{{#with user.wikis as |wikis|}}
-  {{#sy-sidenav-list (t 'nav.wikis')}}
-    {{#each wikis as |wiki|}}
-      {{#sy-sidenav-item}}
-        <a href="https://wiki.adfinis-sygroup.ch/{{wiki}}">
-          <i class="fa fa-wikipedia-w"></i>
-          <span class="nav-wiki-item">{{wiki}}-Wiki</span>
-        </a>
-      {{/sy-sidenav-item}}
-    {{/each}}
-  {{/sy-sidenav-list}}
-{{/with}}
-
+{{#if (service-enabled 'wiki')}}
+  {{#with user.wikis as |wikis|}}
+    {{#sy-sidenav-list (t 'nav.wikis')}}
+      {{#each wikis as |wiki|}}
+        {{#sy-sidenav-item}}
+          <a href="https://wiki.adfinis-sygroup.ch/{{wiki}}">
+            <i class="fa fa-wikipedia-w"></i>
+            <span class="nav-wiki-item">{{wiki}}-Wiki</span>
+          </a>
+        {{/sy-sidenav-item}}
+      {{/each}}
+    {{/sy-sidenav-list}}
+  {{/with}}
+{{/if}}
 {{#sy-sidenav-list (t 'nav.settings')}}
   {{sy-sidenav-item 'user.profile' 'user' (t 'nav.profile')}}
 {{/sy-sidenav-list}}

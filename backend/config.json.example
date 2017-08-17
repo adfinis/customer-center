@@ -118,7 +118,8 @@
       "type": "vault",
       "host": "http://vault1:8200/",
       "prefix": "/v1/",
-      "backend": "secret/"
+      "backend": "secret/",
+      "ttl": 600000
     }
   ]
 }

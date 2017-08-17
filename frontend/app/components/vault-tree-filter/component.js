@@ -72,6 +72,9 @@ export default Ember.Component.extend({
   },
 
   actions: {
+    onSubmit(e) {
+      e.preventDefault()
+    },
     filter() {
       const term = this.get('search')
       if (term === '') {

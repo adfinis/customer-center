@@ -200,3 +200,8 @@ hr {
   height: 1px;
   background-color: rgb(225, 225, 225);
 }
+
+.slide-in {
+  transition: all .2s ease-in-out;
+  transform: translateX(-100%);
+}

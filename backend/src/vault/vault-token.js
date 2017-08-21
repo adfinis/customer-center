@@ -3,27 +3,22 @@ import rp from 'request-promise'
 import url from 'url'
 import config from '../config'
 
+const timeElapsed = time => {
+  return new Date().getTime() - time
+}
 /**
  * If the defined TTL of the vault token is expired, it will try to renew it
  * @return {function} vault token renew middleware
  */
 export default function vaultTokenRenew() {
-  return function(req, res, next) {
-    const timeElapsed = new Date().getTime() - req.session.vaultTokenTTL
+  return async function(req, res, next) {
     const vaultService = config.services.find(s => s.type === 'vault')
-    if (timeElapsed >= vaultService.ttl) {
+    if (timeElapsed(req.session.vaultTokenTTL) >= vaultService.ttl) {
       try {
-        renewToken(req.session.vaultToken, vaultService)
-          .then(() => {
-            req.session.vaultTokenTTL = new Date().getTime()
-            req.session.update()
-          })
-          .catch(function(err) {
-            next(err)
-          })
-          .finally(() => {
-            next()
-          })
+        await renewToken(req.session.vaultToken, vaultService)
+        req.session.vaultTokenTTL = new Date().getTime()
+        req.session.update()
+        next()
       } catch (e) {
         next(e)
       }
@@ -44,7 +39,5 @@ export default function vaultTokenRenew() {
 function renewToken(token, { host, prefix, ca }) {
   const auth = getAuthenticator(ca)
   const uri = `${url.resolve(host, prefix)}auth/token/renew`
-  const payload = { token }
-  const authR = auth(token, { method: 'POST', uri, body: payload, json: true })
-  return rp(authR)
+  return rp(auth(token, { method: 'POST', uri, body: { token }, json: true }))
 }

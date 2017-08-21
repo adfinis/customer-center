@@ -200,3 +200,9 @@ hr {
   height: 1px;
   background-color: rgb(225, 225, 225);
 }
+
+.slide-in {
+  -webkit-animation: .2s ease-out .1s normal forwards 1 running
+    slide-in--to-right;
+  animation: .2s ease-out .1s normal forwards 1 running slide-in--to-right;
+}

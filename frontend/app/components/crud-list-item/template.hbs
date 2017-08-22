@@ -1,0 +1,36 @@
+<tr class="border">
+  <td>
+    {{input-or-show value=entry.key edit=edit placeholder="description"}}
+  </td>
+  <td>
+    {{input-or-show value=entry.value edit=edit placeholder="value" clipboard=true mask=maskPassword}}
+  </td>
+  <td class="text-right">
+    {{#if (not edit)}}
+    <button class="btn" {{action 'show' index}}><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;{{t 'global.show'}}</button>
+    <button class="btn" {{action 'edit' index}}><i class="fa fa-pencil"></i>&nbsp;{{t 'global.edit'}}</button>
+    {{/if}}
+  </td>
+</tr>
+{{#if (or entry.comment edit)}}
+  <tr class="comment">
+    <td colspan="2" class="comment">
+      {{input-or-show
+        value=entry.comment
+        edit=edit
+        placeholder="comment"
+        multiline=true
+        }}
+    </td>
+    <td></td>
+  </tr>
+{{/if}}
+{{#if edit}}
+  <tr>
+    <td colspan="3">
+      <button class="btn btn-primary" {{action 'save' index entry}}><i class="fa fa-floppy-o"></i>&nbsp;{{t 'global.save'}}</button>
+      <button class="btn" {{action 'cancel'}}><i class="fa fa-times"></i>&nbsp;{{t 'global.cancel'}}</button>
+      <button class="btn btn-danger" {{action 'delete' index}}><i class="fa fa-times"></i>&nbsp;{{t 'global.delete'}}</button>
+    </td>
+  </tr>
+{{/if}}

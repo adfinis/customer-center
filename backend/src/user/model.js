@@ -1,6 +1,6 @@
 import Bookshelf from 'bookshelf'
 import knex from 'knex'
-import config from '../../config.json'
+import config from '../../config'
 
 const { isArray } = Array
 const bookshelf = new Bookshelf(knex(config.database))

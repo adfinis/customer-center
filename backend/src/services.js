@@ -5,7 +5,7 @@ import TimescoutProxy from './timescout/timescout-proxy'
 import SymonProxy from './symon/symon-proxy'
 import VaultProxy from './vault/vault-proxy'
 import vaultCustom from './vault/vault-custom'
-import config from '../config.json'
+import config from '../config'
 
 let router = new express.Router()
 export default router

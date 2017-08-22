@@ -1,0 +1,127 @@
+export default {
+  application: {
+    name: 'Customer Center',
+    host: 'customer-center.example.com'
+  },
+  ldap: {
+    url: 'ldap://ucs1:389',
+    bindDn:
+      'uid=Administrator,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
+    bindCredentials: 'univention',
+    cert: '/path/to/root_ca_cert.crt'
+  },
+  login: {
+    ldap: {
+      searchBase: 'ou=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
+      searchFilter: 'uid={{username}}',
+      searchAttributes: ['uid', 'sn', 'givenName', 'mail'],
+
+      groupSearchBase: 'ou=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
+      groupSearchFilter: 'memberUid={{dn}}',
+      groupSearchScope: 'sub',
+      groupDnProperty: 'uid',
+      groupSearchAttributes: ['cn'],
+
+      usernameField: 'uid',
+      passwordField: 'userPassword'
+    },
+    ldap_customer: {
+      searchBase: 'ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
+      searchFilter: 'uid={{username}}',
+      searchAttributes: ['uid', 'sn', 'givenName', 'mail'],
+
+      groupSearchBase:
+        'ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
+      groupSearchFilter: 'memberUid={{dn}}',
+      groupSearchScope: 'sub',
+      groupDnProperty: 'uid',
+      groupSearchAttributes: ['cn'],
+
+      usernameField: 'uid',
+      passwordField: 'userPassword'
+    },
+    secret: 'ponies'
+  },
+  database: {
+    client: 'pg',
+    connection: {
+      host: 'postgres1',
+      user: 'test',
+      password: 'test',
+      database: 'adsycc'
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'migrations'
+    }
+  },
+  passwordReset: {
+    expire: 3600
+  },
+  smtp: {
+    port: 25,
+    host: 'localhost',
+    secure: false,
+    auth: {
+      user: 'username',
+      pass: 'password'
+    },
+    ignoreTLS: false,
+    name: 'customer-center.example.com',
+    localAddress: '0.0.0.0',
+    authMethod: 'PLAIN'
+  },
+  redis: {
+    host: 'redis1',
+    port: 6379,
+    options: {}
+  },
+  services: [
+    {
+      type: 'redmine',
+      ldapGroup: 'redmine',
+      host: 'redmine1',
+      https: false,
+      user: 'admin',
+      apiKey: '',
+      basicAuth: {
+        username: 'admin',
+        password: 'admin'
+      }
+    },
+    {
+      type: 'rt',
+      version: 4,
+      knex: {
+        client: 'sqlite3',
+        connection: {
+          filename: '/var/rt4/rt4'
+        }
+      }
+    },
+    {
+      type: 'timescout',
+      host: 'https://support.example.com/api',
+      apiKey: 'somerandomkey'
+    },
+    {
+      type: 'symon',
+      host: '0.0.0.0',
+      user: 'foo',
+      password: 'bar',
+      queues: 32,
+      app: 'app/queue name',
+      ttl: 10000
+    },
+    {
+      type: 'vault',
+      host: 'http://vault1:8200/',
+      prefix: '/v1/',
+      backend: 'secret/',
+      ttl: 600000 // Time in ms until to renew vault token
+    }
+  ]
+}

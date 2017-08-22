@@ -12,7 +12,7 @@
         </thead>
         <tbody>
           {{#each _model as |entry index|}}
-              {{crud-list-item entry=entry edit=entry.edit index=index save=(action 'save') delete=(action 'delete')}}
+              {{crud-list-item entry=entry edit=entry.edit index=index on-save=(action 'save') on-delete=(action 'delete')}}
               {{else}}
               <tr>
                 <td colspan="3" style="text-align: center">{{t 'global.empty'}}</td>

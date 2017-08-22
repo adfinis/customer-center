@@ -109,6 +109,7 @@ function loginSuccessful(req, res, next, ldapUser) {
         ca: ca ? fs.readFileSync(ca) : undefined
       })
       req.session.vaultToken = resp.auth.client_token
+      req.session.vaultTokenTTL = new Date().getTime()
     } catch (e) {
       console.log('vault auth error', e)
     }

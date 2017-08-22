@@ -9,7 +9,8 @@ import login from './login'
 import passwordreset from './password-reset'
 import services from './services'
 import userRoute from './user/route'
-import config from '../config.json'
+import vaultTokenRenewer from './vault/vault-token'
+import config from './config'
 
 const app = express()
 export default app
@@ -53,12 +54,15 @@ app.use(
 )
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.use(vaultTokenRenewer())
 app.use('/api/v1', login)
 app.use('/api/v1', passwordreset)
 
 app.use((req, res, next) => {
   if (req.isAuthenticated()) return next()
 
+  req.session.destroy()
   return next({ status: 401, message: 'Not Authorized' })
 })
 

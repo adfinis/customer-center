@@ -195,6 +195,11 @@ table.table--noborders tr td {
   border-top: none;
 }
 
+.liquid-child {
+  /* Fix Safari < 10 flexbox bug */
+  flex-shrink: 0;
+}
+
 hr {
   border: 0;
   height: 1px;

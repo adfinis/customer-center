@@ -48,10 +48,6 @@ export default Ember.Component.extend({
       await this.get('onUpdate')(external(this.get('_model')))
     },
 
-    edit(index) {
-      this.get(`_model.${index}`).set('edit', true)
-    },
-
     async delete(index) {
       this.get('_model').removeAt(index)
       await this.get('onUpdate')(external(this.get('_model')))

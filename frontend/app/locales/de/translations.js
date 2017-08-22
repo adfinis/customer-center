@@ -9,7 +9,9 @@ export default {
     delete: 'Löschen',
     edit: 'bearbeiten',
     search: 'Suchen',
-    empty: 'Keine Einträge gefunden'
+    empty: 'Keine Einträge gefunden',
+    cancel: 'Abbrechen',
+    show: 'Anzeigen'
   },
 
   login: {

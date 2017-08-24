@@ -4,19 +4,22 @@ export default {
     host: 'customer-center.example.com'
   },
   ldap: {
+    // Further information how to configure LDAP under:
+    // https://github.com/vesse/passport-ldapauth
     url: 'ldap://ucs1:389',
-    bindDn:
-      'uid=Administrator,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
-    bindCredentials: 'univention',
+    bindDn: '',
+    bindCredentials: '',
     cert: '/path/to/root_ca_cert.crt'
   },
   login: {
     ldap: {
-      searchBase: 'ou=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
+      // Further information how to configure LDAP under:
+      // https://github.com/vesse/passport-ldapauth
+      searchBase: '',
       searchFilter: 'uid={{username}}',
       searchAttributes: ['uid', 'sn', 'givenName', 'mail'],
 
-      groupSearchBase: 'ou=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
+      groupSearchBase: '',
       groupSearchFilter: 'memberUid={{dn}}',
       groupSearchScope: 'sub',
       groupDnProperty: 'uid',
@@ -25,13 +28,14 @@ export default {
       usernameField: 'uid',
       passwordField: 'userPassword'
     },
-    ldap_customer: {
-      searchBase: 'ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
+    ldapCustomer: {
+      // Further information how to configure LDAP under:
+      // https://github.com/vesse/passport-ldapauth
+      searchBase: '',
       searchFilter: 'uid={{username}}',
       searchAttributes: ['uid', 'sn', 'givenName', 'mail'],
 
-      groupSearchBase:
-        'ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
+      groupSearchBase: '',
       groupSearchFilter: 'memberUid={{dn}}',
       groupSearchScope: 'sub',
       groupDnProperty: 'uid',
@@ -79,8 +83,8 @@ export default {
     port: 6379,
     options: {}
   },
-  services: [
-    {
+  services: {
+    redmine: {
       type: 'redmine',
       ldapGroup: 'redmine',
       host: 'redmine1',
@@ -92,7 +96,7 @@ export default {
         password: 'admin'
       }
     },
-    {
+    rt: {
       type: 'rt',
       version: 4,
       knex: {
@@ -102,12 +106,12 @@ export default {
         }
       }
     },
-    {
+    timescout: {
       type: 'timescout',
       host: 'https://support.example.com/api',
       apiKey: 'somerandomkey'
     },
-    {
+    symon: {
       type: 'symon',
       host: '0.0.0.0',
       user: 'foo',
@@ -116,12 +120,12 @@ export default {
       app: 'app/queue name',
       ttl: 10000
     },
-    {
+    vault: {
       type: 'vault',
       host: 'http://vault1:8200/',
       prefix: '/v1/',
       backend: 'secret/',
       ttl: 600000 // Time in ms until to renew vault token
     }
-  ]
+  }
 }

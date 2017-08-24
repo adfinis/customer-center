@@ -15,7 +15,7 @@ passport.use(
 passport.use(
   'ldapauth-customer',
   new LdapStrategy({
-    server: Object.assign({}, config.ldap, config.login.ldap_customer)
+    server: Object.assign({}, config.ldap, config.login.ldapCustomer)
   })
 )
 
@@ -97,7 +97,7 @@ function loginSuccessful(req, res, next, ldapUser) {
     }
 
     // ldap login to vault
-    const { host, ca } = config.services.find(s => s.type === 'vault')
+    const { host, ca } = config.services.vault
     try {
       const resp = await rp({
         method: 'POST',
@@ -123,7 +123,7 @@ function loginSuccessful(req, res, next, ldapUser) {
   })
 }
 router.post('/logout', async (req, res) => {
-  const { host, ca } = config.services.find(s => s.type === 'vault')
+  const { host, ca } = config.services.vault
   try {
     await rp({
       method: 'POST',

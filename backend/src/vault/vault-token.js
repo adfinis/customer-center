@@ -12,7 +12,7 @@ const timeElapsed = time => {
  */
 export default function vaultTokenRenew() {
   return async function(req, res, next) {
-    const vaultService = config.services.find(s => s.type === 'vault')
+    const vaultService = config.services.vault
     if (timeElapsed(req.session.vaultTokenTTL) >= vaultService.ttl) {
       try {
         await renewToken(req.session.vaultToken, vaultService)

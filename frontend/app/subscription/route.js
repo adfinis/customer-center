@@ -9,7 +9,7 @@ export default Ember.Route.extend({
    * @property {TimescoutService} timescout
    * @public
    */
-  timescout: inject.service(),
+  subscription: inject.service(),
 
   /**
    * Gets timescout projects
@@ -18,6 +18,6 @@ export default Ember.Route.extend({
    * @public
    */
   model() {
-    return this.get('timescout').fetchProjects()
+    return this.get('subscription').fetchProjects()
   }
 })

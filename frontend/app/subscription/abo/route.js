@@ -10,7 +10,7 @@ export default Ember.Route.extend({
    * @property {TimescoutService} timescout
    * @public
    */
-  timescout: inject.service(),
+  subscription: inject.service(),
 
   /**
    * Notify service
@@ -27,7 +27,7 @@ export default Ember.Route.extend({
   /* eslint-disable camelcase */
   model({ project_id, abotype_id }) {
     let abos = {
-      data: this.get('timescout').fetchAbos(abotype_id),
+      data: this.get('subscription').fetchAbos(abotype_id),
       projectID: project_id
     }
 
@@ -37,9 +37,9 @@ export default Ember.Route.extend({
   actions: {
     async load(abo_id, project_id) {
       try {
-        this.get('timescout').sendTimeLoad(project_id, abo_id)
+        this.get('subscription').sendTimeLoad(project_id, abo_id)
         this.get('notify').info(this.get('successMessage.string'))
-        this.transitionTo('timescout')
+        this.transitionTo('subscription')
       } catch (err) {
         this.get('notify').error(err.message)
       }

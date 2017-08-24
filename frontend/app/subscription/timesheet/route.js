@@ -14,6 +14,6 @@ export default Ember.Route.extend({
    */
   model({ id }) {
     let projectID = Number(id)
-    return this.modelFor('timescout').find(p => p.id === projectID)
+    return this.modelFor('subscription').find(p => p.id === projectID)
   }
 })

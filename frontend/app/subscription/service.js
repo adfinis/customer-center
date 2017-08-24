@@ -1,5 +1,6 @@
 import Ember from 'ember'
 import moment from 'moment'
+import { projects, timesheet, aboreload, history } from './response'
 
 /**
  * Timescout service for fetching projects, subscriptions and timesheets
@@ -38,7 +39,7 @@ export default Ember.Service.extend({
    * @public
    */
   async fetchTimesheets(projectID, page, limit) {
-    let res = await this.request('timesheet', { projectID, page, limit })
+    let res = timesheet
     res.meta = { projectID: Number(projectID) }
     res.timesheetEntries = res.timesheetEntries.map(e => {
       e.date = moment(e.date, 'DD.MM.YYYY')
@@ -54,7 +55,7 @@ export default Ember.Service.extend({
    * @public
    */
   fetchProjects() {
-    return this.request('projects')
+    return projects
   },
 
   /**
@@ -64,11 +65,11 @@ export default Ember.Service.extend({
    * @public
    */
   fetchHistory() {
-    return this.request('history')
+    return history
   },
 
   fetchAbos(abotypeID) {
-    return this.request('aboreload', { abotypeID })
+    return aboreload
   },
 
   sendTimeLoad(projectID, aboID) {

@@ -13,12 +13,14 @@
     {{sy-sidenav-item 'symon' 'heartbeat' (t 'nav.symon')}}
   {{/if}}
 
-  {{#if (and user.sysupport (service-enabled 'sysupport'))}}
-    {{sy-sidenav-item 'timescout' 'clock-o' (t 'nav.timescout')}}
-  {{/if}}
-
   {{#if (service-enabled 'vault')}}
     {{sy-sidenav-item 'vault' 'lock' 'Vault'}}
+  {{/if}}
+
+
+  {{#if (service-enabled 'subscription')}}
+    {{sy-sidenav-item 'subscription' 'clock-o' (t 'nav.subscription')}}
+    {{sy-sidenav-item 'subscription.admin' 'clock-o' (t 'nav.subscriptionAdmin')}}
   {{/if}}
 
 {{/sy-sidenav-list}}

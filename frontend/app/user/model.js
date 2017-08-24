@@ -47,7 +47,6 @@ export default Ember.Object.extend({
       shortname: this.shortname,
       firstName: this.firstName,
       lastName: this.lastName,
-      sysupport: this.sysupport,
       email: this.email,
       language: this.language,
       groups: this.groups,
@@ -95,8 +94,8 @@ export default Ember.Object.extend({
    * @readOnly
    * @public
    */
-  sysupport: computed('sysupport', 'groups.[]', function() {
-    return this._checkGroup('sysupport') && this.sysupport
+  sysupport: computed('groups.[]', function() {
+    return this._checkGroup('sysupport')
   }),
 
   /**

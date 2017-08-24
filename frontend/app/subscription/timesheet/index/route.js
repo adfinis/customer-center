@@ -15,7 +15,7 @@ export default Ember.Route.extend({
    * @property {TimescoutService} timescout
    * @public
    */
-  timescout: inject.service(),
+  subscription: inject.service(),
 
   /**
    * Query params of this route
@@ -40,7 +40,7 @@ export default Ember.Route.extend({
    * @return {void}
    */
   setupController(controller, model) {
-    controller.set('project', this.modelFor('timescout.timesheet'))
+    controller.set('project', this.modelFor('subscription.timesheet'))
     controller.set('model', model)
     controller.set('loading', false)
   },
@@ -51,8 +51,8 @@ export default Ember.Route.extend({
    * @return {Object}
    */
   model({ limit, page }) {
-    let projectID = this.modelFor('timescout.timesheet').id
-    return this.get('timescout').fetchTimesheets(projectID, page, limit)
+    let projectID = this.modelFor('subscription.timesheet').id
+    return this.get('subscription').fetchTimesheets(projectID, page, limit)
   },
 
   /**

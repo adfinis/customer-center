@@ -15,6 +15,6 @@ export default Ember.Route.extend({
    * @public
    */
   setupController(controller) {
-    controller.set('project', this.modelFor('timescout.timesheet'))
+    controller.set('project', this.modelFor('subscription.timesheet'))
   }
 })

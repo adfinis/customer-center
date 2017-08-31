@@ -120,6 +120,15 @@
       "prefix": "/v1/",
       "backend": "secret/",
       "ttl": 600000
+    },
+    {
+      "type": "subscription",
+      "host": "http://timedbackend_ip:80/",
+      "prefix": "/api/v1/",
+      "auth": {
+        "username": "admin",
+        "password": "1234qwer"
+      }
     }
   ]
 }

@@ -9,7 +9,7 @@ export default Ember.Route.extend({
    * @property {TimescoutService} timescout
    * @public
    */
-  timescout: inject.service(),
+  subscription: inject.service(),
 
   /**
    * Gets timescout projects
@@ -17,7 +17,11 @@ export default Ember.Route.extend({
    * @return {Promise}
    * @public
    */
-  model() {
-    return this.get('timescout').fetchProjects()
+  async model() {
+    const projects = await this.store.query('subscription-project', {
+      customer: 218,
+      include: 'project,subscription'
+    })
+    return projects
   }
 })

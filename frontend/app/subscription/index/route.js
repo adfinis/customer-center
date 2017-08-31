@@ -15,7 +15,7 @@ export default Ember.Route.extend({
    * @property {TimescoutService} timescout
    * @public
    */
-  timescout: inject.service(),
+  subscription: inject.service(),
 
   /**
    * Setup timescout index controller
@@ -27,7 +27,7 @@ export default Ember.Route.extend({
    */
   setupController(controller, model) {
     controller.set('model', model)
-    controller.set('projects', this.modelFor('timescout'))
+    controller.set('projects', this.modelFor('subscription'))
   },
 
   /**
@@ -36,7 +36,14 @@ export default Ember.Route.extend({
    * @return {Promise}
    * @public
    */
-  model() {
-    return this.get('timescout').fetchHistory()
+  async model() {
+    const projects = await this.modelFor('subscription')
+    const projectIds = await projects.map(entry => {
+      return entry.get('project.id')
+    })
+    const orders = await this.store.query('subscription-order', {
+      filter: { project: projectIds }
+    })
+    return orders
   }
 })

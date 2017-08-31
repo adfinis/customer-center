@@ -10,7 +10,7 @@ export default Ember.Route.extend({
    * @property {TimescoutService} timescout
    * @public
    */
-  timescout: inject.service(),
+  subscription: inject.service(),
 
   /**
    * Notify service
@@ -21,25 +21,22 @@ export default Ember.Route.extend({
   notify: inject.service(),
 
   i18n: inject.service(),
-
+  store: inject.service(),
   successMessage: t('timescout.abo-reload-success'),
 
   /* eslint-disable camelcase */
   model({ project_id, abotype_id }) {
-    let abos = {
-      data: this.get('timescout').fetchAbos(abotype_id),
-      projectID: project_id
-    }
-
-    return Ember.RSVP.hash(abos)
+    return this.store.query('subscription-package', {
+      subscription: abotype_id
+    })
   },
 
   actions: {
     async load(abo_id, project_id) {
       try {
-        this.get('timescout').sendTimeLoad(project_id, abo_id)
+        this.get('subscription').sendTimeLoad(project_id, abo_id)
         this.get('notify').info(this.get('successMessage.string'))
-        this.transitionTo('timescout')
+        this.transitionTo('subscription')
       } catch (err) {
         this.get('notify').error(err.message)
       }

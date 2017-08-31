@@ -1,9 +1,9 @@
 <table class="table table--striped">
-  <caption>{{t 'timescout.list-caption'}}</caption>
+  <caption>{{t 'subscription.list-caption'}}</caption>
   <thead>
     <tr>
-      <th>{{t 'timescout.subscription.short'}}</th>
-      <th>{{t 'timescout.remaining-hours'}}</th>
+      <th>{{t 'subscription.subscription.short'}}</th>
+      <th>{{t 'subscription.remaining-hours'}}</th>
       <th></th>
     </tr>
   </thead>
@@ -11,8 +11,8 @@
     {{#each subscriptions as |subscription|}}
       <tr>
         <td>
-          {{#link-to 'timescout.timesheet' subscription.id}}
-            {{subscription.name}}
+          {{#link-to 'subscription.timesheet' subscription.project.id}}
+            {{subscription.project.name}}
           {{/link-to}}
         </td>
         <td>
@@ -20,8 +20,8 @@
           {{subscription.availableTime.minutes}}min
         </td>
         <td>
-          {{#link-to 'timescout.abo' subscription.id subscription.abotypeID}}
-            {{t 'timescout.reload'}}
+          {{#link-to 'subscription.abo' subscription.project.id subscription.subscription.id}}
+            {{t 'subscription.reload'}}
           {{/link-to}}
         </td>
       </tr>

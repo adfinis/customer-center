@@ -5,6 +5,7 @@ import passport from 'passport'
 import LdapStrategy from 'passport-ldapauth'
 import User from '../user/model'
 import config from '../config'
+import { authSubscription } from './auth'
 
 passport.use(
   'ldapauth-user',
@@ -112,6 +113,18 @@ function loginSuccessful(req, res, next, ldapUser) {
       req.session.vaultTokenTTL = new Date().getTime()
     } catch (e) {
       console.log('vault auth error', e)
+    }
+
+    // login to timed/subscription
+    try {
+      const subscriptionService = config.services.find(
+        s => s.type === 'subscription'
+      )
+      req.session.subscriptionToken = await authSubscription(
+        subscriptionService
+      )
+    } catch (e) {
+      next(e)
     }
 
     req.session.create(claims, (sessionError, token) => {

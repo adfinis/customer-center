@@ -26,7 +26,7 @@ Router.map(function() {
 
     this.route('symon', { resetNamespace: true })
 
-    this.route('timescout', { resetNamespace: true }, function() {
+    this.route('subscription', { resetNamespace: true }, function() {
       this.route('timesheet', { path: '/timesheet/:id' }, function() {
         this.route('index', { path: '/' })
       })
@@ -44,6 +44,10 @@ Router.map(function() {
   })
 
   this.route('notfound', { path: '/*path' })
+
+  this.route('subscription', function() {
+    this.route('admin', function() {})
+  })
 })
 
 export default Router

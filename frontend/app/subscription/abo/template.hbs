@@ -1,0 +1,19 @@
+{{outlet}}
+
+<h4>{{t 'subscription.abo-reload-title'}}</h4>
+<p>{{t 'subscription.abo-reload-info'}}</p>
+
+<div class="grid grid--12of12 grid-sm--4of12">
+  {{#each model as |abo|}}
+    <div class="grid-cell">
+      <div class="bg-blue ts-package-title">{{t 'subscription.package'}}</div>
+      <div class="border-grey">
+        <p class="ts-package-content">
+          <span class="hours">{{t 'subscription.hours'}}:</span><span>{{abo.duration}}</span>
+          <span class="hours">{{t 'subscription.price'}}:</span><span>CHF {{abo.price}}.-</span>
+        </p>
+        <button class="btn ts-btn" type="button" {{action 'load' abo.id model.projectID}}>{{t 'subscription.choose'}}</button>
+      </div>
+    </div>
+  {{/each}}
+</div>

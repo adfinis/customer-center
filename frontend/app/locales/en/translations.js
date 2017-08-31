@@ -72,7 +72,8 @@ export default {
     redmine: 'Redmine',
     rt: 'Request Tracker',
     symon: 'SyMonitoring',
-    timescout: 'SySupport',
+    subscription: 'Subscription',
+    subscriptionAdmin: 'Subscription Admin',
     wikis: 'Wikis',
     settings: 'Settings',
     profile: 'Profile',
@@ -102,7 +103,7 @@ export default {
     'list-caption': 'Request Tracker'
   },
 
-  timescout: {
+  subscription: {
     'list-caption': 'Subscriptions',
     'subscription.short': 'Sub',
     'remaining-hours': 'Remaining hours',
@@ -132,7 +133,16 @@ export default {
     package: 'Package',
     hours: 'Hours',
     price: 'Price',
-    choose: 'Choose'
+    choose: 'Choose',
+
+    customer: 'Customer',
+    actions: 'Actions',
+    confirm: 'Confirm',
+    cancel: 'Cancel',
+    timeBooked: 'Booked',
+    timeUsed: 'Used',
+    timeRemaining: 'Remaining',
+    packageName: 'Abo-Typ'
   },
 
   symon: {

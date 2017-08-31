@@ -1,0 +1,53 @@
+<table class="table table--striped">
+  <caption>{{t 'subscription.history'}}</caption>
+  <thead>
+    <tr>
+      <th width="300">{{t 'subscription.customer'}}</th>
+      <th width="300">{{t 'subscription.project-name'}}</th>
+      <th class="nowrap" width="50">{{t 'subscription.lease-time'}}</th>
+      <th class="visible-md" width="1">{{t 'subscription.lease-date'}}</th>
+      <th class="visible-md" width="300">{{t 'subscription.actions'}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model.confirm as |entry|}}
+      <tr>
+        <td>{{entry.customer}}</td>
+        <td>{{entry.projectName}}</td>
+        <td>{{entry.leaseTime}}h</td>
+        <td class="visible-md">{{moment-format entry.leaseStamp 'L'}}</td>
+        <td>
+          <button class="btn btn-danger">Cancel</button>
+          <button class="btn btn-primary">Confirm</button>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<table class="table table--striped">
+  <caption>{{t 'subscription.history'}}</caption>
+  <thead>
+    <tr>
+      <th>{{t 'subscription.customer'}}</th>
+      <th>{{t 'subscription.project-name'}}</th>
+      <th>{{t 'subscription.packageName'}}</th>
+      <th class="text-center">{{t 'subscription.timeBooked'}}</th>
+      <th class="text-center">{{t 'subscription.timeUsed'}}</th>
+      <th class="text-center">{{t 'subscription.timeRemaining'}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model.list as |entry|}}
+      <tr class="{{if (lte entry.timeRemaining 10) "underMinimum" ""}}">
+        <td>{{entry.customer}}</td>
+        <td>{{entry.projectName}}</td>
+        <td>{{entry.packageType}}</td>
+        <td class="text-center">{{entry.timeBooked}}</td>
+        <td class="text-center">{{entry.timeUsed}}</td>
+        <td class="text-center">{{entry.timeRemaining}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{outlet}}

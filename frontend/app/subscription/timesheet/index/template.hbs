@@ -18,10 +18,10 @@
     </tfoot>
   {{/if}}
   <tbody class={{if loading 'loading-mask'}}>
-    {{#each model.timesheetEntries as |entry|}}
+    {{#each project as |entry|}}
       <tr>
-        <td>{{entry.time.hours}}h {{entry.time.minutes}}min</td>
-        <td>{{entry.description}}</td>
+        <td>{{entry.duration}}</td>
+        <td>{{entry.comment}}</td>
         <td class="visible-sm">{{moment-format entry.date 'L'}}</td>
         <td class="visible-md">{{entry.doneBy}}</td>
       </tr>

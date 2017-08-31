@@ -14,6 +14,9 @@ export default Ember.Route.extend({
    */
   model({ id }) {
     let projectID = Number(id)
-    return this.modelFor('subscription').find(p => p.id === projectID)
+    return this.store.query('report', {
+      project: projectID,
+      include: 'user'
+    })
   }
 })

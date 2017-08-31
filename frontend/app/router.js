@@ -46,8 +46,8 @@ Router.map(function() {
   this.route('notfound', { path: '/*path' })
 
   this.route('subscription', function() {
-    this.route('admin', function() {});
-  });
+    this.route('admin', function() {})
+  })
 })
 
 export default Router

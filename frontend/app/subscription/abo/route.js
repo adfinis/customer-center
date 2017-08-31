@@ -21,17 +21,14 @@ export default Ember.Route.extend({
   notify: inject.service(),
 
   i18n: inject.service(),
-
+  store: inject.service(),
   successMessage: t('timescout.abo-reload-success'),
 
   /* eslint-disable camelcase */
   model({ project_id, abotype_id }) {
-    let abos = {
-      data: this.get('subscription').fetchAbos(abotype_id),
-      projectID: project_id
-    }
-
-    return Ember.RSVP.hash(abos)
+    return this.store.query('subscription-package', {
+      subscription: abotype_id
+    })
   },
 
   actions: {

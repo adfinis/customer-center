@@ -36,7 +36,16 @@ export default Ember.Route.extend({
    * @return {Promise}
    * @public
    */
-  model() {
-    return this.get('subscription').fetchHistory()
+  async model() {
+    const projects = await this.modelFor('subscription')
+    const projectIds = await projects.map(entry => {
+      console.log(entry)
+      return entry.get('project.id')
+    })
+    console.log(projectIds)
+    const orders = await this.store.query('subscription-order', {
+      filter: { project: projectIds }
+    })
+    return orders
   }
 })

@@ -17,7 +17,11 @@ export default Ember.Route.extend({
    * @return {Promise}
    * @public
    */
-  model() {
-    return this.get('subscription').fetchProjects()
+  async model() {
+    const projects = await this.store.query('subscription-project', {
+      customer: 218,
+      include: 'project,subscription'
+    })
+    return projects
   }
 })

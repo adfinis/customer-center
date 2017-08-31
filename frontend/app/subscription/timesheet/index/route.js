@@ -40,7 +40,8 @@ export default Ember.Route.extend({
    * @return {void}
    */
   setupController(controller, model) {
-    controller.set('project', this.modelFor('subscription.timesheet'))
+    const projects = this.modelFor('subscription.timesheet')
+    controller.set('project', projects)
     controller.set('model', model)
     controller.set('loading', false)
   },

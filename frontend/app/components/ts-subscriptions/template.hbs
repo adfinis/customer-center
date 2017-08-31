@@ -11,8 +11,8 @@
     {{#each subscriptions as |subscription|}}
       <tr>
         <td>
-          {{#link-to 'subscription.timesheet' subscription.id}}
-            {{subscription.name}}
+          {{#link-to 'subscription.timesheet' subscription.project.id}}
+            {{subscription.project.name}}
           {{/link-to}}
         </td>
         <td>
@@ -20,7 +20,7 @@
           {{subscription.availableTime.minutes}}min
         </td>
         <td>
-          {{#link-to 'subscription.abo' subscription.id subscription.abotypeID}}
+          {{#link-to 'subscription.abo' subscription.project.id subscription.subscription.id}}
             {{t 'subscription.reload'}}
           {{/link-to}}
         </td>

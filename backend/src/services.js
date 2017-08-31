@@ -5,6 +5,7 @@ import TimescoutProxy from './timescout/timescout-proxy'
 import SymonProxy from './symon/symon-proxy'
 import VaultProxy from './vault/vault-proxy'
 import vaultCustom from './vault/vault-custom'
+import SubscriptionProxy from './subscription/subscription-proxy'
 import config from '../config.json'
 
 let router = new express.Router()
@@ -26,6 +27,9 @@ const services = {
   vault(cfg) {
     router.use('/vault', vaultCustom(cfg))
     router.use('/proxy/vault', VaultProxy.createProxy(cfg))
+  },
+  subscription(cfg) {
+    router.use('/proxy/subscription', SubscriptionProxy.createProxy(cfg))
   }
 }
 

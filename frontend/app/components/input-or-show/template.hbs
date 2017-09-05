@@ -8,7 +8,7 @@
   {{#with (if mask "********" value) as |_value|}}
     {{#if clipboard}}
       <a href="javascript:void(0)" {{action "copy"}} title="Copy to clipboard">
-        <i class="fa fa-clipboard"></i> <span class="value">{{_value}}</span>
+        <i class="fa fa-clipboard"></i> <span class="value">{{text-clip _value}}</span>
       </a>
     {{else}}
       <div class="value">{{autolink (nl2br value) true}}</div>

@@ -15,6 +15,8 @@ export default Ember.Component.extend({
   notify: Ember.inject.service(),
   i18n: Ember.inject.service(),
 
+  tagName: '',
+
   multiline: false,
 
   actions: {

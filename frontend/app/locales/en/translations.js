@@ -33,8 +33,10 @@ export default {
     'create-ticket': 'Create support ticket',
     location: 'Location {{location}}',
     directions: 'Directions',
-    'directions.bs.url': 'http://adfinis-sygroup.ch/en/directions-basel',
-    'directions.be.url': 'http://adfinis-sygroup.ch/en/directions-bern',
+    'directions.bs.url':
+      'https://www.adfinis-sygroup.ch/de/kontakt/directions-basel.html',
+    'directions.be.url':
+      'https://www.adfinis-sygroup.ch/de/kontakt/directions-bern.html',
     fax: 'Fax',
     phone: 'Phone',
     tools: {
@@ -59,7 +61,7 @@ export default {
       ppa: 'PPA',
       'ppa.description': 'Manage your web-hostings',
 
-      rhev: 'RHEV',
+      rhev: 'RHV',
       'rhev.description': 'Manage your virtual servers',
 
       mailcleaner: 'Mail Cleaner',

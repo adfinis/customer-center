@@ -1,6 +1,5 @@
-import fs from 'fs'
+import config from '../config'
 
-const config = JSON.parse(fs.readFileSync(`${__dirname}/../config.json`))
 const tlsOptions = {}
 
 if (config.ldap.url.startsWith('ldaps') && config.ldap.cert) {

@@ -33,3 +33,11 @@ make migrations
 # fill vault with dummy data
 make setup-vault
 ```
+
+## Configuration
+Copy and rename the `config.example.js` to `config.js` and configure the needed endpoints.
+
+Unclear parts of the configuration will have a comment with further information.
+
+### LDAP
+To authenticate against LDAP, we used the [Passport LDAP authentication strategy](https://github.com/vesse/passport-ldapauth)

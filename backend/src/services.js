@@ -5,32 +5,21 @@ import TimescoutProxy from './timescout/timescout-proxy'
 import SymonProxy from './symon/symon-proxy'
 import VaultProxy from './vault/vault-proxy'
 import vaultCustom from './vault/vault-custom'
-import config from '../config.json'
+import config from '../config'
 
 let router = new express.Router()
+
+const { redmine, rt, timescout, symon, vault } = config.services
+
+router.use('/proxy/redmine', RedmineProxy.createProxy(redmine))
+
+router.use('/rt', RTProxy.createProxy(rt))
+
+router.use('/proxy/timescout', TimescoutProxy.createProxy(timescout))
+
+router.use('/proxy/symon', SymonProxy.createProxy(symon))
+
+router.use('/vault', vaultCustom(vault))
+router.use('/proxy/vault', VaultProxy.createProxy(vault))
+
 export default router
-
-const services = {
-  redmine(cfg) {
-    router.use('/proxy/redmine', RedmineProxy.createProxy(cfg))
-  },
-  rt(cfg) {
-    router.use('/rt', RTProxy.createProxy(cfg))
-  },
-  timescout(cfg) {
-    router.use('/proxy/timescout', TimescoutProxy.createProxy(cfg))
-  },
-  symon(cfg) {
-    router.use('/proxy/symon', SymonProxy.createProxy(cfg))
-  },
-  vault(cfg) {
-    router.use('/vault', vaultCustom(cfg))
-    router.use('/proxy/vault', VaultProxy.createProxy(cfg))
-  }
-}
-
-for (let serviceCfg of config.services) {
-  if (serviceCfg.type in services) {
-    services[serviceCfg.type](serviceCfg)
-  }
-}

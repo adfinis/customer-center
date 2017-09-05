@@ -74,13 +74,15 @@ app.get('/', (req, res) => {
   res.redirect('/api/v1')
 })
 
-app.use((err, req, res) => {
+// Unused last parameter is needed to make this an error-handling middleware,
+// see http://expressjs.com/en/guide/error-handling.html
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, _) => {
   let { message: detail, status = 500 } = err
-
   res.status(status)
 
   if (status === 500) {
-    app.log.error(err)
+    app.log.error('Error 500', err)
     detail = 'Internal server error'
   }
 

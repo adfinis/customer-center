@@ -12,6 +12,7 @@ passport.use(
     server: Object.assign({}, config.ldap, config.login.ldap)
   })
 )
+
 passport.use(
   'ldapauth-customer',
   new LdapStrategy({
@@ -66,8 +67,10 @@ function getLanguage(acceptLanguage) {
 
 router.post('/login', (req, res, next) => {
   login('ldapauth-user', req, res, err => {
-    if (err) {
+    if (err && config.login.ldap_customer) {
       return login('ldapauth-customer', req, res, next)
+    } else if (err) {
+      return next(err)
     }
     return next(...arguments)
   })
@@ -111,7 +114,7 @@ function loginSuccessful(req, res, next, ldapUser) {
       req.session.vaultToken = resp.auth.client_token
       req.session.vaultTokenTTL = new Date().getTime()
     } catch (e) {
-      console.log('vault auth error', e)
+      console.log('vault auth error', e.message)
     }
 
     req.session.create(claims, (sessionError, token) => {

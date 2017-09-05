@@ -97,11 +97,11 @@ function loginSuccessful(req, res, next, ldapUser) {
     }
 
     // ldap login to vault
-    const { host, ca } = config.services.vault
+    const { host, ca, authBackend } = config.services.vault
     try {
       const resp = await rp({
         method: 'POST',
-        uri: `${host}v1/auth/userpass/login/${req.body.username}`,
+        uri: `${host}v1/auth/${authBackend}/login/${req.body.username}`,
         body: {
           password: req.body.password
         },

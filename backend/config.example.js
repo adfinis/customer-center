@@ -125,6 +125,7 @@ export default {
       host: 'http://vault1:8200/',
       prefix: '/v1/',
       backend: 'secret/',
+      authBackend: 'userpass',
       ttl: 600000 // Time in ms until to renew vault token
     }
   }

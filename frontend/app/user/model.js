@@ -89,6 +89,17 @@ export default Ember.Object.extend({
   }),
 
   /**
+   * Has vault access
+   *
+   * @property {boolean} vault
+   * @readOnly
+   * @public
+   */
+  vault: computed('groups.[]', function() {
+    return this._checkGroup('vault')
+  }),
+
+  /**
    * Has sysupport access
    *
    * @property {boolean} sysupport

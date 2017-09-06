@@ -90,6 +90,8 @@ function login(strategy, req, res, next) {
 }
 
 function loginSuccessful(req, res, next, ldapUser) {
+  const { body: { username, password } } = req
+
   req.login(ldapUser, async loginError => {
     if (loginError) return next(loginError)
 
@@ -98,23 +100,18 @@ function loginSuccessful(req, res, next, ldapUser) {
       aud: config.application.host,
       uid: users.get(ldapUser).id
     }
+    const hasVault = users
+      .get(ldapUser)
+      .getGroupNames()
+      .some(g => g.endsWith('vault'))
 
-    // ldap login to vault
-    const { host, ca, authBackend } = config.services.vault
-    try {
-      const resp = await rp({
-        method: 'POST',
-        uri: `${host}v1/auth/${authBackend}/login/${req.body.username}`,
-        body: {
-          password: req.body.password
-        },
-        json: true,
-        ca: ca ? fs.readFileSync(ca) : undefined
-      })
-      req.session.vaultToken = resp.auth.client_token
-      req.session.vaultTokenTTL = new Date().getTime()
-    } catch (e) {
-      console.log('vault auth error', e.message)
+    if (hasVault) {
+      try {
+        req.session.vaultToken = await vaultLogin(username, password)
+        req.session.vaultTokenTTL = new Date().getTime()
+      } catch (e) {
+        console.log('vault auth error', e.message)
+      }
     }
 
     req.session.create(claims, (sessionError, token) => {
@@ -125,6 +122,28 @@ function loginSuccessful(req, res, next, ldapUser) {
     })
   })
 }
+
+/**
+ * Log in to vault with AdsyCC credentials
+ *
+ * @param {string} username username
+ * @param {string} password password
+ * @return {string} vault token
+ */
+async function vaultLogin(username, password) {
+  const { host, ca, authBackend } = config.services.vault
+  const resp = await rp({
+    method: 'POST',
+    uri: `${host}v1/auth/${authBackend}/login/${username}`,
+    body: {
+      password
+    },
+    json: true,
+    ca: ca ? fs.readFileSync(ca) : undefined
+  })
+  return resp.auth.client_token
+}
+
 router.post('/logout', async (req, res) => {
   const { host, ca } = config.services.vault
   try {

@@ -8,7 +8,6 @@ install-backend:
 	cd backend && npm install
 
 cache-clean:
-	npm cache clean
 	bower cache clean
 
 test: test-backend test-frontend

@@ -17,7 +17,7 @@
     {{sy-sidenav-item 'timescout' 'clock-o' (t 'nav.timescout')}}
   {{/if}}
 
-  {{#if (service-enabled 'vault')}}
+  {{#if (and user.vault (service-enabled 'vault'))}}
     {{sy-sidenav-item 'vault' 'lock' 'Vault'}}
   {{/if}}
 

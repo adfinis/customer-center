@@ -3,17 +3,21 @@ import rp from 'request-promise'
 import url from 'url'
 import config from '../config'
 
-const timeElapsed = time => {
-  return new Date().getTime() - time
-}
+const timeElapsed = time => new Date().getTime() - time
+
 /**
- * If the defined TTL of the vault token is expired, it will try to renew it
- * @return {function} vault token renew middleware
+ * If the user is logged into vault and the defined TTL of the vault token
+ * is expired, try to renew it
+ *
+ * @return {function} middleware function
  */
 export default function vaultTokenRenew() {
-  return async function(req, res, next) {
+  return async (req, res, next) => {
     const vaultService = config.services.vault
-    if (timeElapsed(req.session.vaultTokenTTL) >= vaultService.ttl) {
+    if (
+      req.session.vaultTokenTTL &&
+      timeElapsed(req.session.vaultTokenTTL) >= vaultService.ttl
+    ) {
       try {
         await renewToken(req.session.vaultToken, vaultService)
         req.session.vaultTokenTTL = new Date().getTime()

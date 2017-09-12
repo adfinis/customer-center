@@ -28,14 +28,16 @@
         </th>
         <td>{{t 'index.tools.gitlab.description'}}</td>
       </tr>
-      <tr>
-        <th class="text-right">
-          {{#link-to 'rt'}}
-            {{t 'index.tools.rt'}}
-          {{/link-to}}
-        </th>
-        <td>{{t 'index.tools.rt.description'}}</td>
-      </tr>
+      {{#if (service-enabled 'rt')}}
+        <tr>
+          <th class="text-right">
+              {{#link-to 'rt'}}
+                {{t 'index.tools.rt'}}
+              {{/link-to}}
+          </th>
+          <td>{{t 'index.tools.rt.description'}}</td>
+        </tr>
+      {{/if}}
       <tr>
         <th class="text-right">
           <a href="https://admin.syhosting.ch/poweradmin/">
@@ -52,6 +54,7 @@
         </th>
         <td>{{t 'index.tools.symonitoring.description'}}</td>
       </tr>
+      {{#if (service-enabled 'sysupport')}}
       <tr>
         <th class="text-right">
           {{#link-to 'timescout'}}
@@ -60,17 +63,10 @@
         </th>
         <td>{{t 'index.tools.sysupport.description'}}</td>
       </tr>
+      {{/if}}
       <tr>
         <th class="text-right">
-          <a href="https://ppa.syhosting.ch/">
-            {{t 'index.tools.ppa'}}
-          </a>
-        </th>
-        <td>{{t 'index.tools.ppa.description'}}</td>
-      </tr>
-      <tr>
-        <th class="text-right">
-          <a href="https://rhev.syhosting.ch/">
+          <a href="https://vm-manager.adfinis-sygroup.ch/">
             {{t 'index.tools.rhev'}}
           </a>
         </th>

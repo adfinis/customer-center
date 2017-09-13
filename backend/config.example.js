@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   application: {
     name: 'Customer Center',
     host: 'customer-center.example.com'

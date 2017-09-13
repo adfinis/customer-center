@@ -67,7 +67,7 @@ function getLanguage(acceptLanguage) {
 
 router.post('/login', (req, res, next) => {
   login('ldapauth-user', req, res, err => {
-    if (err && config.login.ldap_customer) {
+    if (err && config.login.ldapCustomer) {
       return login('ldapauth-customer', req, res, next)
     } else if (err) {
       return next(err)

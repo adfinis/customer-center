@@ -1,4 +1,4 @@
-const config = require('./config.json').database
+const config = require('./config.js').database
 
 module.exports = {
   development: config,

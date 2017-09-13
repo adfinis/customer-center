@@ -8,5 +8,9 @@ moduleForComponent('symon-hosts', 'Integration | Component | symon hosts', {
 test('it renders', function(assert) {
   this.render(hbs`{{symon-hosts}}`)
 
-  assert.ok(this.$().text().trim())
+  assert.ok(
+    this.$()
+      .text()
+      .trim()
+  )
 })

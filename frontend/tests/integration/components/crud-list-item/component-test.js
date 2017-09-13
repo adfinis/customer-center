@@ -21,13 +21,17 @@ test('it renders', function(assert) {
   this.set('entry', item)
   this.render(hbs`{{crud-list-item entry=entry edit=entry.edit index=0}}`)
   assert.equal(
-    this.$('span.value').text().trim(),
+    this.$('span.value')
+      .text()
+      .trim(),
     '********',
     'password is masked'
   )
   Ember.run(() => document.querySelector('.btn--show').click())
   assert.equal(
-    this.$('span.value').text().trim(),
+    this.$('span.value')
+      .text()
+      .trim(),
     'Value',
     'password is visible'
   )

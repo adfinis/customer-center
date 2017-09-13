@@ -7,8 +7,18 @@ moduleForComponent('trim', 'helper:trim', {
 
 test('it renders', function(assert) {
   this.render(hbs`{{trim 'wazzzzzzup'}}`)
-  assert.equal(this.$().text().trim(), 'wazzzzzzup')
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    'wazzzzzzup'
+  )
 
   this.render(hbs`{{trim 'wazzzzzzup' length=5}}`)
-  assert.equal(this.$().text().trim(), 'wazzz...')
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    'wazzz...'
+  )
 })

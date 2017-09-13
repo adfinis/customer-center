@@ -11,5 +11,9 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{crud-list title="Test"}}`)
 
-  assert.ok(this.$().text().trim())
+  assert.ok(
+    this.$()
+      .text()
+      .trim()
+  )
 })

@@ -1,6 +1,9 @@
 {{#sy-sidenav title='Customer Center' showAutohideButton=false as |component section|}}
   {{#if (eq section 'body')}}
-    {{cc-sidenav-body user=model}}
+    {{cc-sidenav-body
+      user=model
+      on-logout=(route-action 'invalidateSession')
+    }}
   {{else}}
     <main class="page-main">
       <div class="page-content page-content--scroll">{{liquid-outlet}}</div>

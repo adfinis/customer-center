@@ -45,5 +45,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     if (user.language && user.language !== this.get('i18n.locale')) {
       this.set('i18n.locale', user.language)
     }
+  },
+
+  actions: {
+    invalidateSession() {
+      this.get('session').invalidate()
+    }
   }
 })

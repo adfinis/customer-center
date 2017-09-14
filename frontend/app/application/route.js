@@ -6,11 +6,5 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   setupController(controller) {
     controller.set('session', this.get('session'))
-  },
-
-  actions: {
-    invalidateSession() {
-      this.get('session').invalidate()
-    }
   }
 })

@@ -30,3 +30,7 @@ create-user:
 
 setup-vault:
 	./tools/docker/vault/scripts/init.sh
+
+deploy:
+	(cd frontend && npm i && bower i && npm run build)
+	(cd backend && npm i && npm run build && pm2 restart index)

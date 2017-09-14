@@ -26,3 +26,6 @@ install:
 script:
   - npm test --prefix ./frontend
   - npm test --prefix ./backend
+
+env:
+  - JOBS=2

@@ -1,1 +1,12 @@
-{{outlet}}
+{{#sy-sidenav title='Customer Center' showAutohideButton=false as |component section|}}
+  {{#if (eq section 'body')}}
+    {{#with model as |user|}}
+      {{! templates/sidenav-body.hbs }}
+      {{partial 'sidenav-body'}}
+    {{/with}}
+  {{else}}
+    <main class="page-main">
+      <div class="page-content page-content--scroll">{{liquid-outlet}}</div>
+    </main>
+  {{/if}}
+{{/sy-sidenav}}

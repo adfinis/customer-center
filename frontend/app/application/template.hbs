@@ -1,20 +1,3 @@
-{{#if session.isAuthenticated}}
-  {{#sy-sidenav title='Customer Center' showAutohideButton=false as |component section|}}
-    {{#if (eq section 'body')}}
-      {{#with session.user as |user|}}
-        {{! templates/sidenav-body.hbs }}
-        {{partial 'sidenav-body'}}
-      {{/with}}
-    {{else if (eq section 'page-content')}}
-      <main class="page-main">
-        <div class="page-content page-content--scroll">{{liquid-outlet}}</div>
-      </main>
-    {{/if}}
-  {{/sy-sidenav}}
-{{else}}
-  <main class="page-main">
-    <div class="page-content">{{liquid-outlet}}</div>
-  </main>
-{{/if}}
+{{outlet}}
 
 {{ember-notify messageStyle='bootstrap' closeAfter=5000}}

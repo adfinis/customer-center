@@ -15,5 +15,10 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{vault-tree-node}}`)
 
-  assert.equal(this.$().text().trim(), '')
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    ''
+  )
 })

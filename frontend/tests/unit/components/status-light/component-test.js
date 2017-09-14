@@ -8,5 +8,10 @@ moduleForComponent('status-light', 'Integration | Component | status light', {
 test('it renders', function(assert) {
   this.render(hbs`{{status-light}}`)
 
-  assert.equal(this.$().text().trim(), '')
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    ''
+  )
 })

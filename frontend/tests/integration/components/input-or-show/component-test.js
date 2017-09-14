@@ -11,5 +11,10 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{input-or-show}}`)
 
-  assert.equal(this.$().text().trim(), '')
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    ''
+  )
 })

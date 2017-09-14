@@ -62,8 +62,9 @@ app.use('/api/v1', passwordreset)
 app.use((req, res, next) => {
   if (req.isAuthenticated()) return next()
 
-  req.session.destroy()
-  return next({ status: 401, message: 'Not Authorized' })
+  req.session.destroy(() => {
+    next({ status: 401, message: 'Not Authorized' })
+  })
 })
 
 app.use('/api/v1', userRoute)

@@ -9,5 +9,9 @@ export default AjaxService.extend({
       const token = this.get('session.data.authenticated.data.token')
       return token ? { 'X-Authorization': token } : {}
     }
-  })
+  }),
+
+  isUnauthorizedError() {
+    this.get('session').invalidate()
+  }
 })

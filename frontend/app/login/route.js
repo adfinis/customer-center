@@ -4,13 +4,6 @@ import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-
 const { $ } = Ember
 
 export default Ember.Route.extend(UnauthenticatedRouteMixin, {
-  session: Ember.inject.service(),
-
-  afterModel() {
-    if (this.session.isAuthenticated) {
-      this.replaceWith('/')
-    }
-  },
   activate() {
     $('body').addClass('page-login')
   },

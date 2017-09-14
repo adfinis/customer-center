@@ -164,5 +164,5 @@ router.post('/logout', async (req, res) => {
   }
 
   req.logout()
-  res.redirect('/login')
+  res.status(200).end()
 })

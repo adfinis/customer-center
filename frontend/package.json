@@ -58,7 +58,7 @@
     "liquid-fire": "^0.27.3",
     "loader.js": "^4.2.3",
     "pagination-pager": "^2.1.1",
-    "prettier": "^1.6.1"
+    "prettier": "^1.7.0"
   },
   "dependencies": {}
 }

@@ -26,9 +26,7 @@ docker exec adsycc_ucs1_1 /usr/ucs/scripts/fill-dummy-data.sh
 
 
 # apply DB migrations
-docker exec -it adsycc_backenddev1_1 /bin/bash
-cd /usr/src/app/
-make migrations
+make knex-migrations
 
 # fill vault with dummy data
 make setup-vault

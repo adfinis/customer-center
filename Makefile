@@ -22,6 +22,9 @@ setup-ldap:
 	docker exec adsycc_ucs1_1 /usr/lib/univention-system-setup/scripts/setup-join.sh
 	docker exec adsycc_ucs1_1 /usr/ucs/scripts/fill-dummy-data.sh
 
+knex-migrations:
+	docker exec adsycc_backenddev1_1 make -C /usr/src/app migrations
+
 create-user:
 	docker exec -it adsycc_ucs1_1 /usr/ucs/scripts/create-new-user.sh
 

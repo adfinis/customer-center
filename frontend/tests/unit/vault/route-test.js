@@ -1,13 +1,9 @@
 import { moduleFor, test } from 'ember-qunit'
 
-moduleFor(
-  'route:vault',
-  'Unit | Route | vault',
-  {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  }
-)
+moduleFor('route:vault', 'Unit | Route | vault', {
+  // Specify the other units that are required for this test.
+  // needs: ['controller:foo']
+})
 
 test('it exists', function(assert) {
   let route = this.subject()

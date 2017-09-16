@@ -37,5 +37,17 @@ Copy and rename the `config.example.js` to `config.js` and configure the needed 
 
 Unclear parts of the configuration will have a comment with further information.
 
+## Development
+
+Run `docker-compose up` (inital setup) or `docker-compse start`.
+
+## Deployment
+
+Clone the repository and execute the following commands on your production system:
+```
+git pull
+make deploy
+```
+
 ### LDAP
 To authenticate against LDAP, we used the [Passport LDAP authentication strategy](https://github.com/vesse/passport-ldapauth)

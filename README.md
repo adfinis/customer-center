@@ -10,6 +10,7 @@ Before you start, please make sure that the following tools are installed:
 * node + npm
 * bower
 * docker + docker-compose
+* vault (https://www.vaultproject.io/downloads.html)
 
 ## Setup
 

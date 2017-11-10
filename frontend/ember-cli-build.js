@@ -9,8 +9,7 @@ module.exports = function(defaults) {
     }
   })
 
-  app.import('vendor/babel-polyfill.js', { prepend: true })
-  app.import('bower_components/moment/locale/de.js')
+  app.import('node_modules/moment/locale/de.js')
 
   return app.toTree()
 }

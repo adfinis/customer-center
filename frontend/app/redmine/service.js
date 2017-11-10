@@ -35,9 +35,10 @@ export default Ember.Service.extend({
    * @return {Object}
    */
   async fetchProjects(params) {
-    let res = await this.get(
-      'ajax'
-    ).request('/api/proxy/redmine/projects.json', { data: params })
+    let res = await this.get('ajax').request(
+      '/api/proxy/redmine/projects.json',
+      { data: params }
+    )
 
     return {
       projects: res.projects,

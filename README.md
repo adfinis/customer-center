@@ -40,7 +40,7 @@ Unclear parts of the configuration will have a comment with further information.
 
 ## Development
 
-Run `docker-compose up` (inital setup) or `docker-compse start`.
+Run `docker-compose up` (inital setup) or `docker-compose start`.
 
 ## Deployment
 

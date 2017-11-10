@@ -16,56 +16,56 @@ export default bookshelf.Model.extend(
     tableName: 'user',
 
     /**
-   * Get user mail addresses
-   *
-   * @return {string[]}
-   * @public
-   */
+     * Get user mail addresses
+     *
+     * @return {string[]}
+     * @public
+     */
     getEmails() {
       let emails = this.get('emails')
       return emails && emails.content
     },
 
     /**
-   * Get user ldap group objects
-   *
-   * @return {Object[]} ldap group objects
-   * @public
-   */
+     * Get user ldap group objects
+     *
+     * @return {Object[]} ldap group objects
+     * @public
+     */
     getGroups() {
       let groups = this.get('groups')
       return groups && groups.content
     },
 
     /**
-   * Get user ldap group names
-   *
-   * @return {string[]}
-   * @public
-   */
+     * Get user ldap group names
+     *
+     * @return {string[]}
+     * @public
+     */
     getGroupNames() {
       let groups = this.get('groups')
       return groups && groups.content.map(g => g.cn)
     },
 
     /**
-   * Does this user have redmine access?
-   *
-   * @return {boolean}
-   * @public
-   */
+     * Does this user have redmine access?
+     *
+     * @return {boolean}
+     * @public
+     */
     hasRedmineAccess() {
       return this.getGroupNames().find(g => g.endsWith('redmine'))
     }
   },
   {
     /**
-   * Syncs the ldap user to our database
-   *
-   * @param {Object} ldap The ldap response with username, shortname and groups
-   * @return {Promise.<User>}
-   * @public
-   */
+     * Syncs the ldap user to our database
+     *
+     * @param {Object} ldap The ldap response with username, shortname and groups
+     * @return {Promise.<User>}
+     * @public
+     */
     // eslint-disable-next-line max-statements
     async syncLdap(ldap) {
       let user = await new this({ username: ldap.uid }).fetch()

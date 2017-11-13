@@ -1,97 +1,100 @@
-web1:
-  extends:
-    file: ./tools/docker/compose.yml
-    service: web
-  volumes:
-    - ./tools/docker/nginx/nginx-dev.conf:/etc/nginx/nginx.conf
-  links:
-    - backenddev1
-    - frontenddev1
-  ports:
-    - "8080:80"
+version: '2'
+services:
+  web1:
+    extends:
+      file: ./tools/docker/compose.yml
+      service: web
+    volumes:
+      - ./tools/docker/nginx/nginx-dev.conf:/etc/nginx/nginx.conf
+    links:
+      - backenddev1
+      - frontenddev1
+    ports:
+      - "8080:80"
 
-backenddev1:
-  extends:
-    file: ./tools/docker/compose.yml
-    service: backend-dev
-  volumes:
-    - ./tools/docker/rt4/var/rt4:/var/rt4/rt4
-  links:
-    - redis1
-    - postgres1
-    - ucs1
-    - redmine1
-    - rt1
-    - vault1
-  environment:
-    - DEBUG=app:*
+  backenddev1:
+    extends:
+      file: ./tools/docker/compose.yml
+      service: backend-dev
+    volumes:
+      - ./tools/docker/rt4/var/rt4:/var/rt4/rt4
+    links:
+      - redis1
+      - postgres1
+      - ucs1
+      - redmine1
+      - rt1
+      - vault1
+    environment:
+      - DEBUG=app:*
 
-frontenddev1:
-  extends:
-    file: ./tools/docker/compose.yml
-    service: frontend-dev
-  volumes:
-    - ./frontend:/usr/src/app
-  ports:
-    - "49152:49152"
+  frontenddev1:
+    extends:
+      file: ./tools/docker/compose.yml
+      service: frontend-dev
+    volumes:
+      - ./frontend:/usr/src/app
+    ports:
+      - "49152:49152"
 
-redis1:
-  extends:
-    file: ./tools/docker/compose.yml
-    service: redis
+  redis1:
+    extends:
+      file: ./tools/docker/compose.yml
+      service: redis
 
-ucs1:
-  extends:
-    file: ./tools/docker/compose.yml
-    service: ucs
-  hostname: adsycc-ucs
-  environment:
-    - rootpwd=univention
-  volumes:
-    - ./tools/docker/ucs/scripts:/usr/ucs/scripts
-  ports:
-    - "389:389"
-    - "8083:80"
+  ucs1:
+    extends:
+      file: ./tools/docker/compose.yml
+      service: ucs
+    hostname: adsycc-ucs
+    environment:
+      - rootpwd=univention
+    volumes:
+      - ./tools/docker/ucs/scripts:/usr/ucs/scripts
+    ports:
+      - "389:389"
+      - "8083:80"
 
-postgres1:
-  extends:
-    file: ./tools/docker/compose.yml
-    service: postgres
-  environment:
-    - POSTGRES_USER=test
-    - POSTGRES_PASSWORD=test
-    - POSTGRES_DB=adsycc
-  ports:
-    - "5432:5432"
+  postgres1:
+    extends:
+      file: ./tools/docker/compose.yml
+      service: postgres
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=adsycc
+    ports:
+      - "5432:5432"
 
-redmine1:
-  image: sameersbn/redmine:latest
-  links:
-    - postgres1
-    - ucs1
-  environment:
-    - DB_TYPE=postgres
-    - DB_HOST=postgres1
-    - DB_NAME=redmine
-    - DB_USER=test
-    - DB_PASS=test
-  ports:
-    - "8081:80"
+  redmine1:
+    image: sameersbn/redmine:latest
+    links:
+      - postgres1
+      - ucs1
+    environment:
+      - DB_TYPE=postgres
+      - DB_HOST=postgres1
+      - DB_NAME=redmine
+      - DB_USER=test
+      - DB_PASS=test
+      - DB_PORT=5432
+    ports:
+      - "8081:80"
 
-rt1:
-  image: jbfink/rt:latest
-  command: /opt/rt4/sbin/rt-server
-  volumes:
-    - ./tools/docker/rt4/etc/RT_Config.pm:/opt/rt4/etc/RT_Config.pm
-    - ./tools/docker/rt4/etc/RT_SiteConfig.pm:/opt/rt4/etc/RT_SiteConfig.pm
-    - ./tools/docker/rt4/var/rt4:/opt/rt4/var/rt4
-  ports:
-    - "8082:8082"
+  rt1:
+    image: jbfink/rt:latest
+    command: /opt/rt4/sbin/rt-server
+    volumes:
+      - ./tools/docker/rt4/etc/RT_Config.pm:/opt/rt4/etc/RT_Config.pm
+      - ./tools/docker/rt4/etc/RT_SiteConfig.pm:/opt/rt4/etc/RT_SiteConfig.pm
+      - ./tools/docker/rt4/var/rt4:/opt/rt4/var/rt4
+    ports:
+      - "8082:8082"
 
-vault1:
-  image: vault
-  environment:
-    - VAULT_DEV_ROOT_TOKEN_ID=myroot
-    - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
-  ports:
-    - "8200:8200"
+  vault1:
+    image: vault
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=myroot
+      - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
+    ports:
+      - "8200:8200"

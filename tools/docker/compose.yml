@@ -1,36 +1,38 @@
-web:
-  image: nginx
-  volumes:
-    - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+version: '2'
+services:
+  web:
+    image: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
 
-backend:
-  build: ../../backend/
-  environment:
-    - NODE_ENV=production
+  backend:
+    build: ../../backend/
+    environment:
+      - NODE_ENV=production
 
-backend-dev:
-  image: node:7
-  volumes:
-    - ../../backend:/usr/src/app
-  command: npm --prefix=/usr/src/app run watch
-  environment:
-    - NODE_ENV=development
+  backend-dev:
+    image: node:7
+    volumes:
+      - ../../backend:/usr/src/app
+    command: npm --prefix=/usr/src/app run watch
+    environment:
+      - NODE_ENV=development
 
-frontend-dev:
-  image: node:7
-  volumes:
-    - ../../frontend:/usr/src/app
-  command: npm --prefix=/usr/src/app run start-proxy
+  frontend-dev:
+    image: node:7
+    volumes:
+      - ../../frontend:/usr/src/app
+    command: npm --prefix=/usr/src/app run start-proxy
 
-redis:
-  image: redis
+  redis:
+    image: redis
 
-postgres:
-  image: postgres
-  volumes:
-    - ./postgres:/docker-entrypoint-initdb.d
+  postgres:
+    image: postgres
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d
 
-ucs:
-  build: ./ucs
-  volumes:
-    - ./ucs/adsycc-ucs.profile:/var/cache/univention-system-setup/profile
+  ucs:
+    build: ./ucs
+    volumes:
+      - ./ucs/adsycc-ucs.profile:/var/cache/univention-system-setup/profile

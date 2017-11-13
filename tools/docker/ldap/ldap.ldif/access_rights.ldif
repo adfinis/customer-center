@@ -1,0 +1,17 @@
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+delete: olcAccess
+-
+add: olcAccess
+olcAccess: to attrs=userPassword,shadowLastChange
+    by self write
+    by dn="cn=admin,dc=edubs,dc=ch" write
+    by anonymous auth
+    by * none
+-
+add: olcAccess
+olcAccess: to *
+    by self write
+    by dn="uid=Administrator,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch" write
+    by users read
+

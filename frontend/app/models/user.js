@@ -33,6 +33,23 @@ export default Model.extend({
     return this._checkGroup('sysupport')
   }),
 
+  gitlab: computed('groups.[]', function() {
+    return this._checkGroup('gitlab')
+  }),
+
+  /**
+   * Get all groups with a `-gitlab` suffix.
+   *
+   * @returns {Object[]} Returns all gitlab groups.
+   * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
+   */
+  gitlabGroups: computed('groups.[]', function() {
+    // get all groups with the suffix and then remove it
+    return this.get('groups')
+      .filter(g => g.endsWith('gitlab'))
+      .map(group => group.replace('-gitlab', ''))
+  }),
+
   rt: computed('email', 'emails.[]', function() {
     return this.get('email') || this.get('emails.length')
   }),

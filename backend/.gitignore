@@ -1,4 +1,5 @@
 coverage
 config.js
 dist
+yarn-error.log
 .nyc_output

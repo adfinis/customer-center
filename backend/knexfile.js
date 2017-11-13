@@ -1,7 +1,10 @@
-const config = require('./config.js').database
+import config from './src/config'
+
+const { database } = config
 
 module.exports = {
-  development: config,
-  staging: config,
-  production: config
+  development: database,
+  testing: database,
+  staging: database,
+  production: database
 }

@@ -1,65 +1,83 @@
 version: '2'
 services:
-  web1:
-    extends:
-      file: ./tools/docker/compose.yml
-      service: web
+  web:
+    image: nginx
     volumes:
       - ./tools/docker/nginx/nginx-dev.conf:/etc/nginx/nginx.conf
     links:
-      - backenddev1
-      - frontenddev1
+      - backend
+      - frontend
     ports:
       - "8080:80"
 
-  backenddev1:
-    extends:
-      file: ./tools/docker/compose.yml
-      service: backend-dev
+  backend:
+    image: node:8
+    working_dir: /usr/src/app
     volumes:
+      - ./backend:/usr/src/app
       - ./tools/docker/rt4/var/rt4:/var/rt4/rt4
     links:
-      - redis1
-      - postgres1
-      - ucs1
-      #- redmine1
-      #- rt1
-      - vault1
-      - timed1
+      - redis
+      - postgres
+      - ldap
+      # - redmine
+      # - rt
+      - vault
+      - timedbackend
     environment:
+      - NODE_ENV=development
       - DEBUG=app:*
+    ports:
+      - "3000:3000"
+    command: yarn watch
 
-  frontenddev1:
-    extends:
-      file: ./tools/docker/compose.yml
-      service: frontend-dev
+  frontend:
+    image: node:8
+    working_dir: /usr/src/app
     volumes:
       - ./frontend:/usr/src/app
     ports:
       - "7020:7020"
+    command: yarn start-proxy
 
-  redis1:
-    extends:
-      file: ./tools/docker/compose.yml
-      service: redis
-
-  ucs1:
-    extends:
-      file: ./tools/docker/compose.yml
-      service: ucs
-    hostname: customer-center-ucs
-    environment:
-      - rootpwd=univention
-    volumes:
-      - ./tools/docker/ucs/scripts:/usr/ucs/scripts
+  redis:
+    image: redis
     ports:
-      - "389:389"
-      - "8083:80"
+      - "6379:6379"
 
-  postgres1:
-    extends:
-      file: ./tools/docker/compose.yml
-      service: postgres
+  ldap:
+    image: osixia/openldap
+    ports: 
+      - "4389:389"
+    volumes:
+      - ./tools/docker/ldap/ldap.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom
+    environment:
+      - LDAP_ORGANISATION=adsy
+      - LDAP_DOMAIN=adsy-ext.becs.adfinis-sygroup.ch
+      - LDAP_ADMIN_PASSWORD=123qwe
+      - LDAP_OPENLDAP_UID=1000
+      - LDAP_OPENLDAP_GID=1000
+      - LDAP_TLS=false
+      - LDAP_BASE_DN=dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+    command: ["--copy-service", "--loglevel", "debug"]
+    
+  ldapadmin:
+    image: osixia/phpldapadmin
+    volumes:
+        - ./tools/docker/ldapadmin/config.php:/container/service/phpldapadmin/assets/config/config.php
+    ports: 
+      - "6443:80"
+    environment:
+      #- PHPLDAPADMIN_LDAP_HOSTS=ldap
+      - PHPLDAPADMIN_HTTPS=false
+      - PHPLDAPADMIN_LDAP_CLIENT_TLS=false
+    command: ['--copy-service']
+
+  postgres:
+    image: postgres
+    volumes:
+      - ./tools/docker/postgres/setup/:/docker-entrypoint-initdb.d/
+      - ./tools/docker/postgres/timed-test-data.sql:/tmp/timed-test-data.sql
     environment:
       - POSTGRES_USER=test
       - POSTGRES_PASSWORD=test
@@ -67,26 +85,48 @@ services:
     ports:
       - "5432:5432"
 
-  vault1:
-    image: vault
+  pgadmin:
+    image: fenglc/pgadmin4
+    ports:
+      - "5050:5050"
+    environment:
+      - DEFAULT_USER=admin
+      - DEFAULT_PASSWORD=admin
+
+  vault:
+    image: vault:0.9.6
     environment:
       - VAULT_DEV_ROOT_TOKEN_ID=myroot
       - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
     ports:
       - "8200:8200"
 
-  timed1:
+  timedbackend:
       build: ../timed-backend/
       ports:
         - '8000:80'
       volumes:
         - ../timed-backend/:/app
       depends_on:
-        - postgres1
+        - postgres
       environment:
-        - DATABASE_URL=psql://test:test@postgres1:5432/timed
-        - DJANGO_DATABASE_HOST=postgres1
+        - DATABASE_URL=psql://test:test@postgres:5432/timed
+        - DJANGO_DATABASE_HOST=postgres
         - DJANGO_DATABASE_USER=test
         - DJANGO_DATABASE_PASSWORD=test
         - ENV=docker
         - STATIC_ROOT=/var/www/static
+
+  gitlab:
+      image: 'gitlab/gitlab-ce:latest'
+      logging:
+        driver: "none"
+      ports:
+        - '5080:80'
+        - '5443:443'
+        - '5022:22'
+
+  gitlab-runner:
+      image: 'gitlab/gitlab-runner:latest'
+      depends_on:
+        - gitlab

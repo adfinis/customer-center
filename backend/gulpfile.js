@@ -1,20 +1,28 @@
 import gulp from 'gulp'
 import eslint from 'gulp-eslint'
 import mocha from 'gulp-spawn-mocha'
+//import istanbul from 'gulp-istanbul'
 // import coverageEnforcer from 'gulp-istanbul-enforcer'
 
 let src = ['src/**/*.js', 'routes/**/*.js', 'middleware/*.js']
 
 let testFiles = ['tests/helper.js', 'tests/**/*-test.js']
 
+//gulp.task('pre-test', function() {
+//return gulp
+//.src(['src/**/*.js'])
+//.pipe(istanbul())
+//.pipe(istanbul.hookRequire())
+//})
+
 gulp.task('test', ['lint'], () => {
   return gulp.src(testFiles).pipe(
     mocha({
       reporter: 'spec',
-      compilers: 'js:babel-register',
-      istanbul: false
+      compilers: 'js:babel-core/register'
     })
   )
+  //.pipe(istanbul.writeReports())
   //.pipe(coverageEnforcer({
   //  thresholds: {
   //    statements: 100

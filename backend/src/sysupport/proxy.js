@@ -3,7 +3,7 @@ import httpProxy from 'express-http-proxy'
 
 const routes = {
   subscriptionProject: {
-    path: /^\/subscription-projects(\/[1-9]\d*|)$/,
+    path: /^\/subscription-projects(\/[1-9][0-9]*|)$/,
     access: {
       admin: ['GET'],
       customer: ['GET']

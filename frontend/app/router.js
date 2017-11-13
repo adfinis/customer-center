@@ -27,6 +27,8 @@ Router.map(function() {
       this.route('detail', { path: ':project' })
       this.route('confirm-subscriptions')
     })
+
+    this.route('gitlab', { resetNamespace: true, path: 'projects' })
   })
 
   this.route('notfound', { path: '/*path' })

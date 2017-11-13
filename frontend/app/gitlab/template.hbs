@@ -1,0 +1,68 @@
+{{bread-crumbs tagName="ul" linkable=true class='uk-breadcrumb uk-animation-slide-top-small'}}
+<hr>
+<div class="uk-flex uk-flex-between uk-flex-middle uk-flex-wrap">
+  <h2>{{t 'gitlab.groups'}}</h2>
+  <div class="uk-flex uk-flex-around uk-flex-middle uk-flex-wrap">
+
+    <div class="uk-margin-right" data-test-calendar=true>
+      {{#power-datepicker locale=i18n.locale selected=date onSelect=(action (mut date) value="date") as |dp|}}
+        {{#dp.trigger tabindex="-1"}}
+          {{t 'gitlab.commitsSince'}}
+          <div class="uk-inline">
+            <input type="text" class="uk-input uk-form-width-small" readonly value={{moment-format date 'DD.MM.YYYY'}}>
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: calendar"/>
+          </div>
+        {{/dp.trigger}}
+
+        {{#dp.content class="demo-datepicker-small"}}
+          {{dp.nav}}
+          {{#dp.days as |day|}}
+            {{#with (moment-format day.date 'ddd') as |weekday|}}
+              <div data-test-day={{day.number}} class="{{if day.isToday "calendar-current-day" "uk-background-muted"}} {{if day.isSelected "calendar-selected-day"}} {{if day.isCurrentMonth "" "calendar-not-current-month"}} calendar-day">
+              {{#if (and day.isCurrentMonth (or (eq weekday "Sat") (eq weekday "Sun")))}}
+                <strong class="blue-text">{{day.number}}</strong>
+              {{else}}
+                {{day.number}}
+              {{/if}}
+              </div>
+            {{/with}}
+          {{/dp.days}}
+        {{/dp.content}}
+      {{/power-datepicker}}
+    </div>
+
+    <div class="uk-margin-right cc-select" data-test-select="select">
+      {{#power-select
+        selected=selection
+        searchEnabled=false
+        options=model
+        allowClear=true
+        placeholder=(t "gitlab.allGroups")
+        onchange=(action (mut selection))
+        as |group index|
+      }}
+        {{group.name}}
+      {{else}}
+        {{t "gitlab.empty.groups"}}
+      {{/power-select}}
+    </div>
+
+    <div class="uk-margin uk-search uk-search-default">
+      <span uk-search-icon></span>
+      {{input data-test-search=true class="uk-search-input" value=search type="search" placeholder=(t 'gitlab.placeholder') autofocus=true}}
+    </div>
+
+  </div>
+</div>
+
+<div class="uk-margin-left uk-margin-top">
+
+
+  {{#each groups as |group index|}}
+    {{#if (gt group.projects.length 0)}}
+      {{gitlab-groups model=group filter=filter data-test-group=index}}
+    {{/if}}
+  {{else}}
+    {{t "gitlab.empty.groups"}}
+  {{/each}}
+</div>

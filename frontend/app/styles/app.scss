@@ -1,5 +1,6 @@
 @import 'ember-uikit-adsy-theme';
 @import 'login';
+@import 'ember-power-datepicker';
 
 * {
   -webkit-hyphens: auto;
@@ -21,7 +22,7 @@ body {
 
 .hidden-font,
 .hidden-font a {
-  color: rgba(0,0,0,0);
+  color: rgba(0, 0, 0, 0);
 }
 
 .pointer {
@@ -51,7 +52,8 @@ body {
   border: none;
 }
 
-.ember-notify-cn, .ember-notify-cn .ember-notify-show {
+.ember-notify-cn,
+.ember-notify-cn .ember-notify-show {
   left: 0;
   right: auto;
 }
@@ -59,3 +61,53 @@ body {
 .uk-border-remove {
   border: 0 !important;
 }
+
+.cc-background-pipeline-running {
+  background-color: lightsalmon;
+}
+
+.cc-background-pipeline-failed {
+  background-color: rgb(238, 75, 75);
+}
+
+.cc-background-pipeline-passed {
+  background-color: #4eba4e;
+}
+
+.cc-background-pipeline-skiped {
+  background-color: lightgray;
+}
+
+.blue-text {
+  color: lightblue;
+}
+
+.calendar-day {
+  padding: 10px;
+}
+
+.calendar-current-day {
+  background-color: rgb(226, 226, 226);
+}
+
+.calendar-selected-day {
+  background-color: rgb(225, 247, 255);
+}
+.calendar-not-current-month {
+  color: lightgray;
+}
+
+// Power select ui-kit style
+.cc-select {
+  width: 110px;
+}
+.ember-power-select-trigger--active {
+  outline: none;
+}
+$ember-power-select-border-color: rgb(229, 229, 229);
+$ember-power-select-default-border-radius: 0px;
+$ember-power-select-line-height: 40px;
+$ember-power-select-focus-border-color: #5b8edb;
+$ember-power-select-option-padding: 10px;
+
+@import 'ember-power-select';

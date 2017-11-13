@@ -1,4 +1,5 @@
 import { Response } from 'ember-cli-mirage'
+import moment from 'moment'
 
 export default function() {
   //code coverage
@@ -24,6 +25,7 @@ export default function() {
     }
     return user
   })
+
   this.put('/v1/users/current', function({ users }, request) {
     return users.findBy({ username: request.requestHeaders['X-Authorization'] })
   })
@@ -175,4 +177,137 @@ export default function() {
 
   this.get('/proxy/sysupport/billing-types', 'timed-billing-types')
   this.get('/proxy/sysupport/billing-types/:id', 'timed-billing-types')
+
+  this.get('/proxy/gitlab/groups/:group/', (scheme, req) => {
+    let group = req.params.group
+    let id = group.slice(-1, group.lengt)
+    let projects = []
+
+    for (let i = 0; i < id * 2; i++) {
+      projects.push({
+        id: i,
+        name: `project${i}`,
+        name_with_namespace: `${group} / project${i}`,
+        path: `project${i}`,
+        path_with_namespace: `${group}/project${i}`,
+        namespace: {
+          id,
+          name: group,
+          path: group,
+          kind: 'group',
+          full_path: group
+        }
+      })
+    }
+    return {
+      id,
+      name: group,
+      path: group,
+      full_name: group,
+      projects
+    }
+  })
+
+  this.get('/proxy/gitlab/projects/:path/repository/commits', (schema, req) => {
+    let commits = []
+
+    for (let i = 0; i < 100; i++) {
+      commits.push(moment().subtract(i, 'days'))
+    }
+    if (req.queryParams.since) {
+      return commits.filter(commit => commit > moment(req.queryParams.since))
+    }
+    return commits
+  })
+
+  this.get('/proxy/gitlab/:group/:project/pipelines.json', () => {
+    return {
+      pipelines: [
+        {
+          active: false,
+          flags: {
+            latest: true
+          },
+          details: {
+            status: {
+              text: 'passed'
+            },
+            stages: [
+              {
+                name: 'test',
+                status: {
+                  text: 'passed'
+                }
+              }
+            ]
+          },
+          ref: {
+            name: 'master'
+          }
+        },
+        {
+          active: false,
+          flags: {
+            latest: true
+          },
+          details: {
+            status: {
+              text: 'failed'
+            },
+            stages: [
+              {
+                name: 'test',
+                status: {
+                  text: 'failed'
+                }
+              },
+              {
+                name: 'deploy',
+                status: {
+                  text: 'passed'
+                }
+              }
+            ]
+          },
+          ref: {
+            name: 'prod'
+          }
+        },
+        {
+          active: false,
+          flags: {
+            latest: true
+          },
+          details: {
+            status: {
+              text: 'running'
+            },
+            stages: [
+              {
+                name: 'test',
+                status: {
+                  text: 'running'
+                }
+              },
+              {
+                name: 'test',
+                status: {
+                  text: 'pending'
+                }
+              },
+              {
+                name: 'test',
+                status: {
+                  text: 'created'
+                }
+              }
+            ]
+          },
+          ref: {
+            name: 'test'
+          }
+        }
+      ]
+    }
+  })
 }

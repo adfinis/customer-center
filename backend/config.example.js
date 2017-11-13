@@ -49,7 +49,7 @@ module.exports = {
   database: {
     client: 'pg',
     connection: {
-      host: 'postgres1',
+      host: 'postgres',
       user: 'test',
       password: 'test',
       database: 'customercenter'
@@ -79,7 +79,7 @@ module.exports = {
     authMethod: 'PLAIN'
   },
   redis: {
-    host: 'redis1',
+    host: 'redis',
     port: 6379,
     options: {}
   },
@@ -101,6 +101,12 @@ module.exports = {
       authPath: '/auth/login',
       authRefresh: '/auth/refresh',
       ttl: 7200 // token TTL in seconds
+    },
+    gitlab: {
+      type: 'gitlab',
+      host: 'http://gitlab:80',
+      token: 'your_token',
+      prefix: '/api/v4'
     }
   }
 }

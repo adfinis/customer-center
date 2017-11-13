@@ -31,6 +31,9 @@ make knex-migrations
 
 # fill vault with dummy data
 make setup-vault
+
+# finish setup of the timed backend
+make setup-timed
 ```
 
 ## Configuration

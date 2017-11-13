@@ -31,6 +31,10 @@ create-user:
 setup-vault:
 	./tools/docker/vault/scripts/init.sh
 
+setup-timed:
+	docker-compose exec timedbackend1 ./manage.py migrate
+	docker-compose exec timedbackend1 ./manage.py createsuperuser
+
 deploy:
 	(cd frontend && npm i && bower i && npm run build)
 	(cd backend && npm i && npm run build && pm2 restart index)

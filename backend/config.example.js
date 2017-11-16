@@ -130,7 +130,7 @@ module.exports = {
     },
     timed: {
       type: 'timed',
-      host: 'http://timedbackend1:8000',
+      host: 'http://timedbackend1:80',
       user: 'API user to get the token',
       password: 'pass',
       prefix: '/api/v1',

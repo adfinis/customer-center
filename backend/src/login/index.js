@@ -5,6 +5,8 @@ import passport from 'passport'
 import LdapStrategy from 'passport-ldapauth'
 import User from '../user/model'
 import config from '../config'
+import { timedLogin } from '../sysupport/token'
+import { getCustomer as getTimeCustomer } from '../sysupport/custom'
 
 passport.use(
   'ldapauth-user',
@@ -89,6 +91,7 @@ function login(strategy, req, res, next) {
   })(req, res, next)
 }
 
+/* eslint-disable complexity, max-statements */
 function loginSuccessful(req, res, next, ldapUser) {
   const { body: { username, password } } = req
 
@@ -100,17 +103,30 @@ function loginSuccessful(req, res, next, ldapUser) {
       aud: config.application.host,
       uid: users.get(ldapUser).id
     }
-    const hasVault = users
-      .get(ldapUser)
-      .getGroupNames()
-      .some(g => g.endsWith('vault'))
 
-    if (hasVault) {
+    const userGroups = users.get(ldapUser).getGroupNames()
+
+    // If user is in the vault group, get vault token
+    if (userGroups.some(g => g.endsWith('vault'))) {
       try {
         req.session.vaultToken = await vaultLogin(username, password)
         req.session.vaultTokenTTL = new Date().getTime()
       } catch (e) {
         console.log('vault auth error', e.message)
+      }
+    }
+
+    // If user is in the sysupport group, get timed token
+    if (userGroups.some(g => g.endsWith('sysupport'))) {
+      try {
+        req.session.timedToken = await timedLogin()
+        req.session.timedTokenTTL = new Date().getTime()
+        req.session.timedCustomer = await getTimeCustomer(
+          req.session.timedToken,
+          users.get(ldapUser)
+        )
+      } catch (e) {
+        console.log('timed auth error', e.message)
       }
     }
 
@@ -122,6 +138,7 @@ function loginSuccessful(req, res, next, ldapUser) {
     })
   })
 }
+/* eslint-enable complexity, max-statements */
 
 /**
  * Log in to vault with AdsyCC credentials

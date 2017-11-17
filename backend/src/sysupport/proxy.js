@@ -17,6 +17,7 @@ function createProxy(config) {
       return allowedEndpoints.includes(req.path) && req.session.timedCustomer.id
     },
 
+    // eslint-disable-next-line max-statements
     proxyReqPathResolver(req) {
       const newPath = path.join(config.prefix, req.path)
       const queryParams = url.parse(req.url, true).query
@@ -24,16 +25,20 @@ function createProxy(config) {
 
       // Frontend can not set the query param "customer"
       Reflect.deleteProperty(queryParams, 'customer')
+      if (req.path === report) {
+        Reflect.deleteProperty(queryParams, 'not_billable')
+        Reflect.deleteProperty(queryParams, 'review')
+      }
 
       const queryString = Object.keys(queryParams)
         .map(key => `${key}=${queryParams[key]}`)
         .join('&')
 
-      if (req.path === subProject) {
-        return `${newPath}?customer=${timedCustomer.id}&${queryString}`
+      if (req.path === report) {
+        return `${newPath}?customer=${timedCustomer.id}&not_billable=False&review=False&${queryString}`
       }
 
-      return url.parse(path.join(config.prefix, req.url)).path
+      return `${newPath}?customer=${timedCustomer.id}&${queryString}`
     },
 
     proxyReqOptDecorator(proxyReqOpts, { session: { timedToken } }) {

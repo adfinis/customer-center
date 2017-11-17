@@ -135,7 +135,8 @@ module.exports = {
       password: 'pass',
       prefix: '/api/v1',
       authPath: '/auth/login',
-      ttl: 7200
+      authRefresh: '/auth/refresh',
+      ttl: 7200 // token TTL in seconds
     }
   }
 }

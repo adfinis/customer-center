@@ -9,18 +9,20 @@ backend:
     - NODE_ENV=production
 
 backend-dev:
-  image: node:7
+  image: node:8
   volumes:
     - ../../backend:/usr/src/app
-  command: npm --prefix=/usr/src/app run watch
+  working_dir: /usr/src/app
+  command: yarn watch
   environment:
     - NODE_ENV=development
 
 frontend-dev:
-  image: node:7
+  image: node:8
   volumes:
     - ../../frontend:/usr/src/app
-  command: npm --prefix=/usr/src/app run start-proxy
+  working_dir: /usr/src/app
+  command: yarn start-proxy
 
 redis:
   image: redis

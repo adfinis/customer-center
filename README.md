@@ -7,8 +7,7 @@ This is still very much in progress.
 ## Prerequisites
 
 Before you start, please make sure that the following tools are installed:
-* node + npm
-* bower
+* node + yarn
 * docker + docker-compose
 * vault (https://www.vaultproject.io/downloads.html)
 

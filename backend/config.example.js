@@ -106,11 +106,6 @@ module.exports = {
         }
       }
     },
-    timescout: {
-      type: 'timescout',
-      host: 'https://support.example.com/api',
-      apiKey: 'somerandomkey'
-    },
     symon: {
       type: 'symon',
       host: '0.0.0.0',

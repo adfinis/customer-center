@@ -1,7 +1,7 @@
 ---
 language: node_js
 node_js:
-  - "6"
+  - "8"
 
 sudo: false
 
@@ -11,21 +11,14 @@ addons:
   chrome: stable
 
 cache:
-  directories:
-    - $HOME/.npm
-
-before_install:
-  - npm config set spin false
+  yarn: true
 
 install:
-  - npm install -g bower
-  - npm install --prefix ./frontend
-  - npm install --prefix ./backend
-  - cd ./frontend && bower install && cd ..
+  - (cd $DIR; yarn)
 
 script:
-  - npm test --prefix ./frontend
-  - npm test --prefix ./backend
+  - (cd $DIR; yarn test)
 
 env:
-  - JOBS=2
+  - JOBS=2 DIR=frontend
+  - JOBS=2 DIR=backend

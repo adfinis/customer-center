@@ -454,6 +454,10 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
+autolinker@^1.4.3:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/autolinker/-/autolinker-1.6.0.tgz#bad376b7ad8e415f22f102fc0f37f640e64f1cbf"
+
 autoprefixer@^7.1.1:
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-7.1.6.tgz#fb933039f74af74a83e71225ce78d9fd58ba84d7"
@@ -2346,11 +2350,12 @@ ember-ast-helpers@0.3.1:
     "@glimmer/compiler" "^0.27.0"
     "@glimmer/syntax" "^0.27.0"
 
-ember-autolinker@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/ember-autolinker/-/ember-autolinker-0.0.3.tgz#586ee7c4b1214593e5abf3894d301d21cb35b7e3"
+ember-autolinker@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/ember-autolinker/-/ember-autolinker-0.1.1.tgz#9770a190105b6dff0dd660d11df97720e96dc7e1"
   dependencies:
-    ember-cli-babel "^5.1.7"
+    autolinker "^1.4.3"
+    ember-cli-babel "^6.6.0"
 
 ember-cli-app-version@^3.0.0:
   version "3.1.0"

@@ -1,22 +1,18 @@
-install: cache-clean install-frontend install-backend
+install: install-frontend install-backend
 
 install-frontend:
-	cd frontend && npm install
-	cd frontend && bower install
+	cd frontend; yarn
 
 install-backend:
-	cd backend && npm install
-
-cache-clean:
-	bower cache clean
+	cd backend; yarn
 
 test: test-backend test-frontend
 
 test-backend:
-	npm --prefix=./backend run test
+	cd backend; yarn test
 
 test-frontend:
-	npm --prefix=./frontend run test
+	cd frontend; yarn test
 
 setup-ldap:
 	docker exec adsycc_ucs1_1 /usr/lib/univention-system-setup/scripts/setup-join.sh
@@ -32,5 +28,5 @@ setup-vault:
 	./tools/docker/vault/scripts/init.sh
 
 deploy:
-	(cd frontend && npm i && bower i && npm run build)
-	(cd backend && npm i && npm run build && pm2 restart index)
+	(cd frontend; yarn; yarn build)
+	(cd backend; yarn; yarn build; pm2 restart index)

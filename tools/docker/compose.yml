@@ -10,21 +10,21 @@ services:
     environment:
       - NODE_ENV=production
 
-backend-dev:
-  image: node:8
-  volumes:
-    - ../../backend:/usr/src/app
-  working_dir: /usr/src/app
-  command: yarn watch
-  environment:
-    - NODE_ENV=development
+  backend-dev:
+    image: node:8
+    volumes:
+      - ../../backend:/usr/src/app
+    working_dir: /usr/src/app
+    command: yarn watch
+    environment:
+      - NODE_ENV=development
 
-frontend-dev:
-  image: node:8
-  volumes:
-    - ../../frontend:/usr/src/app
-  working_dir: /usr/src/app
-  command: yarn start-proxy
+  frontend-dev:
+    image: node:8
+    volumes:
+      - ../../frontend:/usr/src/app
+    working_dir: /usr/src/app
+    command: yarn start-proxy
 
   redis:
     image: redis

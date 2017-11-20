@@ -7,7 +7,9 @@ module.exports = {
   env: {
     browser: true
   },
-  globals: {
-    fetch: true
+  plugins: ['prettier'],
+  extends: ['eslint:recommended', 'prettier'],
+  rules: {
+    'prettier/prettier': 'error'
   }
 }

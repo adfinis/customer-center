@@ -74,7 +74,6 @@ export default {
     redmine: 'Redmine',
     rt: 'Request Tracker',
     symon: 'SyMonitoring',
-    timescout: 'SySupport',
     wikis: 'Wikis',
     settings: 'Settings',
     profile: 'Profile',
@@ -102,39 +101,6 @@ export default {
     created: 'Created on',
 
     'list-caption': 'Request Tracker'
-  },
-
-  timescout: {
-    'list-caption': 'Subscriptions',
-    'subscription.short': 'Sub',
-    'remaining-hours': 'Remaining hours',
-    history: 'History',
-
-    'project-details': 'Project details',
-    'project-name': 'Projectname',
-    'total-booked': 'Total hours booked',
-    'total-used': 'Total hours used',
-
-    'list-timesheet': 'Timesheet of {{project}}',
-    time: 'Time',
-    description: 'Description',
-    date: 'Date',
-    'done-by': 'Done by',
-
-    'lease-time': 'Lease time',
-    'lease-date': 'Lease date',
-    acknowledged: 'Acknowledged',
-    'confirmed-by': 'Confirmed by',
-
-    reload: 'Reload',
-    'abo-reload-title': 'Abo reload',
-    'abo-reload-info':
-      'You are about to reload your abo. Please choose a package from below.',
-    'abo-reload-success': 'Abo reload success!',
-    package: 'Package',
-    hours: 'Hours',
-    price: 'Price',
-    choose: 'Choose'
   },
 
   symon: {

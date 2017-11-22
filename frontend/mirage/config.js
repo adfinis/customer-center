@@ -68,44 +68,6 @@ export default function() {
       }
     }
   })
-
-  this.get('/proxy/timescout/service/api.php', function({ db }, req) {
-    let { action } = req.queryParams
-
-    switch (action) {
-      case 'projects':
-        return db.timescoutProjects.toArray()
-      case 'history':
-        return db.timescoutHistories.toArray()
-      case 'timesheet': {
-        let { limit = 20, page = 1, projectID } = req.queryParams
-
-        limit = limit | 0
-        page = page | 0
-        projectID = projectID | 0
-
-        let timesheets = db.timescoutTimesheets.where({ projectID })
-
-        return {
-          page,
-          limit,
-          total: timesheets.length,
-          timesheetEntries: timesheets.slice(
-            (page - 1) * limit,
-            (page - 1) * limit + limit
-          )
-        }
-      }
-      default:
-        return {
-          errors: [
-            {
-              detail: 'Unknown timescout action'
-            }
-          ]
-        }
-    }
-  })
 }
 
 /*

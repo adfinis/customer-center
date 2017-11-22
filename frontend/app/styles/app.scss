@@ -52,25 +52,15 @@ body {
   opacity: 1;
 }
 
+.ember-notify-default .ember-notify {
+  margin: 0;
+  padding: 0 0 0 20px;
+  border: none;
+}
+
 .ember-notify-cn, .ember-notify-cn .ember-notify-show {
   left: 0;
   right: auto;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-danger {
-  color: rgb(217, 83, 79);
-}
-
-.text-warning {
-  color: rgb(240, 173, 78);
-}
-
-.text-success {
-  color: rgb(92, 184, 92);
 }
 
 .nav-wiki-item:first-letter {

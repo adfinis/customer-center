@@ -2897,6 +2897,20 @@ ember-font-awesome@^4.0.0-alpha.14:
     postcss "^6.0.9"
     sync-disk-cache "^1.3.2"
 
+ember-gestures@^0.4.8:
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/ember-gestures/-/ember-gestures-0.4.8.tgz#b149e63dfbef21145adc856cd459460aad30dc37"
+  dependencies:
+    broccoli-funnel "^2.0.1"
+    broccoli-merge-trees "^2.0.0"
+    broccoli-stew "^1.5.0"
+    ember-cli-babel "^6.8.2"
+    ember-cli-htmlbars "^2.0.1"
+    ember-cli-version-checker "^1.2.0"
+    ember-getowner-polyfill "^1.2.3"
+    hammerjs "^2.0.8"
+    rsvp "^3.1.0"
+
 ember-get-config@0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/ember-get-config/-/ember-get-config-0.2.1.tgz#a1325cceefcb4534c78fc6ccb2be87a3feda6817"
@@ -2904,7 +2918,7 @@ ember-get-config@0.2.1:
     broccoli-file-creator "^1.1.1"
     ember-cli-babel "^5.1.6"
 
-ember-getowner-polyfill@^1.1.0, ember-getowner-polyfill@^1.1.1, ember-getowner-polyfill@^1.2.2:
+ember-getowner-polyfill@^1.1.0, ember-getowner-polyfill@^1.1.1, ember-getowner-polyfill@^1.2.2, ember-getowner-polyfill@^1.2.3:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-1.2.5.tgz#ceff8a09897d0d7e05c821bb71666a95eb26dc92"
   dependencies:
@@ -3141,27 +3155,25 @@ ember-try@^0.2.15:
     rsvp "^3.0.17"
     semver "^5.1.0"
 
-ember-uikit-adsy-theme@anehx/ember-uikit-adsy-theme:
+ember-uikit-adsy-theme@anehx/ember-uikit-adsy-theme#master:
   version "0.0.0"
   resolved "https://codeload.github.com/anehx/ember-uikit-adsy-theme/tar.gz/59ad85193998c3304b8adc9fde4d2e325705db35"
   dependencies:
     broccoli-funnel "^2.0.1"
     broccoli-merge-trees "^2.0.0"
+    chalk "^2.3.0"
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
+    ember-gestures "^0.4.8"
     ember-truth-helpers "^2.0.0"
     ember-uikit anehx/ember-uikit#master
     typeface-fira-mono "^0.0.44"
     typeface-fira-sans "^0.0.44"
 
-ember-uikit@anehx/ember-uikit, ember-uikit@anehx/ember-uikit#master:
+ember-uikit@anehx/ember-uikit#master:
   version "0.0.0"
   resolved "https://codeload.github.com/anehx/ember-uikit/tar.gz/b065e661e116e556108477b85664f14ebc07356f"
   dependencies:
-    broccoli-funnel "^2.0.1"
-    broccoli-merge-trees "^2.0.0"
-    chalk "^2.3.0"
-    ember-ast-helpers "^0.3.5"
     ember-cli-babel "^6.6.0"
     uikit "^3.0.0-beta.35"
 
@@ -3982,6 +3994,10 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.4,
 growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
+
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
 
 handlebars@^4.0.4, handlebars@^4.0.6:
   version "4.0.11"

@@ -1,9 +1,7 @@
-{{#uk-adsy-menu primaryTop=true secondaryTop=false as |section nav|}}
+{{#uk-adsy-menu as |section nav|}}
   {{#if (eq section 'top')}}
     {{#nav.left}}
-      {{#nav.brand logo=false}}
-        Customer Center
-      {{/nav.brand}}
+      {{nav.brand}}
     {{/nav.left}}
   {{else if (eq section 'side')}}
     {{#nav.list as |list|}}
@@ -45,12 +43,12 @@
     {{#nav.list as |list|}}
       {{#list.item 'user.profile'}}{{t 'nav.profile'}}{{/list.item}}
       <li>
-        <a class="pointer" {{action 'logout'}}>
+        <a class="pointer" {{action 'invalidateSession'}}>
           {{t 'nav.logout'}}
         </a>
       </li>
     {{/nav.list}}
   {{else}}
-    {{liquid-outlet}}
+    {{outlet}}
   {{/if}}
 {{/uk-adsy-menu}}

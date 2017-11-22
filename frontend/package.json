@@ -59,7 +59,6 @@
     "eslint-config-prettier": "^2.3.0",
     "eslint-plugin-ember": "^5.0.1",
     "eslint-plugin-prettier": "^2.1.2",
-    "liquid-fire": "^0.27.3",
     "loader.js": "^4.2.3",
     "pagination-pager": "^2.1.1",
     "prettier": "^1.7.0"

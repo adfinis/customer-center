@@ -26,14 +26,6 @@ Router.map(function() {
 
     this.route('symon', { resetNamespace: true })
 
-    this.route('timescout', { resetNamespace: true }, function() {
-      this.route('timesheet', { path: '/timesheet/:id' }, function() {
-        this.route('index', { path: '/' })
-      })
-
-      this.route('abo', { path: '/abo/:project_id/:abotype_id' })
-    })
-
     this.route('user', { resetNamespace: true }, function() {
       this.route('profile')
     })

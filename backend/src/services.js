@@ -1,7 +1,6 @@
 import express from 'express'
 import RedmineProxy from './redmine/redmine-proxy'
 import RTProxy from './rt/rt-proxy'
-import TimescoutProxy from './timescout/timescout-proxy'
 import SymonProxy from './symon/symon-proxy'
 import VaultProxy from './vault/vault-proxy'
 import vaultCustom from './vault/vault-custom'
@@ -10,13 +9,11 @@ import config from '../config'
 
 let router = new express.Router()
 
-const { redmine, rt, timescout, symon, vault, timed } = config.services
+const { redmine, rt, symon, vault, timed } = config.services
 
 router.use('/proxy/redmine', RedmineProxy.createProxy(redmine))
 
 router.use('/rt', RTProxy.createProxy(rt))
-
-router.use('/proxy/timescout', TimescoutProxy.createProxy(timescout))
 
 router.use('/proxy/symon', SymonProxy.createProxy(symon))
 

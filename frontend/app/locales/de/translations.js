@@ -74,7 +74,6 @@ export default {
     redmine: 'Redmine',
     rt: 'Request Tracker',
     symon: 'SyMonitoring',
-    timescout: 'SySupport',
     wikis: 'Wikis',
     settings: 'Einstellungen',
     profile: 'Profil',
@@ -101,39 +100,6 @@ export default {
     created: 'Erstellt am',
 
     'list-caption': 'Request Tracker'
-  },
-
-  timescout: {
-    'list-caption': 'Abonnomente',
-    'subscription.short': 'Abo',
-    'remaining-hours': 'Übrige Stunden',
-    history: 'Verlauf',
-
-    'project-details': 'Projektdetails',
-    'project-name': 'Projektname',
-    'total-booked': 'Gesamte bezahlte Stunden',
-    'total-used': 'Gesamte verbrauchte Stunden',
-
-    'list-timesheet': 'Übersicht von {{project}}',
-    time: 'Zeit',
-    description: 'Beschreibung',
-    date: 'Datum',
-    'done-by': 'Erledigt durch',
-
-    'lease-time': 'Gekaufte Zeit',
-    'lease-date': 'Gekauft am',
-    acknowledged: 'Bestätigt',
-    'confirmed-by': 'Bestätigt von',
-
-    reload: 'Aufladen',
-    'abo-reload-title': 'Abo aufladen',
-    'abo-reload-info':
-      'Sie sind dabei Ihr Abonnement aufzuladen. Bitte wählen Sie das gewünschte Aufladepaket.',
-    'abo-reload-success': 'Abo erfolgreich aufgeladen!',
-    package: 'Paket',
-    hours: 'Stunden',
-    price: 'Preis',
-    choose: 'Auswählen'
   },
 
   symon: {

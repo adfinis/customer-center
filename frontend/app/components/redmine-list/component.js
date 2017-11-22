@@ -1,6 +1,7 @@
-import Ember from 'ember'
-
-const { computed, observer, inject } = Ember
+import { oneWay } from '@ember/object/computed'
+import Component from '@ember/component'
+import { inject } from '@ember/service'
+import { computed, observer } from '@ember/object'
 
 /**
  * Redmine list component
@@ -8,14 +9,14 @@ const { computed, observer, inject } = Ember
  * @class RedmineList
  * @public
  */
-export default Ember.Component.extend({
+export default Component.extend({
   /**
    * Redmine service to fetch redmine issues
    *
    * @property {RedmineService} redmine
    * @public
    */
-  redmine: inject.service(),
+  redmine: inject(),
 
   /**
    * Limit redmine issues
@@ -56,7 +57,7 @@ export default Ember.Component.extend({
    * @readOnly
    * @private
    */
-  host: computed.oneWay('redmine.host'),
+  host: oneWay('redmine.host'),
 
   /**
    * Mark component as loading

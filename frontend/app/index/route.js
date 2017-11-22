@@ -1,4 +1,4 @@
-import Ember from 'ember'
+import Route from '@ember/routing/route'
 
 /**
  * AdSy Customer Center index route
@@ -6,7 +6,7 @@ import Ember from 'ember'
  * @class IndexRoute
  * @public
  */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
    * Setup the controller
    *

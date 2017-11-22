@@ -1,8 +1,7 @@
-import Ember from 'ember'
+import { inject as service } from '@ember/service'
+import Controller, { inject as controller } from '@ember/controller'
 import fetch from 'fetch'
 import { translationMacro as t } from 'ember-i18n'
-
-const { inject } = Ember
 
 /**
  * Login password-reset controller
@@ -10,14 +9,18 @@ const { inject } = Ember
  * @class LoginPasswordResetController
  * @public
  */
-export default Ember.Controller.extend({
-  login: inject.controller(),
-  i18n: inject.service(),
-
-  errorMessage: {},
+export default Controller.extend({
+  login: controller(),
+  i18n: service(),
 
   successMessage: t('login.sent-new-password'),
   missingIdentificationMessage: t('login.missing-identification'),
+
+  init() {
+    this._super(...arguments)
+
+    this.set('errorMessage', {})
+  },
 
   actions: {
     // eslint-disable-next-line max-statements

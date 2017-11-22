@@ -1,7 +1,6 @@
-import Ember from 'ember'
+import { inject as service } from '@ember/service'
+import Route from '@ember/routing/route'
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin'
-
-const { inject } = Ember
 
 /**
  * Protected route, allows access only to authenticated users
@@ -9,14 +8,14 @@ const { inject } = Ember
  * @class ProtectedRoute
  * @public
  */
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
+export default Route.extend(AuthenticatedRouteMixin, {
   /**
    * Session service, we use the session user for our protected model
    *
    * @property {Session} session
    * @public
    */
-  session: inject.service(),
+  session: service(),
 
   /**
    * I18n service to set the user locale
@@ -24,7 +23,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
    * @property {EmberI18n} i18n
    * @public
    */
-  i18n: inject.service(),
+  i18n: service(),
 
   /**
    * The user model

@@ -1,4 +1,4 @@
-import Ember from 'ember'
+import Service, { inject as service } from '@ember/service'
 import moment from 'moment'
 
 /**
@@ -7,8 +7,8 @@ import moment from 'moment'
  * @class TimescoutService
  * @public
  */
-export default Ember.Service.extend({
-  ajax: Ember.inject.service(),
+export default Service.extend({
+  ajax: service(),
 
   /**
    * Timescout API requests

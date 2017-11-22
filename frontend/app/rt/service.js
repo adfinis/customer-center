@@ -1,4 +1,4 @@
-import Ember from 'ember'
+import Service, { inject as service } from '@ember/service'
 
 /**
  * RT Service for fetching data from a rt instance
@@ -6,8 +6,8 @@ import Ember from 'ember'
  * @class RTService
  * @public
  */
-export default Ember.Service.extend({
-  ajax: Ember.inject.service(),
+export default Service.extend({
+  ajax: service(),
 
   /**
    * Fetch rt issues from a host

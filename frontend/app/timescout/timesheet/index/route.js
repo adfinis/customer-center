@@ -1,6 +1,5 @@
-import Ember from 'ember'
-
-const { inject } = Ember
+import { inject as service } from '@ember/service'
+import Route from '@ember/routing/route'
 
 /**
  * Timescout timesheet index route
@@ -8,14 +7,14 @@ const { inject } = Ember
  * @class TimescoutTimesheetIndexRoute
  * @public
  */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
    * Timescout service
    *
    * @property {TimescoutService} timescout
    * @public
    */
-  timescout: inject.service(),
+  timescout: service(),
 
   /**
    * Query params of this route
@@ -72,7 +71,10 @@ export default Ember.Route.extend({
     loading(transition, route) {
       // Set loading state on timesheet table if available, otherwise
       // load default loading template "timescout.timesheet.loading"
-      if (route.controller && Ember.$('.timesheet-table').length) {
+      if (
+        route.controller &&
+        document.querySelectorAll('.timesheet-table').length
+      ) {
         route.controller.set('loading', true)
 
         return false

@@ -1,16 +1,16 @@
-import Ember from 'ember'
+import { inject as service } from '@ember/service'
+import { hash } from 'rsvp'
+import Route from '@ember/routing/route'
 import { translationMacro as t } from 'ember-i18n'
 
-const { inject } = Ember
-
-export default Ember.Route.extend({
+export default Route.extend({
   /**
    * Timescout service
    *
    * @property {TimescoutService} timescout
    * @public
    */
-  timescout: inject.service(),
+  timescout: service(),
 
   /**
    * Notify service
@@ -18,9 +18,9 @@ export default Ember.Route.extend({
    * @property [EmberNotify] notify
    * @public
    */
-  notify: inject.service(),
+  notify: service(),
 
-  i18n: inject.service(),
+  i18n: service(),
 
   successMessage: t('timescout.abo-reload-success'),
 
@@ -31,7 +31,7 @@ export default Ember.Route.extend({
       projectID: project_id
     }
 
-    return Ember.RSVP.hash(abos)
+    return hash(abos)
   },
 
   actions: {

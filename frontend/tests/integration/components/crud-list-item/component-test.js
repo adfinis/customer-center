@@ -1,5 +1,6 @@
+import { run } from '@ember/runloop'
+import EmberObject from '@ember/object'
 import { moduleForComponent, test } from 'ember-qunit'
-import Ember from 'ember'
 import hbs from 'htmlbars-inline-precompile'
 
 moduleForComponent(
@@ -12,7 +13,7 @@ moduleForComponent(
 
 test('it renders', function(assert) {
   assert.expect(2)
-  let item = Ember.Object.create({
+  let item = EmberObject.create({
     key: 'Key',
     value: 'Value',
     comment: 'Comment',
@@ -27,7 +28,7 @@ test('it renders', function(assert) {
     '********',
     'password is masked'
   )
-  Ember.run(() => document.querySelector('.btn--show').click())
+  run(() => document.querySelector('.btn--show').click())
   assert.equal(
     this.$('span.value')
       .text()

@@ -1,15 +1,14 @@
-import Ember from 'ember'
+import { inject as service } from '@ember/service'
+import Route from '@ember/routing/route'
 
-const { inject } = Ember
-
-export default Ember.Route.extend({
+export default Route.extend({
   /**
    * Timescout service
    *
    * @property {TimescoutService} timescout
    * @public
    */
-  timescout: inject.service(),
+  timescout: service(),
 
   /**
    * Gets timescout projects

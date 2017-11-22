@@ -1,12 +1,16 @@
-import Ember from 'ember'
+import { inject as service } from '@ember/service'
+import Controller, { inject as controller } from '@ember/controller'
 
-const { inject } = Ember
+export default Controller.extend({
+  passwordReset: controller('login.password-reset'),
+  notify: service(),
+  session: service(),
 
-export default Ember.Controller.extend({
-  errorMessage: {},
-  passwordReset: inject.controller('login.password-reset'),
-  notify: inject.service(),
-  session: inject.service(),
+  init() {
+    this._super(...arguments)
+
+    this.set('errorMessage', {})
+  },
 
   actions: {
     async authenticate() {

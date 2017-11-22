@@ -1,4 +1,5 @@
-import Ember from 'ember'
+import { inject as service } from '@ember/service'
+import Component from '@ember/component'
 
 // Copy value into the clipboard
 const copyToClipboard = value => {
@@ -11,9 +12,9 @@ const copyToClipboard = value => {
   return successful
 }
 
-export default Ember.Component.extend({
-  notify: Ember.inject.service(),
-  i18n: Ember.inject.service(),
+export default Component.extend({
+  notify: service(),
+  i18n: service(),
 
   tagName: '',
 

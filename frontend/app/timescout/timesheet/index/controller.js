@@ -1,6 +1,5 @@
-import Ember from 'ember'
-
-const { computed } = Ember
+import Controller from '@ember/controller'
+import { computed } from '@ember/object'
 
 /**
  * Timescout timesheet controller
@@ -8,7 +7,7 @@ const { computed } = Ember
  * @class TimescoutTimesheetController
  * @public
  */
-export default Ember.Controller.extend({
+export default Controller.extend({
   /**
    * Query params of this controller
    *

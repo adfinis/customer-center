@@ -1,4 +1,4 @@
-import Ember from 'ember'
+import Controller from '@ember/controller'
 
 /**
  * RT issues controller
@@ -6,7 +6,7 @@ import Ember from 'ember'
  * @class RTIssuesController
  * @public
  */
-export default Ember.Controller.extend({
+export default Controller.extend({
   /**
    * Query params
    *

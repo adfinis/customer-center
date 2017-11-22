@@ -1,7 +1,6 @@
-import Ember from 'ember'
+import { inject as service } from '@ember/service'
+import Controller from '@ember/controller'
 import moment from 'moment'
-
-const { inject } = Ember
 
 /**
  * User profile controller
@@ -9,14 +8,14 @@ const { inject } = Ember
  * @class UserProfileController
  * @public
  */
-export default Ember.Controller.extend({
+export default Controller.extend({
   /**
    * I18n service to change user locale
    *
    * @property {EmberI18n} i18n
    * @public
    */
-  i18n: inject.service(),
+  i18n: service(),
 
   /**
    * User profile actions
@@ -36,7 +35,7 @@ export default Ember.Controller.extend({
       this.set('i18n.locale', locale)
       moment.locale(locale)
       // Setting html locale to support hyphenation
-      Ember.$('html').attr('lang', locale)
+      document.documentElement.lnag = locale
       this.send('save')
     },
 

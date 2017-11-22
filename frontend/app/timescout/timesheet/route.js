@@ -1,4 +1,4 @@
-import Ember from 'ember'
+import Route from '@ember/routing/route'
 
 /**
  * Timescout timesheet route
@@ -6,7 +6,7 @@ import Ember from 'ember'
  * @class TimescoutTimesheetRoute
  * @public
  */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
    * Timescout timesheet (project) model
    *

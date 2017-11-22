@@ -1,4 +1,4 @@
-import Ember from 'ember'
+import Component from '@ember/component'
 
 /**
  * Timescout component
@@ -6,4 +6,4 @@ import Ember from 'ember'
  * @class TimescoutComponent
  * @public
  */
-export default Ember.Component.extend({})
+export default Component.extend({})

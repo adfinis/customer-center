@@ -1,6 +1,5 @@
-import Ember from 'ember'
-
-const { inject } = Ember
+import { inject as service } from '@ember/service'
+import Route from '@ember/routing/route'
 
 /**
  * Timescout index route
@@ -8,14 +7,14 @@ const { inject } = Ember
  * @class TimescoutIndexRoute
  * @public
  */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
    * Timescout service
    *
    * @property {TimescoutService} timescout
    * @public
    */
-  timescout: inject.service(),
+  timescout: service(),
 
   /**
    * Setup timescout index controller

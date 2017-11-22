@@ -1,9 +1,7 @@
+import { helper } from '@ember/component/helper'
 import Ember from 'ember'
 
-const {
-  Handlebars: { Utils: { escapeExpression } },
-  Helper: { helper }
-} = Ember
+const { Handlebars: { Utils: { escapeExpression } } } = Ember
 
 export function nl2br([text]) {
   const breakTag = '<br />'

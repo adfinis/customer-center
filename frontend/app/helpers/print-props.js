@@ -1,4 +1,4 @@
-import Ember from 'ember'
+import { helper } from '@ember/component/helper'
 
 export function printProps(props) {
   return Object.keys(props[0])
@@ -7,4 +7,4 @@ export function printProps(props) {
     .join(' - ')
 }
 
-export default Ember.Helper.helper(printProps)
+export default helper(printProps)

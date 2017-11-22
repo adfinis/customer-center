@@ -1,13 +1,13 @@
-import Ember from 'ember'
+import { inject as service } from '@ember/service'
+import Route from '@ember/routing/route'
+import RSVP from 'rsvp'
 
-const { RSVP } = Ember
+export default Route.extend({
+  vault: service(),
 
-export default Ember.Route.extend({
-  vault: Ember.inject.service(),
+  notify: service(),
 
-  notify: Ember.inject.service(),
-
-  i18n: Ember.inject.service(),
+  i18n: service(),
 
   model({ path }) {
     return RSVP.hash({

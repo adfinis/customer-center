@@ -1,6 +1,6 @@
 import { oneWay } from '@ember/object/computed'
 import Component from '@ember/component'
-import { inject } from '@ember/service'
+import { inject as service } from '@ember/service'
 import { computed, observer } from '@ember/object'
 
 /**
@@ -16,7 +16,7 @@ export default Component.extend({
    * @property {RedmineService} redmine
    * @public
    */
-  redmine: inject(),
+  redmine: service(),
 
   /**
    * Limit redmine issues

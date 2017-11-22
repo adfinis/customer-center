@@ -1,5 +1,5 @@
 import Component from '@ember/component'
-import { inject } from '@ember/service'
+import { inject as service } from '@ember/service'
 import { computed, observer } from '@ember/object'
 import config from '../../config/environment'
 
@@ -32,7 +32,7 @@ export default Component.extend({
    * @property {RTService} rt
    * @public
    */
-  rt: inject(),
+  rt: service(),
 
   /**
    * Limit rt issues

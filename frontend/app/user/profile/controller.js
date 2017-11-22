@@ -30,12 +30,12 @@ export default Controller.extend({
      * @param {string} locale The new locale
      * @return {void}
      */
-    setLocale(locale) {
+    setLocale (locale) {
       this.set('model.language', locale)
       this.set('i18n.locale', locale)
       moment.locale(locale)
       // Setting html locale to support hyphenation
-      document.documentElement.lnag = locale
+      document.documentElement.lang = locale
       this.send('save')
     },
 
@@ -44,7 +44,7 @@ export default Controller.extend({
      *
      * @return {Promise}
      */
-    async save() {
+    async save () {
       this.set('error', false)
       this.set('loading', true)
 

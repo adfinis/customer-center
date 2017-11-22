@@ -74,6 +74,7 @@ export default {
     redmine: 'Redmine',
     rt: 'Request Tracker',
     symon: 'SyMonitoring',
+    vault: 'Vault',
     wikis: 'Wikis',
     settings: 'Einstellungen',
     profile: 'Profil',

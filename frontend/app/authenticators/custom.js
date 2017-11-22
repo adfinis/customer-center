@@ -1,4 +1,4 @@
-import Ember from 'ember'
+import { isEmpty } from '@ember/utils'
 import fetch from 'fetch'
 import Base from 'ember-simple-auth/authenticators/base'
 
@@ -30,7 +30,7 @@ export default Base.extend({
     return json
   },
   async restore(properties) {
-    if (Ember.isEmpty(properties.data.token)) {
+    if (isEmpty(properties.data.token)) {
       throw new Error('No token to restore found')
     }
 

@@ -1,6 +1,5 @@
-import Ember from 'ember'
-
-const { inject } = Ember
+import { inject as service } from '@ember/service'
+import Route from '@ember/routing/route'
 
 /**
  * Symon route
@@ -8,14 +7,14 @@ const { inject } = Ember
  * @class SymonRoute
  * @public
  */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
    * Symon service to fetch SyMonitoring hosts
    *
    * @property {SymonHosts} symon
    * @public
    */
-  symon: inject.service(),
+  symon: service(),
 
   /**
    * Returns the symon hosts

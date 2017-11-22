@@ -1,8 +1,8 @@
-import Ember from 'ember'
+import { helper } from '@ember/component/helper'
 import ENV from 'adsycc/config/environment'
 
 export function serviceEnabled([name]) {
   return ENV.APP.enabledServices.includes(name)
 }
 
-export default Ember.Helper.helper(serviceEnabled)
+export default helper(serviceEnabled)

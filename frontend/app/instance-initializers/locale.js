@@ -1,7 +1,4 @@
-import Ember from 'ember'
 import moment from 'moment'
-
-const { $ } = Ember
 
 /**
  * Initializer for locale
@@ -37,7 +34,7 @@ function setLocale(i18n, locale) {
     moment.locale(locale)
     i18n.set('locale', locale)
     // Setting html locale to support hyphenation
-    $('html').attr('lang', locale)
+    document.documentElement.lang = locale
   }
 }
 

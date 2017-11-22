@@ -1,7 +1,7 @@
-import Ember from 'ember'
+import Component from '@ember/component'
+import { inject as service } from '@ember/service'
+import { computed, observer } from '@ember/object'
 import config from '../../config/environment'
-
-const { computed, observer, inject } = Ember
 
 /**
  * Request Tracker list component
@@ -9,7 +9,7 @@ const { computed, observer, inject } = Ember
  * @class RTList
  * @public
  */
-export default Ember.Component.extend({
+export default Component.extend({
   /**
    * The request tracker host name
    *
@@ -32,7 +32,7 @@ export default Ember.Component.extend({
    * @property {RTService} rt
    * @public
    */
-  rt: inject.service(),
+  rt: service(),
 
   /**
    * Limit rt issues

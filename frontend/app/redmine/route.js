@@ -1,11 +1,10 @@
-import Ember from 'ember'
+import { inject as service } from '@ember/service'
+import Route from '@ember/routing/route'
 import { translationMacro as t } from 'ember-i18n'
 
-const { inject } = Ember
-
-export default Ember.Route.extend({
-  redmine: inject.service(),
-  i18n: inject.service(),
+export default Route.extend({
+  redmine: service(),
+  i18n: service(),
 
   errorName: t('redmine.error'),
   errorDetails: t('redmine.error-noprojects'),

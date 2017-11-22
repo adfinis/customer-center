@@ -1,24 +1,33 @@
-<main class="page-main">
-  <div class="page-content">
-    <div class="login-form">
-      <form class="form-inline {{if loading 'form-loading'}}" {{action 'authenticate' on='submit'}}>
-        <div class="form-group login-form-user">
-          {{input type="text" value=identification class="form-control" placeholder=(t "global.Username") disabled=loading autofocus=true}}
+<div class="uk-container uk-flex uk-flex-center uk-flex-middle uk-flex-1">
+  <div class="uk-card uk-padding uk-card-login uk-width-2-3@m uk-animation-fade">
+    <form {{action 'authenticate' on='submit'}}>
+      <div class="uk-grid-small uk-margin" uk-grid>
+        <div class="uk-width-1-1 uk-flex uk-flex-center uk-padding uk-padding-remove-horizontal uk-padding-remove-top">
+          <img class="uk-width-2-3" alt="Adfinis SyGroup" src="/assets/pictures/adsy-logo.svg">
         </div>
-        <div class="form-group login-form-password">
-          {{input type="password" value=password class="form-control" placeholder=(t "global.Password") disabled=loading}}
+        <div class="uk-width-1-1 uk-width-2-5@m">
+          <div class="uk-inline uk-width-1-1">
+            {{uk-icon 'user' class='uk-form-icon'}}
+            {{input type='text' name='username' value=identification class='uk-input' placeholder=(t 'global.Username') disabled=loading autofocus=true}}
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary" disabled={{loading}}>
-          {{#if loading}}
-            {{t 'login.logging-in'}}{{sy-loading-dots}}
-          {{else}}
-            {{t 'login.login'}}
-          {{/if}}
-        </button>
-      </form>
-      <button type="button" class="login-form-password-reset-btn btn btn-link" {{action 'passwordreset'}}>
-        {{t 'login.forgot-password'}}
-      </button>
-    </div>
+        <div class="uk-width-1-1 uk-width-2-5@m">
+          <div class="uk-inline uk-width-1-1">
+            {{uk-icon 'lock' class='uk-form-icon'}}
+            {{input type='password' name='password' value=password class='uk-input' placeholder=(t 'global.Password') disabled=loading}}
+          </div>
+        </div>
+        <div class="uk-width-1-1 uk-width-1-5@m">
+          <button type="submit" class="uk-button uk-button-primary uk-width-1-1">
+            {{#if loading}}
+              <div uk-spinner></div>
+            {{else}}
+              {{t 'login.login'}}
+            {{/if}}
+          </button>
+        </div>
+      </div>
+      <a href="#" class="uk-link-muted" {{action 'passwordreset'}}>{{t 'login.forgot-password'}}</a>
+    </form>
   </div>
-</main>
+</div>

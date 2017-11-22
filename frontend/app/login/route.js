@@ -3,9 +3,9 @@ import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-
 
 export default Route.extend(UnauthenticatedRouteMixin, {
   activate() {
-    document.body.classList.add('page-login')
+    document.body.classList.add('login')
   },
   deactivate() {
-    document.body.classList.remove('page-login')
+    document.body.classList.remove('login')
   }
 })

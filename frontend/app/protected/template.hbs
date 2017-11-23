@@ -3,6 +3,11 @@
     {{#nav.left}}
       {{nav.brand}}
     {{/nav.left}}
+    {{#nav.right}}
+      {{#nav.brand class='uk-visible@l' logo=false}}
+        Customer Center
+      {{/nav.brand}}
+    {{/nav.right}}
   {{else if (eq section 'side')}}
     {{#nav.list as |list|}}
       {{#list.item 'index'}}{{t 'nav.dashboard'}}{{/list.item}}

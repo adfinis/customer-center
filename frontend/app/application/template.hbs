@@ -2,9 +2,9 @@
 
 {{#ember-notify closeAfter=5000 as |message close|}}
   {{#with (if (eq message.type 'error') 'danger' message.type) as |type|}}
-  <div class="uk-alert-{{type}}" uk-alert>
-    <a class="uk-alert-close" uk-close {{action close}}></a>
-    <p>{{message.text}}</p>
-  </div>
+    <div class="uk-alert-{{type}} uk-box-shadow-large" uk-alert>
+      <a class="uk-alert-close" uk-close {{action close}}></a>
+      <p>{{message.text}}</p>
+    </div>
   {{/with}}
 {{/ember-notify}}

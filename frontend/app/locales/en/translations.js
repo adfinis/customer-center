@@ -11,7 +11,8 @@ export default {
     search: 'Search',
     empty: 'There is nothing to show here - yet!',
     cancel: 'Cancel',
-    show: 'Show'
+    show: 'Show',
+    back: 'Back'
   },
 
   login: {

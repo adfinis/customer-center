@@ -16,6 +16,7 @@ export default Route.extend({
    * @return {Object}
    */
   async model({ token }) {
+    return null
     let res = await fetch(`/api/v1/reset-password/${token}`)
 
     if (!res.ok) {

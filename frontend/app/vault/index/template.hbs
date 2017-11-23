@@ -1,10 +1,7 @@
 {{#vault-tree-filter model=model as |tree|}}
-
-<ul class="nested-list root">
-  {{#each-in tree.children as |name child|}}
-  {{vault-tree-node node=child name=name}}
-  {{/each-in}}
-</ul>
-<p></p>
+  <ul class="uk-list uk-list-divider">
+    {{#each-in tree.children as |name child|}}
+      {{vault-tree-node node=child name=name}}
+    {{/each-in}}
+  </ul>
 {{/vault-tree-filter}}
-{{log model}}

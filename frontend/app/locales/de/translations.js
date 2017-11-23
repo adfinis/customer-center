@@ -11,7 +11,8 @@ export default {
     search: 'Suchen',
     empty: 'Keine Einträge gefunden',
     cancel: 'Abbrechen',
-    show: 'Anzeigen'
+    show: 'Anzeigen',
+    back: 'Zurück'
   },
 
   login: {

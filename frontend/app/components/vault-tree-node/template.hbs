@@ -1,18 +1,18 @@
-  <li>
-    <a {{action "toggle"}} href="javascript:void(0)" style="color:#3d3d3d">
-      <i class="fa fa-caret-{{if visible 'down' 'right'}}"></i> {{name}}
-    </a>
+<li>
+  <a href="#" class="uk-link-text" {{action "toggle"}}>
+    {{uk-icon (concat 'triangle-' (if visible 'down' 'right'))}}{{name}}
+  </a>
   {{#if visible}}
-  <ul>
-    {{#each-in node.values as |name props|}}
-    <li>{{#link-to 'vault.edit' props.path}}{{name}}{{/link-to}}
-        <span class="details">{{print-props props}}</span>
-      </li>
-    {{/each-in}}
+    <ul class="uk-list uk-list-divider uk-margin uk-padding uk-padding-remove-vertical uk-padding-remove-right">
+      {{#each-in node.values as |name props|}}
+        <li>{{#link-to 'vault.edit' props.path}}{{name}}{{/link-to}}
+          <span class="details">{{print-props props}}</span>
+        </li>
+      {{/each-in}}
 
-    {{#each-in node.children as |name child|}}
-      {{vault-tree-node node=child name=name}}
-    {{/each-in}}
-  </ul>
+      {{#each-in node.children as |name child|}}
+        {{vault-tree-node node=child name=name}}
+      {{/each-in}}
+    </ul>
   {{/if}}
 </li>

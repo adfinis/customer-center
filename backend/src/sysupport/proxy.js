@@ -1,4 +1,3 @@
-import url from 'url'
 import path from 'path'
 import httpProxy from 'express-http-proxy'
 
@@ -20,8 +19,8 @@ function createProxy(config) {
     // eslint-disable-next-line max-statements
     proxyReqPathResolver(req) {
       const newPath = path.join(config.prefix, req.path)
-      const queryParams = url.parse(req.url, true).query
       const timedCustomer = req.session.timedCustomer
+      const queryParams = req.query
 
       // Frontend can not set the query param "customer"
       Reflect.deleteProperty(queryParams, 'customer')

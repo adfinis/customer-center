@@ -6,7 +6,7 @@ import LdapStrategy from 'passport-ldapauth'
 import User from '../user/model'
 import config from '../config'
 import { timedLogin } from '../sysupport/token'
-import { getCustomer as getTimeCustomer } from '../sysupport/custom'
+import { getCustomer as getTimedCustomer } from '../sysupport/custom'
 
 passport.use(
   'ldapauth-user',
@@ -91,7 +91,6 @@ function login(strategy, req, res, next) {
   })(req, res, next)
 }
 
-/* eslint-disable complexity, max-statements */
 function loginSuccessful(req, res, next, ldapUser) {
   const { body: { username, password } } = req
 
@@ -105,29 +104,23 @@ function loginSuccessful(req, res, next, ldapUser) {
     }
 
     const userGroups = users.get(ldapUser).getGroupNames()
+    const isMember = group => userGroups.some(g => g.endsWith(group))
 
     // If user is in the vault group, get vault token
-    if (userGroups.some(g => g.endsWith('vault'))) {
-      try {
-        req.session.vaultToken = await vaultLogin(username, password)
-        req.session.vaultTokenTTL = new Date().getTime()
-      } catch (e) {
-        console.log('vault auth error', e.message)
-      }
+    if (isMember('vault')) {
+      req.session = await addVaultTokenToSession(
+        req.session,
+        username,
+        password
+      )
     }
 
     // If user is in the sysupport group, get timed token
-    if (userGroups.some(g => g.endsWith('sysupport'))) {
-      try {
-        req.session.timedToken = await timedLogin()
-        req.session.timedTokenTTL = new Date().getTime()
-        req.session.timedCustomer = await getTimeCustomer(
-          req.session.timedToken,
-          users.get(ldapUser)
-        )
-      } catch (e) {
-        console.log('timed auth error', e.message)
-      }
+    if (isMember('sysupport')) {
+      req.session = await addTimedTokenToSession(
+        req.session,
+        users.get(ldapUser)
+      )
     }
 
     req.session.create(claims, (sessionError, token) => {
@@ -138,7 +131,29 @@ function loginSuccessful(req, res, next, ldapUser) {
     })
   })
 }
-/* eslint-enable complexity, max-statements */
+
+async function addVaultTokenToSession(session, username, password) {
+  try {
+    session.vaultToken = await vaultLogin(username, password)
+    session.vaultTokenTTL = new Date().getTime()
+  } catch (e) {
+    console.log('vault auth error', e.message)
+  }
+
+  return session
+}
+
+async function addTimedTokenToSession(session, user) {
+  try {
+    session.timedToken = await timedLogin()
+    session.timedTokenTTL = new Date().getTime()
+    session.timedCustomer = await getTimedCustomer(session.timedToken, user)
+  } catch (e) {
+    console.log('timed auth error', e.message)
+  }
+
+  return session
+}
 
 /**
  * Log in to vault with AdsyCC credentials

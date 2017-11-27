@@ -18,5 +18,5 @@ export async function getCustomer(timedToken, user) {
     json: true
   })
 
-  return res.data.shift()
+  return res.data[0]
 }

@@ -785,10 +785,6 @@ babel-plugin-syntax-exponentiation-operator@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-exponentiation-operator/-/babel-plugin-syntax-exponentiation-operator-6.13.0.tgz#9ee7e8337290da95288201a6a57f4170317830de"
 
-babel-plugin-syntax-object-rest-spread@^6.8.0:
-  version "6.13.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-syntax-object-rest-spread/-/babel-plugin-syntax-object-rest-spread-6.13.0.tgz#fd6536f2bce13836ffa3a5458c4903a597bb3bf5"
-
 babel-plugin-syntax-trailing-function-commas@^6.22.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-trailing-function-commas/-/babel-plugin-syntax-trailing-function-commas-6.22.0.tgz#ba0360937f8d06e40180a43fe0d5616fff532cf3"
@@ -976,13 +972,6 @@ babel-plugin-transform-exponentiation-operator@^6.22.0:
     babel-helper-builder-binary-assignment-operator-visitor "^6.24.1"
     babel-plugin-syntax-exponentiation-operator "^6.8.0"
     babel-runtime "^6.22.0"
-
-babel-plugin-transform-object-rest-spread@^6.26.0:
-  version "6.26.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-object-rest-spread/-/babel-plugin-transform-object-rest-spread-6.26.0.tgz#0f36692d50fef6b7e2d4b3ac1478137a963b7b06"
-  dependencies:
-    babel-plugin-syntax-object-rest-spread "^6.8.0"
-    babel-runtime "^6.26.0"
 
 babel-plugin-transform-regenerator@^6.22.0:
   version "6.26.0"
@@ -2837,6 +2826,12 @@ ember-moment@^7.5.0:
     ember-getowner-polyfill "^2.0.1"
     ember-macro-helpers "^0.17.0"
 
+ember-native-dom-event-dispatcher@^0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/ember-native-dom-event-dispatcher/-/ember-native-dom-event-dispatcher-0.6.3.tgz#3b2f10dcf82f9aaa4dd211a704ac511fd8714720"
+  dependencies:
+    ember-cli-babel "^6.4.1"
+
 ember-notify@^5.1.0:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/ember-notify/-/ember-notify-5.2.1.tgz#c603e928bc6e92885a8f98181e7bdbf8d90eb2d3"
@@ -2989,9 +2984,9 @@ ember-try@^0.2.15:
     rsvp "^3.0.17"
     semver "^5.1.0"
 
-ember-uikit-adsy-theme@anehx/ember-uikit-adsy-theme#master:
-  version "0.0.0"
-  resolved "https://codeload.github.com/anehx/ember-uikit-adsy-theme/tar.gz/b2b821172c3300b8d8245aefc72f81dbe898e9db"
+ember-uikit-adsy-theme@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/ember-uikit-adsy-theme/-/ember-uikit-adsy-theme-0.1.0.tgz#790698f9df7371e75e24942feaa3b44ea12b7ecc"
   dependencies:
     broccoli-funnel "^2.0.1"
     broccoli-merge-trees "^2.0.0"
@@ -3000,21 +2995,21 @@ ember-uikit-adsy-theme@anehx/ember-uikit-adsy-theme#master:
     ember-cli-htmlbars "^2.0.1"
     ember-gestures "^0.4.8"
     ember-truth-helpers "^2.0.0"
-    ember-uikit anehx/ember-uikit#master
+    ember-uikit "^0.1.3"
     typeface-fira-mono "^0.0.44"
     typeface-fira-sans "^0.0.44"
 
-ember-uikit@anehx/ember-uikit#master:
-  version "0.0.0"
-  resolved "https://codeload.github.com/anehx/ember-uikit/tar.gz/83071c74efc377af7b5fd48363f15c32d5389041"
+ember-uikit@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-0.1.3.tgz#541798ca58c3ed5bea412e027dbd4065d91a01cd"
   dependencies:
-    babel-plugin-transform-object-rest-spread "^6.26.0"
     broccoli-funnel "^2.0.1"
     broccoli-merge-trees "^2.0.0"
     chalk "^2.3.0"
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
     ember-cli-htmlbars-inline-precompile "^1.0.0"
+    ember-native-dom-event-dispatcher "^0.6.3"
     uikit "^3.0.0-beta.35"
 
 ember-weakmap@^3.0.0:

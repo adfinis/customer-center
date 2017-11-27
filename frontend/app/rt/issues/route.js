@@ -1,6 +1,5 @@
-import Ember from 'ember'
-
-const { inject } = Ember
+import { inject as service } from '@ember/service'
+import Route from '@ember/routing/route'
 
 /**
  * RT route
@@ -8,14 +7,14 @@ const { inject } = Ember
  * @class RTRoute
  * @public
  */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
    * RT service to fetch RT issues
    *
    * @property {RTService} rt
    * @public
    */
-  rt: inject.service(),
+  rt: service(),
 
   /**
    * RTRoute query params

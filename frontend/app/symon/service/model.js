@@ -1,4 +1,4 @@
-import Ember from 'ember'
+import EmberObject, { computed } from '@ember/object'
 import { STATE_OK, STATE_WARNING } from 'adsycc/symon/service'
 
 /**
@@ -7,7 +7,17 @@ import { STATE_OK, STATE_WARNING } from 'adsycc/symon/service'
  * @class Ember.Object
  * @public
  */
-export default Ember.Object.extend({
+export default EmberObject.extend({
+  init() {
+    this._super(...arguments)
+
+    this.set('stateText', [
+      'symon.service.state.success',
+      'symon.service.state.warning',
+      'symon.service.state.danger'
+    ])
+  },
+
   /**
    * Name of the Service
    *
@@ -25,25 +35,13 @@ export default Ember.Object.extend({
   state: null,
 
   /**
-   * State as text of the Service
-   *
-   * @property {Array.<string>} stateText
-   * @public
-   */
-  stateText: [
-    'symon.service.state.success',
-    'symon.service.state.warning',
-    'symon.service.state.danger'
-  ],
-
-  /**
    * Computed message according to state of the Service
    *
    * @property {Object} message
    * @readonly
    * @public
    */
-  message: Ember.computed('state', function() {
+  message: computed('state', function() {
     return {
       text: this.get('name'),
       i18n: this.get('stateText')[this.get('ccState')]
@@ -57,7 +55,7 @@ export default Ember.Object.extend({
    * @readonly
    * @public
    */
-  ccState: Ember.computed('state', function() {
+  ccState: computed('state', function() {
     let state = this.get('state')
 
     if (state !== STATE_OK && state !== STATE_WARNING) {

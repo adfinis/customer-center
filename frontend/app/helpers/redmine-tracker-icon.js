@@ -1,7 +1,8 @@
+import Helper from '@ember/component/helper'
+import { htmlSafe } from '@ember/string'
 import Ember from 'ember'
 
-const { Handlebars, Helper } = Ember
-const { escapeExpression } = Handlebars.Utils
+const { Handlebars: { Utils: { escapeExpression } } } = Ember
 
 const ICONS = {
   Task: 'tasks',
@@ -13,7 +14,7 @@ const ICONS = {
 
 export function redmineTrackerIcon([trackerName]) {
   let icon = ICONS[trackerName] || 'puzzle-piece'
-  return new Handlebars.SafeString(
+  return htmlSafe(
     `<i class="fa fa-${icon} title="${escapeExpression(trackerName)}"></i>`
   )
 }

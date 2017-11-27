@@ -1,4 +1,5 @@
-import Ember from 'ember'
+import Component from '@ember/component'
+import EmberObject from '@ember/object'
 
 function external(internalModel) {
   return internalModel.reduce((prev, curr) => {
@@ -15,7 +16,7 @@ function internal(model) {
     ? null
     : Object.keys(model)
         .map(key => {
-          return Ember.Object.create({
+          return EmberObject.create({
             key,
             value: model[key],
             edit: false
@@ -30,7 +31,7 @@ function internal(model) {
         }, [])
 }
 
-export default Ember.Component.extend({
+export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments)
     this.set('_model', internal(this.get('model')))
@@ -43,7 +44,7 @@ export default Ember.Component.extend({
 
     async save(index, { key, value, comment }) {
       this.get('_model').replace(index, 1, [
-        Ember.Object.create({ key, value, comment, edit: false })
+        EmberObject.create({ key, value, comment, edit: false })
       ])
       await this.get('onUpdate')(external(this.get('_model')))
     },

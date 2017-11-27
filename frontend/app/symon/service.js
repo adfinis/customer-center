@@ -1,12 +1,12 @@
-import Ember from 'ember'
+import Service, { inject as service } from '@ember/service'
 import Host from 'adsycc/symon/host/model'
 
 export const STATE_OK = 0
 export const STATE_WARNING = 1
 export const STATE_ERROR = 2
 
-export default Ember.Service.extend({
-  ajax: Ember.inject.service(),
+export default Service.extend({
+  ajax: service(),
 
   /**
    * Symon service for fetching hosts and services

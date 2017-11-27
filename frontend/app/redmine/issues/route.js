@@ -1,6 +1,5 @@
-import Ember from 'ember'
-
-const { inject } = Ember
+import { inject as service } from '@ember/service'
+import Route from '@ember/routing/route'
 
 /**
  * Redmine route
@@ -8,14 +7,14 @@ const { inject } = Ember
  * @class RedmineRoute
  * @public
  */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
    * Redmine service to fetch redmine issues
    *
    * @property {RedmineService} redmine
    * @public
    */
-  redmine: inject.service(),
+  redmine: service(),
 
   /**
    * RedmineRoute query params

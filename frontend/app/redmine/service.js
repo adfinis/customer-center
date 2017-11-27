@@ -1,4 +1,4 @@
-import Ember from 'ember'
+import Service, { inject as service } from '@ember/service'
 
 /**
  * Redmine Service for fetching data from a redmine instance
@@ -6,8 +6,8 @@ import Ember from 'ember'
  * @class RedmineService
  * @public
  */
-export default Ember.Service.extend({
-  ajax: Ember.inject.service(),
+export default Service.extend({
+  ajax: service(),
 
   /**
    * Fetch redmine issues from a host

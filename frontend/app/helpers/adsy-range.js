@@ -1,11 +1,11 @@
-import Ember from 'ember'
+import { helper } from '@ember/component/helper'
 
 export function adsyRange(params /*, hash*/) {
   let [start, end, step] = params
   return range(start, end, step)
 }
 
-export default Ember.Helper.helper(adsyRange)
+export default helper(adsyRange)
 
 /**
  * @see http://stackoverflow.com/a/3895521/4737452

@@ -1,4 +1,4 @@
-import Ember from 'ember'
+import Component from '@ember/component'
 
 /**
  * Checks if a given value node matches the search term.
@@ -63,7 +63,7 @@ function deepFilterModel(model, term) {
   }
 }
 
-export default Ember.Component.extend({
+export default Component.extend({
   search: '',
 
   didReceiveAttrs() {

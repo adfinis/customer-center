@@ -1,6 +1,6 @@
-import Ember from 'ember'
-
-const { inject, on } = Ember
+import { inject as service } from '@ember/service'
+import Route from '@ember/routing/route'
+import { on } from '@ember/object/evented'
 
 /**
  * User profile route
@@ -8,14 +8,14 @@ const { inject, on } = Ember
  * @class UserProfileRoute
  * @public
  */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
    * Session service
    *
    * @property {Session} session
    * @public
    */
-  session: inject.service(),
+  session: service(),
 
   /**
    * Ajax service
@@ -23,7 +23,7 @@ export default Ember.Route.extend({
    * @property {Ajax} ajax
    * @public
    */
-  ajax: inject.service(),
+  ajax: service(),
 
   /**
    * The user model

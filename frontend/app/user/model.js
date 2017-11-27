@@ -1,6 +1,5 @@
-import Ember from 'ember'
-
-const { computed } = Ember
+import { inject as service } from '@ember/service'
+import EmberObject, { computed } from '@ember/object'
 
 /**
  * The User model
@@ -8,8 +7,8 @@ const { computed } = Ember
  * @class User
  * @public
  */
-export default Ember.Object.extend({
-  ajax: Ember.inject.service(),
+export default EmberObject.extend({
+  ajax: service(),
 
   /**
    * User rollback

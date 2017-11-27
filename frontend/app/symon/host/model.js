@@ -1,4 +1,5 @@
-import Ember from 'ember'
+import { A } from '@ember/array'
+import EmberObject, { computed } from '@ember/object'
 import { STATE_OK, STATE_WARNING, STATE_ERROR } from 'adsycc/symon/service'
 import Service from 'adsycc/symon/service/model'
 
@@ -8,7 +9,7 @@ import Service from 'adsycc/symon/service/model'
  * @class Ember.Object
  * @public
  */
-export default Ember.Object.extend({
+export default EmberObject.extend({
   /**
    * Name of the Host
    *
@@ -52,9 +53,9 @@ export default Ember.Object.extend({
    * @readonly
    * @public
    */
-  messages: Ember.computed('state', 'services.@each.state', function() {
+  messages: computed('state', 'services.@each.state', function() {
     // eslint-disable-next-line new-cap
-    let messages = Ember.A()
+    let messages = A()
 
     if (this.get('state') !== STATE_OK) {
       messages.pushObject({
@@ -77,7 +78,7 @@ export default Ember.Object.extend({
    * @readonly
    * @public
    */
-  globalState: Ember.computed('state', 'services.@each.state', function() {
+  globalState: computed('state', 'services.@each.state', function() {
     if (this.get('state') !== STATE_OK) return STATE_ERROR
 
     let badServices = this.get('badServices')
@@ -96,7 +97,7 @@ export default Ember.Object.extend({
    * @readonly
    * @public
    */
-  badServices: Ember.computed('services.@each.state', function() {
+  badServices: computed('services.@each.state', function() {
     return this.get('services').filter(s => s.get('ccState') > STATE_OK)
   })
 })

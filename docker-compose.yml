@@ -36,7 +36,7 @@ services:
     volumes:
       - ./frontend:/usr/src/app
     ports:
-      - "49152:49152"
+      - "7020:7020"
 
   redis1:
     extends:

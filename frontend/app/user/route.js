@@ -1,4 +1,4 @@
-import Ember from 'ember'
+import Route from '@ember/routing/route'
 
 /**
  * User route
@@ -6,7 +6,7 @@ import Ember from 'ember'
  * @class UserRoute
  * @public
  */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
    * User route model
    *

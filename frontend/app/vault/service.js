@@ -1,7 +1,7 @@
-import Ember from 'ember'
+import Service, { inject as service } from '@ember/service'
 
-export default Ember.Service.extend({
-  ajax: Ember.inject.service(),
+export default Service.extend({
+  ajax: service(),
 
   list() {
     return this.get('ajax').request('/api/vault/list')

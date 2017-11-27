@@ -1,4 +1,4 @@
-import Ember from 'ember'
+import Route from '@ember/routing/route'
 import fetch from 'fetch'
 
 /**
@@ -9,7 +9,7 @@ import fetch from 'fetch'
  * @class LoginNewPasswordRoute
  * @public
  */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
    * Fetches the new password
    *

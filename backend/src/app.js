@@ -10,6 +10,7 @@ import passwordreset from './password-reset'
 import services from './services'
 import userRoute from './user/route'
 import vaultTokenRenewer from './vault/vault-token'
+import { timedTokenRenew } from './sysupport/token'
 import config from './config'
 
 const app = express()
@@ -56,6 +57,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(vaultTokenRenewer())
+app.use(timedTokenRenew())
 app.use('/api/v1', login)
 app.use('/api/v1', passwordreset)
 

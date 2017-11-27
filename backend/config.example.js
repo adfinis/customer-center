@@ -122,6 +122,16 @@ module.exports = {
       backend: 'secret/',
       authBackend: 'userpass',
       ttl: 600000 // Time in ms until to renew vault token
+    },
+    timed: {
+      type: 'timed',
+      host: 'http://timedbackend1:80',
+      user: 'API user to get the token',
+      password: 'pass',
+      prefix: '/api/v1',
+      authPath: '/auth/login',
+      authRefresh: '/auth/refresh',
+      ttl: 7200 // token TTL in seconds
     }
   }
 }

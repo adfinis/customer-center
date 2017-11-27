@@ -5,6 +5,8 @@ import passport from 'passport'
 import LdapStrategy from 'passport-ldapauth'
 import User from '../user/model'
 import config from '../config'
+import { timedLogin } from '../sysupport/token'
+import { getCustomer as getTimedCustomer } from '../sysupport/custom'
 
 passport.use(
   'ldapauth-user',
@@ -100,18 +102,25 @@ function loginSuccessful(req, res, next, ldapUser) {
       aud: config.application.host,
       uid: users.get(ldapUser).id
     }
-    const hasVault = users
-      .get(ldapUser)
-      .getGroupNames()
-      .some(g => g.endsWith('vault'))
 
-    if (hasVault) {
-      try {
-        req.session.vaultToken = await vaultLogin(username, password)
-        req.session.vaultTokenTTL = new Date().getTime()
-      } catch (e) {
-        console.log('vault auth error', e.message)
-      }
+    const userGroups = users.get(ldapUser).getGroupNames()
+    const isMember = group => userGroups.some(g => g.endsWith(group))
+
+    // If user is in the vault group, get vault token
+    if (isMember('vault')) {
+      req.session = await addVaultTokenToSession(
+        req.session,
+        username,
+        password
+      )
+    }
+
+    // If user is in the sysupport group, get timed token
+    if (isMember('sysupport')) {
+      req.session = await addTimedTokenToSession(
+        req.session,
+        users.get(ldapUser)
+      )
     }
 
     req.session.create(claims, (sessionError, token) => {
@@ -121,6 +130,29 @@ function loginSuccessful(req, res, next, ldapUser) {
       return res.send({ data: { token } })
     })
   })
+}
+
+async function addVaultTokenToSession(session, username, password) {
+  try {
+    session.vaultToken = await vaultLogin(username, password)
+    session.vaultTokenTTL = new Date().getTime()
+  } catch (e) {
+    console.log('vault auth error', e.message)
+  }
+
+  return session
+}
+
+async function addTimedTokenToSession(session, user) {
+  try {
+    session.timedToken = await timedLogin()
+    session.timedTokenTTL = new Date().getTime()
+    session.timedCustomer = await getTimedCustomer(session.timedToken, user)
+  } catch (e) {
+    console.log('timed auth error', e.message)
+  }
+
+  return session
 }
 
 /**

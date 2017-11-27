@@ -91,7 +91,6 @@ function login(strategy, req, res, next) {
   })(req, res, next)
 }
 
-/* eslint-disable complexity, max-statements */
 function loginSuccessful(req, res, next, ldapUser) {
   const { body: { username, password } } = req
 
@@ -124,20 +123,6 @@ function loginSuccessful(req, res, next, ldapUser) {
       )
     }
 
-    // If user is in the sysupport group, get timed token
-    if (userGroups.some(g => g.endsWith('sysupport'))) {
-      try {
-        req.session.timedToken = await timedLogin()
-        req.session.timedTokenTTL = new Date().getTime()
-        req.session.timedCustomer = await getTimeCustomer(
-          req.session.timedToken,
-          users.get(ldapUser)
-        )
-      } catch (e) {
-        console.log('timed auth error', e.message)
-      }
-    }
-
     req.session.create(claims, (sessionError, token) => {
       if (sessionError) return next(sessionError)
 
@@ -146,7 +131,6 @@ function loginSuccessful(req, res, next, ldapUser) {
     })
   })
 }
-/* eslint-enable complexity, max-statements */
 
 async function addVaultTokenToSession(session, username, password) {
   try {

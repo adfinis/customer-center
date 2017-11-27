@@ -1,8 +1,10 @@
-<div class="card" style="max-width: 800px">
-  <div class="card-block">
-    <h4>{{t title}}</h4>
+{{#uk-card color='default' width="1-1 xlarge@l" as |card|}}
+  {{#card.header}}
+    {{#card.title}}{{title}}{{/card.title}}
+  {{/card.header}}
+  {{#card.body}}
     <form>
-      <table class="table table--noborders">
+      <table class="uk-table uk-table-small uk-table-divider uk-margin-remove uk-table-middle">
         <thead>
           <tr>
             <th>Name</th>
@@ -12,16 +14,19 @@
         </thead>
         <tbody>
           {{#each _model as |entry index|}}
-              {{crud-list-item entry=entry edit=entry.edit index=index on-save=(action 'save') on-delete=(action 'delete')}}
-              {{else}}
-              <tr>
-                <td colspan="3" style="text-align: center">{{t 'global.empty'}}</td>
-              </tr>
+            {{crud-list-item entry=entry edit=entry.edit index=index on-save=(action 'save') on-delete=(action 'delete')}}
+          {{^}}
+            <tr>
+              <td colspan="3" class="uk-text-center">{{t 'global.empty'}}</td>
+            </tr>
           {{/each}}
         </tbody>
       </table>
-      <hr>
-      <button class="btn" {{action 'add'}}>{{t 'vault.add'}}</button>
     </form>
-  </div>
-</div>
+  {{/card.body}}
+  {{#card.footer class='uk-text-right'}}
+    {{#uk-button color='primary' on-click=(action 'add')}}
+      {{t 'vault.add'}}
+    {{/uk-button}}
+  {{/card.footer}}
+{{/uk-card}}

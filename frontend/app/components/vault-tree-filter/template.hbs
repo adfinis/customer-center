@@ -1,4 +1,5 @@
-<form class="form-inline" {{action 'onSubmit' on='submit'}}>
-  {{input placeholder=(t "global.search") value=search key-up=(action 'filter') class="form-control"}}
+<form {{action 'onSubmit' on='submit'}}>
+  {{input placeholder=(t "global.search") value=search key-up=(action 'filter') class='uk-input uk-width-1-1 uk-width-medium@m'}}
 </form>
+
 {{yield tree}}

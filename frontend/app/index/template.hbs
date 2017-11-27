@@ -1,157 +1,171 @@
 <h1>{{t 'index.greeting'}}</h1>
 
-{{!--<div class="alert alert-warning">
-  <p style="margin-bottom:0">Geplante Wartungsarbeiten an unserer Core Router Infrastruktur <strong>am SO 2015-08-27 von 03:00 bis 03:45</strong></p>
-</div>--}}
-
 <section>
-  <h2>{{t 'index.our-tools'}}</h2>
+  <h2 class="uk-heading-divider">{{t 'index.our-tools'}}</h2>
 
-  <table class="table table--condensed" style="width:auto">
-    <colgroup>
-      <col width="160">
-    </colgroup>
+  <table class="uk-table uk-table-small uk-table-divider uk-width-1-1 uk-width-large@s">
     <tbody>
       <tr>
-        <th class="text-right">
+        <td class="uk-text-bold">
           <a href="https://project.adfinis-sygroup.ch/">
             {{t 'index.tools.redmine'}}
           </a>
-        </th>
-        <td>{{t 'index.tools.redmine.description'}}</td>
+        </td>
+        <td>
+          {{t 'index.tools.redmine.description'}}
+        </td>
       </tr>
       <tr>
-        <th class="text-right">
+        <td class="uk-text-bold">
           <a href="https://git.adfinis-sygroup.ch/">
             {{t 'index.tools.gitlab'}}
           </a>
-        </th>
-        <td>{{t 'index.tools.gitlab.description'}}</td>
+        </td>
+        <td>
+          {{t 'index.tools.gitlab.description'}}
+        </td>
       </tr>
-      {{#if (service-enabled 'rt')}}
-        <tr>
-          <th class="text-right">
-              {{#link-to 'rt'}}
-                {{t 'index.tools.rt'}}
-              {{/link-to}}
-          </th>
-          <td>{{t 'index.tools.rt.description'}}</td>
-        </tr>
-      {{/if}}
       <tr>
-        <th class="text-right">
+        <td class="uk-text-bold">
           <a href="https://admin.syhosting.ch/poweradmin/">
             {{t 'index.tools.poweradmin'}}
           </a>
-        </th>
-        <td>{{t 'index.tools.poweradmin.description'}}</td>
+        </td>
+        <td>
+          {{t 'index.tools.poweradmin.description'}}
+        </td>
       </tr>
       <tr>
-        <th class="text-right">
+        <td class="uk-text-bold">
           <a href="https://monitoring.adfinis-sygroup.ch/">
             {{t 'index.tools.symonitoring'}}
           </a>
-        </th>
-        <td>{{t 'index.tools.symonitoring.description'}}</td>
+        </td>
+        <td>
+          {{t 'index.tools.symonitoring.description'}}
+        </td>
       </tr>
       <tr>
-        <th class="text-right">
+        <td class="uk-text-bold">
           <a href="https://vm-manager.adfinis-sygroup.ch/">
             {{t 'index.tools.rhev'}}
           </a>
-        </th>
-        <td>{{t 'index.tools.rhev.description'}}</td>
+        </td>
+        <td>
+          {{t 'index.tools.rhev.description'}}
+        </td>
       </tr>
       <tr>
-        <th class="text-right">
+        <td class="uk-text-bold">
           <a href="https://mailfeed.adfinis-sygroup.ch/login.php">
             {{t 'index.tools.mailcleaner'}}
           </a>
-        </th>
-        <td>{{t 'index.tools.mailcleaner.description'}}</td>
+        </td>
+        <td>
+          {{t 'index.tools.mailcleaner.description'}}
+        </td>
       </tr>
     </tbody>
   </table>
+
 </section>
 
 <section>
-  <h2>{{t 'index.contact-us'}}</h2>
-  <p>
-    {{t 'index.create-ticket'}}:
-    <a href="mailto:support@adfinis-sygroup.ch">support@adfinis-sygroup.ch</a>
-  </p>
-  <p style="font-size:2rem">
-    <a href="https://facebook.com/AdfinisSyGroup">
-      <i class="fa fa-facebook-square"></i>
-    </a>
-    <a href="https://linkedin.com/company/2610138">
-      <i class="fa fa-linkedin-square"></i>
-    </a>
-    <a href="https://xing.com/companies/adfinissygroupag">
-      <i class="fa fa-xing-square"></i>
-    </a>
-    <a href="https://github.com/adfinis-sygroup">
-      <i class="fa fa-github-square"></i>
-    </a>
-    <a href="https://twitter.com/adfinissygroup">
-      <i class="fa fa-twitter-square"></i>
-    </a>
-  </p>
-  <section class="grid grid--no-gutters grid--col grid-sm--row grid-sm--4of12">
-    <div class="grid-cell">
-      <h3>{{t 'index.location' location='Basel'}}</h3>
-      <p>
-        Adfinis SyGroup AG<br>
-        Güterstrasse 86<br>
-        CH-4053 Basel
-      </p>
-      <dl>
-        <dt>{{t 'index.phone'}}</dt>
-        <dd>+41 (0) 61 500 31 31</dd>
-
-        <dt>{{t 'index.fax'}}</dt>
-        <dd>+41 (0) 31 550 31 19</dd>
-      </dl>
-      <p>
-        <a href={{t 'index.directions.bs.url'}} target="_blank">
-          {{t 'index.directions'}}
-        </a>
-      </p>
+  <h2 class="uk-heading-divider">
+    <div uk-grid class="uk-child-width-1-1 uk-child-width-auto@s uk-grid-small uk-margin-remove">
+      <div>
+        {{t 'index.contact-us'}}
+      </div>
+      <div>
+        <a uk-icon="mail" class="uk-icon-button" href="mailto:support@adfinis-sygroup.ch"></a>
+        <a uk-icon="facebook" class="uk-icon-button" href="https://facebook.com/AdfinisSyGroup"></a>
+        <a uk-icon="linkedin" class="uk-icon-button" href="https://linkedin.com/company/2610138"></a>
+        <a uk-icon="xing" class="uk-icon-button" href="https://xing.com/companies/adfinissygroupag"></a>
+        <a uk-icon="github" class="uk-icon-button" href="https://github.com/adfinis-sygroup"></a>
+        <a uk-icon="twitter" class="uk-icon-button" href="https://twitter.com/adfinissygroup"></a>
+      </div>
     </div>
-    <div class="grid-cell">
-      <h3>{{t 'index.location' location='Bern'}}</h3>
-      <p>
-        Adfinis SyGroup AG<br>
-        Keltenstrasse 98<br>
-        CH-3018 Bern
-      </p>
-      <dl>
-        <dt>{{t 'index.phone'}}</dt>
-        <dd>+41 (0) 31 550 31 11</dd>
+  </h2>
 
-        <dt>{{t 'index.fax'}}</dt>
-        <dd>+41 (0) 31 550 31 19</dd>
-      </dl>
-      <p>
-        <a href={{t 'index.directions.be.url'}} target="_blank">
-          {{t 'index.directions'}}
-        </a>
-      </p>
-    </div>
-    <div class="grid-cell">
-      <h3>{{t 'index.location' location='Zürich'}}</h3>
-      <p>
-        Adfinis SyGroup AG<br>
-        Neptunstrasse 109<br>
-        CH-8032 Zürich
-      </p>
-      <dl>
-        <dt>{{t 'index.phone'}}</dt>
-        <dd>+41 (0) 43 500 38 90</dd>
+  <div class="uk-child-width-1-1 uk-child-width-1-3@s" uk-grid>
+    <div>
+      {{#uk-card class='uk-height-1-1' color='default' hover=true as |card|}}
+        {{#card.header}}
+          {{#card.title tagName='h3'}}
+            {{t 'index.location' location='Basel'}}
+          {{/card.title}}
+        {{/card.header}}
+        {{#card.body}}
+          <p>
+            Adfinis SyGroup AG<br>
+            Güterstrasse 86<br>
+            CH-4053 Basel
+          </p>
+          <dl class="uk-description-list">
+            <dt>{{t 'index.phone'}}</dt>
+            <dd>+41 (0) 61 500 31 31</dd>
 
-        <dt>{{t 'index.fax'}}</dt>
-        <dd>+41 (0) 31 550 31 19</dd>
-      </dl>
+            <dt>{{t 'index.fax'}}</dt>
+            <dd>+41 (0) 31 550 31 19</dd>
+          </dl>
+        {{/card.body}}
+        {{#card.footer}}
+          <a href={{t 'index.directions.bs.url'}} target="_blank">
+            {{t 'index.directions'}}
+          </a>
+        {{/card.footer}}
+      {{/uk-card}}
     </div>
-  </section>
+    <div>
+      {{#uk-card class='uk-height-1-1' color='default' hover=true as |card|}}
+        {{#card.header}}
+          {{#card.title tagName='h3'}}
+            {{t 'index.location' location='Bern'}}
+          {{/card.title}}
+        {{/card.header}}
+        {{#card.body}}
+          <p>
+            Adfinis SyGroup AG<br>
+            Keltenstrasse 98<br>
+            CH-3018 Bern
+          </p>
+          <dl class="uk-description-list">
+            <dt>{{t 'index.phone'}}</dt>
+            <dd>+41 (0) 31 550 31 11</dd>
+
+            <dt>{{t 'index.fax'}}</dt>
+            <dd>+41 (0) 31 550 31 19</dd>
+          </dl>
+        {{/card.body}}
+        {{#card.footer}}
+          <a href={{t 'index.directions.be.url'}} target="_blank">
+            {{t 'index.directions'}}
+          </a>
+        {{/card.footer}}
+      {{/uk-card}}
+    </div>
+    <div>
+      {{#uk-card class='uk-height-1-1' color='default' hover=true as |card|}}
+        {{#card.header}}
+          {{#card.title tagName='h3'}}
+            {{t 'index.location' location='Basel'}}
+          {{/card.title}}
+        {{/card.header}}
+        {{#card.body}}
+          <p>
+            Adfinis SyGroup AG<br>
+            Neptunstrasse 109<br>
+            CH-8032 Zürich
+          </p>
+          <dl class="uk-description-list">
+            <dt>{{t 'index.phone'}}</dt>
+            <dd>+41 (0) 43 500 38 90</dd>
+
+            <dt>{{t 'index.fax'}}</dt>
+            <dd>+41 (0) 31 550 31 19</dd>
+          </dl>
+        {{/card.body}}
+      {{/uk-card}}
+    </div>
+  </div>
 </section>

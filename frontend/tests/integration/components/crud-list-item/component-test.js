@@ -1,7 +1,7 @@
-import { run } from '@ember/runloop'
 import EmberObject from '@ember/object'
 import { moduleForComponent, test } from 'ember-qunit'
 import hbs from 'htmlbars-inline-precompile'
+import wait from 'ember-test-helpers/wait'
 
 moduleForComponent(
   'crud-list-item',
@@ -13,14 +13,19 @@ moduleForComponent(
 
 test('it renders', function(assert) {
   assert.expect(2)
-  let item = EmberObject.create({
-    key: 'Key',
-    value: 'Value',
-    comment: 'Comment',
-    edit: false
-  })
-  this.set('entry', item)
+
+  this.set(
+    'entry',
+    EmberObject.create({
+      key: 'Key',
+      value: 'Value',
+      comment: 'Comment',
+      edit: false
+    })
+  )
+
   this.render(hbs`{{crud-list-item entry=entry edit=entry.edit index=0}}`)
+
   assert.equal(
     this.$('span.value')
       .text()
@@ -28,12 +33,16 @@ test('it renders', function(assert) {
     '********',
     'password is masked'
   )
-  run(() => document.querySelector('.btn--show').click())
-  assert.equal(
-    this.$('span.value')
-      .text()
-      .trim(),
-    'Value',
-    'password is visible'
-  )
+
+  this.$('.uk-icon-button[uk-icon="search"]').click()
+
+  return wait().then(() => {
+    assert.equal(
+      this.$('span.value')
+        .text()
+        .trim(),
+      'Value',
+      'password is visible'
+    )
+  })
 })

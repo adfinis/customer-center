@@ -1,11 +1,22 @@
 
-<ol class="breadcrumb">
-  {{#each model.path as |segment|}}
-    <li>{{segment}}</li>
-  {{/each}}
-</ol>
+<div uk-grid class="uk-child-width-1-1 uk-child-width-auto@l">
+  <div>
+    <ul class="uk-breadcrumb">
+      {{#each model.path as |segment|}}
+        <li class="uk-disabled"><span>{{segment}}</span></li>
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="uk-text-right@l uk-width-expand">
+    {{#link-to 'vault'}}{{uk-icon 'chevron-left'}}{{t 'global.back'}}{{/link-to}}
+  </div>
+</div>
+
+<hr>
 
 {{crud-list
-  title="vault.secrets"
+  title=(t 'vault.secrets')
   model=model.details.secret
-  onUpdate=(route-action 'save')}}
+  onUpdate=(route-action 'save')
+}}

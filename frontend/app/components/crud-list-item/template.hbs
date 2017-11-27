@@ -1,36 +1,53 @@
-<tr class="border">
-  <td>
+<tr>
+  <td class="uk-width-1-3">
     {{input-or-show value=entry.key edit=edit placeholder="description"}}
   </td>
-  <td>
+  <td colspan="{{if edit 2 1}}" class="{{if edit 'uk-width-2-3' 'uk-width-1-3'}}">
     {{input-or-show value=entry.value edit=edit placeholder="value" clipboard=true mask=maskPassword}}
   </td>
-  <td class="text-right">
-    {{#if (not edit)}}
-    <button class="btn btn--show" {{action 'show' index}}><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;{{t 'global.show'}}</button>
-    <button class="btn btn--edit" {{action (mut edit) true}}><i class="fa fa-pencil"></i>&nbsp;{{t 'global.edit'}}</button>
-    {{/if}}
-  </td>
-</tr>
-{{#if (or entry.comment edit)}}
-  <tr class="comment">
-    <td colspan="2" class="comment">
-      {{input-or-show
-        value=entry.comment
-        edit=edit
-        placeholder="comment"
-        multiline=true
-        }}
+  {{#unless edit}}
+    <td class="uk-width-1-3 uk-text-right">
+        <button {{action 'show' index}} href="#" class="uk-icon-button" uk-icon="search"></button>
+        <button {{action (mut edit) true}} href="#" class="uk-icon-button" uk-icon="pencil"></button>
     </td>
-    <td></td>
+  {{/unless}}
+</tr>
+
+{{#if (or entry.comment edit)}}
+  <tr class="uk-border-remove">
+    <td colspan="3" class="padding-remove-top {{unless edit 'uk-text-small uk-text-muted'}}">
+      <div class="{{unless edit 'uk-margin-left'}}">
+        {{input-or-show
+          value=entry.comment
+          edit=edit
+          placeholder="Comment"
+          multiline=true
+        }}
+      </div>
+    </td>
   </tr>
 {{/if}}
+
 {{#if edit}}
   <tr>
     <td colspan="3">
-      <button class="btn btn-primary" {{action 'save' index entry}}><i class="fa fa-floppy-o"></i>&nbsp;{{t 'global.save'}}</button>
-      <button class="btn" {{action (mut edit) false}}><i class="fa fa-times"></i>&nbsp;{{t 'global.cancel'}}</button>
-      <button class="btn btn-danger" {{action 'delete' index}}><i class="fa fa-times"></i>&nbsp;{{t 'global.delete'}}</button>
+      <div class="uk-grid-small uk-remove-margin" uk-grid>
+        <div>
+        {{#uk-button color='primary' on-click=(action 'save' index entry)}}
+          {{uk-icon 'check'}} {{t 'global.save'}}
+        {{/uk-button}}
+        </div>
+        <div>
+        {{#uk-button color='default' on-click=(action (mut edit) false)}}
+          {{uk-icon 'close'}} {{t 'global.cancel'}}
+        {{/uk-button}}
+        </div>
+        <div>
+        {{#uk-button color='danger' on-click=(action 'delete' index)}}
+          {{uk-icon 'trash'}} {{t 'global.delete'}}
+        {{/uk-button}}
+        </div>
+      </div>
     </td>
   </tr>
 {{/if}}

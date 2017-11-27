@@ -1,12 +1,59 @@
-{{#sy-sidenav title='Customer Center' showAutohideButton=false as |component section|}}
-  {{#if (eq section 'body')}}
-    {{cc-sidenav-body
-      user=model
-      on-logout=(route-action 'invalidateSession')
-    }}
+{{#uk-adsy-menu as |section nav|}}
+  {{#if (eq section 'top')}}
+    {{#nav.left}}
+      {{nav.brand}}
+    {{/nav.left}}
+    {{#nav.right}}
+      {{#nav.brand class='uk-visible@l' logo=false}}
+        Customer Center
+      {{/nav.brand}}
+    {{/nav.right}}
+  {{else if (eq section 'side')}}
+    {{#nav.list as |list|}}
+      {{#list.item 'index'}}{{t 'nav.dashboard'}}{{/list.item}}
+
+      {{#if (and model.rt (service-enabled 'rt'))}}
+        {{#list.item 'rt'}}{{t 'nav.rt'}}{{/list.item}}
+      {{/if}}
+
+      {{#if (and model.redmine (service-enabled 'redmine'))}}
+        {{#list.item 'redmine'}}{{t 'nav.redmine'}}{{/list.item}}
+      {{/if}}
+
+      {{#if (and model.monitoring (service-enabled 'mon'))}}
+        {{#list.item 'symon'}}{{t 'nav.symon'}}{{/list.item}}
+      {{/if}}
+
+      {{#if (and model.vault (service-enabled 'vault'))}}
+        {{#list.item 'vault'}}{{t 'nav.vault'}}{{/list.item}}
+      {{/if}}
+    {{/nav.list}}
+
+    {{#if (service-enabled 'wiki')}}
+      {{#with model.wikis as |wikis|}}
+        {{#nav.list as |list|}}
+          {{#list.item header=true}}{{t 'nav.wikis'}}{{/list.item}}
+          {{#each wikis as |wiki|}}
+            <li>
+              <a href="https://wiki.adfinis-sygroup.ch/{{wiki}}">
+                <i class="fa fa-wikipedia-w"></i>
+                <span class="nav-wiki-item">{{wiki}}-Wiki</span>
+              </a>
+            </li>
+          {{/each}}
+        {{/nav.list}}
+      {{/with}}
+    {{/if}}
+
+    {{#nav.list as |list|}}
+      {{#list.item 'user.profile'}}{{t 'nav.profile'}}{{/list.item}}
+      <li>
+        <a class="pointer" {{action 'invalidateSession'}}>
+          {{t 'nav.logout'}}
+        </a>
+      </li>
+    {{/nav.list}}
   {{else}}
-    <main class="page-main">
-      <div class="page-content page-content--scroll">{{liquid-outlet}}</div>
-    </main>
+    {{outlet}}
   {{/if}}
-{{/sy-sidenav}}
+{{/uk-adsy-menu}}

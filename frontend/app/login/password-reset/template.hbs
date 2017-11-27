@@ -1,13 +1,28 @@
-<div class="login-form login-form--password-reset">
-  <form class="fade-in" {{action 'passwordreset' identification on='submit'}}>
-    <div class="form-group login-form-user">
-      {{input type="text" value=identification class="form-control" placeholder=(t "global.Username") disabled=loading autofocus=true}}
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">{{t 'login.send-new-password'}}</button>
-    </div>
-  </form>
-  {{#link-to 'login' class='btn btn-link'}}
-    {{t 'login.back-to-login'}}
-  {{/link-to}}
+<div class="uk-container uk-flex uk-flex-center uk-flex-middle uk-flex-1">
+  {{#uk-card color='' class='uk-card-login uk-animation-fade' width='2-3@m' as |card|}}
+    {{#card.header class='uk-flex uk-flex-center'}}
+      <img class="uk-width-2-3" alt="Adfinis SyGroup" src="/assets/pictures/adsy-logo.svg">
+    {{/card.header}}
+    {{#card.body class='uk-padding-remove-vertical'}}
+      <form {{action 'passwordreset' identification on='submit'}}>
+        <div class="uk-grid-small" uk-grid>
+          <div class="uk-width-1-1 uk-width-2-3@m uk-light">
+            <div class="uk-inline uk-width-1-1">
+              {{uk-icon 'user' class='uk-form-icon'}}
+              {{input type='text' name='username' value=identification class='uk-input' placeholder=(t 'global.Username') disabled=loading autofocus=true}}
+            </div>
+          </div>
+          <div class="uk-width-1-1 uk-width-1-3@m">
+            {{#uk-button type='submit' width='1-1' color='primary' loading=loading}}
+              {{t 'login.send-new-password'}}
+            {{/uk-button}}
+          </div>
+        </div>
+      </form>
+    {{/card.body}}
+    {{#card.footer}}
+      {{#link-to 'login' class='uk-link-muted'}}{{t 'login.back-to-login'}}{{/link-to}}
+    {{/card.footer}}
+  {{/uk-card}}
 </div>
+

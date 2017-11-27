@@ -11,7 +11,8 @@ export default {
     search: 'Search',
     empty: 'There is nothing to show here - yet!',
     cancel: 'Cancel',
-    show: 'Show'
+    show: 'Show',
+    back: 'Back'
   },
 
   login: {
@@ -74,6 +75,7 @@ export default {
     redmine: 'Redmine',
     rt: 'Request Tracker',
     symon: 'SyMonitoring',
+    vault: 'Vault',
     wikis: 'Wikis',
     settings: 'Settings',
     profile: 'Profile',

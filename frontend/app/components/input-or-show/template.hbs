@@ -1,14 +1,14 @@
 {{#if edit}}
   {{#if multiline}}
-    {{textarea class="form-control" value=value placeholder=placeholder}}
+    {{textarea class='uk-textarea' value=value placeholder=placeholder}}
   {{else}}
-    {{input class="form-control" value=value placeholder=placeholder}}
+    {{input class='uk-input' value=value placeholder=placeholder}}
   {{/if}}
 {{else}}
   {{#with (if mask "********" value) as |_value|}}
     {{#if clipboard}}
-      <a href="javascript:void(0)" {{action "copy"}} title="Copy to clipboard">
-        <i class="fa fa-clipboard"></i> <span class="value">{{trim _value}}</span>
+      <a href="#" {{action "copy"}} title="Copy to clipboard">
+        {{uk-icon 'copy'}} <span class="value">{{trim _value}}</span>
       </a>
     {{else}}
       <div class="value">{{autolink (nl2br value) true}}</div>

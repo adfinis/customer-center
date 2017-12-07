@@ -18,6 +18,8 @@ Router.map(function() {
     this.route('vault', { resetNamespace: true }, function() {
       this.route('edit', { path: '/*path' })
     })
+
+    this.route('sysupport', { resetNamespace: true }, function() {})
   })
 
   this.route('notfound', { path: '/*path' })

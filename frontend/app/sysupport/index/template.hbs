@@ -1,29 +1,28 @@
-<h2>Abonnements:</h2>
-{{#each model as |project|}}
-{{#uk-card color='primary' as |card|}}
-  {{#card.header}}
-    {{#card.title}}{{project.name}}{{/card.title}}
-  {{/card.header}}
-  {{#card.body}}
-Time used: {{project.spentTime}}
-Time total: {{project.purchasedTime}}
-  {{/card.body}}
-  {{#card.footer}}
-
-{{uk-button
-  color='primary'
-  size='large'
-  fill=true
-  label='Aufladen'
-}}
-{{uk-button
-  color='primary'
-  size='large'
-  fill=true
-  label='History'
-}}
-  {{/card.footer}}
-{{/uk-card}}
-{{else}} Nothing Here {{/each}}
+<h2>{{t 'nav.sysupport'}} Abonnements</h2>
+<div uk-grid>
 
 
+  {{#each model as |project|}}
+    <div>
+      {{#uk-card as |card|}}
+        {{#card.header}}
+          {{#card.title}}{{project.name}}{{/card.title}}
+        {{/card.header}}
+        {{#card.body}}
+          <dl class="uk-description-list">
+            <dt>Time total</dt>
+            <dd>{{project.purchasedTime}}</dd>
+            <dt>Time Used:</dt>
+            <dd>{{project.spentTime}}</dd>
+          </dl>
+        {{/card.body}}
+        {{#card.footer}}
+          {{uk-button color='primary' size='large' fill=true label='Aufladen' }}
+          {{#link-to "sysupport.detail" project.id}}
+            {{uk-button color='default' size='large' fill=true label='Details' }}
+          {{/link-to}}
+        {{/card.footer}}
+      {{/uk-card}}
+    </div>
+  {{else}} Nothing Here {{/each}}
+</div>

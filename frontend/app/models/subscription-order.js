@@ -1,8 +1,10 @@
-import DS from 'ember-data'
+import attr from 'ember-data/attr'
+import Model from 'ember-data/model'
+import { belongsTo } from 'ember-data/relationships'
 
-export default DS.Model.extend({
-  duaration: DS.attr('django-duration'),
-  acknowledged: DS.attr('boolean', { defaultValue: false }),
-  ordered: DS.attr('djnago-date'),
-  project: DS.belongsTo('subscription-project')
+export default Model.extend({
+  duration: attr('django-duration'),
+  acknowledged: attr('boolean', { defaultValue: false }),
+  ordered: attr('django-date'),
+  project: belongsTo('subscription-project')
 })

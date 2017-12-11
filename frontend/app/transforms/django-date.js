@@ -3,7 +3,7 @@
  * @submodule timed-transforms
  * @public
  */
-import MomentTransform from 'timed/transforms/moment'
+import MomentTransform from 'adsycc/transforms/moment'
 
 /**
  * The django date transform

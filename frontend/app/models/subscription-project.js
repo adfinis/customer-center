@@ -1,8 +1,11 @@
-import DS from 'ember-data'
+import attr from 'ember-data/attr'
+import Model from 'ember-data/model'
+import { hasMany } from 'ember-data/relationships'
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  purchasedTime: DS.attr('django-duration'),
-  spentTime: DS.attr('django-duration'),
-  billingType: DS.attr('number')
+export default Model.extend({
+  name: attr('string'),
+  purchasedTime: attr('django-duration'),
+  spentTime: attr('django-duration'),
+  billingType: attr('number'),
+  orders: hasMany('subscription-order')
 })

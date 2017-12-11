@@ -19,7 +19,16 @@ Router.map(function() {
       this.route('edit', { path: '/*path' })
     })
 
-    this.route('sysupport', { resetNamespace: true }, function() {})
+    this.route(
+      'sysupport',
+      { resetNamespace: true, path: 'sysupport/projects' },
+      function() {
+        this.route('detail', { path: ':project_id' }, function() {
+          this.route('reports')
+          this.route('history')
+        })
+      }
+    )
   })
 
   this.route('notfound', { path: '/*path' })

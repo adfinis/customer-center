@@ -1,0 +1,24 @@
+<div uk-grid>
+  <div class="uk-overflow-auto">
+    <table class="uk-table uk-table-divider">
+      <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Aufwand</th>
+          <th>Mitarbeiter</th>
+          <th>Beschreibung</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |report|}}
+          <tr>
+            <td>{{moment-format report.date 'DD.MM.YYYY'}}</td>
+            <td class="uk-text-center">{{format-duration report.duration format='hours'}}</td>
+            <td class="">{{report.timedUser.fullName}}</td>
+            <td class="">{{report.comment}}</td>
+          </tr>
+        {{else}}Nothing Here{{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div uk-grid>
+  {{!-- {{order-chart orders=model}} --}}
+  <div class="uk-overflow-auto">
+    <table class="uk-table uk-table-divider">
+      <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Anzahl Stunden</th>
+          <th>Bestätigt</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |order|}}
+          <tr>
+            <td>{{moment-format order.ordered 'DD.MM.YYYY'}}</td>
+            <td class="uk-text-center">{{format-duration order.duration format='hours'}}</td>
+            <td class="uk-text-center">
+              {{#if order.acknowledged}}
+                {{uk-icon 'check' scale=2}}
+              {{/if}}
+            </td>
+          </tr>
+        {{else}}Nothing Here{{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

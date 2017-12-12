@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.0.3",
     "babel-plugin-transform-async-to-generator": "^6.8.0",
     "babel-plugin-transform-es2015-destructuring": "^6.9.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.11.5",
@@ -47,15 +47,15 @@
     "chai": "^3.3.0",
     "chai-as-promised": "^5.0.0",
     "chai-http": "^1.0.0",
-    "eslint-config-prettier": "^2.3.0",
-    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.3.1",
     "gulp": "^3.8.11",
     "gulp-eslint": "^3.0.0",
     "gulp-istanbul-enforcer": "^1.0.3",
     "gulp-spawn-mocha": "^2.2.1",
     "mocha": "^2.3.3",
     "nodemon": "^1.7.1",
-    "prettier": "^1.5.2",
+    "prettier": "^1.9.2",
     "sqlite3": "^3.1.0"
   }
 }

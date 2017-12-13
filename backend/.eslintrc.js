@@ -6,11 +6,13 @@ module.exports = {
   },
   parser: 'babel-eslint',
   env: {
-    browser: true
+    node: true,
+    es6: true
   },
-  plugins: ['ember', 'prettier'],
-  extends: ['eslint:recommended', 'plugin:ember/recommended', 'prettier'],
+  plugins: ['prettier'],
+  extends: ['eslint:recommended', 'prettier'],
   rules: {
+    'no-console': 'off',
     'prettier/prettier': 'error'
   }
 }

@@ -1,5 +1,5 @@
 import ApplicationAdapter from './application'
 
 export default ApplicationAdapter.extend({
-  pathForType: () => 'users'
+  pathForType: () => 'reports'
 })

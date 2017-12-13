@@ -6,5 +6,5 @@ export default Model.extend({
   name: attr('string'),
   purchasedTime: attr('django-duration'),
   spentTime: attr('django-duration'),
-  orders: hasMany('subscription-order')
+  orders: hasMany('timed-subscription-order')
 })

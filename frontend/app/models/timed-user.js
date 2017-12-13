@@ -7,6 +7,6 @@ export default Model.extend({
   lastName: attr('string'),
 
   fullName: computed('firstName', 'lastName', function() {
-    return `${this.firstName} ${this.lastName}`.trim()
+    return `${this.get('firstName')} ${this.get('lastName')}`.trim()
   })
 })

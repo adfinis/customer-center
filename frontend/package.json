@@ -48,6 +48,7 @@
     "ember-i18n": "^5.0.2",
     "ember-load-initializers": "^1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-model-namespaces": "adfinis-sygroup/ember-model-namespaces",
     "ember-moment": "^7.5.0",
     "ember-notify": "^5.2.1",
     "ember-pad": "^1.2.2",

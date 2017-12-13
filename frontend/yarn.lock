@@ -2963,6 +2963,12 @@ ember-maybe-import-regenerator@^0.1.5, ember-maybe-import-regenerator@^0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
+ember-model-namespaces@adfinis-sygroup/ember-model-namespaces:
+  version "0.0.0"
+  resolved "https://codeload.github.com/adfinis-sygroup/ember-model-namespaces/tar.gz/559fa0f82ca9c675934abe0eaed28ee8a074bfb7"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 ember-moment@^7.5.0:
   version "7.5.0"
   resolved "https://registry.yarnpkg.com/ember-moment/-/ember-moment-7.5.0.tgz#9ed25b32ae941b2f1d9116c44f518a52bdb01722"

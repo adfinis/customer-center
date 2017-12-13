@@ -1,13 +1,50 @@
-<ul uk-tab>
-  <li>
-    {{#link-to "sysupport.detail.reports"}}
-      Raportierungen
-    {{/link-to}}
-  </li>
-  <li>
-    {{#link-to "sysupport.detail.history"}}
-      Aufladung's Historie
-    {{/link-to}}
-  </li>
-</ul>
-{{outlet}}
+<div uk-grid class="uk-child-width-1-1 uk-child-width-1-2@m">
+  <div>
+    <h2>Aufwände</h2>
+    <table class="uk-table uk-table-divider uk-width-1-1">
+      <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Aufwand</th>
+          <th>Mitarbeiter</th>
+          <th>Beschreibung</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model.reports as |report|}}
+          <tr>
+            <td>{{moment-format report.date 'DD.MM.YYYY'}}</td>
+            <td class="uk-text-center">{{format-duration report.duration format='hours'}}</td>
+            <td class="">{{report.user.fullName}}</td>
+            <td class="">{{report.comment}}</td>
+          </tr>
+        {{else}}Nothing Here{{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h2>Aufladungen</h2>
+    <table class="uk-table uk-table-divider uk-width-1-1">
+      <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Anzahl Stunden</th>
+          <th>Bestätigt</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model.orders as |order|}}
+          <tr>
+            <td>{{moment-format order.ordered 'DD.MM.YYYY'}}</td>
+            <td class="uk-text-center">{{format-duration order.duration format='hours'}}</td>
+            <td class="uk-text-center">
+              {{#if order.acknowledged}}
+                {{uk-icon 'check' scale=2}}
+              {{/if}}
+            </td>
+          </tr>
+        {{else}}Nothing Here{{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

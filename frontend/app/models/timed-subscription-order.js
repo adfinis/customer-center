@@ -3,8 +3,8 @@ import Model from 'ember-data/model'
 import { belongsTo } from 'ember-data/relationships'
 
 export default Model.extend({
-  comment: attr('string'),
-  date: attr('django-date'),
   duration: attr('django-duration'),
-  timedUser: belongsTo('timed-user')
+  acknowledged: attr('boolean', { defaultValue: false }),
+  ordered: attr('django-date'),
+  project: belongsTo('timed-subscription-project')
 })

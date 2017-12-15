@@ -1,26 +1,28 @@
-<h2>{{t 'nav.sysupport'}} Abonnements</h2>
-<div uk-grid>
+<h2>{{t 'sysupport.index.title'}}</h2>
+<div uk-grid uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 50">
   {{#each model as |project|}}
     <div>
-      {{#uk-card as |card|}}
+      {{#uk-card hover=true as |card|}}
         {{#card.header}}
           {{#card.title}}{{project.name}}{{/card.title}}
         {{/card.header}}
         {{#card.body}}
           <dl class="uk-description-list">
-            <dt>Time total</dt>
-            <dd>{{project.purchasedTime}}</dd>
-            <dt>Time Used:</dt>
-            <dd>{{project.spentTime}}</dd>
+            <dt>{{t 'sysupport.index.time.total'}}:</dt>
+            <dd>{{format-duration project.purchasedTime}}</dd>
+            <dt>{{t 'sysupport.index.time.used'}}:</dt>
+            <dd>{{format-duration project.spentTime}}</dd>
           </dl>
         {{/card.body}}
         {{#card.footer}}
-          {{uk-button color='primary' size='large' fill=true label='Aufladen' }}
+          {{#link-to 'sysupport.reload' project.id}}
+            {{uk-button color='primary' size='large' fill=true label=(t 'sysupport.index.charge') }}
+          {{/link-to}}
           {{#link-to "sysupport.detail" project.id}}
-            {{uk-button color='default' size='large' fill=true label='Details' }}
+            {{uk-button color='default' size='large' fill=true label=(t 'sysupport.index.details') }}
           {{/link-to}}
         {{/card.footer}}
       {{/uk-card}}
     </div>
-  {{else}} Nothing Here {{/each}}
+  {{else}}{{t 'global.empty'}}{{/each}}
 </div>

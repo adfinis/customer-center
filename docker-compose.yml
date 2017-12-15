@@ -115,3 +115,11 @@ services:
         - DJANGO_DATABASE_PASSWORD=test
         - ENV=docker
         - STATIC_ROOT=/var/www/static
+
+  adminer1:
+      image: adminer
+      ports: 
+        - "8085:8080"
+      links: 
+        - postgres1
+

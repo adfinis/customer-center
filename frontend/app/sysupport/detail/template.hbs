@@ -1,30 +1,30 @@
-<div uk-grid class="uk-child-width-1-1 uk-child-width-1-2@m">
+<div uk-grid class="uk-child-width-1-1 uk-child-width-1-2@m" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
   <div>
     {{#uk-card as |card|}}
       {{#card.header}}
         {{#card.title}}
-          Aufwände
+          {{t 'sysupport.detail.expense'}}
         {{/card.title}}
       {{/card.header}}
       {{#card.body}}
         <table class="uk-table uk-table-divider uk-width-1-1">
           <thead>
             <tr>
-              <th>Datum</th>
-              <th>Aufwand</th>
-              <th>Mitarbeiter</th>
-              <th>Beschreibung</th>
+              <th>{{t 'sysupport.detail.date'}}</th>
+              <th>{{t 'sysupport.detail.effort'}}</th>
+              <th>{{t 'sysupport.detail.employee'}}</th>
+              <th>{{t 'sysupport.detail.description'}}</th>
             </tr>
           </thead>
           <tbody>
             {{#each model.reports as |report|}}
               <tr>
                 <td>{{moment-format report.date 'DD.MM.YYYY'}}</td>
-                <td>{{format-duration report.duration format='hours'}}</td>
+                <td>{{format-duration-short report.duration}}</td>
                 <td>{{report.user.fullName}}</td>
                 <td>{{report.comment}}</td>
               </tr>
-            {{else}}Nothing Here{{/each}}
+            {{else}}{{t 'global.empty'}}{{/each}}
           </tbody>
         </table>
       {{/card.body}}
@@ -34,16 +34,16 @@
     {{#uk-card as |card|}}
       {{#card.header}}
         {{#card.title}}
-          Aufladungen
+          {{t 'sysupport.detail.charges'}}
         {{/card.title}}
       {{/card.header}}
       {{#card.body}}
         <table class="uk-table uk-table-divider uk-width-1-1">
           <thead>
             <tr>
-              <th>Datum</th>
-              <th>Anzahl Stunden</th>
-              <th>Bestätigt</th>
+              <th>{{t 'sysupport.detail.date'}}</th>
+              <th>{{t 'sysupport.detail.amount'}}</th>
+              <th>{{t 'sysupport.detail.acknowledged'}}</th>
             </tr>
           </thead>
           <tbody>
@@ -53,7 +53,7 @@
                 <td>{{format-duration order.duration format='hours'}}</td>
                 <td>{{uk-icon (if order.acknowledged 'check' 'close') scale=2}}</td>
               </tr>
-            {{else}}Nothing Here{{/each}}
+            {{else}}{{t 'global.empty'}}{{/each}}
           </tbody>
         </table>
       {{/card.body}}

@@ -1,0 +1,18 @@
+<h2>Select your Package</h2>
+<div uk-grid  uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 50">
+  {{#each model as |package index|}}
+    <div class="uk-width-1-4@m">
+      {{#uk-card  hover=true as |card|}}
+        {{#card.header}}
+            {{#card.title}}{{format-duration package.duration}}{{/card.title}}
+        {{/card.header}}
+        {{#card.body}}
+          <dl class="uk-description-list">
+            <dt>{{t 'sysupport.reload.price'}}:</dt>
+            <dd>{{package.price}}</dd>
+          </dl>
+        {{/card.body}}
+      {{/uk-card}}
+    </div>
+  {{else}}{{t 'global.empty'}}{{/each}}
+</div>

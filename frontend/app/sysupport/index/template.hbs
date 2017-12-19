@@ -15,10 +15,10 @@
           </dl>
         {{/card.body}}
         {{#card.footer}}
-          {{#link-to 'sysupport.reload' project.id}}
+          {{#link-to 'sysupport.detail.reload' project.id}}
             {{uk-button color='primary' size='large' fill=true label=(t 'sysupport.index.charge') }}
           {{/link-to}}
-          {{#link-to "sysupport.detail" project.id}}
+          {{#link-to "sysupport.detail.index" project.id}}
             {{uk-button color='default' size='large' fill=true label=(t 'sysupport.index.details') }}
           {{/link-to}}
         {{/card.footer}}

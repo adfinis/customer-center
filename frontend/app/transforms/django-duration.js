@@ -1,4 +1,3 @@
-
 /**
  * @module timed
  * @submodule timed-transforms

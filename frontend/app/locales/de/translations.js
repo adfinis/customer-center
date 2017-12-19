@@ -107,6 +107,13 @@ export default {
       details: 'Details'
     },
 
+    reload: {
+      hour: 'Stunden',
+      price: 'Preis',
+      select: 'Wählen Sie ein Packet aus',
+      success: 'Ihre Bestellung wurde erfolgreich veraarbeitet.'
+    },
+
     detail: {
       expense: 'Aufwände',
       charges: 'Aufladungen',

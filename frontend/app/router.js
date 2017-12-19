@@ -23,8 +23,9 @@ Router.map(function() {
       'sysupport',
       { resetNamespace: true, path: 'sysupport/projects' },
       function() {
-        this.route('detail', { path: ':project_id/detail' })
-        this.route('reload', { path: ':project_id/reload' })
+        this.route('detail', { path: ':project_id' }, function() {
+          this.route('reload')
+        })
       }
     )
   })

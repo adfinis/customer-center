@@ -1,20 +1,21 @@
 import path from 'path'
 import httpProxy from 'express-http-proxy'
 
-const subProject = '/subscription-projects'
-const subPackage = '/subscription-packages'
-const subOrder = '/subscription-orders'
-const report = '/reports'
+const subProject = /\/subscription-projects(\/[1-9][0-9]*|)/
+const subPackage = /\/subscription-packages/
+const subOrder = /\/subscription-orders/
+const report = /\/reports/
 
 const allowedEndpoints = [subProject, subPackage, subOrder, report]
 
 function createProxy(config) {
   return httpProxy(config.host, {
-    parseReqBody: false,
-
     filter(req) {
-      return allowedEndpoints.includes(req.path) && req.session
-        .timedCustomer.id
+      return (
+        allowedEndpoints.some(endpoint => {
+          return req.path.match(endpoint)
+        }) && req.session.timedCustomer.id
+      )
     },
 
     // eslint-disable-next-line max-statements
@@ -34,9 +35,7 @@ function createProxy(config) {
         .map(key => `${key}=${queryParams[key]}`)
         .join('&')
       if (req.path === report) {
-        return `${newPath}?customer=${
-          timedCustomer.id
-        }&not_billable=0&review=0&${queryString}`
+        return `${newPath}?customer=${timedCustomer.id}&not_billable=0&review=0&${queryString}`
       }
 
       return `${newPath}?customer=${timedCustomer.id}&${queryString}`

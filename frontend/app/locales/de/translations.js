@@ -111,7 +111,10 @@ export default {
       hour: 'Stunden',
       price: 'Preis',
       select: 'Wählen Sie ein Packet aus',
-      success: 'Ihre Bestellung wurde erfolgreich veraarbeitet.'
+      success: 'Ihre Bestellung wurde erfolgreich veraarbeitet.',
+      error:
+        'Bei der verarbeitung Ihrer Bestellung ist ein Fehler aufgetreten. Bitte vergewissern Sie sich ob die Bestellung verarbeitet wurde und falls nicht, bersuchen Sie es noch einmal.',
+      charge: 'Aufladen'
     },
 
     detail: {

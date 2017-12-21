@@ -32,9 +32,9 @@
         {{#list.item 'vault'}}{{t 'nav.vault'}}{{/list.item}}
       {{/if}}
 
-      {{!-- {{#if (and model.sysupport (service-enabled 'sysupport'))}} --}}
+      {{#if (service-enabled 'sysupport')}}
         {{#list.item 'sysupport'}}{{t 'nav.sysupport'}}{{/list.item}}
-      {{!-- {{/if}} --}}
+      {{/if}}
     {{/nav.list}}
 
     {{#nav.list as |list|}}

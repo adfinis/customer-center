@@ -1,7 +1,7 @@
 <h2>{{t 'sysupport.reload.select'}}</h2>
-<div uk-grid  uk-scrollspy="target: > a; cls:uk-animation-slide-bottom-small; delay: 50">
+<div uk-grid  uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 50">
   {{#each model as |package index|}}
-    <a class="uk-width-1-4@m uk-link-reset" onclick={{action send "subscribe" package}}>
+    <div class="uk-width-1-4@m uk-link-reset">
       {{#uk-card hover=true as |card|}}
         {{#card.header}}
             {{#card.title}}{{format-duration package.duration}}{{/card.title}}
@@ -12,7 +12,12 @@
             <dd>{{package.price}}</dd>
           </dl>
         {{/card.body}}
+        {{#card.footer}}
+          {{#uk-button class='uk-align-center' color='primary' on-click=(action send "subscribe" package)}}
+            {{t 'sysupport.reload.charge'}}
+          {{/uk-button}}
+        {{/card.footer}}
       {{/uk-card}}
-    </a>
+    </div>
   {{else}}{{t 'global.empty'}}{{/each}}
 </div>

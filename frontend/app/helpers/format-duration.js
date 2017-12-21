@@ -29,16 +29,11 @@ export default Helper.extend({
     this.set('minutesCount', minutes)
     this.set('hoursCount', hours)
 
-    let hoursS = hours ? `${hours} ${this.get('hoursTranslation')} ` : ''
-    let minutesS = minutes ? `${minutes} ${this.get('minutesTranslation')}` : ''
+    let hoursString = hours ? `${hours} ${this.get('hoursTranslation')} ` : ''
+    let minutesString = minutes
+      ? `${minutes} ${this.get('minutesTranslation')}`
+      : ''
 
-    return hoursS + minutesS
-    // if (hours) {
-    //   return `${hours} ${this.get('hoursTranslation')} ${minutes} ${this.get(
-    //     'minutesTranslation'
-    //   )}`
-    // } else {
-    //   return `${minutes} ${this.get('minutesTranslation')}`
-    // }
+    return [hoursString, minutesString].filter(str => str).join(' ')
   }
 })

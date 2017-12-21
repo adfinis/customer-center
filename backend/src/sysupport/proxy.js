@@ -35,7 +35,9 @@ function createProxy(config) {
         .map(key => `${key}=${queryParams[key]}`)
         .join('&')
       if (req.path === report) {
-        return `${newPath}?customer=${timedCustomer.id}&not_billable=0&review=0&${queryString}`
+        return `${newPath}?customer=${
+          timedCustomer.id
+        }&not_billable=0&review=0&${queryString}`
       }
 
       return `${newPath}?customer=${timedCustomer.id}&${queryString}`

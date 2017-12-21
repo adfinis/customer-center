@@ -110,7 +110,10 @@ export default {
       hour: 'Hours',
       price: 'Price',
       select: 'Select a Subscription-Package',
-      success: 'Your order was successfully saved'
+      success: 'Your order was saved successfully.',
+      error:
+        'An error occured while processing your order. Please check if your order was saved and if not, try again.',
+      charge: 'Charge'
     },
 
     detail: {

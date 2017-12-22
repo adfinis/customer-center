@@ -84,37 +84,6 @@ module.exports = {
     options: {}
   },
   services: {
-    redmine: {
-      type: 'redmine',
-      ldapGroup: 'redmine',
-      host: 'redmine1',
-      https: false,
-      user: 'admin',
-      apiKey: '',
-      basicAuth: {
-        username: 'admin',
-        password: 'admin'
-      }
-    },
-    rt: {
-      type: 'rt',
-      version: 4,
-      knex: {
-        client: 'sqlite3',
-        connection: {
-          filename: '/var/rt4/rt4'
-        }
-      }
-    },
-    symon: {
-      type: 'symon',
-      host: '0.0.0.0',
-      user: 'foo',
-      password: 'bar',
-      queues: 32,
-      app: 'app/queue name',
-      ttl: 10000
-    },
     vault: {
       type: 'vault',
       host: 'http://vault1:8200/',

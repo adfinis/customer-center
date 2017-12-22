@@ -1,5 +1,5 @@
 import { Router } from 'express'
-//import User from './user/model'
+import UserSerializer from './serializer'
 
 const router = new Router()
 export default router
@@ -12,6 +12,7 @@ export default router
  */
 function userToJSON(user) {
   return {
+    id: user.get('id'),
     username: user.get('username'),
     shortname: user.get('shortname'),
     firstName: user.get('firstName'),
@@ -24,21 +25,17 @@ function userToJSON(user) {
   }
 }
 
-router.get('/user/current', (req, res) => {
-  let user = userToJSON(req.user)
-
-  res.send({ data: { user } })
+router.get('/users/current', (req, res) => {
+  res.send(UserSerializer.serialize(userToJSON(req.user)))
 })
 
-router.put('/user/current', async (req, res, next) => {
+router.put('/users/current', async (req, res, next) => {
   try {
-    req.user.set('language', req.body.language)
+    req.user.set('language', req.body.data.attributes.language)
 
     await req.user.save()
 
-    let user = userToJSON(req.user)
-
-    res.send({ data: { user } })
+    res.send(UserSerializer.serialize(userToJSON(req.user)))
   } catch (e) {
     next(e)
   }

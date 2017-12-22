@@ -72,53 +72,9 @@ export default {
 
   nav: {
     dashboard: 'Übersicht',
-    redmine: 'Redmine',
-    rt: 'Request Tracker',
-    symon: 'SyMonitoring',
     vault: 'Vault',
-    wikis: 'Wikis',
     settings: 'Einstellungen',
-    profile: 'Profil',
     logout: 'Logout'
-  },
-
-  redmine: {
-    project: 'Projekt',
-    status: 'Status',
-    priority: 'Priorität',
-    subject: 'Betreff',
-    updated: 'Zuletzt aktualisiert',
-
-    'list-caption': 'Redmine Tickets von {{host}}',
-
-    error: 'Fehler',
-    'error-noprojects': 'Keine Projekte verfügbar'
-  },
-
-  rt: {
-    status: 'Status',
-    subject: 'Betreff',
-    updated: 'Zuletzt aktualisiert',
-    created: 'Erstellt am',
-
-    'list-caption': 'Request Tracker'
-  },
-
-  symon: {
-    'list-caption': 'Monitoring',
-
-    host: 'Host',
-    status: 'Status',
-    messages: 'Nachrichten',
-
-    'host.state': {
-      danger: 'Fehler'
-    },
-
-    'service.state': {
-      danger: 'Fehler',
-      warning: 'Warnung'
-    }
   },
 
   vault: {
@@ -131,11 +87,5 @@ export default {
     'clipboard-success': 'Das Passwort wurde in die Zwischenablage kopiert.',
     'clipboard-error':
       'Das Passwort konnte nicht in die Zwischenablage kopiert werden.'
-  },
-
-  'user.profile': {
-    email: 'E-Mail Adresse',
-    services: 'Dienste',
-    language: 'Sprache'
   }
 }

@@ -1,52 +1,39 @@
 {{#uk-adsy-menu as |section nav|}}
   {{#if (eq section 'top')}}
-    {{#nav.left}}
+    {{#nav.left class='uk-visible@l'}}
       {{nav.brand}}
     {{/nav.left}}
-    {{#nav.right}}
-      {{#nav.brand class='uk-visible@l' logo=false}}
-        Customer Center
-      {{/nav.brand}}
-    {{/nav.right}}
+    {{#nav.left}}
+      {{#nav.list}}
+        <li>
+          {{log i18n}}
+          <a href="#">{{i18n.locale}}</a>
+          <div class="uk-navbar-dropdown" uk-dropdown="animation: uk-animation-slide-small; mode: click;">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              {{#each i18n.locales as |locale|}}
+                <li class={{if (eq locale i18n.locale) 'uk-active'}}>
+                  <a href="#" {{action (perform setLocale) locale}}>{{t locale}}</a>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </li>
+      {{/nav.list}}
+    {{/nav.left}}
   {{else if (eq section 'side')}}
+    <div class="uk-padding uk-padding-remove-top uk-hidden@l">
+      <img class="uk-width-1-1" src="/assets/images/adsy-logo.png">
+    </div>
+
     {{#nav.list as |list|}}
       {{#list.item 'index'}}{{t 'nav.dashboard'}}{{/list.item}}
 
-      {{#if (and model.rt (service-enabled 'rt'))}}
-        {{#list.item 'rt'}}{{t 'nav.rt'}}{{/list.item}}
-      {{/if}}
-
-      {{#if (and model.redmine (service-enabled 'redmine'))}}
-        {{#list.item 'redmine'}}{{t 'nav.redmine'}}{{/list.item}}
-      {{/if}}
-
-      {{#if (and model.monitoring (service-enabled 'mon'))}}
-        {{#list.item 'symon'}}{{t 'nav.symon'}}{{/list.item}}
-      {{/if}}
-
-      {{#if (and model.vault (service-enabled 'vault'))}}
+      {{#if model.vault}}
         {{#list.item 'vault'}}{{t 'nav.vault'}}{{/list.item}}
       {{/if}}
     {{/nav.list}}
 
-    {{#if (service-enabled 'wiki')}}
-      {{#with model.wikis as |wikis|}}
-        {{#nav.list as |list|}}
-          {{#list.item header=true}}{{t 'nav.wikis'}}{{/list.item}}
-          {{#each wikis as |wiki|}}
-            <li>
-              <a href="https://wiki.adfinis-sygroup.ch/{{wiki}}">
-                <i class="fa fa-wikipedia-w"></i>
-                <span class="nav-wiki-item">{{wiki}}-Wiki</span>
-              </a>
-            </li>
-          {{/each}}
-        {{/nav.list}}
-      {{/with}}
-    {{/if}}
-
     {{#nav.list as |list|}}
-      {{#list.item 'user.profile'}}{{t 'nav.profile'}}{{/list.item}}
       <li>
         <a class="pointer" {{action 'invalidateSession'}}>
           {{t 'nav.logout'}}

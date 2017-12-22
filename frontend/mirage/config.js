@@ -1,78 +1,75 @@
-/* eslint-disable camelcase */
+import { Response } from 'ember-cli-mirage'
+
 export default function() {
-  this.namespace = 'api' // make this `api`, for example, if your API is namespaced
-  this.timing = 500 // delay for each request, automatically set to 0 during testing
+  this.namespace = 'api'
+  this.timing = 400
 
-  this.post('/v1/login', function() {
-    return {
-      data: { token: '123qwe' }
-    }
-  })
-
+  this.post('/v1/login', () => ({ data: { token: '123qwe' } }))
   this.post('/v1/logout', function() {})
 
-  this.get('/v1/user/current', function({ db }) {
+  this.get('/v1/users/current', ({ users }) => users.find(1))
+  this.put('/v1/users/current', function({ users }) {
+    return users.find(1).update(this.normalizedRequestAttrs())
+  })
+
+  this.get('/vault/list', () => {
     return {
-      data: {
-        user: db.users.find(1)
+      values: {},
+      children: {
+        'dummy/': {
+          values: {
+            'foo.com': {
+              path: 'secret/foo.com'
+            },
+            'bar.com': {
+              path: 'secret/bar.com'
+            }
+          },
+          children: {
+            'baz.com': {
+              values: {
+                test1: {
+                  path: 'secret/baz.com/test1'
+                }
+              },
+              children: {
+                test2: {
+                  values: {
+                    value1: {
+                      path: 'secret/baz.com/test2/value1'
+                    },
+                    value2: {
+                      path: 'secret/baz.com/test2/value2'
+                    },
+                    value3: {
+                      path: 'secret/baz.com/test2/value3'
+                    }
+                  },
+                  children: {}
+                }
+              }
+            }
+          }
+        }
       }
     }
   })
 
-  this.get('/proxy/project.adfinis-sygroup.ch/issues.json', function(
-    { db },
-    req
-  ) {
-    let { limit = 20, offset = 0 } = req.queryParams
-
-    limit = limit | 0
-    offset = offset | 0
-
+  this.get('/vault/get/*path', () => {
     return {
-      limit,
-      offset,
-      issues: db.redmineIssues.slice(offset, offset + limit),
-      total_count: db.redmineIssues.length
-    }
-  })
-
-  this.get('/proxy/project.adfinis-sygroup.ch/projects.json', function(
-    { db },
-    req
-  ) {
-    let { limit = 20, offset = 0 } = req.queryParams
-
-    limit = limit | 0
-    offset = offset | 0
-
-    return {
-      limit,
-      offset,
-      issues: db.redmineProjects.slice(offset, offset + limit),
-      total_count: db.redmineProjects.length
-    }
-  })
-
-  this.get('/rt/tickets', function({ db }, req) {
-    let { limit = 20, offset = 0 } = req.queryParams
-
-    limit = limit | 0
-    offset = offset | 0
-
-    return {
-      data: {
-        limit,
-        offset,
-        tickets: db.rtIssues.slice(offset, offset + limit),
-        total: db.rtIssues.length
+      secret: {
+        admin: '123qwe#secureashell??',
+        test: '123qwe.notsecure',
+        user: '123qwe'
       }
     }
   })
-}
 
-/*
-You can optionally export a config that is only loaded during tests
-export function testConfig() {
+  this.delete('/proxy/vault/*path', () => {
+    return new Response(204)
+  })
 
+  this.post('/proxy/vault/*path', (_, { requestBody }) => {
+    return new Response(201, JSON.parse(requestBody))
+  })
 }
-*/

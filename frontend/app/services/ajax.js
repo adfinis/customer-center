@@ -7,8 +7,20 @@ export default AjaxService.extend({
 
   headers: computed('session.data.token', {
     get() {
-      const token = this.get('session.data.authenticated.data.token')
-      return token ? { 'X-Authorization': token } : {}
+      let headers = {
+        Accept: 'application/vnd.api+json',
+        'Content-Type': 'application/vnd.api+json'
+      }
+
+      let token = this.get('session.data.authenticated.data.token')
+
+      let auth = token
+        ? {
+            'X-Authorization': token
+          }
+        : {}
+
+      return Object.assign(headers, auth)
     }
   }),
 

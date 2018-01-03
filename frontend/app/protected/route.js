@@ -41,8 +41,10 @@ export default Route.extend(AuthenticatedRouteMixin, {
    * @return {void}
    */
   afterModel(user) {
-    if (user.language && user.language !== this.get('i18n.locale')) {
-      this.set('i18n.locale', user.language)
+    let lang = user.get('lang')
+
+    if (lang && lang !== this.get('i18n.locale')) {
+      this.set('i18n.locale', lang)
     }
   },
 

@@ -4,6 +4,8 @@ export default Mirage.Factory.extend({
   shortname: 'adsy',
   firstName: faker.name.firstName,
   lastName: faker.name.lastName,
+  language: 'en',
+  sysupport: 'adsy',
   username() {
     return `${this.shortname}-${faker.name.firstName()}`
   },
@@ -11,13 +13,7 @@ export default Mirage.Factory.extend({
     return `${faker.name.firstName()}@${this.shortname}.com`
   },
   groups() {
-    return [
-      `${this.shortname}-redmine`,
-      `${this.shortname}-mon`,
-      `${this.shortname}-rt`,
-      `${this.shortname}-sysupport`,
-      `${this.shortname}-wiki`
-    ]
+    return [`${this.shortname}-vault`, `${this.shortname}-sysupport`]
   },
   emails() {
     let i = faker.random.number({ min: 1, max: 3 })

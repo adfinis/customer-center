@@ -72,54 +72,9 @@ export default {
 
   nav: {
     dashboard: 'Dashboard',
-    redmine: 'Redmine',
-    rt: 'Request Tracker',
-    symon: 'SyMonitoring',
     vault: 'Vault',
-    wikis: 'Wikis',
     settings: 'Settings',
-    profile: 'Profile',
     logout: 'Sign out'
-  },
-
-  redmine: {
-    project: 'Project',
-    tracker: 'Tracker',
-    status: 'Status',
-    priority: 'Priority',
-    subject: 'Subject',
-    updated: 'Updated on',
-
-    'list-caption': 'Redmine issues of {{host}}',
-
-    error: 'Error',
-    'error-noprojects': 'No projects found'
-  },
-
-  rt: {
-    status: 'Status',
-    subject: 'Subject',
-    updated: 'Updated on',
-    created: 'Created on',
-
-    'list-caption': 'Request Tracker'
-  },
-
-  symon: {
-    'list-caption': 'Monitoring',
-
-    host: 'Host',
-    status: 'Status',
-    messages: 'Messages',
-
-    'host.state': {
-      danger: 'Error'
-    },
-
-    'service.state': {
-      danger: 'Error',
-      warning: 'Warning'
-    }
   },
 
   vault: {
@@ -131,11 +86,5 @@ export default {
     'save-success': 'Changes were saved.',
     'clipboard-success': 'The secret was saved to your clipboard.',
     'clipboard-error': 'The secret could not be saved to your clipboard.'
-  },
-
-  'user.profile': {
-    email: 'Email address',
-    services: 'Services',
-    language: 'Language'
   }
 }

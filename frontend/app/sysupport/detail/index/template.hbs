@@ -17,8 +17,8 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.reports as |report|}}
-              <tr>
+            {{#each model.reports as |report index|}}
+              <tr data-test-project-report="{{index}}">
                 <td>{{moment-format report.date 'DD.MM.YYYY'}}</td>
                 <td>{{format-duration-short report.duration}}</td>
                 <td>{{report.user.fullName}}</td>
@@ -47,8 +47,8 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.orders as |order|}}
-              <tr>
+            {{#each model.orders as |order index|}}
+              <tr data-test-project-order="{{index}}">
                 <td>{{moment-format order.ordered 'DD.MM.YYYY'}}</td>
                 <td>{{format-duration order.duration format='hours'}}</td>
                 <td>{{uk-icon (if order.acknowledged 'check' 'close') scale=2}}</td>

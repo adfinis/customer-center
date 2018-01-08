@@ -1,6 +1,6 @@
 <h2>{{t 'sysupport.index.title'}}</h2>
-<div uk-grid uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 50">
-  {{#each model as |project|}}
+<div uk-grid uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 50 uk-margin-bottom">
+  {{#each model as |project index|}}
     <div>
       {{#uk-card hover=true as |card|}}
         {{#card.header}}
@@ -16,10 +16,10 @@
         {{/card.body}}
         {{#card.footer}}
           {{#link-to 'sysupport.detail.reload' project.id}}
-            {{uk-button color='primary' size='large' fill=true label=(t 'sysupport.index.charge') }}
+            {{uk-button data-test-reload-link=index color='primary' size='large' fill=true label=(t 'sysupport.index.charge') }}
           {{/link-to}}
           {{#link-to "sysupport.detail.index" project.id}}
-            {{uk-button color='default' size='large' fill=true label=(t 'sysupport.index.details') }}
+            {{uk-button data-test-detail-link=index color='default' size='large' fill=true label=(t 'sysupport.index.details') }}
           {{/link-to}}
         {{/card.footer}}
       {{/uk-card}}

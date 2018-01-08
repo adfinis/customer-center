@@ -13,7 +13,7 @@
           </dl>
         {{/card.body}}
         {{#card.footer}}
-          {{#uk-button class='uk-align-center' color='primary' on-click=(action send "subscribe" package)}}
+          {{#uk-button data-test-project-reload=index class='uk-align-center' color='primary' on-click=(action send "subscribe" package)}}
             {{t 'sysupport.reload.charge'}}
           {{/uk-button}}
         {{/card.footer}}

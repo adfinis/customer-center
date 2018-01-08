@@ -29,7 +29,7 @@ export default Helper.extend({
     this.set('minutesCount', minutes)
     this.set('hoursCount', hours)
 
-    let hoursString = hours ? `${hours} ${this.get('hoursTranslation')} ` : ''
+    let hoursString = hours ? `${hours} ${this.get('hoursTranslation')}` : ''
     let minutesString = minutes
       ? `${minutes} ${this.get('minutesTranslation')}`
       : ''

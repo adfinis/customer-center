@@ -72,4 +72,22 @@ export default function() {
   this.post('/proxy/vault/*path', (_, { requestBody }) => {
     return new Response(201, JSON.parse(requestBody))
   })
+
+  // Sysupport
+  this.namespace = '/api/proxy/sysupport'
+
+  this.get('/subscription-projects', 'timed-subscription-project')
+
+  this.get('/subscription-projects/:id', 'timed-subscription-project')
+
+  this.get('/reports', 'timed-reports')
+
+  this.get('/subscription-orders', ({ timedSubscriptionOrders }, request) => {
+    return timedSubscriptionOrders.where({
+      projectId: request.queryParams.project
+    })
+  })
+  this.post('/subscription-orders', 'timed-subscription-orders')
+
+  this.get('/subscription-packages', 'timed-subscription-packages')
 }

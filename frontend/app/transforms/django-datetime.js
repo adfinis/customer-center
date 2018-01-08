@@ -1,6 +1,6 @@
 /**
- * @module timed
- * @submodule timed-transforms
+ * @module adsycc
+ * @submodule adsycc-transforms
  * @public
  */
 import MomentTransform from 'adsycc/transforms/moment'

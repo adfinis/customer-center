@@ -6,6 +6,8 @@ import moment from 'moment'
 export default Model.extend({
   duration: attr('django-duration'),
   acknowledged: attr('boolean', { defaultValue: false }),
-  ordered: attr('django-datetime', { defaultValue: moment() }),
+  ordered: attr('django-datetime', {
+    defaultValue: () => moment()
+  }),
   project: belongsTo('timed-subscription-project')
 })

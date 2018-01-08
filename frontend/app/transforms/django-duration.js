@@ -1,8 +1,3 @@
-/**
- * @module timed
- * @submodule timed-transforms
- * @public
- */
 import Transform from 'ember-data/transform'
 import moment from 'moment'
 import { padTpl, padStart } from 'ember-pad/utils/pad'

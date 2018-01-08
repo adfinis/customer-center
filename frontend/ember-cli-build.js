@@ -8,8 +8,7 @@ module.exports = function(defaults) {
       includePaths: ['node_modules']
     },
     babel: {
-      optional: ['es7.asyncFunctions', 'es7.decorators'],
-      sourceMaps: 'inline'
+      optional: ['es7.asyncFunctions', 'es7.decorators']
     }
   })
 

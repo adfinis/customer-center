@@ -2,6 +2,7 @@ import Route from '@ember/routing/route'
 
 export default Route.extend({
   model() {
-    return this.store.findAll('timed-subscription-project')
+    this.set('breadCrumb', { title: 'Overview' })
+    return this.store.query('timed-subscription-project', { ordering: 'name' })
   }
 })

@@ -90,6 +90,10 @@ export default {
   },
 
   sysupport: {
+    breadcrumbs: {
+      reload: 'Reload',
+      overview: 'Overview'
+    },
     minutes: {
       one: 'Minute',
       other: 'Minutes'
@@ -101,8 +105,8 @@ export default {
     index: {
       title: 'Sysupport Subscriptions',
       'time.total': 'Time Total',
-      'time.used': 'Timed Used',
-      charge: 'Charge',
+      'time.used': 'Time Used',
+      charge: 'Reload',
       details: 'Details'
     },
 
@@ -113,7 +117,7 @@ export default {
       success: 'Your order was saved successfully.',
       error:
         'An error occured while processing your order. Please check if your order was saved and if not, try again.',
-      charge: 'Charge'
+      charge: 'Reload'
     },
 
     detail: {

@@ -91,6 +91,10 @@ export default {
   },
 
   sysupport: {
+    breadcrumbs: {
+      reload: 'Aufladen',
+      overview: 'Übersicht'
+    },
     minutes: {
       one: 'Minute',
       other: 'Minuten'

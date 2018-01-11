@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/adfinis-sygroup/adsycc.svg?branch=master)](https://travis-ci.org/adfinis-sygroup/adsycc)
+[![Build Status](https://travis-ci.org/adfinis-sygroup/customer-center.svg?branch=master)](https://travis-ci.org/adfinis-sygroup/customer-center)
 
 # Adfinis SyGroup AG - Customer Center
 
@@ -11,7 +11,7 @@ Before you start, please make sure that the following tools are installed:
 * docker + docker-compose
 * vault (https://www.vaultproject.io/downloads.html)
 
-To use the sysupport/timed part, clone the timed-backend repository on the same level as adsycc:
+To use the sysupport/timed part, clone the timed-backend repository on the same level as customer-center:
 
 ```shell
 git clone git@github.com:adfinis-sygroup/timed-backend.git
@@ -28,7 +28,7 @@ make setup-ldap
 # sometimes the setup gets stuck with the message:
 # Restarting bind9 daemon: ...done.
 # Just interrupt it and run:
-docker exec adsycc_ucs1_1 /usr/ucs/scripts/fill-dummy-data.sh
+docker exec customercenter_ucs1_1 /usr/ucs/scripts/fill-dummy-data.sh
 
 
 # apply DB migrations

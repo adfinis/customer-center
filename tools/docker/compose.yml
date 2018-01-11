@@ -37,4 +37,4 @@ services:
   ucs:
     build: ./ucs
     volumes:
-      - ./ucs/adsycc-ucs.profile:/var/cache/univention-system-setup/profile
+      - ./ucs/customer-center-ucs.profile:/var/cache/univention-system-setup/profile

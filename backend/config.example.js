@@ -52,7 +52,7 @@ module.exports = {
       host: 'postgres1',
       user: 'test',
       password: 'test',
-      database: 'adsycc'
+      database: 'customercenter'
     },
     pool: {
       min: 2,

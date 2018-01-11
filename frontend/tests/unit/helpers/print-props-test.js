@@ -1,4 +1,4 @@
-import { printProps } from 'adsycc/helpers/print-props'
+import { printProps } from 'customer-center/helpers/print-props'
 import { module, test } from 'qunit'
 
 module('Unit | Helper | print props')

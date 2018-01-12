@@ -3,7 +3,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'adsycc',
+    modulePrefix: 'customer-center',
     environment,
     rootURL: '/',
     locationType: 'auto',

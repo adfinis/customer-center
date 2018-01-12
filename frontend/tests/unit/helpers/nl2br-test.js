@@ -1,4 +1,4 @@
-import { nl2br } from 'adsycc/helpers/nl2br'
+import { nl2br } from 'customer-center/helpers/nl2br'
 import { module, test } from 'qunit'
 
 module('Unit | Helper | nl2br')

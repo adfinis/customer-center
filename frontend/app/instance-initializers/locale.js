@@ -3,7 +3,7 @@ import moment from 'moment'
 /**
  * Initializer for locale
  *
- * @param {Ember.Application} instance The adsycc instance
+ * @param {Ember.Application} instance The customer center instance
  * @return {void}
  */
 export function initialize(instance) {

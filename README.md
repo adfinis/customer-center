@@ -7,6 +7,7 @@ This is still very much in progress.
 ## Prerequisites
 
 Before you start, please make sure that the following tools are installed:
+
 * node + yarn
 * docker + docker-compose
 * vault (https://www.vaultproject.io/downloads.html)
@@ -20,28 +21,12 @@ git clone git@github.com:adfinis-sygroup/timed-backend.git
 ## Setup
 
 ```shell
-make install
 docker-compose up
-
-# setup LDAP structure
-make setup-ldap
-# sometimes the setup gets stuck with the message:
-# Restarting bind9 daemon: ...done.
-# Just interrupt it and run:
-docker exec customercenter_ucs1_1 /usr/ucs/scripts/fill-dummy-data.sh
-
-
-# apply DB migrations
-make knex-migrations
-
-# fill vault with dummy data
-make setup-vault
-
-# finish setup of the timed backend
-make setup-timed
+make install
 ```
 
 ## Configuration
+
 Copy and rename the `config.example.js` to `config.js` and configure the needed endpoints.
 
 Unclear parts of the configuration will have a comment with further information.
@@ -53,14 +38,12 @@ Run `docker-compose up` (inital setup) or `docker-compose start`.
 ## Deployment
 
 Clone the repository and execute the following commands on your production system:
+
 ```
 git pull
 make deploy
 ```
 
 ### LDAP
+
 To authenticate against LDAP, we used the [Passport LDAP authentication strategy](https://github.com/vesse/passport-ldapauth)
-
-If the ucs1 container exits with seg fault (error code 139), you need to either update to a never ucs-master image (and also update your config) or set `GRUB_CMDLINE_LINUX_DEFAULT="quiet vsyscall=emulate"` in `/etc/default/grub` and then do `grub-mkconfig -o /boot/grub/grub.cfg` and `reboot`.
-
-You could also use the prod LDAP server. Config is on prod customer-center.

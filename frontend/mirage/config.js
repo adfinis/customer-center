@@ -180,7 +180,7 @@ export default function() {
 
   this.get('/proxy/gitlab/groups/:group/', (scheme, req) => {
     let group = req.params.group
-    let id = group.slice(-1, group.lengt)
+    let id = group.slice(-1)
     let projects = []
 
     for (let i = 0; i < id * 2; i++) {

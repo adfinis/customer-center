@@ -40,8 +40,6 @@ export default Controller.extend({
     if (!this.get('selection')) {
       return this.get('model')
     }
-    return [
-      this.get('model').find(group => group.id == this.get('selection.id'))
-    ]
+    return [this.get('model').find(group => group.id == this.get('selection'))]
   })
 })

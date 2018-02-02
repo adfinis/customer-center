@@ -31,20 +31,13 @@
       {{/power-datepicker}}
     </div>
 
-    <div class="uk-margin-right cc-select" data-test-select="select">
-      {{#power-select
-        selected=selection
-        searchEnabled=false
-        options=model
-        allowClear=true
-        placeholder=(t "gitlab.allGroups")
-        onchange=(action (mut selection))
-        as |group index|
-      }}
-        {{group.name}}
-      {{else}}
-        {{t "gitlab.empty.groups"}}
-      {{/power-select}}
+    <div class="uk-margin-right" data-test-select="select">
+      <select class="uk-select" id="form-horizontal-select" disabled={{unless model "disabled"}} onchange={{action (mut selection) value="target.value"}}>
+        <option selected value="">{{t "gitlab.allGroups"}}</option>
+        {{#each model as |group|}}
+        <option value={{group.id}}>{{group.name}}</option>
+        {{/each}}
+      </select>
     </div>
 
     <div class="uk-margin uk-search uk-search-default">

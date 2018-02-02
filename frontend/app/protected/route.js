@@ -26,6 +26,14 @@ export default Route.extend(AuthenticatedRouteMixin, {
   i18n: service(),
 
   /**
+   * Notify service for show notifications to the user
+   *
+   * @property {Notify} noftify
+   * @public
+   */
+  notify: service(),
+
+  /**
    * The user model
    *
    * @return {Promise.<User>}
@@ -51,6 +59,21 @@ export default Route.extend(AuthenticatedRouteMixin, {
   actions: {
     invalidateSession() {
       this.get('session').invalidate()
+    },
+    loading(transition) {
+      let controller = this.controllerFor('protected')
+      controller.set('isLoading', true)
+      if (transition) {
+        transition.promise.finally(() => {
+          controller.set('isLoading', false)
+        })
+      }
+    },
+    error(error) {
+      if (error) {
+        this.get('notify').error(this.get('i18n').t('global.error'))
+        return true
+      }
     }
   }
 })

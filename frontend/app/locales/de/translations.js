@@ -12,7 +12,8 @@ export default {
     empty: 'Keine Einträge gefunden',
     cancel: 'Abbrechen',
     show: 'Anzeigen',
-    back: 'Zurück'
+    back: 'Zurück',
+    error: 'Oops etwas ist schief gelaufen'
   },
 
   login: {

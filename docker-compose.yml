@@ -93,6 +93,7 @@ services:
       - DEFAULT_USER=admin
       - DEFAULT_PASSWORD=admin
 
+  # User older version because the newer version does not work
   vault:
     image: vault:0.9.6
     environment:

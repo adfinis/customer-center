@@ -6,7 +6,6 @@ import {
 } from 'customer-center/tests/helpers/ember-simple-auth'
 import startApp from '../helpers/start-app'
 import destroyApp from '../helpers/destroy-app'
-import { selectChoose, clearSelected } from 'ember-power-select/test-support'
 import { clickTrigger } from 'ember-basic-dropdown/test-support/helpers'
 import { calendarSelect } from 'ember-power-calendar/test-support'
 import moment from 'moment'
@@ -25,7 +24,7 @@ module('Acceptance | GitLab', function(hooks) {
     destroyApp(this.application)
   })
 
-  test('[T08] All projects and namespaces are rendered', async function(assert) {
+  test('All projects and namespaces are rendered', async function(assert) {
     assert.expect(17)
     await visit('/projects')
 
@@ -48,19 +47,19 @@ module('Acceptance | GitLab', function(hooks) {
     }
   })
 
-  test('[T09] Unauthorized user', async function(assert) {
+  test('Unauthorized user', async function(assert) {
     await invalidateSession(this.application)
     await visit('/projects')
     assert.equal(currentURL(), `/login`)
   })
 
-  test('[T11] Search', async function(assert) {
+  test('Search', async function(assert) {
     await visit('/projects')
     await fillIn('[data-test-search]', '0')
     assert.dom('[data-test-project]').exists({ count: 3 })
   })
 
-  test('[T14] Display pipelines', async function(assert) {
+  test('Display pipelines', async function(assert) {
     await visit('/projects')
 
     let project = '[data-test-group="0"] [data-test-project="0"]'
@@ -100,22 +99,22 @@ module('Acceptance | GitLab', function(hooks) {
     assert.dom(`${pipeline3} [data-test-stage-running]`).exists()
   })
 
-  test('[T15] Projects are displayed correct', async function(assert) {
+  test('Projects are displayed correct', async function(assert) {
     await visit('/projects')
     assert.dom('[data-test-project-name]').exists({ count: 12 })
     assert.dom('[data-test-pipelines]').exists({ count: 12 })
     assert.dom('[data-test-commits]').exists({ count: 12 })
   })
 
-  test('[T16] Filter', async function(assert) {
+  test('Filter', async function(assert) {
     await visit('/projects')
-    await selectChoose('[data-test-select] > *', 'test2')
+    await fillIn('[data-test-select] > *', 2)
     assert.dom('[data-test-project]').exists({ count: 4 })
-    await clearSelected('[data-test-select]')
+    await fillIn('[data-test-select] > *')
     assert.dom('[data-test-project]').exists({ count: 12 })
   })
 
-  test('[T17] Change time span for commits', async function(assert) {
+  test('Change time span for commits', async function(assert) {
     await visit('/projects')
     await clickTrigger('[data-test-calendar] > *')
     await calendarSelect(

@@ -1,15 +1,12 @@
-import { moduleFor, test } from 'ember-qunit'
+import { module, test } from 'qunit'
+import { setupTest } from 'ember-qunit'
 
-moduleFor('controller:login', {
-  needs: [
-    'controller:login.password-reset',
-    'service:notify',
-    'service:session'
-  ]
-})
+module('controller:login', function(hooks) {
+  setupTest(hooks)
 
-// Replace this with your real tests.
-test('it exists', function(assert) {
-  const controller = this.subject()
-  assert.ok(controller)
+  // Replace this with your real tests.
+  test('it exists', function(assert) {
+    const controller = this.owner.lookup('controller:login')
+    assert.ok(controller)
+  })
 })

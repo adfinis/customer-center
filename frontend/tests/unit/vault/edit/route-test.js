@@ -1,10 +1,11 @@
-import { moduleFor, test } from 'ember-qunit'
+import { module, test } from 'qunit'
+import { setupTest } from 'ember-qunit'
 
-moduleFor('route:vault/edit', 'Unit | Route | vault/edit', {
-  needs: ['service:vault', 'service:notify', 'service:i18n']
-})
+module('Unit | Route | vault/edit', function(hooks) {
+  setupTest(hooks)
 
-test('it exists', function(assert) {
-  let route = this.subject()
-  assert.ok(route)
+  test('it exists', function(assert) {
+    let route = this.owner.lookup('route:vault/edit')
+    assert.ok(route)
+  })
 })

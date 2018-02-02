@@ -4,24 +4,21 @@ import {
   authenticateSession,
   invalidateSession
 } from 'adsycc/tests/helpers/ember-simple-auth'
-import startApp from '../helpers/start-app'
-import destroyApp from '../helpers/destroy-app'
 
+//TODO refactor this test to https://github.com/emberjs/rfcs/blob/master/text/0232-simplify-qunit-testing-api.md
 moduleForAcceptance('Acceptance | Sysupport', {
   application: null,
   beforeEach() {
-    this.application = startApp()
     let user = server.create('user')
     authenticateSession(this.application, { data: user.id })
   },
   afterEach() {
     invalidateSession(this.application)
-    destroyApp(this.application)
   }
 })
 
 test('subscription-project detail', function(assert) {
-  server.createList('timed-subscription-project', 1)
+  server.create('timed-subscription-project')
   visit('/sysupport/projects')
 
   andThen(function() {

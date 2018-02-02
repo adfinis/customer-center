@@ -1,7 +1,7 @@
 import { Response } from 'ember-cli-mirage'
 
 export default function() {
-  this.namespace = 'api'
+  this.namespace = '/api'
   this.timing = 400
 
   this.post('/v1/login', () => ({ data: { token: '123qwe' } }))
@@ -74,20 +74,31 @@ export default function() {
   })
 
   // Sysupport
-  this.namespace = '/api/proxy/sysupport'
 
-  this.get('/subscription-projects', 'timed-subscription-project')
+  this.get(
+    '/proxy/sysupport/subscription-projects',
+    'timed-subscription-project'
+  )
 
-  this.get('/subscription-projects/:id', 'timed-subscription-project')
+  this.get(
+    '/proxy/sysupport/subscription-projects/:id',
+    'timed-subscription-project'
+  )
 
-  this.get('/reports', 'timed-reports')
+  this.get('/proxy/sysupport/reports', 'timed-reports')
 
-  this.get('/subscription-orders', ({ timedSubscriptionOrders }, request) => {
-    return timedSubscriptionOrders.where({
-      projectId: request.queryParams.project
-    })
-  })
-  this.post('/subscription-orders', 'timed-subscription-orders')
+  this.get(
+    '/proxy/sysupport/subscription-orders',
+    ({ timedSubscriptionOrders }, request) => {
+      return timedSubscriptionOrders.where({
+        projectId: request.queryParams.project
+      })
+    }
+  )
+  this.post('/proxy/sysupport/subscription-orders', 'timed-subscription-orders')
 
-  this.get('/subscription-packages', 'timed-subscription-packages')
+  this.get(
+    '/proxy/sysupport/subscription-packages',
+    'timed-subscription-packages'
+  )
 }

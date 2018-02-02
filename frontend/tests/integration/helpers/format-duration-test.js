@@ -1,33 +1,31 @@
-import { moduleForComponent, test } from 'ember-qunit'
+import { module, test } from 'qunit'
+import { setupRenderingTest } from 'ember-qunit'
+import { render } from '@ember/test-helpers'
 import hbs from 'htmlbars-inline-precompile'
 import moment from 'moment'
 
-moduleForComponent(
-  'format-duration',
-  'Integration | Helper | format duration',
-  {
-    integration: true
-  }
-)
+module('Integration | Helper | format duration', function(hooks) {
+  setupRenderingTest(hooks)
 
-test('formats a duration of 12 hours and 45 minutes as 12 Hours 45 Minutes', function(assert) {
-  this.set('duration', moment.duration({ hours: 12, minutes: 45 }))
+  test('formats a duration of 12 hours and 45 minutes as 12 Hours 45 Minutes', async function(assert) {
+    this.set('duration', moment.duration({ hours: 12, minutes: 45 }))
 
-  this.render(hbs`{{format-duration duration}}`)
+    await render(hbs`{{format-duration duration}}`)
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    '12 Hours 45 Minutes'
-  )
+    assert.equal(
+      this.$()
+        .text()
+        .trim(),
+      '12 Hours 45 Minutes'
+    )
 
-  this.set('duration', moment.duration({ hours: 2, minutes: 5 }))
+    this.set('duration', moment.duration({ hours: 2, minutes: 5 }))
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    '2 Hours 5 Minutes'
-  )
+    assert.equal(
+      this.$()
+        .text()
+        .trim(),
+      '2 Hours 5 Minutes'
+    )
+  })
 })

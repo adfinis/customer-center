@@ -6,3 +6,4 @@ tools/docker/rt4/var/rt4
 millis-test-sync
 *.swp
 frontend/root
+.vscode

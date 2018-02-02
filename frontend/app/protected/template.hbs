@@ -32,7 +32,18 @@
       {{/if}}
 
       {{#if model.sysupport}}
-        {{#list.item 'sysupport'}}{{t 'nav.sysupport'}}{{/list.item}}
+        {{#if model.admin}}
+          {{#list.item 'sysupport-admin' }}{{t 'nav.sysupport'}}{{/list.item}}
+          <ul class="uk-nav-sub">
+            <li>
+              {{#link-to "sysupport-admin.confirm-subscriptions"}}
+                {{t 'sysupport.admin.confirm-subscription'}}
+              {{/link-to}}
+            </li>
+        </ul>
+        {{else}}
+          {{#list.item 'sysupport-subscriptions' }}{{t 'nav.sysupport'}}{{/list.item}}
+        {{/if}}
       {{/if}}
     {{/nav.list}}
 

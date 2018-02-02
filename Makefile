@@ -1,3 +1,6 @@
+USERNAME?=user
+PASSWORD?=123qweasd
+
 install: install-frontend install-backend
 
 install-frontend:
@@ -21,15 +24,22 @@ setup-ldap:
 knex-migrations:
 	docker exec customercenter_backenddev1_1 make -C /usr/src/app migrations
 
-create-user:
-	docker exec -it customercenter_ucs1_1 /usr/ucs/scripts/create-new-user.sh
+create-customer:
+	docker exec -it customercenter_ucs1_1 /usr/ucs/scripts/create-new-customer.sh $(USERNAME) $(PASSWORD)
+
+create-admin:
+	docker exec -it customercenter_ucs1_1 /usr/ucs/scripts/create-new-admin.sh $(USERNAME) $(PASSWORD)
 
 setup-vault:
 	./tools/docker/vault/scripts/init.sh
 
 setup-timed:
-	docker-compose exec timedbackend1 ./manage.py migrate
-	docker-compose exec timedbackend1 ./manage.py createsuperuser
+	docker-compose exec timed1 ./manage.py migrate
+	docker-compose exec timed1 ./manage.py createsuperuser
+
+serve-local:
+	docker-compose stop frontenddev1
+	cd frontend/;ember serve --proxy http://localhost:8080
 
 deploy:
 	(cd frontend; yarn; yarn build)

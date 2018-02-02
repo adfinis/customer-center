@@ -1,0 +1,22 @@
+<table class="uk-table uk-table-divider uk-table-responsive">
+  <thead uk-height-match>
+    <tr uk-height-match>
+      {{#each headers as |header index|}}
+        {{#if (eq header.type 'search')}}
+          {{#cc-filter-header search=search attr=header.attr onSearch=(action 'search')}}
+            {{t header.title}}
+          {{/cc-filter-header}}
+        {{else if (eq header.type 'sort')}}
+          {{#cc-sort-header sort=sort attr=header.attr onSort=(action 'sort')}}
+            {{t header.title}}
+          {{/cc-sort-header}}
+        {{else}}
+          <th>{{t header.title}}</th>
+        {{/if}}
+      {{/each}}
+    </tr>
+  </thead>
+  <tbody>
+    {{yield results}}
+  </tbody>
+</table>

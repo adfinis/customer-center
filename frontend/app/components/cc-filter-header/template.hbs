@@ -1,0 +1,22 @@
+<div class="uk-flex" data-toggle-search="{{elementId}}">
+  {{yield}}
+  <div class="uk-margin-left">
+    <a
+       data-test-search={{elementId}}
+       class="uk-toggle"
+       uk-search-icon
+       uk-toggle="target: [data-toggle-search='{{elementId}}']; animation: uk-animation-slide-left-small uk-animation-fast"
+       href="#">
+    </a>
+  </div>
+</div>
+<div data-toggle-search={{elementId}} hidden>
+  <a
+    data-test-clear-search={{elementId}}
+    onclick={{action 'clearSearch'}}
+    class="uk-toggle uk-margin-right"
+    uk-close
+    uk-toggle="target: [data-toggle-search='{{elementId}}']; animation: uk-animation-slide-right-small uk-animation-fast" href="#">
+  </a>
+  {{input data-test-input=elementId class="uk-search-input uk-width-auto uk-padding-remove" value=value type="search" placeholder="Search..." autofocus=true key-up=(action 'search')}}
+</div>

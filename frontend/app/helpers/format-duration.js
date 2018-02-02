@@ -11,8 +11,10 @@ export default Helper.extend({
   hoursCount: 0,
   minutesCount: 0,
 
-  hoursTranslation: t('sysupport.hours', { count: 'hoursCount' }),
-  minutesTranslation: t('sysupport.minutes', { count: 'minutesCount' }),
+  hoursTranslation: t('sysupport.durations.hour', { count: 'hoursCount' }),
+  minutesTranslation: t('sysupport.durations.minute', {
+    count: 'minutesCount'
+  }),
 
   onLocaleChange: observer(
     'hoursTranslation',
@@ -28,8 +30,7 @@ export default Helper.extend({
 
     this.set('minutesCount', minutes)
     this.set('hoursCount', hours)
-
-    let hoursString = hours ? `${hours} ${this.get('hoursTranslation')}` : ''
+    let hoursString = `${hours} ${this.get('hoursTranslation')}`
     let minutesString = minutes
       ? `${minutes} ${this.get('minutesTranslation')}`
       : ''

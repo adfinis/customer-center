@@ -7,3 +7,4 @@ millis-test-sync
 *.swp
 frontend/root
 .vscode
+tools/docker/backenddev/ucs-root-ca.crt

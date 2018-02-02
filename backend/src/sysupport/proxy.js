@@ -1,46 +1,103 @@
 import path from 'path'
 import httpProxy from 'express-http-proxy'
 
-const subProject = /\/subscription-projects(\/[1-9]\d*|)/
-const subPackage = /\/subscription-packages/
-const subOrder = /\/subscription-orders/
-const report = /\/reports/
+const routes = {
+  subscriptionProject: {
+    path: /^\/subscription-projects(\/[1-9]\d*|)$/,
+    access: {
+      admin: ['GET'],
+      customer: ['GET']
+    }
+  },
+  subscriptionPackages: {
+    path: /^\/subscription-packages$/,
+    access: {
+      customer: ['GET']
+    }
+  },
+  subscriptionOrders: {
+    path: /^\/subscription-orders$/,
+    access: {
+      admin: ['GET', 'DELETE'],
+      customer: ['GET', 'POST']
+    }
+  },
+  subscriptionOrder: {
+    path: /^\/subscription-orders\/[1-9][0-9]*$/,
+    access: {
+      admin: ['DELETE']
+    }
+  },
+  subscriptionOrderConfirm: {
+    path: /^\/subscription-orders\/[1-9][0-9]*\/confirm$/,
+    access: {
+      admin: ['POST']
+    }
+  },
+  reports: {
+    path: /^\/reports$/,
+    access: {
+      admin: ['GET'],
+      customer: ['GET']
+    }
+  },
+  customer: {
+    path: /^\/customers(\/[1-9][0-9]*|)$/,
+    access: {
+      admin: ['GET']
+    }
+  }
+}
 
-const allowedEndpoints = [subProject, subPackage, subOrder, report]
+/**
+ * Check if user has access to route
+ * @return boolean - returns true if has access
+ **/
+function checkAccess(req) {
+  if (!req.user.isAdmin() && typeof req.session.timedCustomer === 'undefined') {
+    return false
+  }
+  let access = req.user.isAdmin() ? 'admin' : 'customer'
+  for (let route in routes) {
+    if (req.path.match(routes[route].path)) {
+      if (routes[route].access.hasOwnProperty(access)) {
+        return routes[route].access[access].includes(req.method)
+      } else {
+        return false
+      }
+    }
+  }
+  return false
+}
 
 function createProxy(config) {
   return httpProxy(config.host, {
     filter(req) {
-      return (
-        allowedEndpoints.some(endpoint => {
-          return req.path.match(endpoint)
-        }) && req.session.timedCustomer.id
-      )
+      return checkAccess(req)
     },
 
     // eslint-disable-next-line max-statements
     proxyReqPathResolver(req) {
-      const newPath = path.join(config.prefix, req.path)
-      const timedCustomer = req.session.timedCustomer
+      let newPath = `${path.join(config.prefix, req.path)}?`
       const queryParams = req.query
 
       // Frontend can not set the query param "customer"
       Reflect.deleteProperty(queryParams, 'customer')
-      if (req.path === report) {
-        Reflect.deleteProperty(queryParams, 'not_billable')
-        Reflect.deleteProperty(queryParams, 'review')
-      }
 
       const queryString = Object.keys(queryParams)
         .map(key => `${key}=${queryParams[key]}`)
         .join('&')
-      if (req.path === report) {
-        return `${newPath}?customer=${
-          timedCustomer.id
-        }&not_billable=0&review=0&${queryString}`
-      }
 
-      return `${newPath}?customer=${timedCustomer.id}&${queryString}`
+      if (!req.user.isAdmin()) {
+        newPath += `customer=${req.session.timedCustomer.id}`
+      }
+      if (req.path.match(routes.reports.path)) {
+        Reflect.deleteProperty(queryParams, 'not_billable')
+        Reflect.deleteProperty(queryParams, 'review')
+        newPath += '&not_billable=0&review=0'
+      }
+      newPath += `&${queryString}`
+      return newPath
     },
 
     proxyReqOptDecorator(proxyReqOpts, { session: { timedToken } }) {

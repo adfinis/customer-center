@@ -94,13 +94,20 @@ export default {
       reload: 'Reload',
       overview: 'Overview'
     },
-    minutes: {
-      one: 'Minute',
-      other: 'Minutes'
-    },
-    hours: {
-      one: 'Hour',
-      other: 'Hours'
+    hours: 'Hours',
+    date: 'Date',
+    accept: 'Confirm',
+    deny: 'Delete',
+
+    durations: {
+      minute: {
+        one: 'Minute',
+        other: 'Minutes'
+      },
+      hour: {
+        one: 'Hour',
+        other: 'Hours'
+      }
     },
     index: {
       title: 'Sysupport Subscriptions',
@@ -113,7 +120,6 @@ export default {
     },
 
     reload: {
-      hour: 'Hours',
       price: 'Price',
       select: 'Select a Subscription-Package',
       success: 'Your order was saved successfully.',
@@ -125,12 +131,26 @@ export default {
     detail: {
       expense: 'Expense',
       charges: 'Past Charges',
-      date: 'Date',
       effort: 'Effort',
       employee: 'Employee',
       description: 'Description',
       acknowledged: 'Acknowledged',
       amount: 'Amount'
+    },
+    admin: {
+      subscriptions: 'Subscriptions',
+      'confirm-subscription': 'Confirm subscriptions',
+      customer: 'Customer',
+      project: 'Project',
+      projects: 'Projects',
+      billingType: 'Billing Type',
+      orderedTime: 'Time Ordered',
+      usedTime: 'Time Used',
+      timeTotal: 'Time Total',
+      unconfirmedTime: 'Needs confirmation',
+      admin: 'Admin',
+      'confirm-success': 'Order accepted.',
+      'confirm-deny': 'Order denied.'
     }
   }
 }

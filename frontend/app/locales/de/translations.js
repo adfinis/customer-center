@@ -95,14 +95,22 @@ export default {
       reload: 'Aufladen',
       overview: 'Übersicht'
     },
-    minutes: {
-      one: 'Minute',
-      other: 'Minuten'
+    hours: 'Stunden',
+    date: 'Datum',
+    accept: 'Bestätigen',
+    deny: 'Löschen',
+
+    durations: {
+      minute: {
+        one: 'Minute',
+        other: 'Minuten'
+      },
+      hour: {
+        one: 'Stunde',
+        other: 'Stunden'
+      }
     },
-    hours: {
-      one: 'Stunde',
-      other: 'Stunden'
-    },
+
     index: {
       title: 'Sysupport Abonnements',
       time: {
@@ -114,7 +122,6 @@ export default {
     },
 
     reload: {
-      hour: 'Stunden',
       price: 'Preis',
       select: 'Wählen Sie ein Packet aus',
       success: 'Ihre Bestellung wurde erfolgreich verarbeitet.',
@@ -126,12 +133,26 @@ export default {
     detail: {
       expense: 'Aufwände',
       charges: 'Aufladungen',
-      date: 'Datum',
       effort: 'Aufwand',
       employee: 'Mitarbeiter',
       description: 'Beschreibung',
       acknowledged: 'Bestätigt',
       amount: 'Anzahl Stunden'
+    },
+    admin: {
+      subscriptions: 'Abonnements',
+      'confirm-subscription': 'Bestellung bestätigen',
+      customer: 'Kunde',
+      project: 'Projekt',
+      projects: 'Projekte',
+      billingType: 'Verrechnungs Art',
+      orderedTime: 'Bestellte Zeit',
+      usedTime: 'Verbrauchte Zeit',
+      timeTotal: 'Insgesamte Zeit',
+      unconfirmedTime: 'Ausstehende Zeit',
+      admin: 'Admin',
+      'confirm-success': 'Bestellung akzeptiert.',
+      'confirm-deny': 'Bestellung abgelehnt.'
     }
   }
 }

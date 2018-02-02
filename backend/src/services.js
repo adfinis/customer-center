@@ -2,7 +2,7 @@ import express from 'express'
 import VaultProxy from './vault/vault-proxy'
 import vaultCustom from './vault/vault-custom'
 import SysupportProxy from './sysupport/proxy'
-import config from '../config'
+import config from './config'
 
 let router = new express.Router()
 

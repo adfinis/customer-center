@@ -1,7 +1,8 @@
 export default function(server) {
-  server.createList('user', 1)
+  server.createList('user', 1, 'customer')
+  server.createList('user', 1, 'admin')
 
   // Sysupport
   server.createList('timed-subscription-package', 3)
-  server.createList('timed-subscription-project', 15)
+  server.createList('timed-subscription-project', 10)
 }

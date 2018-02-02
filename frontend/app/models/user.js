@@ -42,7 +42,11 @@ export default Model.extend({
       .map(g => g.split('-')[0])
   }),
 
+  admin: computed('groups.[]', function() {
+    return this._checkGroup(window.CustomerCenter.adminGroup)
+  }),
+
   _checkGroup(name) {
-    return this.get('groups').find(g => g.endsWith(`-${name}`))
+    return this.get('groups').find(g => g.endsWith(name))
   }
 })

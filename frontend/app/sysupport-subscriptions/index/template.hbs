@@ -1,0 +1,28 @@
+<h2>{{t 'sysupport.index.title'}}</h2>
+<div uk-grid uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 50 uk-margin-bottom">
+  {{#each model as |project index|}}
+    <div>
+      {{#uk-card hover=true as |card|}}
+        {{#card.header}}
+          {{#card.title}}{{project.name}}{{/card.title}}
+        {{/card.header}}
+        {{#card.body}}
+          <dl class="uk-description-list">
+            <dt>{{t 'sysupport.index.time.total'}}:</dt>
+            <dd>{{format-duration project.purchasedTime}}</dd>
+            <dt>{{t 'sysupport.index.time.used'}}:</dt>
+            <dd>{{format-duration project.spentTime}}</dd>
+          </dl>
+        {{/card.body}}
+        {{#card.footer}}
+          {{#link-to 'sysupport-subscriptions.detail.reload' project.id}}
+            {{uk-button data-test-reload-link=index color='primary' size='large' fill=true label=(t 'sysupport.index.charge') }}
+          {{/link-to}}
+          {{#link-to "sysupport-subscriptions.detail.index" project.id}}
+            {{uk-button data-test-detail-link=index color='default' size='large' fill=true label=(t 'sysupport.index.details') }}
+          {{/link-to}}
+        {{/card.footer}}
+      {{/uk-card}}
+    </div>
+  {{else}}<div>{{t 'global.empty'}}</div>{{/each}}
+</div>

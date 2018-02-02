@@ -147,7 +147,9 @@ async function addTimedTokenToSession(session, user) {
   try {
     session.timedToken = await timedLogin()
     session.timedTokenTTL = new Date().getTime()
-    session.timedCustomer = await getTimedCustomer(session.timedToken, user)
+    if (!user.isAdmin()) {
+      session.timedCustomer = await getTimedCustomer(session.timedToken, user)
+    }
   } catch (e) {
     console.log('timed auth error', e.message)
   }
@@ -156,7 +158,7 @@ async function addTimedTokenToSession(session, user) {
 }
 
 /**
- * Log in to vault with AdsyCC credentials
+ * Log in to vault with Customer-Center credentials
  *
  * @param {string} username username
  * @param {string} password password

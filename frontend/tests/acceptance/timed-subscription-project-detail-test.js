@@ -1,9 +1,9 @@
 import { test } from 'qunit'
-import moduleForAcceptance from 'adsycc/tests/helpers/module-for-acceptance'
+import moduleForAcceptance from 'customer-center/tests/helpers/module-for-acceptance'
 import {
   authenticateSession,
   invalidateSession
-} from 'adsycc/tests/helpers/ember-simple-auth'
+} from 'customer-center/tests/helpers/ember-simple-auth'
 
 //TODO refactor this test to https://github.com/emberjs/rfcs/blob/master/text/0232-simplify-qunit-testing-api.md
 moduleForAcceptance('Acceptance | Sysupport', {

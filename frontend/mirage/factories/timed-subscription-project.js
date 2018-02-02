@@ -1,5 +1,5 @@
 import { Factory, faker } from 'ember-cli-mirage'
-import DjangoDurationTransform from 'adsycc/transforms/django-duration'
+import DjangoDurationTransform from 'customer-center/transforms/django-duration'
 import moment from 'moment'
 
 export default Factory.extend({

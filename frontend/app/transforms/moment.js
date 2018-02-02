@@ -1,6 +1,6 @@
 /**
- * @module adsycc
- * @submodule adsycc-transforms
+ * @module customer-center
+ * @submodule customer-center-transforms
  * @public
  */
 import DS from 'ember-data'

@@ -1,6 +1,6 @@
 import { Factory, faker, association } from 'ember-cli-mirage'
-import DjangoDurationTransform from 'adsycc/transforms/django-duration'
-import DjangoDateTransform from 'adsycc/transforms/django-date'
+import DjangoDurationTransform from 'customer-center/transforms/django-duration'
+import DjangoDateTransform from 'customer-center/transforms/django-date'
 import moment from 'moment'
 
 export default Factory.extend({

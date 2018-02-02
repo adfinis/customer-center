@@ -1,9 +1,9 @@
 /**
- * @module adsycc
- * @submodule adsycc-transforms
+ * @module customer-center
+ * @submodule customer-center-transforms
  * @public
  */
-import MomentTransform from 'adsycc/transforms/moment'
+import MomentTransform from 'customer-center/transforms/moment'
 
 /**
  * The django date transform

@@ -24,7 +24,7 @@
                 <td>{{report.user.fullName}}</td>
                 <td>{{report.comment}}</td>
               </tr>
-            {{else}}{{t 'global.empty'}}{{/each}}
+            {{else}}<tr><td>{{t 'global.empty'}}</td></tr>{{/each}}
           </tbody>
         </table>
       {{/card.body}}
@@ -53,7 +53,7 @@
                 <td>{{format-duration order.duration format='hours'}}</td>
                 <td>{{uk-icon (if order.acknowledged 'check' 'close') scale=2}}</td>
               </tr>
-            {{else}}{{t 'global.empty'}}{{/each}}
+            {{else}}<tr><td>{{t 'global.empty'}}</td></tr>{{/each}}
           </tbody>
         </table>
       {{/card.body}}

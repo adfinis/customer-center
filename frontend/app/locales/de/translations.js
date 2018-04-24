@@ -105,8 +105,10 @@ export default {
     },
     index: {
       title: 'Sysupport Abonnements',
-      'time.total': 'Totales Guthaben',
-      'time.used': 'Gebrauchtes Guthaben',
+      time: {
+        total: 'Totales Guthaben',
+        used: 'Gebrauchtes Guthaben'
+      },
       charge: 'Aufladen',
       details: 'Details'
     },
@@ -115,9 +117,9 @@ export default {
       hour: 'Stunden',
       price: 'Preis',
       select: 'Wählen Sie ein Packet aus',
-      success: 'Ihre Bestellung wurde erfolgreich veraarbeitet.',
+      success: 'Ihre Bestellung wurde erfolgreich verarbeitet.',
       error:
-        'Bei der verarbeitung Ihrer Bestellung ist ein Fehler aufgetreten. Bitte vergewissern Sie sich ob die Bestellung verarbeitet wurde und falls nicht, bersuchen Sie es noch einmal.',
+        'Bei der Verarbeitung Ihrer Bestellung ist ein Fehler aufgetreten. Bitte vergewissern Sie sich ob die Bestellung verarbeitet wurde und falls nicht, versuchen Sie es noch einmal.',
       charge: 'Aufladen'
     },
 

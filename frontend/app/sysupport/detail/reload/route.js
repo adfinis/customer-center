@@ -33,19 +33,17 @@ export default Route.extend({
     this.store
       .createRecord('timed-subscription-order', order)
       .save()
-      .then(
-        () => {
-          this.get('notify').success(
-            this.get('i18n').t('sysupport.reload.success')
-          )
-          this.transitionTo(
-            'sysupport.detail.index',
-            this.modelFor('sysupport/detail').id
-          )
-        },
-        () => {
-          this.get('notify').error(this.get('i18n').t('sysupport.reload.error'))
-        }
-      )
+      .then(() => {
+        this.get('notify').success(
+          this.get('i18n').t('sysupport.reload.success')
+        )
+        this.transitionTo(
+          'sysupport.detail.index',
+          this.modelFor('sysupport/detail').id
+        )
+      })
+      .catch(() => {
+        this.get('notify').error(this.get('i18n').t('sysupport.reload.error'))
+      })
   }
 })

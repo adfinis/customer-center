@@ -1,7 +1,7 @@
 import path from 'path'
 import httpProxy from 'express-http-proxy'
 
-const subProject = /\/subscription-projects(\/[1-9][0-9]*|)/
+const subProject = /\/subscription-projects(\/[1-9]\d*|)/
 const subPackage = /\/subscription-packages/
 const subOrder = /\/subscription-orders/
 const report = /\/reports/

@@ -1,10 +1,12 @@
 import Helper from '@ember/component/helper'
-import { padStartTpl } from 'ember-pad/utils/pad'
+import startPaddingTag from 'customer-center/utils/start-padding-tag'
 
 const { trunc } = Math
 
 export function formatDurationShort([duration]) {
-  return padStartTpl(2)`${trunc(duration.as('hours'))}:${duration.minutes()}`
+  return startPaddingTag(2)`${trunc(
+    duration.as('hours')
+  )}:${duration.minutes()}`
 }
 
 export default Helper.helper(formatDurationShort)

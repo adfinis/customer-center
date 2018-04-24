@@ -1,8 +1,7 @@
 import Transform from 'ember-data/transform'
 import moment from 'moment'
-import { padTpl, padStart } from 'ember-pad/utils/pad'
+import startPaddingTag from 'customer-center/utils/start-padding-tag'
 
-const padTpl2 = padTpl(2)
 const { round } = Math
 
 /**
@@ -98,14 +97,14 @@ export default Transform.extend({
       microseconds
     } = this._getDurationComponentsTimedeltaLike(deserialized)
 
-    let string = padTpl2`${hours}:${minutes}:${seconds}`
+    let string = startPaddingTag(2)`${hours}:${minutes}:${seconds}`
 
     if (days) {
       string = `${days} ${string}`
     }
 
     if (microseconds) {
-      string = `${string}.${padStart(microseconds, 6)}`
+      string = `${string}.${microseconds.toString().padStart(6)}`
     }
 
     return string

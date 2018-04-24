@@ -104,8 +104,10 @@ export default {
     },
     index: {
       title: 'Sysupport Subscriptions',
-      'time.total': 'Time Total',
-      'time.used': 'Time Used',
+      time: {
+        total: 'Time Total',
+        used: 'Time Used'
+      },
       charge: 'Reload',
       details: 'Details'
     },

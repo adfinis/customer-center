@@ -81,7 +81,6 @@ export default bookshelf.Model.extend(
       user.set('shortname', companySN ? companySN[1] : null)
       user.set('firstName', ldap.givenName)
       user.set('lastName', ldap.sn)
-      user.set('sysupport', getSySupport(groups))
       user.set('email', getEmail(ldap))
       user.set('groups', { content: groups })
 
@@ -114,15 +113,4 @@ function getEmail(ldap) {
  */
 function getGroups(ldap) {
   return isArray(ldap._groups) ? ldap._groups : ldap._groups && [ldap._groups]
-}
-
-/**
- * Get the sysupport user name
- *
- * @param {Object[]} groups The ldap group objects
- * @return {string|null} The sysupport user name
- */
-function getSySupport(groups) {
-  let group = groups.find(g => g.cn.endsWith('-sysupport'))
-  return group ? group.univentionFreeAttribute1 : null
 }

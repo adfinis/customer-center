@@ -6,7 +6,6 @@
     {{#nav.left}}
       {{#nav.list}}
         <li>
-          {{log i18n}}
           <a href="#">{{i18n.locale}}</a>
           <div class="uk-navbar-dropdown" uk-dropdown="animation: uk-animation-slide-small; mode: click;">
             <ul class="uk-nav uk-navbar-dropdown-nav">
@@ -30,6 +29,10 @@
 
       {{#if model.vault}}
         {{#list.item 'vault'}}{{t 'nav.vault'}}{{/list.item}}
+      {{/if}}
+
+      {{#if model.sysupport}}
+        {{#list.item 'sysupport'}}{{t 'nav.sysupport'}}{{/list.item}}
       {{/if}}
     {{/nav.list}}
 

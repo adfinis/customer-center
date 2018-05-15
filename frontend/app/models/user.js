@@ -8,7 +8,6 @@ export default Model.extend({
   username: attr('string'),
   firstName: attr('string'),
   lastName: attr('string'),
-  sysupportName: attr('string'),
   language: attr('string'),
   groups: attr(),
   emails: attr(),
@@ -29,8 +28,8 @@ export default Model.extend({
     return this._checkGroup('vault')
   }),
 
-  sysupport: computed('sysupportName', 'groups.[]', function() {
-    return this.get('sysupportName') && this._checkGroup('sysupport')
+  sysupport: computed('groups.[]', function() {
+    return this._checkGroup('sysupport')
   }),
 
   rt: computed('email', 'emails.[]', function() {

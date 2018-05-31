@@ -15,6 +15,7 @@ function stripPrefix(path) {
 async function listVault(token, path) {
   const rawResponse = await rp(
     auth(token, {
+      forever: true,
       uri: `${host}${path}?list=true`
     })
   )

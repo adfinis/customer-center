@@ -195,45 +195,5 @@ export default {
       pending: 'Ausstehend',
       running: 'Laufend'
     }
-  },
-
-  gitlab: {
-    projects: 'Projekte',
-    groups: 'Gruppen',
-    commitsSince: 'Änderungen anzeigen ab:',
-    allGroups: 'Alle Gruppen',
-    placeholder: 'Suche...',
-    table: {
-      project: 'Projekt',
-      commits: 'Änderungen',
-      pipelines: 'Pipelines'
-    },
-    commit: {
-      one: '1 Änderung',
-      other: '{{count}} Änderungen'
-    },
-    errors: {
-      group: 'Es ist ein Fehler beim Laden der folgenden Gruppe aufgetreten:',
-      commits:
-        'Es ist ein Fehler beim Laden der Änderungen für das folgende Projekt aufgetreten:',
-      pipelines:
-        'Es ist ein Fehler beim Laden der Pipelines für das folgende Projekt aufgetreten:'
-    },
-    empty: {
-      groups: 'Es wurden keine GitLab Gruppen gefunden.',
-      commits: 'Im angegeben Zeitraum gibt es keine Änderungen.',
-      pipelines: 'Das Projekt hat keine Pipelines.'
-    },
-    'pipeline-table': {
-      stage: 'Etappe',
-      status: 'Status'
-    },
-    status: {
-      failed: 'Fehlgeschlagen',
-      passed: 'Erfolgreich',
-      created: 'Erstellt',
-      pending: 'Ausstehend',
-      running: 'Laufend'
-    }
   }
 }

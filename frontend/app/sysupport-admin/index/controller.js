@@ -1,9 +1,9 @@
 import Controller from '@ember/controller'
+import { computed } from '@ember/object'
 
 export default Controller.extend({
-  init() {
-    this._super(...arguments)
-    this.set('headers', [
+  headers: computed(function() {
+    return [
       {
         type: 'search',
         title: 'sysupport.admin.project',
@@ -43,23 +43,15 @@ export default Controller.extend({
         attr: 'unconfirmedTime',
         customFilter: this._sortDurations
       }
-    ])
-  },
+    ]
+  }),
 
   _sortDurations(data, { order, attr }) {
     return data.toArray().sort((a, b) => {
       if (order === 'asc') {
-        return a
-          .get(attr)
-          .clone()
-          .subtract(b.get(attr))
-          .asMinutes()
+        return a.get(attr) - b.get(attr)
       } else if (order === 'desc') {
-        return b
-          .get(attr)
-          .clone()
-          .subtract(a.get(attr))
-          .asMinutes()
+        return b.get(attr) - a.get(attr)
       }
     })
   }

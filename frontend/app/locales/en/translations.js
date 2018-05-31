@@ -149,8 +149,8 @@ export default {
       timeTotal: 'Time Total',
       unconfirmedTime: 'Needs confirmation',
       admin: 'Admin',
-      'confirm-success': 'Order accepted.',
-      'confirm-deny': 'Order denied.'
+      confirmSuccess: 'Order accepted.',
+      confirmDeny: 'Order denied.'
     }
   }
 }

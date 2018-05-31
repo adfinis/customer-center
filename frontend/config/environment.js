@@ -28,7 +28,7 @@ module.exports = function(environment) {
         host: 'rt.sygroup.ch',
         mail: 'support@adfinis-sygroup.ch'
       },
-      //define admin group
+      // Define admin group
       adminGroup: 'adsy-user',
       // Services : redmine, mon, sysupport, wiki, rt, vault
       enabledServices: ['vault', 'sysupport']

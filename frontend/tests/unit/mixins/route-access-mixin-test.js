@@ -7,7 +7,9 @@ import { computed } from '@ember/object'
 module('Unit | Mixin | route access mixin', function(hooks) {
   setupTest(hooks)
 
-  test('access mixin positive', function(assert) {
+  test('access mixin positive', async function(assert) {
+    assert.expect(0)
+
     let session = this.owner.lookup('service:store')
     session.set(
       'user',
@@ -18,19 +20,19 @@ module('Unit | Mixin | route access mixin', function(hooks) {
       })
     )
 
-    let ok = true
     let mixin = EmberObject.extend(RouteAccessMixinMixin).create({
       session,
-      groups: ['adsy-user'],
-      transitionTo: () => {
-        ok = !ok
+      groups: ['adsy-user']
+    })
+
+    await mixin.beforeModel({
+      abort: () => {
+        assert.notOk(true)
       }
     })
-    mixin.beforeModel({ abort: () => {} })
-    assert.ok(ok)
   })
 
-  test('access mixin negative', function(assert) {
+  test('access mixin negative', async function(assert) {
     let session = this.owner.lookup('service:store')
     session.set(
       'user',
@@ -42,13 +44,21 @@ module('Unit | Mixin | route access mixin', function(hooks) {
         )
       })
     )
+
     let mixin = EmberObject.extend(RouteAccessMixinMixin).create({
       session,
       groups: ['adsy-user'],
-      transitionTo: path => {
-        assert.ok(path)
+      transitionTo: () => {
+        assert.step('transitionHome')
       }
     })
-    mixin.beforeModel({ abort: () => {} })
+
+    await mixin.beforeModel({
+      abort: () => {
+        assert.step('abortTransition')
+      }
+    })
+
+    assert.verifySteps(['abortTransition', 'transitionHome'])
   })
 })

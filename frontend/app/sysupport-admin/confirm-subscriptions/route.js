@@ -35,7 +35,7 @@ export default Route.extend({
     order.unloadRecord()
     this.get('notify').info(
       this.get('i18n').t(
-        'sysupport.admin.confirm-success',
+        'sysupport.admin.confirmSuccess',
         order.get('project.name')
       )
     )
@@ -45,7 +45,7 @@ export default Route.extend({
     order.destroyRecord()
     this.get('notify').info(
       this.get('i18n').t(
-        'sysupport.admin.confirm-deny',
+        'sysupport.admin.confirmDeny',
         order.get('project.name')
       )
     )

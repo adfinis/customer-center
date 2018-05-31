@@ -63,4 +63,4 @@ To authenticate against LDAP, we used the [Passport LDAP authentication strategy
 
 If the ucs1 container exits with seg fault (error code 139), you need to either update to a never ucs-master image (and also update your config) or set `GRUB_CMDLINE_LINUX_DEFAULT="quiet vsyscall=emulate"` in `/etc/default/grub` and then do `grub-mkconfig -o /boot/grub/grub.cfg` and `reboot`.
 
-You could also use the prod LDAP server. Config is on prod custtomer-center.
+You could also use the prod LDAP server. Config is on prod customer-center.

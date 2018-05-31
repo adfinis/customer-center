@@ -1,6 +1,7 @@
 import Model from 'ember-data/model'
 import attr from 'ember-data/attr'
 import { computed } from '@ember/object'
+import ENV from 'customer-center/config/environment'
 
 export default Model.extend({
   email: attr('string'),
@@ -43,7 +44,7 @@ export default Model.extend({
   }),
 
   admin: computed('groups.[]', function() {
-    return this._checkGroup(window.CustomerCenter.adminGroup)
+    return this._checkGroup(ENV.APP.adminGroup)
   }),
 
   _checkGroup(name) {

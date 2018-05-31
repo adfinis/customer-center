@@ -151,8 +151,8 @@ export default {
       timeTotal: 'Insgesamte Zeit',
       unconfirmedTime: 'Ausstehende Zeit',
       admin: 'Admin',
-      'confirm-success': 'Bestellung akzeptiert.',
-      'confirm-deny': 'Bestellung abgelehnt.'
+      confirmSuccess: 'Bestellung akzeptiert.',
+      confirmDeny: 'Bestellung abgelehnt.'
     }
   }
 }

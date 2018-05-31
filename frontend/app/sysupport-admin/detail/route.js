@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route'
-import RSVP from 'rsvp'
+import { hash } from 'rsvp'
 import { inject as service } from '@ember/service'
 import { computed } from '@ember/object'
 
@@ -11,7 +11,7 @@ export default Route.extend({
   }),
 
   model({ project }) {
-    return RSVP.hash({
+    return hash({
       orders: this.store.query('timed-subscription-order', {
         project,
         ordering: '-ordered'

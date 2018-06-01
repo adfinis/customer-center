@@ -14,7 +14,7 @@ const routes = {
  * @returns {Object} Returns the configured proxy for gitlab
  * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
  */
-function createProxy(config) {
+export default function createProxy(config) {
   return httpProxy(config.host, {
     /**
      * Define if the body of the request should be parsed or ignored.
@@ -87,5 +87,3 @@ function createProxy(config) {
     }
   })
 }
-
-module.exports = { createProxy }

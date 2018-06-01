@@ -14,6 +14,6 @@ router.use('/proxy/vault', VaultProxy.createProxy(vault))
 
 router.use('/proxy/sysupport', SysupportProxy.createProxy(timed))
 
-router.use('/proxy/gitlab', gitlabProxy.createProxy(gitlab))
+router.use('/proxy/gitlab', gitlabProxy(gitlab))
 
 export default router

@@ -1,10 +1,6 @@
-let config
-
-if (process.env.NODE_ENV === 'testing') {
-  config = require('../config-test.js')
-} else {
-  config = require('../config.js')
-}
+const config = require(process.env.NODE_ENV === 'testing'
+  ? '../config-test.js'
+  : '../config.js')
 
 const tlsOptions = {}
 

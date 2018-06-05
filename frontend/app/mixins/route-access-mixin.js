@@ -5,14 +5,15 @@ export default Mixin.create({
   session: service(),
 
   async beforeModel(transition) {
-    let user = await this.get('session.user')
-    if (
-      !this.get('groups').every(
-        role => user.get(role) || user.get('groups').includes(role)
-      )
-    ) {
+    if (!this._hasPermissions(await this.get('session.user'))) {
       transition.abort()
       this.transitionTo('/')
     }
+  },
+
+  _hasPermissions(user) {
+    return this.get('groups').every(
+      role => user.get(role) || user.get('groups').includes(role)
+    )
   }
 })

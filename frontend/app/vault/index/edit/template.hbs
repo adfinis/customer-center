@@ -1,0 +1,20 @@
+<div>
+
+  <div uk-grid class="uk-child-width-1-1 uk-child-width-auto@l">
+    <div>
+      <ul class="uk-breadcrumb">
+        {{#each model.path as |segment|}}
+          <li class="uk-disabled"><span>{{segment}}</span></li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  {{crud-list
+  title=(t 'vault.secrets')
+  model=model.details.secret
+  onUpdate=(route-action 'save')
+  }}
+</div>

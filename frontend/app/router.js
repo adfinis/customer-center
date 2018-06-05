@@ -16,7 +16,9 @@ Router.map(function() {
     this.route('index', { path: '/', resetNamespace: true })
 
     this.route('vault', { resetNamespace: true }, function() {
-      this.route('edit', { path: '/*path' })
+      this.route('index', function() {
+        this.route('edit', { path: '/*path' })
+      })
     })
     this.route('sysupport-subscriptions', { resetNamespace: true }, function() {
       this.route('detail', { path: ':project_id' }, function() {

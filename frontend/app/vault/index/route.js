@@ -6,5 +6,15 @@ export default Route.extend({
 
   model() {
     return this.get('vault').list()
+  },
+
+  actions: {
+    willTransition(transition) {
+      if (transition.targetName === 'vault.index.index') {
+        this.set('controller.detail', false)
+      } else if (transition.targetName === 'vault.index.edit') {
+        this.set('controller.detail', true)
+      }
+    }
   }
 })

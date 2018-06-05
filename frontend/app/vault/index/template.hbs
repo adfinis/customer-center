@@ -1,9 +1,22 @@
-{{#vault-tree-filter model=model as |tree|}}
-  <ul class="uk-list uk-list-divider">
-    {{#each-in tree.children as |name child|}}
+<div class={{unless (or media.isMobile media.isTablet ) "uk-flex uk-flex-between"}} uk-height-viewport="offset-top: true">
+  {{#if showTree}}
+  <div class={{unless (or media.isMobile media.isTablet ) "uk-background-muted uk-padding-small"}}>
+
+    {{#vault-tree-filter model=model as |tree|}}
+    <ul class="uk-list uk-list-divider {{unless (or media.isMobile media.isTablet ) "uk-overflow-auto uk-height-viewport" }}" uk-height-viewport="offset-top: true">
+      {{#each-in tree.children s=(action "test") as |name child|}}
       {{vault-tree-node node=child name=name}}
-    {{else}}
+      {{else}}
       {{t 'global.empty'}}
-    {{/each-in}}
-  </ul>
-{{/vault-tree-filter}}
+      {{/each-in}}
+    </ul>
+    {{/vault-tree-filter}}
+  </div>
+  {{/if}}
+
+  {{#if showItem}}
+  <div class={{unless (or media.isMobile media.isTablet ) "uk-width-expand uk-flex uk-margin-large-left"}}>
+    {{outlet}}
+  </div>
+  {{/if}}
+</div>

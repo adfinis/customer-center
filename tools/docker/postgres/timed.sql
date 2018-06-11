@@ -1,1 +1,1 @@
-create database timed;
+create database customercenter_test;

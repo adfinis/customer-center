@@ -1,4 +1,4 @@
-import Mirage, { faker } from 'ember-cli-mirage'
+import Mirage, { faker, trait } from 'ember-cli-mirage'
 
 export default Mirage.Factory.extend({
   shortname: 'adsy',
@@ -6,14 +6,8 @@ export default Mirage.Factory.extend({
   lastName: faker.name.lastName,
   language: 'en',
   sysupport: 'adsy',
-  username() {
-    return `${this.shortname}-${faker.name.firstName()}`
-  },
   email() {
     return `${faker.name.firstName()}@${this.shortname}.com`
-  },
-  groups() {
-    return [`${this.shortname}-vault`, `${this.shortname}-sysupport`]
   },
   emails() {
     let i = faker.random.number({ min: 1, max: 3 })
@@ -24,5 +18,21 @@ export default Mirage.Factory.extend({
     }
 
     return mails
-  }
+  },
+  admin: trait({
+    username: 'admin',
+    groups() {
+      return ['sysupport', 'adsy-user']
+    }
+  }),
+  customer: trait({
+    username: 'customer',
+    groups() {
+      return [
+        `${this.shortname}-vault`,
+        `${this.shortname}-sysupport`,
+        'adsy-customer'
+      ]
+    }
+  })
 })

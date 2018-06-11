@@ -15,7 +15,7 @@ udm settings/extended_attribute create \
   --set ldapMapping="univentionFreeAttribute1" \
   --set objectClass="univentionFreeAttributes" \
   --set longDescription="SySupport User mapping for the Adfinis SyGroup Customer Center" \
-  --set shortDescription="SySupport AdSyCC mapping" \
+  --set shortDescription="SySupport Customer Center mapping" \
   --set CLIName=sysupport \
   --set mayChange=1
 

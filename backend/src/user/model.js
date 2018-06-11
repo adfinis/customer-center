@@ -49,6 +49,17 @@ export default bookshelf.Model.extend(
     },
 
     /**
+     * Check if user is Admin
+     *
+     * @returns {boolean}
+     * @public
+     * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
+     */
+    isAdmin() {
+      return this.getGroupNames().includes(config.login.adminRole)
+    },
+
+    /**
      * Does this user have redmine access?
      *
      * @return {boolean}

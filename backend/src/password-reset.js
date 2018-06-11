@@ -10,7 +10,7 @@ import denodeify from 'denodeify'
 import app from './app'
 import PWGen from './pwgen'
 import User from './user/model'
-import config from '../config'
+import config from './config'
 
 const router = new Router()
 export default router

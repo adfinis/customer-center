@@ -19,7 +19,6 @@ function userToJSON(user) {
     lastName: user.get('lastName'),
     email: user.get('email'),
     language: user.get('language'),
-    sysupport: user.get('sysupport'),
     groups: user.getGroupNames(),
     emails: user.getEmails()
   }

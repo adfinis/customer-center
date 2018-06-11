@@ -1,4 +1,4 @@
-import { Factory, faker } from 'ember-cli-mirage'
+import { Factory, faker, association } from 'ember-cli-mirage'
 import DjangoDurationTransform from 'customer-center/transforms/django-duration'
 import moment from 'moment'
 
@@ -22,7 +22,12 @@ export default Factory.extend({
       })
     )
   },
+  customer: association(),
+  billingType: association(),
   afterCreate(project, server) {
+    server.createList('timed-subscription-order', 5, 'isAcknowledged', {
+      project
+    })
     server.createList('timed-subscription-order', 5, { project })
     server.createList('timed-report', 5)
   }

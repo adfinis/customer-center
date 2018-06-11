@@ -73,7 +73,6 @@ case "$type" in
       --set CtxCfgTSLogon=0 \
       --set sysupport=$sysupport \
       --policy-reference "cn=adsy-customer-policy,cn=UMC,cn=policies,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch"\
-      --option samba \
       --option kerberos \
       --option person \
       --option posix
@@ -108,7 +107,6 @@ case "$type" in
       --set e-mail="$email" \
       --set shell="/bin/bash"\
       --set CtxCfgTSLogon=0 \
-      --option samba \
       --option kerberos \
       --option person \
       --option posix

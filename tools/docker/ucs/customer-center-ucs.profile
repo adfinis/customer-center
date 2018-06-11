@@ -1,4 +1,4 @@
-hostname="adsycc-ucs"
+hostname="customer-center-ucs"
 domainname="adsy-ext.becs.adfinis-sygroup.ch"
 windows/domain="ADSY-EXT"
 ldap/base="dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch"

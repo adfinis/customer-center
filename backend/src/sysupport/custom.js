@@ -17,6 +17,5 @@ export async function getCustomer(timedToken, user) {
     },
     json: true
   })
-
   return res.data[0]
 }

@@ -1,6 +1,7 @@
 import Model from 'ember-data/model'
 import attr from 'ember-data/attr'
 import { computed } from '@ember/object'
+import ENV from 'customer-center/config/environment'
 
 export default Model.extend({
   email: attr('string'),
@@ -42,7 +43,11 @@ export default Model.extend({
       .map(g => g.split('-')[0])
   }),
 
+  admin: computed('groups.[]', function() {
+    return this._checkGroup(ENV.APP.adminGroup)
+  }),
+
   _checkGroup(name) {
-    return this.get('groups').find(g => g.endsWith(`-${name}`))
+    return this.get('groups').find(g => g.endsWith(name))
   }
 })

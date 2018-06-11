@@ -1,4 +1,4 @@
-import { Factory, faker } from 'ember-cli-mirage'
+import { Factory, faker, trait } from 'ember-cli-mirage'
 import DjangoDurationTransform from 'customer-center/transforms/django-duration'
 import DjangoDateTransform from 'customer-center/transforms/django-date'
 import moment from 'moment'
@@ -12,10 +12,11 @@ export default Factory.extend({
       })
     )
   },
-  acknowledged() {
-    return faker.random.boolean()
-  },
+  acknowledged: false,
   ordered() {
     return DjangoDateTransform.create().serialize(moment(faker.date.past(10)))
-  }
+  },
+  isAcknowledged: trait({
+    acknowledged: true
+  })
 })

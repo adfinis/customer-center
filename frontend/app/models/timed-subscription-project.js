@@ -1,10 +1,27 @@
 import attr from 'ember-data/attr'
 import Model from 'ember-data/model'
-import { hasMany } from 'ember-data/relationships'
+import { hasMany, belongsTo } from 'ember-data/relationships'
+import { computed } from '@ember/object'
+import moment from 'moment'
 
 export default Model.extend({
   name: attr('string'),
   purchasedTime: attr('django-duration'),
   spentTime: attr('django-duration'),
-  orders: hasMany('timed-subscription-order')
+
+  orders: hasMany('timed-subscription-order'),
+  billingType: belongsTo('timed-billing-type'),
+  customer: belongsTo('timed-customer'),
+
+  totalTime: computed('purchasedTime', 'spentTime', function() {
+    return this.get('purchasedTime').subtract(this.get('spentTime'))
+  }),
+
+  unconfirmedTime: computed('orders', function() {
+    return this.get('orders')
+      .filter(order => !order.get('acknowledged'))
+      .reduce((accumulator, order) => {
+        return accumulator.add(order.get('duration'))
+      }, moment.duration())
+  })
 })

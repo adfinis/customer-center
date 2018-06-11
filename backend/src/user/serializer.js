@@ -8,7 +8,6 @@ export default new JSONAPISerializer('users', {
     'lastName',
     'email',
     'language',
-    'sysupport',
     'groups',
     'emails'
   ]

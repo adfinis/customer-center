@@ -17,11 +17,5 @@ export default Controller.extend({
           !this.get('detail'))
       )
     }
-  ),
-  showItem: computed('media.{isDesktop,isMobile,isTablet}', function() {
-    return (
-      this.get('media.isDesktop') ||
-      (this.get('media.isMobile') || this.get('media.isTablet'))
-    )
-  })
+  )
 })

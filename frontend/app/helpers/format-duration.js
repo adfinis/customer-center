@@ -30,10 +30,8 @@ export default Helper.extend({
 
     this.set('minutesCount', minutes)
     this.set('hoursCount', hours)
-    let hoursString = `${hours} ${this.get('hoursTranslation')}`
-    let minutesString = minutes
-      ? `${minutes} ${this.get('minutesTranslation')}`
-      : ''
+    let hoursString = `${hours} ${this.hoursTranslation}`
+    let minutesString = minutes ? `${minutes} ${this.minutesTranslation}` : ''
 
     return [hoursString, minutesString].filter(str => str).join(' ')
   }

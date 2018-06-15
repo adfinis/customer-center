@@ -1,24 +1,23 @@
+import { click, findAll, currentURL, visit } from '@ember/test-helpers'
 import { module, test } from 'qunit'
 import { setupApplicationTest } from 'ember-qunit'
 import {
   authenticateSession,
   invalidateSession
 } from 'customer-center/tests/helpers/ember-simple-auth'
-import startApp from '../helpers/start-app'
-import destroyApp from '../helpers/destroy-app'
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage'
 
 module('Acceptance | Sysupport Subscriptions', function(hooks) {
   setupApplicationTest(hooks)
+  setupMirage(hooks)
 
   hooks.beforeEach(async function() {
-    this.application = startApp()
     let user = server.create('user', 'customer')
-    await authenticateSession(this.application, { data: user.id })
+    await authenticateSession({ data: user.id })
   })
 
   hooks.afterEach(async function() {
-    await invalidateSession(this.application)
-    destroyApp(this.application)
+    await invalidateSession()
   })
 
   test('subscription-project detail', async function(assert) {

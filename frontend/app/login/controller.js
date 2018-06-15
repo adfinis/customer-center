@@ -20,14 +20,11 @@ export default Controller.extend({
       try {
         let credentials = this.getProperties('identification', 'password')
 
-        await this.get('session').authenticate(
-          'authenticator:custom',
-          credentials
-        )
+        await this.session.authenticate('authenticator:custom', credentials)
       } catch (e) {
         this.set(
           'errorMessage',
-          this.get('notify').error(e.message, { closeAfter: null })
+          this.notify.error(e.message, { closeAfter: null })
         )
       } finally {
         this.set('loading', false)
@@ -35,10 +32,10 @@ export default Controller.extend({
     },
 
     passwordreset() {
-      let identification = this.get('identification')
+      let identification = this.identification
 
       if (identification) {
-        this.get('passwordReset').send('passwordreset', identification)
+        this.passwordReset.send('passwordreset', identification)
         return
       }
 

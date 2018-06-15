@@ -22,12 +22,10 @@ export default Component.extend({
 
   actions: {
     copy() {
-      if (copyToClipboard(this.get('value'))) {
-        this.get('notify').success(
-          this.get('i18n').t('vault.clipboard-success')
-        )
+      if (copyToClipboard(this.value)) {
+        this.notify.success(this.i18n.t('vault.clipboard-success'))
       } else {
-        this.get('notify').error(this.get('i18n').t('vault.clipboard-error'))
+        this.notify.error(this.i18n.t('vault.clipboard-error'))
       }
     }
   }

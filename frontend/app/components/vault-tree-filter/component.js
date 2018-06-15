@@ -74,11 +74,11 @@ export default Component.extend({
   actions: {
     onSubmit() {},
     filter() {
-      const term = this.get('search')
+      const term = this.search
       if (term === '') {
-        this.set('tree', this.get('model'))
+        this.set('tree', this.model)
       } else {
-        this.set('tree', deepFilterModel(this.get('model'), term))
+        this.set('tree', deepFilterModel(this.model, term))
       }
     }
   }

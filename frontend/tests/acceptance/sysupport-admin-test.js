@@ -1,35 +1,34 @@
+import { click, findAll, currentURL, visit } from '@ember/test-helpers'
 import { module, test } from 'qunit'
 import { setupApplicationTest } from 'ember-qunit'
 import {
   authenticateSession,
   invalidateSession
-} from 'customer-center/tests/helpers/ember-simple-auth'
-import startApp from '../helpers/start-app'
-import destroyApp from '../helpers/destroy-app'
+} from 'ember-simple-auth/test-support'
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage'
 
 module('Acceptance | Sysupport Admin', function(hooks) {
   setupApplicationTest(hooks)
+  setupMirage(hooks)
 
   hooks.beforeEach(async function() {
-    this.application = startApp()
-    let user = server.create('user', 'admin')
-    await authenticateSession(this.application, { data: user.id })
+    let user = this.server.create('user', 'admin')
+    await authenticateSession({ data: user.id })
   })
 
   hooks.afterEach(async function() {
-    await invalidateSession(this.application)
-    destroyApp(this.application)
+    await invalidateSession()
   })
 
   test('subscription-admin index', async function(assert) {
-    server.createList('timed-subscription-project', 5)
+    this.server.createList('timed-subscription-project', 5)
     await visit('/sysupport-admin')
 
     assert.dom('[data-test-project]').exists({ count: 5 })
   })
 
   test('subscription-admin detail', async function(assert) {
-    let project = server.create('timed-subscription-project')
+    let project = this.server.create('timed-subscription-project')
     await visit('/sysupport-admin')
 
     await click('[data-test-project="0"]')
@@ -46,7 +45,7 @@ module('Acceptance | Sysupport Admin', function(hooks) {
   })
 
   test('subscription-admin confirm-subscriptions accept', async function(assert) {
-    let project = server.create('timed-subscription-project')
+    let project = this.server.create('timed-subscription-project')
     await visit('/sysupport-admin/confirm-subscriptions')
 
     assert.dom('[data-test-order]').exists({ count: 5 })
@@ -57,7 +56,7 @@ module('Acceptance | Sysupport Admin', function(hooks) {
   })
 
   test('subscription-admin confirm-subscriptions deny', async function(assert) {
-    let project = server.create('timed-subscription-project')
+    let project = this.server.create('timed-subscription-project')
     await visit('/sysupport-admin/confirm-subscriptions')
 
     assert.dom('[data-test-order]').exists({ count: 5 })

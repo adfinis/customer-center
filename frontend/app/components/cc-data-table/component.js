@@ -7,9 +7,9 @@ export default Component.extend({
     'sort.{attr,order}',
     'model',
     function() {
-      let results = this.get('model')
-      let search = this.get('search')
-      let sort = this.get('sort')
+      let results = this.model
+      let search = this.search
+      let sort = this.sort
 
       if (search) {
         results = this._getFilter(search.attr, this._search)(results, search)
@@ -57,7 +57,7 @@ export default Component.extend({
   },
 
   _getFilter(attr, defaultFilter) {
-    let header = this.get('headers').findBy('attr', attr)
+    let header = this.headers.findBy('attr', attr)
     return header.hasOwnProperty('customFilter') && header.customFilter
       ? header.customFilter
       : defaultFilter

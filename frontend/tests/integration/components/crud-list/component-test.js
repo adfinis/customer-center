@@ -1,6 +1,6 @@
 import { module, test } from 'qunit'
 import { setupRenderingTest } from 'ember-qunit'
-import { render } from '@ember/test-helpers'
+import { render, find } from '@ember/test-helpers'
 import hbs from 'htmlbars-inline-precompile'
 
 module('Integration | Component | crud list', function(hooks) {
@@ -12,10 +12,6 @@ module('Integration | Component | crud list', function(hooks) {
 
     await render(hbs`{{crud-list title="Test"}}`)
 
-    assert.ok(
-      this.$()
-        .text()
-        .trim()
-    )
+    assert.ok(find('*').textContent.trim())
   })
 })

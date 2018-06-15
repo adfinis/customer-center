@@ -5,6 +5,6 @@ export default Route.extend({
   vault: service(),
 
   model() {
-    return this.get('vault').list()
+    return this.vault.list()
   }
 })

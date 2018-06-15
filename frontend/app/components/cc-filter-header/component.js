@@ -6,10 +6,10 @@ export default Component.extend({
 
   actions: {
     search() {
-      this.get('onSearch')({ attr: this.get('attr'), term: this.get('value') })
+      this.onSearch({ attr: this.attr, term: this.value })
     },
     clearSearch() {
-      this.get('onSearch')(null)
+      this.onSearch(null)
     }
   }
 })

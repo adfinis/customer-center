@@ -35,7 +35,7 @@ function internal(model) {
 export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments)
-    this.set('_model', internal(this.get('model')))
+    this.set('_model', internal(this.model))
   },
 
   showName: computed('_model', function() {
@@ -49,19 +49,19 @@ export default Component.extend({
 
   actions: {
     add() {
-      this.get('_model').pushObject({ edit: true })
+      this._model.pushObject({ edit: true })
     },
 
     async save(index, { key = 'value', value, comment }) {
-      this.get('_model').replace(index, 1, [
+      this._model.replace(index, 1, [
         EmberObject.create({ key, value, comment, edit: false })
       ])
-      await this.get('onUpdate')(external(this.get('_model')))
+      await this.onUpdate(external(this._model))
     },
 
     async delete(index) {
-      this.get('_model').removeAt(index)
-      await this.get('onUpdate')(external(this.get('_model')))
+      this._model.removeAt(index)
+      await this.onUpdate(external(this._model))
     }
   }
 })

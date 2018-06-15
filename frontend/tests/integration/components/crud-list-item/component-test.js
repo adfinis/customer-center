@@ -1,7 +1,7 @@
 import EmberObject from '@ember/object'
 import { module, test } from 'qunit'
 import { setupRenderingTest } from 'ember-qunit'
-import { render, settled } from '@ember/test-helpers'
+import { render, settled, click, find } from '@ember/test-helpers'
 import hbs from 'htmlbars-inline-precompile'
 
 module('Integration | Component | crud list item', function(hooks) {
@@ -23,20 +23,16 @@ module('Integration | Component | crud list item', function(hooks) {
     await render(hbs`{{crud-list-item entry=entry edit=entry.edit index=0}}`)
 
     assert.equal(
-      this.$('span.value')
-        .text()
-        .trim(),
+      find('span.value').textContent.trim(),
       '********',
       'password is masked'
     )
 
-    this.$('.uk-icon-button[uk-icon="search"]').click()
+    await click('.uk-icon-button[uk-icon="search"]')
 
     return settled().then(() => {
       assert.equal(
-        this.$('span.value')
-          .text()
-          .trim(),
+        find('span.value').textContent.trim(),
         'Value',
         'password is visible'
       )

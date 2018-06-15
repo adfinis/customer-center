@@ -21,7 +21,7 @@ export default Route.extend(RouteAccessMixin, {
   init() {
     this._super(...arguments)
     this.set('breadCrumb', {
-      title: this.get('i18n').t('gitlab.projects')
+      title: this.i18n.t('gitlab.projects')
     })
   },
 
@@ -36,13 +36,9 @@ export default Route.extend(RouteAccessMixin, {
     return (await all(
       user.get('gitlabGroups').map(async group => {
         try {
-          return await this.get('ajax').request(
-            `/api/proxy/gitlab/groups/${group}/`
-          )
+          return await this.ajax.request(`/api/proxy/gitlab/groups/${group}/`)
         } catch (error) {
-          this.get('notify').warning(
-            `${this.get('i18n').t('gitlab.errors.group')} ${group}`
-          )
+          this.notify.warning(`${this.i18n.t('gitlab.errors.group')} ${group}`)
           return null
         }
       })

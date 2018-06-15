@@ -1,6 +1,6 @@
 import { module, test } from 'qunit'
 import { setupRenderingTest } from 'ember-qunit'
-import { render } from '@ember/test-helpers'
+import { render, find } from '@ember/test-helpers'
 import hbs from 'htmlbars-inline-precompile'
 
 module('helper:trim', function(hooks) {
@@ -8,19 +8,9 @@ module('helper:trim', function(hooks) {
 
   test('it renders', async function(assert) {
     await render(hbs`{{trim 'wazzzzzzup'}}`)
-    assert.equal(
-      this.$()
-        .text()
-        .trim(),
-      'wazzzzzzup'
-    )
+    assert.equal(find('*').textContent.trim(), 'wazzzzzzup')
 
     await render(hbs`{{trim 'wazzzzzzup' length=5}}`)
-    assert.equal(
-      this.$()
-        .text()
-        .trim(),
-      'wazzz...'
-    )
+    assert.equal(find('*').textContent.trim(), 'wazzz...')
   })
 })

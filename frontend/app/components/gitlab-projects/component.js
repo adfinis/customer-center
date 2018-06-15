@@ -29,17 +29,13 @@ export default Component.extend({
    */
   _getNumberOfCommits() {
     let path = encodeURIComponent(this.get('project.path_with_namespace'))
-    return this.get('ajax')
+    return this.ajax
       .request(
-        `/api/proxy/gitlab/projects/${path}/repository/commits?since=${this.get(
-          'commitsSince'
-        ).toISOString()}`
+        `/api/proxy/gitlab/projects/${path}/repository/commits?since=${this.commitsSince.toISOString()}`
       )
       .catch(() => {
-        this.get('notify').warning(
-          `${this.get('i18n').t('gitlab.errors.commits')} ${this.get(
-            'project.name'
-          )}`
+        this.notify.warning(
+          `${this.i18n.t('gitlab.errors.commits')} ${this.get('project.name')}`
         )
         return []
       })
@@ -52,15 +48,15 @@ export default Component.extend({
    * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
    */
   _getPipelines() {
-    return this.get('ajax')
+    return this.ajax
       .request(
         `/api/proxy/gitlab/${this.get(
           'project.path_with_namespace'
         )}/pipelines.json`
       )
       .catch(() => {
-        this.get('notify').warning(
-          `${this.get('i18n').t('gitlab.errors.pipelines')} ${this.get(
+        this.notify.warning(
+          `${this.i18n.t('gitlab.errors.pipelines')} ${this.get(
             'project.name'
           )}`
         )

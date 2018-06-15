@@ -11,7 +11,7 @@ export default Route.extend({
 
   model({ path }) {
     return RSVP.hash({
-      details: this.get('vault').details(path),
+      details: this.vault.details(path),
       path: RSVP.resolve(path.split('/')),
       rawPath: path
     })
@@ -21,12 +21,12 @@ export default Route.extend({
     async save(secrets) {
       const path = this.modelFor(this.routeName).rawPath
       try {
-        await this.get('vault').del(path)
-        await this.get('vault').save(path, secrets)
+        await this.vault.del(path)
+        await this.vault.save(path, secrets)
 
-        this.get('notify').success(this.get('i18n').t('vault.save-success'))
+        this.notify.success(this.i18n.t('vault.save-success'))
       } catch (e) {
-        this.get('notify').error(e.message)
+        this.notify.error(e.message)
       }
     },
     loading(transition) {

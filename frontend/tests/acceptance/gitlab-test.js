@@ -1,27 +1,27 @@
+import { fillIn, findAll, currentURL, visit } from '@ember/test-helpers'
 import { module, test } from 'qunit'
 import { setupApplicationTest } from 'ember-qunit'
 import {
   authenticateSession,
   invalidateSession
-} from 'customer-center/tests/helpers/ember-simple-auth'
-import startApp from '../helpers/start-app'
-import destroyApp from '../helpers/destroy-app'
+} from 'ember-simple-auth/test-support'
 import { clickTrigger } from 'ember-basic-dropdown/test-support/helpers'
 import { calendarSelect } from 'ember-power-calendar/test-support'
 import moment from 'moment'
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage'
 
 module('Acceptance | GitLab', function(hooks) {
   setupApplicationTest(hooks)
+  setupMirage(hooks)
 
   hooks.beforeEach(async function() {
-    this.application = startApp()
-    let user = server.create('user', 'customer')
-    await authenticateSession(this.application, { data: user.id })
+    let user = this.server.create('user', 'customer')
+    await authenticateSession({ data: user.id })
   })
 
   hooks.afterEach(async function() {
     await invalidateSession(this.application)
-    destroyApp(this.application)
+    destroyApp()
   })
 
   test('All projects and namespaces are rendered', async function(assert) {

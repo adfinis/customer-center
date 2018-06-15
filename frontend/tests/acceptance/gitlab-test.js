@@ -14,10 +14,6 @@ import moment from 'moment'
 module('Acceptance | GitLab', function(hooks) {
   setupApplicationTest(hooks)
 
-  hooks.beforeEach(function() {
-    this.application = null
-  })
-
   hooks.beforeEach(async function() {
     this.application = startApp()
     let user = server.create('user', 'customer')

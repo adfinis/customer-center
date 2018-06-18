@@ -1,4 +1,6 @@
-import config from '../config'
+const config = require(process.env.NODE_ENV === 'testing'
+  ? '../config-test.js'
+  : '../config.js')
 
 const tlsOptions = {}
 

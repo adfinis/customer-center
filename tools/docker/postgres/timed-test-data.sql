@@ -1,5 +1,7 @@
-create database timed;
-USE timed;
+INSERT INTO employment_user (password, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, tour_done) 
+	VALUES ('pbkdf2_sha256$36000$YqQdh2qkA5ia$GmA0LkF3udVW1/tsEz6qOUg265C4Z9d/iqUgQXpQL7U=', false, 'sysupport_api', 'sysupport_api', 'sysupport_api', 'sysupport_api@adsy.ch', true, true, '2018-05-07 08:10:13+00', false);
+INSERT INTO projects_customer (name, email, website, comment, archived, reference) 
+	VALUES ('customer1', 'customer1@adsy.ch', '', '', false, 'customer1');
 
 INSERT INTO projects_billingtype (name) VALUES ('Subscription'),('Workhours based'),('We throw random moniez at u');
 INSERT INTO subscription_package(duration, price_currency, price, billing_type_id) VALUES ('100:00:00', 'CHF', 1000, 1),('200:00:00', 'CHF', 2000, 2),('200:00:00', 'CHF', 2000, 3);
@@ -49,7 +51,7 @@ INSERT INTO projects_task(name, archived, project_id, estimated_time) VALUES ('W
 INSERT INTO tracking_report(comment, date, duration, review, not_billable, added, updated, task_id, user_id)
 	VALUES
     ('Creating artworks',current_date - integer '1234', '10:00:00', false, false,current_date,current_date, 3,  1),
-    ('Browse Reddit',current_date - integer '2341243', '60:00:00', false, false,current_date,current_date, 3,  1),
+    ('Browse Reddit',current_date - integer '2341', '60:00:00', false, false,current_date,current_date, 3,  1),
     ('Browse Hackernews',current_date - integer '124', '30:00:00', false, false,current_date,current_date, 3,  1),
     ('Do actual work',current_date - integer '1234', '30:00:00', false, false,current_date,current_date, 3,  1),
     ('Copipasta from SO',current_date - integer '31', '50:00:00', false, false,current_date,current_date, 3,  1),
@@ -83,3 +85,4 @@ INSERT INTO tracking_report(comment, date, duration, review, not_billable, added
     ,('50:00:00',current_date - integer '312', true, 4)
     ,('50:00:00',current_date - integer '412', true, 4)
     ,('50:00:00',current_date - integer '523', true, 4);
+

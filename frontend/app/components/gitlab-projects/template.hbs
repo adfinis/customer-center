@@ -1,0 +1,69 @@
+
+
+<td class="uk-width-1-3" data-test-project-name={{project.id}}>
+  {{project.name}}
+</td>
+
+<td class="uk-width-1-3" data-test-commits={{project.id}}>
+  {{#if (await numberOfCommits)}}
+    {{t "gitlab.commit" count=(await numberOfCommits)}}
+  {{else if (is-pending numberOfCommits)}}
+    {{uk-spinner}}
+  {{else}}
+    {{t "gitlab.empty.commits"}}
+  {{/if}}
+</td>
+
+<td class="uk-width-1-3" data-test-pipelines={{project.id}}>
+  {{#if (await pipelines)}}
+    {{#each (await pipelines) as |pipeline index|}}
+      <span class="uk-badge cc-background-pipeline-{{pipeline.details.status.text}}" data-test-pipeline={{index}}>
+        <div data-test-pipeline-name={{index}}>
+        {{#if (or (eq pipeline.details.status.text 'skiped') (eq pipeline.details.status.text 'failed') )}}
+          <span data-test-failed={{index}} uk-icon="icon: close; ratio: 0.75"/>
+        {{else if (eq pipeline.details.status.text 'passed')}}
+          <span uk-icon="icon: check; ratio: 0.75" data-test-passed={{index}} />
+        {{else}}
+          <span uk-spinner="ratio: 0.4" class="uk-margin-rigth" data-test-running={{index}} />
+        {{/if}}
+
+        {{pipeline.ref.name}}
+
+        <a uk-icon="icon: chevron-down; ratio: 0.75"></a>
+        </div>
+        <div uk-dropdown="mode: click">
+          <table class="uk-table uk-table-divider uk-table-small uk-margin-remove-bottom">
+              <thead>
+                  <tr>
+                      <th>{{t "gitlab.pipeline-table.stage"}}</th>
+                      <th>{{t "gitlab.pipeline-table.status"}}</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {{#each pipeline.details.stages as |stage index|}}
+                  <tr>
+                    <td data-test-stage-name={{index}}>{{stage.name}}</td>
+                    <td  data-test-stage-status={{index}}>
+                      {{#if (or (eq stage.status.text 'skiped') (eq stage.status.text 'failed') )}}
+                        <span class="uk-text-danger" uk-icon="icon: close; ratio: 0.75" data-test-stage-failed={{index}} />
+                      {{else if (eq stage.status.text 'passed')}}
+                        <span class="uk-text-success" uk-icon="icon: check; ratio: 0.75" data-test-stage-passed={{index}} />
+                      {{else}}
+                        <span uk-spinner="ratio: 0.4" class="uk-margin-rigth" data-test-stage-running={{index}} />
+                      {{/if}}
+                      {{t (concat "gitlab.status." stage.status.text)}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+          </table>
+
+        </div>
+      </span>
+
+    {{/each}}
+  {{else if (is-pending pipelines)}}
+    {{uk-spinner}}
+  {{else}}
+    {{t "gitlab.empty.pipelines"}}
+  {{/if}}
+</td>

@@ -74,6 +74,7 @@ export default {
     dashboard: 'Dashboard',
     vault: 'Vault',
     sysupport: 'SySupport',
+    gitlab: 'Projects',
     settings: 'Settings',
     logout: 'Sign out'
   },
@@ -151,6 +152,46 @@ export default {
       admin: 'Admin',
       confirmSuccess: 'Order accepted.',
       confirmDeny: 'Order denied.'
+    }
+  },
+
+  gitlab: {
+    projects: 'Projects',
+    groups: 'Groups',
+    commitsSince: 'Show Changes since:',
+    allGroups: 'All Groups',
+    placeholder: 'Search...',
+    table: {
+      project: 'Project',
+      commits: 'Changes',
+      pipelines: 'Pipelines'
+    },
+    commit: {
+      one: '1 Change',
+      other: '{{count}} Changes'
+    },
+    errors: {
+      group: 'An error ocurred while loading the following group:',
+      commits:
+        'An error occured while loading the changes for the following group:',
+      pipelines:
+        'An error occured while loading the pipelines for the following group:'
+    },
+    empty: {
+      groups: 'No GitLab groups found.',
+      commits: 'There are no changes in the specified time span.',
+      pipelines: 'The project has no pipelines.'
+    },
+    'pipeline-table': {
+      stage: 'Stage',
+      status: 'Status'
+    },
+    status: {
+      failed: 'Failed',
+      passed: 'Passed',
+      created: 'Created',
+      pending: 'Pending',
+      running: 'Running'
     }
   }
 }

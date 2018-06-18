@@ -126,7 +126,6 @@ function loginSuccessful(req, res, next, ldapUser) {
     req.session.create(claims, (sessionError, token) => {
       if (sessionError) return next(sessionError)
 
-      res.set('Content-Type', 'application/vnd.api+json')
       return res.send({ data: { token } })
     })
   })
@@ -165,10 +164,10 @@ async function addTimedTokenToSession(session, user) {
  * @return {string} vault token
  */
 async function vaultLogin(username, password) {
-  const { host, ca, authBackend } = config.services.vault
+  const { host, ca, authBackend, prefix } = config.services.vault
   const resp = await rp({
     method: 'POST',
-    uri: `${host}v1/auth/${authBackend}/login/${username}`,
+    uri: `${host}${prefix}auth/${authBackend}/login/${username}`,
     body: {
       password
     },
@@ -179,22 +178,24 @@ async function vaultLogin(username, password) {
 }
 
 router.post('/logout', async (req, res) => {
-  const { host, ca } = config.services.vault
-  try {
-    await rp({
-      method: 'POST',
-      uri: `${host}v1/auth/token/revoke`,
-      headers: {
-        'X-Vault-Token': req.session.vaultToken
-      },
-      body: {
-        token: req.session.vaultToken
-      },
-      json: true,
-      ca: ca ? fs.readFileSync(ca) : undefined
-    })
-  } catch (e) {
-    console.error('Vault revoke error:', e.message)
+  if (req.session.vaultToken) {
+    const { host, ca, prefix } = config.services.vault
+    try {
+      await rp({
+        method: 'POST',
+        uri: `${host}${prefix}auth/token/revoke`,
+        headers: {
+          'X-Vault-Token': req.session.vaultToken
+        },
+        body: {
+          token: req.session.vaultToken
+        },
+        json: true,
+        ca: ca ? fs.readFileSync(ca) : undefined
+      })
+    } catch (e) {
+      console.error('Vault revoke error:', e.message)
+    }
   }
 
   req.logout()

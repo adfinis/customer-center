@@ -31,6 +31,9 @@ export default Mirage.Factory.extend({
       return [
         `${this.shortname}-vault`,
         `${this.shortname}-sysupport`,
+        `test1-gitlab`,
+        `test2-gitlab`,
+        `test3-gitlab`,
         'adsy-customer'
       ]
     }

@@ -31,7 +31,7 @@ module.exports = function(environment) {
       // Define admin group
       adminGroup: 'adsy-user',
       // Services : redmine, mon, sysupport, wiki, rt, vault
-      enabledServices: ['vault', 'sysupport']
+      enabledServices: ['vault', 'sysupport', 'gitlab']
     },
 
     i18n: {

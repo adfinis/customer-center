@@ -1,7 +1,4 @@
-USERNAME?=user
-PASSWORD?=123qweasd
-
-install: install-frontend install-backend
+install: install-frontend install-backend knex-migrations setup-vault setup-timed timed-test-data
 
 install-frontend:
 	cd frontend; yarn
@@ -17,28 +14,24 @@ test-backend:
 test-frontend:
 	cd frontend; yarn test
 
-setup-ldap:
-	docker exec customercenter_ucs1_1 /usr/lib/univention-system-setup/scripts/setup-join.sh
-	docker exec customercenter_ucs1_1 /usr/ucs/scripts/fill-dummy-data.sh
-
 knex-migrations:
-	docker exec customercenter_backenddev1_1 make -C /usr/src/app migrations
-
-create-customer:
-	docker exec -it customercenter_ucs1_1 /usr/ucs/scripts/create-new-customer.sh $(USERNAME) $(PASSWORD)
-
-create-admin:
-	docker exec -it customercenter_ucs1_1 /usr/ucs/scripts/create-new-admin.sh $(USERNAME) $(PASSWORD)
+	docker-compose exec backend make -C /usr/src/app migrations
 
 setup-vault:
 	./tools/docker/vault/scripts/init.sh
 
 setup-timed:
-	docker-compose exec timed1 ./manage.py migrate
-	docker-compose exec timed1 ./manage.py createsuperuser
+	docker-compose exec timedbackend ./manage.py migrate
+	docker-compose exec timedbackend ./manage.py createsuperuser
+
+timed-test-data:
+	docker-compose exec postgres psql -U test -d timed -f /tmp/timed-test-data.sql
+
+setup-gitlab-runner:
+	docker-compose exec gitlab-runner gitlab-runner register 
 
 serve-local:
-	docker-compose stop frontenddev1
+	docker-compose stop frontend
 	cd frontend/;ember serve --proxy http://localhost:8080
 
 deploy:

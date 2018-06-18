@@ -1,6 +1,6 @@
 import Bookshelf from 'bookshelf'
 import knex from 'knex'
-import config from '../../config'
+import config from './../config'
 
 const { isArray } = Array
 const bookshelf = new Bookshelf(knex(config.database))
@@ -46,6 +46,18 @@ export default bookshelf.Model.extend(
     getGroupNames() {
       let groups = this.get('groups')
       return groups && groups.content.map(g => g.cn)
+    },
+
+    /**
+     * Return all groups with a `-gitlab` suffix
+     *
+     * @returns {String[]} All gitlab groups from this user
+     * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
+     */
+    getGitlabGroups() {
+      return this.getGroupNames()
+        .filter(group => group.endsWith('-gitlab'))
+        .map(group => group.replace('-gitlab', ''))
     },
 
     /**

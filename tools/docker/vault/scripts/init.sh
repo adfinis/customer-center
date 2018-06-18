@@ -5,7 +5,8 @@ export VAULT_ADDR=http://127.0.0.1:8200
 vault auth myroot
 vault auth-enable userpass
 vault write sys/policy/my-policy rules=@my-policy.hcl
-vault write auth/userpass/users/Test1-admin password=test1123qwe policies=my-policy
+vault write auth/userpass/users/customer1 password=123qweasd policies=my-policy
+vault write auth/userpass/users/user1 password=123qweasd policies=my-policy
 
 # write some secrets
 for i in {1..4}

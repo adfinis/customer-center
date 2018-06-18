@@ -31,6 +31,10 @@
         {{#list.item 'vault'}}{{t 'nav.vault'}}{{/list.item}}
       {{/if}}
 
+      {{#if model.gitlab}}
+        {{#list.item 'gitlab'}}{{t 'nav.gitlab'}}{{/list.item}}
+      {{/if}}
+
       {{#if model.sysupport}}
         {{#if model.admin}}
           {{#list.item 'sysupport-admin' }}{{t 'nav.sysupport'}}{{/list.item}}

@@ -1,7 +1,5 @@
-test:
-	NODE_ENV=testing \
-		node_modules/.bin/babel-node \
-		node_modules/.bin/gulp lint
+test: 
+	NODE_ENV=testing node_modules/.bin/babel-node node_modules/.bin/gulp test
 
 lint:
 	NODE_ENV=testing \
@@ -15,6 +13,10 @@ test-watch:
 
 migrations:
 	node_modules/.bin/babel-node \
+		node_modules/.bin/knex migrate:latest
+
+test-migrations:
+	NODE_ENV=testing node_modules/.bin/babel-node \
 		node_modules/.bin/knex migrate:latest
 
 .PHONY: test lint test-watch migrations

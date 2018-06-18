@@ -1,7 +1,6 @@
 import gulp from 'gulp'
 import eslint from 'gulp-eslint'
 import mocha from 'gulp-spawn-mocha'
-// import coverageEnforcer from 'gulp-istanbul-enforcer'
 
 let src = ['src/**/*.js', 'routes/**/*.js', 'middleware/*.js']
 
@@ -11,20 +10,9 @@ gulp.task('test', ['lint'], () => {
   return gulp.src(testFiles).pipe(
     mocha({
       reporter: 'spec',
-      compilers: 'js:babel-register',
-      istanbul: false
+      compilers: 'js:babel-core/register'
     })
   )
-  //.pipe(coverageEnforcer({
-  //  thresholds: {
-  //    statements: 100
-  //  , branches:   100
-  //  , lines:      100
-  //  , functions:  100
-  //  }
-  //, coverageDirectory: 'coverage'
-  //, rootDirectory:     ''
-  //}))
 })
 
 gulp.task('lint', () => {

@@ -24,7 +24,9 @@ export default AjaxService.extend({
     }
   }),
 
-  isUnauthorizedError() {
-    this.get('session').invalidate()
+  isUnauthorizedError(code) {
+    if (code === 401 && this.get('session.isAuthenticated')) {
+      this.get('session').invalidate()
+    }
   }
 })

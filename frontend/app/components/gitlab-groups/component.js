@@ -14,8 +14,7 @@ export default Component.extend({
       return this.get('model.projects').filter(project =>
         project.name.toLowerCase().includes(search.trim().toLowerCase())
       )
-    } else {
-      return this.get('model.projects')
     }
+    return this.get('model.projects')
   })
 })

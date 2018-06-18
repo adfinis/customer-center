@@ -25,7 +25,7 @@ module('Acceptance | Sysupport Admin', function(hooks) {
     server.createList('timed-subscription-project', 5)
     await visit('/sysupport-admin')
 
-    assert.equal(find('[data-test-project]').length, 5)
+    assert.dom('[data-test-project]').exists({ count: 5 })
   })
 
   test('subscription-admin detail', async function(assert) {
@@ -42,28 +42,28 @@ module('Acceptance | Sysupport Admin', function(hooks) {
       find(`[data-test-billing-type-name=${project.id}]`)[0].innerText,
       project.billingType.name
     )
-    assert.equal(find('[data-test-project-order]').length, 10)
+    assert.dom('[data-test-project-order]').exists({ count: 10 })
   })
 
   test('subscription-admin confirm-subscriptions accept', async function(assert) {
     let project = server.create('timed-subscription-project')
     await visit('/sysupport-admin/confirm-subscriptions')
 
-    assert.equal(find('[data-test-order]').length, 5)
+    assert.dom('[data-test-order]').exists({ count: 5 })
     await click('[data-test-accept="0"]')
-    assert.equal(find('[data-test-order]').length, 4)
+    assert.dom('[data-test-order]').exists({ count: 4 })
     await visit(`/sysupport-admin/${project.id}`)
-    assert.equal(find('[data-test-acknowledged]').length, 6)
+    assert.dom('[data-test-acknowledged]').exists({ count: 6 })
   })
 
   test('subscription-admin confirm-subscriptions deny', async function(assert) {
     let project = server.create('timed-subscription-project')
     await visit('/sysupport-admin/confirm-subscriptions')
 
-    assert.equal(find('[data-test-order]').length, 5)
+    assert.dom('[data-test-order]').exists({ count: 5 })
     await click('[data-test-deny="0"]')
-    assert.equal(find('[data-test-order]').length, 4)
+    assert.dom('[data-test-order]').exists({ count: 4 })
     await visit(`/sysupport-admin/${project.id}`)
-    assert.equal(find('[data-test-unconfirmed]').length, 4)
+    assert.dom('[data-test-unconfirmed]').exists({ count: 4 })
   })
 })

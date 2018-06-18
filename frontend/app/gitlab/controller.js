@@ -39,10 +39,9 @@ export default Controller.extend({
   groups: computed('model', 'selection', function() {
     if (!this.get('selection')) {
       return this.get('model')
-    } else {
-      return [
-        this.get('model').find(group => group.id == this.get('selection.id'))
-      ]
     }
+    return [
+      this.get('model').find(group => group.id == this.get('selection.id'))
+    ]
   })
 })

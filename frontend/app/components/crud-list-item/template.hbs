@@ -1,7 +1,4 @@
 <tr>
-  <td class="uk-width-1-3">
-    {{input-or-show value=entry.key edit=edit placeholder="description"}}
-  </td>
   <td colspan="{{if edit 2 1}}" class="{{if edit 'uk-width-2-3' 'uk-width-1-3'}}">
     {{input-or-show value=entry.value edit=edit placeholder="value" clipboard=true mask=maskPassword}}
   </td>
@@ -12,21 +9,6 @@
     </td>
   {{/unless}}
 </tr>
-
-{{#if (or entry.comment edit)}}
-  <tr class="uk-border-remove">
-    <td colspan="3" class="padding-remove-top {{unless edit 'uk-text-small uk-text-muted'}}">
-      <div class="{{unless edit 'uk-margin-left'}}">
-        {{input-or-show
-          value=entry.comment
-          edit=edit
-          placeholder="Comment"
-          multiline=true
-        }}
-      </div>
-    </td>
-  </tr>
-{{/if}}
 
 {{#if edit}}
   <tr>

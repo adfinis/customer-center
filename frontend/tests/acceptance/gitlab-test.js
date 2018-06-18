@@ -28,8 +28,8 @@ module('Acceptance | GitLab', function(hooks) {
   test('[T08] All projects and namespaces are rendered', async function(assert) {
     await visit('/projects')
 
-    assert.equal(find('[data-test-group]').length, 3)
-    assert.equal(find('[data-test-project]').length, 12)
+    assert.dom('[data-test-group]').exists({ count: 3 })
+    assert.dom('[data-test-project]').exists({ count: 12 })
 
     assert.dom('[data-test-group-name="1"]').hasText('test1')
     assert.dom('[data-test-group-name="2"]').hasText('test2')
@@ -84,7 +84,7 @@ module('Acceptance | GitLab', function(hooks) {
   test('[T11] Search', async function(assert) {
     await visit('/projects')
     await fillIn('[data-test-search]', '0')
-    assert.equal(find('[data-test-project]').length, 3)
+    assert.dom('[data-test-project]').exists({ count: 3 })
   })
 
   test('[T14] Display pipelines', async function(assert) {
@@ -189,17 +189,17 @@ module('Acceptance | GitLab', function(hooks) {
 
   test('[T15] Projects are displayed correct', async function(assert) {
     await visit('/projects')
-    assert.equal(find('[data-test-project-name]').length, 12)
-    assert.equal(find('[data-test-pipelines]').length, 12)
-    assert.equal(find('[data-test-commits]').length, 12)
+    assert.dom('[data-test-project-name]').exists({ count: 12 })
+    assert.dom('[data-test-pipelines]').exists({ count: 12 })
+    assert.dom('[data-test-commits]').exists({ count: 12 })
   })
 
   test('[T16] Filter', async function(assert) {
     await visit('/projects')
     await selectChoose('[data-test-select] > *', 'test2')
-    assert.equal(find('[data-test-project]').length, 4)
+    assert.dom('[data-test-project]').exists({ count: 4 })
     await clearSelected('[data-test-select]')
-    assert.equal(find('[data-test-project]').length, 12)
+    assert.dom('[data-test-project]').exists({ count: 12 })
   })
 
   test('[T17] Change time span for commits', async function(assert) {

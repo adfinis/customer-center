@@ -27,8 +27,8 @@ module('Acceptance | Sysupport Subscriptions', function(hooks) {
 
     await click('[data-test-detail-link="0"]')
     assert.equal(currentURL(), '/sysupport-subscriptions/1')
-    assert.equal(find('[data-test-project-report]').length, 5)
-    assert.equal(find('[data-test-project-order]').length, 10)
+    assert.dom('[data-test-project-report]').exists({ count: 5 })
+    assert.dom('[data-test-project-order]').exists({ count: 10 })
   })
 
   test('subscription-project reload', async function(assert) {
@@ -40,6 +40,6 @@ module('Acceptance | Sysupport Subscriptions', function(hooks) {
     assert.equal(currentURL(), '/sysupport-subscriptions/1/reload')
     await click('[data-test-project-reload="0"]')
     assert.equal(currentURL(), '/sysupport-subscriptions/1')
-    assert.equal(find('[data-test-project-order]').length, 11)
+    assert.dom('[data-test-project-order]').exists({ count: 11 })
   })
 })

@@ -47,7 +47,7 @@ services:
 
   ldap:
     image: osixia/openldap
-    ports: 
+    ports:
       - "4389:389"
     volumes:
       - ./tools/docker/ldap/ldap.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom
@@ -60,12 +60,12 @@ services:
       - LDAP_TLS=false
       - LDAP_BASE_DN=dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
     command: ["--copy-service", "--loglevel", "debug"]
-    
+
   ldapadmin:
     image: osixia/phpldapadmin
     volumes:
         - ./tools/docker/ldapadmin/config.php:/container/service/phpldapadmin/assets/config/config.php
-    ports: 
+    ports:
       - "6443:80"
     environment:
       #- PHPLDAPADMIN_LDAP_HOSTS=ldap
@@ -95,7 +95,7 @@ services:
 
   # User older version because the newer version does not work
   vault:
-    image: vault:0.9.6
+    image: vault:0.9.0
     environment:
       - VAULT_DEV_ROOT_TOKEN_ID=myroot
       - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200

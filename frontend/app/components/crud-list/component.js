@@ -42,7 +42,7 @@ export default Component.extend({
       this.get('_model').pushObject({ edit: true })
     },
 
-    async save(index, { key, value, comment }) {
+    async save(index, { key = 'value', value, comment }) {
       this.get('_model').replace(index, 1, [
         EmberObject.create({ key, value, comment, edit: false })
       ])

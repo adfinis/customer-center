@@ -5,7 +5,7 @@
   {{#if visible}}
     <ul class="uk-list uk-list-divider uk-margin uk-padding uk-padding-remove-vertical uk-padding-remove-right">
       {{#each-in node.values as |name props|}}
-        <li>{{#link-to 'vault.index.edit' props.path}}{{name}}{{/link-to}}
+        <li>{{#link-to 'vault.edit' props.path}}{{name}}{{/link-to}}
           <span class="details">{{print-props props}}</span>
         </li>
       {{/each-in}}

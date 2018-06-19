@@ -1,4 +1,4 @@
-import { click, findAll, currentURL, visit } from '@ember/test-helpers'
+import { click, currentURL, visit } from '@ember/test-helpers'
 import { module, test } from 'qunit'
 import { setupApplicationTest } from 'ember-qunit'
 import {
@@ -33,14 +33,12 @@ module('Acceptance | Sysupport Admin', function(hooks) {
 
     await click('[data-test-project="0"]')
     assert.equal(currentURL(), `/sysupport-admin/${project.id}`)
-    assert.equal(
-      find(`[data-test-customer-name=${project.id}]`)[0].innerText,
-      project.customer.name
-    )
-    assert.equal(
-      find(`[data-test-billing-type-name=${project.id}]`)[0].innerText,
-      project.billingType.name
-    )
+    assert
+      .dom(`[data-test-customer-name="${project.id}"]`)
+      .hasText(project.customer.name)
+    assert
+      .dom(`[data-test-billing-type-name="${project.id}"]`)
+      .hasText(project.billingType.name)
     assert.dom('[data-test-project-order]').exists({ count: 10 })
   })
 

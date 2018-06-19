@@ -1,6 +1,7 @@
 import { module, test } from 'qunit'
 import { setupTest } from 'ember-qunit'
 import moment from 'moment'
+import { Promise } from 'rsvp'
 
 module('Unit | Component | gitlab-projects', function(hooks) {
   setupTest(hooks)

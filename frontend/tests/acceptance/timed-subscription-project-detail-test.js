@@ -1,10 +1,10 @@
-import { click, findAll, currentURL, visit } from '@ember/test-helpers'
+import { click, currentURL, visit } from '@ember/test-helpers'
 import { module, test } from 'qunit'
 import { setupApplicationTest } from 'ember-qunit'
 import {
   authenticateSession,
   invalidateSession
-} from 'customer-center/tests/helpers/ember-simple-auth'
+} from 'ember-simple-auth/test-support'
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage'
 
 module('Acceptance | Sysupport Subscriptions', function(hooks) {
@@ -12,7 +12,7 @@ module('Acceptance | Sysupport Subscriptions', function(hooks) {
   setupMirage(hooks)
 
   hooks.beforeEach(async function() {
-    let user = server.create('user', 'customer')
+    let user = this.server.create('user', 'customer')
     await authenticateSession({ data: user.id })
   })
 
@@ -31,8 +31,8 @@ module('Acceptance | Sysupport Subscriptions', function(hooks) {
   })
 
   test('subscription-project reload', async function(assert) {
-    server.create('timed-subscription-project')
-    server.create('timed-subscription-package')
+    this.server.create('timed-subscription-project')
+    this.server.create('timed-subscription-package')
     await visit('/sysupport-subscriptions')
 
     await click('[data-test-reload-link="0"]')

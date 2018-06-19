@@ -1,4 +1,4 @@
-import { fillIn, findAll, currentURL, visit } from '@ember/test-helpers'
+import { fillIn, currentURL, visit } from '@ember/test-helpers'
 import { module, test } from 'qunit'
 import { setupApplicationTest } from 'ember-qunit'
 import {
@@ -20,8 +20,7 @@ module('Acceptance | GitLab', function(hooks) {
   })
 
   hooks.afterEach(async function() {
-    await invalidateSession(this.application)
-    destroyApp()
+    await invalidateSession()
   })
 
   test('All projects and namespaces are rendered', async function(assert) {
@@ -110,7 +109,7 @@ module('Acceptance | GitLab', function(hooks) {
     await visit('/projects')
     await fillIn('[data-test-select] > *', 2)
     assert.dom('[data-test-project]').exists({ count: 4 })
-    await fillIn('[data-test-select] > *')
+    await fillIn('[data-test-select] > *', '')
     assert.dom('[data-test-project]').exists({ count: 12 })
   })
 

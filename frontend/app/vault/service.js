@@ -17,12 +17,7 @@ export default Service.extend({
 
   save(path, data) {
     return this.get('ajax').post(`/api/proxy/vault/${path}`, {
-      data: JSON.stringify(data),
-      headers: {
-        //Since were blocking any post data in the backend proxy were sending it as formdata.
-        //my guess is that the backend does not know how to parse it and because of that just ignores it.
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
+      data: JSON.stringify(data)
     })
   }
 })

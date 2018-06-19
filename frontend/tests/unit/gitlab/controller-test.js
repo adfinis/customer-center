@@ -5,9 +5,9 @@ moduleFor('controller:gitlab', 'Unit | Controller | gitlab', {
   needs: ['service:i18n']
 })
 
-test('[T12] Filter by group', function(assert) {
+test('Filter by group', function(assert) {
   let controller = this.subject()
-  controller.set('selection', { id: 1 })
+  controller.set('selection', 1)
   controller.set('model', [{ id: 1 }, { id: 2 }, { id: 3 }])
   assert.equal(controller.get('groups')[0].id, 1)
   assert.equal(controller.get('groups').length, 1)

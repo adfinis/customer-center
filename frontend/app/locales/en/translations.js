@@ -12,7 +12,8 @@ export default {
     empty: 'There is nothing to show here - yet!',
     cancel: 'Cancel',
     show: 'Show',
-    back: 'Back'
+    back: 'Back',
+    error: 'Oops something went wrong'
   },
 
   login: {

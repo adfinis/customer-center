@@ -59,6 +59,10 @@
       </li>
     {{/nav.list}}
   {{else}}
+    {{#if isLoading }}
+      <div class="uk-overlay uk-position-center uk-flex uk-flex-center uk-flex-middle"><div>{{uk-spinner}}</div></div>
+    {{else}}
     {{outlet}}
+    {{/if}}
   {{/if}}
 {{/uk-adsy-menu}}

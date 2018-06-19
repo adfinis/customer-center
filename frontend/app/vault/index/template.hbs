@@ -2,6 +2,8 @@
   <ul class="uk-list uk-list-divider">
     {{#each-in tree.children as |name child|}}
       {{vault-tree-node node=child name=name}}
+    {{else}}
+      {{t 'global.empty'}}
     {{/each-in}}
   </ul>
 {{/vault-tree-filter}}

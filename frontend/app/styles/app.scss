@@ -93,21 +93,7 @@ body {
 .calendar-selected-day {
   background-color: rgb(225, 247, 255);
 }
+
 .calendar-not-current-month {
   color: lightgray;
 }
-
-// Power select ui-kit style
-.cc-select {
-  width: 110px;
-}
-.ember-power-select-trigger--active {
-  outline: none;
-}
-$ember-power-select-border-color: rgb(229, 229, 229);
-$ember-power-select-default-border-radius: 0px;
-$ember-power-select-line-height: 40px;
-$ember-power-select-focus-border-color: #5b8edb;
-$ember-power-select-option-padding: 10px;
-
-@import 'ember-power-select';

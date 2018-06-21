@@ -28,6 +28,17 @@ export default Route.extend({
       } catch (e) {
         this.get('notify').error(e.message)
       }
+    },
+    loading(transition) {
+      if (this.controller) {
+        this.controller.set('isLoading', true)
+        if (transition) {
+          transition.promise.finally(() => {
+            this.controller.set('isLoading', false)
+          })
+        }
+      }
+      return false
     }
   }
 })

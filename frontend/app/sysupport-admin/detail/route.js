@@ -12,6 +12,11 @@ export default Route.extend({
 
   model({ project }) {
     return hash({
+      reports: this.store.query('timed-report', {
+        project,
+        include: 'user',
+        ordering: '-date'
+      }),
       orders: this.store.query('timed-subscription-order', {
         project,
         ordering: '-ordered'

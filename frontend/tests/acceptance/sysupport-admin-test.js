@@ -40,6 +40,7 @@ module('Acceptance | Sysupport Admin', function(hooks) {
       .dom(`[data-test-billing-type-name="${project.id}"]`)
       .hasText(project.billingType.name)
     assert.dom('[data-test-project-order]').exists({ count: 10 })
+    assert.dom('[data-test-project-report]').exists({ count: 5 })
   })
 
   test('subscription-admin confirm-subscriptions accept', async function(assert) {

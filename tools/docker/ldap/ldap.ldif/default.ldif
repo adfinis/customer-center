@@ -44,6 +44,36 @@ objectclass: top
 sambagrouptype: 2
 sambasid: S-1-5-21--2000
 
+dn: cn=customer-sysupport,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+cn: customer-sysupport
+gidnumber: 501
+memberuid: uid=user1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+objectclass: posixGroup
+objectclass: sambaGroupMapping
+objectclass: top
+sambagrouptype: 2
+sambasid: S-1-5-21--2000
+
+dn: cn=customer-gitlab,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+cn: customer-gitlab
+gidnumber: 502
+memberuid: uid=user1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+objectclass: posixGroup
+objectclass: sambaGroupMapping
+objectclass: top
+sambagrouptype: 2
+sambasid: S-1-5-21--2000
+
+dn: cn=customer-redmine,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+cn: customer-redmine
+gidnumber: 503
+memberuid: uid=user1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+objectclass: posixGroup
+objectclass: sambaGroupMapping
+objectclass: top
+sambagrouptype: 2
+sambasid: S-1-5-21--2000
+
 # Entry 5: cn=samba,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 dn: cn=samba,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 cn: samba

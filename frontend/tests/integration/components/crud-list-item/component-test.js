@@ -22,12 +22,12 @@ module('Integration | Component | crud list item', function(hooks) {
 
     await render(hbs`{{crud-list-item entry=entry edit=entry.edit index=0}}`)
 
-    assert.dom('span.value').hasText('********')
+    assert.dom('span.value').hasText('********', 'password is masked')
 
     await click('.uk-icon-button[uk-icon=""]')
 
     return settled().then(() => {
-      assert.dom('span.value').hasText('Value')
+      assert.dom('span.value').hasText('Value', 'password is visible')
     })
   })
 })

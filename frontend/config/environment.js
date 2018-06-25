@@ -60,6 +60,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    // Services : redmine, mon, sysupport, wiki, rt, vault
+    ENV.APP.enabledServices = ['vault', 'sysupport']
   }
 
   return ENV

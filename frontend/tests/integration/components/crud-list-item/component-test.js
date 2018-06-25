@@ -1,7 +1,7 @@
 import EmberObject from '@ember/object'
 import { module, test } from 'qunit'
 import { setupRenderingTest } from 'ember-qunit'
-import { render, settled, click } from '@ember/test-helpers'
+import { render, settled } from '@ember/test-helpers'
 import hbs from 'htmlbars-inline-precompile'
 
 module('Integration | Component | crud list item', function(hooks) {
@@ -24,7 +24,7 @@ module('Integration | Component | crud list item', function(hooks) {
 
     assert.dom('span.value').hasText('********')
 
-    await click('.uk-icon-button[uk-icon="search"]')
+    await click('.uk-icon-button[uk-icon=""]')
 
     return settled().then(() => {
       assert.dom('span.value').hasText('Value')

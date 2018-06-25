@@ -22,7 +22,7 @@ export default Mirage.Factory.extend({
   admin: trait({
     username: 'admin',
     groups() {
-      return ['sysupport', 'adsy-user']
+      return ['sysupport', 'adsy-user', 'adsy-vault']
     }
   }),
   customer: trait({

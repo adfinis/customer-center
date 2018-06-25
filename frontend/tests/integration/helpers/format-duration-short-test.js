@@ -12,19 +12,9 @@ module('Integration | Helper | format duration short', function(hooks) {
 
     await render(hbs`{{format-duration-short duration}}`)
 
-    assert.equal(
-      this.$()
-        .text()
-        .trim(),
-      '12:45'
-    )
+    assert.dom('*').hasText('12:45')
     this.set('duration', moment.duration({ hours: 2, minutes: 5 }))
 
-    assert.equal(
-      this.$()
-        .text()
-        .trim(),
-      '02:05'
-    )
+    assert.dom('*').hasText('02:05')
   })
 })

@@ -12,10 +12,6 @@ module('Integration | Component | crud list', function(hooks) {
 
     await render(hbs`{{crud-list title="Test"}}`)
 
-    assert.ok(
-      this.$()
-        .text()
-        .trim()
-    )
+    assert.dom('tbody').hasText('There is nothing to show here - yet!')
   })
 })

@@ -9,8 +9,8 @@ export default Component.extend({
   },
 
   _nextOrder() {
-    let order = this.get('orders').shift()
-    this.get('orders').push(order)
+    let order = this.orders.shift()
+    this.orders.push(order)
     return order
   },
 
@@ -20,8 +20,8 @@ export default Component.extend({
 
   actions: {
     sort() {
-      let attr = this.get('attr'),
-        sort = this.get('sort')
+      let attr = this.attr,
+        sort = this.sort
       if (sort) {
         if (sort.attr !== attr) {
           this._resetOrders()
@@ -37,7 +37,7 @@ export default Component.extend({
       } else {
         this.set('sort', { attr, order: this._nextOrder() })
       }
-      this.get('onSort')(this.get('sort'))
+      this.onSort(this.sort)
     }
   }
 })

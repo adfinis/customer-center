@@ -7,16 +7,8 @@ module('Integration | Component | vault tree node', function(hooks) {
   setupRenderingTest(hooks)
 
   test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-
     await render(hbs`{{vault-tree-node}}`)
 
-    assert.equal(
-      this.$()
-        .text()
-        .trim(),
-      ''
-    )
+    assert.dom('*').hasText('')
   })
 })

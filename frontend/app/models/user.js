@@ -14,7 +14,7 @@ export default Model.extend({
   emails: attr(),
 
   fullName: computed('firstName', 'lastName', function() {
-    return `${this.get('firstName')} ${this.get('lastName')}`.trim()
+    return `${this.firstName} ${this.lastName}`.trim()
   }),
 
   redmine: computed('groups.[]', function() {
@@ -45,17 +45,17 @@ export default Model.extend({
    */
   gitlabGroups: computed('groups.[]', function() {
     // get all groups with the suffix and then remove it
-    return this.get('groups')
+    return this.groups
       .filter(g => g.endsWith('gitlab'))
       .map(group => group.replace('-gitlab', ''))
   }),
 
   rt: computed('email', 'emails.[]', function() {
-    return this.get('email') || this.get('emails.length')
+    return this.email || this.get('emails.length')
   }),
 
   wikis: computed('groups.[]', function() {
-    return this.get('groups')
+    return this.groups
       .filter(g => g.endsWith('-wiki'))
       .map(g => g.split('-')[0])
   }),
@@ -65,6 +65,6 @@ export default Model.extend({
   }),
 
   _checkGroup(name) {
-    return this.get('groups').find(g => g.endsWith(name))
+    return this.groups.find(g => g.endsWith(name))
   }
 })

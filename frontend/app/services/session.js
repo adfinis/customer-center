@@ -7,13 +7,13 @@ export default Session.extend({
   ajax: service(),
   store: service(),
 
-  user: computed(async function() {
-    let res = await this.get('ajax').request('/api/v1/users/current')
+  user: computed(function() {
+    return this.ajax.request('/api/v1/users/current').then(res => {
+      this.store.pushPayload(res)
 
-    await this.get('store').pushPayload(res)
+      let { data: { id } } = res
 
-    let { data: { id } } = res
-
-    return this.get('store').peekRecord('user', id)
+      return this.store.peekRecord('user', id)
+    })
   })
 })

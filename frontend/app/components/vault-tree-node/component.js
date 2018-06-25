@@ -11,7 +11,7 @@ export default Component.extend({
 
   actions: {
     toggle() {
-      this.set('visible', !this.get('visible'))
+      this.set('visible', !this.visible)
     }
   }
 })

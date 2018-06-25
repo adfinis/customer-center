@@ -5,13 +5,13 @@ export default Component.extend({
   maskPassword: true,
   actions: {
     show() {
-      this.set('maskPassword', !this.get('maskPassword'))
+      this.set('maskPassword', !this.maskPassword)
     },
     save(index, entry) {
-      this.get('on-save')(index, entry)
+      this['on-save'](index, entry)
     },
     delete(index) {
-      this.get('on-delete')(index)
+      this['on-delete'](index)
     }
   }
 })

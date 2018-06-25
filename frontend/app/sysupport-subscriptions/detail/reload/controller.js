@@ -14,16 +14,14 @@ export default Controller.extend({
       .createRecord('timed-subscription-order', order)
       .save()
       .then(() => {
-        this.get('notify').success(
-          this.get('i18n').t('sysupport.reload.success')
-        )
+        this.notify.success(this.i18n.t('sysupport.reload.success'))
         this.transitionToRoute(
           'sysupport-subscriptions.detail.index',
           this.get('model.project')
         )
       })
       .catch(() => {
-        this.get('notify').error(this.get('i18n').t('sysupport.reload.error'))
+        this.notify.error(this.i18n.t('sysupport.reload.error'))
       })
   },
 

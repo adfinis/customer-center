@@ -8,19 +8,9 @@ module('helper:trim', function(hooks) {
 
   test('it renders', async function(assert) {
     await render(hbs`{{trim 'wazzzzzzup'}}`)
-    assert.equal(
-      this.$()
-        .text()
-        .trim(),
-      'wazzzzzzup'
-    )
+    assert.dom('*').hasText('wazzzzzzup')
 
     await render(hbs`{{trim 'wazzzzzzup' length=5}}`)
-    assert.equal(
-      this.$()
-        .text()
-        .trim(),
-      'wazzz...'
-    )
+    assert.dom('*').hasText('wazzz...')
   })
 })

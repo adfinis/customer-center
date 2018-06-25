@@ -12,20 +12,10 @@ module('Integration | Helper | format duration', function(hooks) {
 
     await render(hbs`{{format-duration duration}}`)
 
-    assert.equal(
-      this.$()
-        .text()
-        .trim(),
-      '12 Hours 45 Minutes'
-    )
+    assert.dom('*').hasText('12 Hours 45 Minutes')
 
     this.set('duration', moment.duration({ hours: 2, minutes: 5 }))
 
-    assert.equal(
-      this.$()
-        .text()
-        .trim(),
-      '2 Hours 5 Minutes'
-    )
+    assert.dom('*').hasText('2 Hours 5 Minutes')
   })
 })

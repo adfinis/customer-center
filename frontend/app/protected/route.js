@@ -58,7 +58,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   actions: {
     invalidateSession() {
-      this.get('session').invalidate()
+      this.session.invalidate()
     },
     loading(transition) {
       let controller = this.controllerFor('protected')
@@ -71,7 +71,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     },
     error(error) {
       if (error) {
-        this.get('notify').error(this.get('i18n').t('global.error'))
+        this.notify.error(this.i18n.t('global.error'))
         return true
       }
     }

@@ -28,6 +28,6 @@ module('Integration | Component | cc filter header', function(hooks) {
 
     await click('[data-test-search]')
     await fillIn('[data-test-input]', '123')
-    await triggerKeyEvent('[data-test-input]', 'keyup', '1')
+    await triggerKeyEvent('[data-test-input]', 'keyup', 1)
   })
 })

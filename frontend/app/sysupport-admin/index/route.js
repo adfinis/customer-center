@@ -7,7 +7,7 @@ export default Route.extend({
   init() {
     this._super(...arguments)
     this.set('breadCrumb', {
-      title: this.get('i18n').t('sysupport.admin.admin')
+      title: this.i18n.t('sysupport.admin.admin')
     })
   },
 

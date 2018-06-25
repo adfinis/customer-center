@@ -1,6 +1,6 @@
 module.exports = {
   globals: {
-    server: true,
+    server: true
   },
   root: true,
   parserOptions: {
@@ -15,5 +15,25 @@ module.exports = {
   extends: ['eslint:recommended', 'plugin:ember/recommended', 'prettier'],
   rules: {
     'prettier/prettier': 'error'
-  }
+  },
+  overrides: [
+    // node files
+    {
+      files: [
+        'ember-cli-build.js',
+        'testem.js',
+        'blueprints/*/index.js',
+        'config/**/*.js',
+        'lib/*/index.js'
+      ],
+      parserOptions: {
+        sourceType: 'script',
+        ecmaVersion: 2015
+      },
+      env: {
+        browser: false,
+        node: true
+      }
+    }
+  ]
 }

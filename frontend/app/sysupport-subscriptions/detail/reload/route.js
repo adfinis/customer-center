@@ -8,7 +8,7 @@ export default Route.extend({
   init() {
     this._super(...arguments)
     this.set('breadCrumb', {
-      title: this.get('i18n').t('sysupport.breadcrumbs.reload')
+      title: this.i18n.t('sysupport.breadcrumbs.reload')
     })
   },
 

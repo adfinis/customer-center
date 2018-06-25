@@ -14,11 +14,11 @@ export default Model.extend({
   customer: belongsTo('timed-customer'),
 
   totalTime: computed('purchasedTime', 'spentTime', function() {
-    return this.get('purchasedTime').subtract(this.get('spentTime'))
+    return this.purchasedTime.subtract(this.spentTime)
   }),
 
   unconfirmedTime: computed('orders', function() {
-    return this.get('orders')
+    return this.orders
       .filter(order => !order.get('acknowledged'))
       .reduce((accumulator, order) => {
         return accumulator.add(order.get('duration'))

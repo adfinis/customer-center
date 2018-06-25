@@ -16,9 +16,9 @@ export default Controller.extend({
     // Setting html locale to support hyphenation
     document.documentElement.lang = locale
 
-    yield this.get('ajax').request('/api/v1/users/current', {
+    yield this.ajax.request('/api/v1/users/current', {
       method: 'put',
-      data: this.get('model').serialize()
+      data: this.model.serialize()
     })
   })
 })

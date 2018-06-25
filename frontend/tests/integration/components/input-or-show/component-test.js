@@ -12,11 +12,6 @@ module('Integration | Component | input or show', function(hooks) {
 
     await render(hbs`{{input-or-show}}`)
 
-    assert.equal(
-      this.$()
-        .text()
-        .trim(),
-      ''
-    )
+    assert.dom('*').hasText('')
   })
 })

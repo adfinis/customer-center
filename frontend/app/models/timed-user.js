@@ -8,7 +8,7 @@ export default Model.extend({
   lastName: attr('string'),
 
   fullName: computed('firstName', 'lastName', function() {
-    return `${this.get('firstName')} ${this.get('lastName')}`.trim()
+    return `${this.firstName} ${this.lastName}`.trim()
   }),
   reports: hasMany('timed-reports')
 })

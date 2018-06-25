@@ -8,7 +8,7 @@ export default Route.extend({
   init() {
     this._super(...arguments)
     this.set('breadCrumb', {
-      title: this.get('i18n').t('sysupport.admin.confirm-subscription')
+      title: this.i18n.t('sysupport.admin.confirm-subscription')
     })
   },
 
@@ -33,21 +33,15 @@ export default Route.extend({
     order.set('acknowledged', true)
     order.confirm()
     order.unloadRecord()
-    this.get('notify').info(
-      this.get('i18n').t(
-        'sysupport.admin.confirmSuccess',
-        order.get('project.name')
-      )
+    this.notify.info(
+      this.i18n.t('sysupport.admin.confirmSuccess', order.get('project.name'))
     )
   },
 
   _deny(order) {
     order.destroyRecord()
-    this.get('notify').info(
-      this.get('i18n').t(
-        'sysupport.admin.confirmDeny',
-        order.get('project.name')
-      )
+    this.notify.info(
+      this.i18n.t('sysupport.admin.confirmDeny', order.get('project.name'))
     )
   }
 })

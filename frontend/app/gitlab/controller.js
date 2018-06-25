@@ -25,8 +25,8 @@ export default Controller.extend({
    */
   filter: computed('search', 'date', function() {
     return {
-      search: this.get('search'),
-      date: this.get('date')
+      search: this.search,
+      date: this.date
     }
   }),
 
@@ -37,9 +37,9 @@ export default Controller.extend({
    * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
    */
   groups: computed('model', 'selection', function() {
-    if (!this.get('selection')) {
-      return this.get('model')
+    if (!this.selection) {
+      return this.model
     }
-    return [this.get('model').find(group => group.id == this.get('selection'))]
+    return [this.model.find(group => group.id == this.selection)]
   })
 })

@@ -20,6 +20,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@mdi/svg": "2.4.85",
     "babel-eslint": "^8.0.3",
     "broccoli-asset-rev": "^2.6.0",
     "ember-ajax": "^3.0.0",
@@ -50,6 +51,7 @@
     "ember-i18n": "^5.0.2",
     "ember-load-initializers": "^1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-mdi": "^0.4.7",
     "ember-model-namespaces": "adfinis-sygroup/ember-model-namespaces",
     "ember-moment": "^7.5.0",
     "ember-notify": "^5.2.1",

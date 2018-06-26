@@ -1,38 +1,73 @@
 <div uk-grid class="uk-child-width-1-1 uk-child-width-1-2@m" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
-  <div>
-    {{#uk-card as |card|}}
-      {{#card.header}}
-        {{#card.title}}
-          {{model.project.name}}
-        {{/card.title}}
-      {{/card.header}}
-      {{#card.body}}
-        <div class="uk-grid uk-grid-divider">
-          <div class="uk-width-1-2">
-            <dl class="uk-description-list">
-              <dt>{{t 'sysupport.admin.customer'}}:</dt>
-              <dd data-test-customer-name="{{model.project.id}}">{{model.project.customer.name}}</dd>
-              <dt>{{t 'sysupport.admin.billingType'}}:</dt>
-              <dd data-test-billing-type-name="{{model.project.id}}">{{model.project.billingType.name}}</dd>
-            </dl>
+  <div uk-grid class="uk-flex uk-flex-column" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
+    <div>
+      {{#uk-card as |card|}}
+        {{#card.header}}
+          {{#card.title}}
+            {{model.project.name}}
+          {{/card.title}}
+        {{/card.header}}
+        {{#card.body}}
+          <div class="uk-grid uk-grid-divider">
+            <div class="uk-width-1-2">
+              <dl class="uk-description-list">
+                <dt>{{t 'sysupport.admin.customer'}}:</dt>
+                <dd data-test-customer-name="{{model.project.id}}">{{model.project.customer.name}}</dd>
+                <dt>{{t 'sysupport.admin.billingType'}}:</dt>
+                <dd data-test-billing-type-name="{{model.project.id}}">{{model.project.billingType.name}}</dd>
+              </dl>
+            </div>
+            <div class="uk-width-1-2">
+              <dl class="uk-description-list">
+                <dt>{{t 'sysupport.index.time.total'}}:</dt>
+                <dd>{{format-duration model.project.purchasedTime}}</dd>
+                <dt>{{t 'sysupport.index.time.used'}}:</dt>
+                <dd>{{format-duration model.project.spentTime}}</dd>
+              </dl>
+            </div>
           </div>
-          <div class="uk-width-1-2">
-            <dl class="uk-description-list">
-              <dt>{{t 'sysupport.index.time.total'}}:</dt>
-              <dd>{{format-duration model.project.purchasedTime}}</dd>
-              <dt>{{t 'sysupport.index.time.used'}}:</dt>
-              <dd>{{format-duration model.project.spentTime}}</dd>
-            </dl>
-          </div>
-        </div>
-      {{/card.body}}
-    {{/uk-card}}
+        {{/card.body}}
+      {{/uk-card}}
+    </div>
+    <div>
+      {{#uk-card as |card|}}
+        {{#card.header}}
+          {{#card.title}}
+            {{t 'sysupport.detail.charges'}}
+          {{/card.title}}
+        {{/card.header}}
+        {{#card.body}}
+          <table class="uk-table uk-table-divider uk-width-1-1">
+            <thead>
+              <tr>
+                <th>{{t 'sysupport.date'}}</th>
+                <th>{{t 'sysupport.detail.amount'}}</th>
+                <th>{{t 'sysupport.detail.acknowledged'}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each model.orders as |order index|}}
+                <tr data-test-project-order="{{index}}">
+                  <td>{{moment-format order.ordered 'DD.MM.YYYY'}}</td>
+                  <td>{{format-duration order.duration format='hours'}}</td>
+                  {{#if order.acknowledged}}
+                    <td>{{uk-icon 'check' scale=2 data-test-acknowledged=index}}</td>
+                  {{else}}
+                    <td>{{uk-icon 'close' scale=2 data-test-unconfirmed=index}}</td>
+                  {{/if}}
+                </tr>
+              {{else}}{{t 'global.empty'}}{{/each}}
+              </tbody>
+          </table>
+        {{/card.body}}
+      {{/uk-card}}
+    </div>
   </div>
   <div>
     {{#uk-card as |card|}}
       {{#card.header}}
         {{#card.title}}
-          {{t 'sysupport.detail.charges'}}
+          {{t 'sysupport.detail.expense'}}
         {{/card.title}}
       {{/card.header}}
       {{#card.body}}
@@ -40,23 +75,21 @@
           <thead>
             <tr>
               <th>{{t 'sysupport.date'}}</th>
-              <th>{{t 'sysupport.detail.amount'}}</th>
-              <th>{{t 'sysupport.detail.acknowledged'}}</th>
+              <th>{{t 'sysupport.detail.effort'}}</th>
+              <th>{{t 'sysupport.detail.employee'}}</th>
+              <th>{{t 'sysupport.detail.description'}}</th>
             </tr>
           </thead>
           <tbody>
-            {{#each model.orders as |order index|}}
-              <tr data-test-project-order="{{index}}">
-                <td>{{moment-format order.ordered 'DD.MM.YYYY'}}</td>
-                <td>{{format-duration order.duration format='hours'}}</td>
-                {{#if order.acknowledged}}
-                  <td>{{uk-icon 'check' scale=2 data-test-acknowledged=index}}</td>
-                {{else}}
-                  <td>{{uk-icon 'close' scale=2 data-test-unconfirmed=index}}</td>
-                {{/if}}
+            {{#each model.reports as |report index|}}
+              <tr data-test-project-report="{{index}}">
+                <td>{{moment-format report.date 'DD.MM.YYYY'}}</td>
+                <td>{{format-duration-short report.duration}}</td>
+                <td>{{report.user.fullName}}</td>
+                <td>{{report.comment}}</td>
               </tr>
-            {{else}}{{t 'global.empty'}}{{/each}}
-          </tbody>
+            {{else}}<tr><td colspan="4">{{t 'global.empty'}}</td></tr>{{/each}}
+            </tbody>
         </table>
       {{/card.body}}
     {{/uk-card}}

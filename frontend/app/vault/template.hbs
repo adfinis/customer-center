@@ -3,7 +3,7 @@
 <!-- Show this block on desktops -->
 <div class="uk-visible@l">
   <div class="uk-flex uk-flex-between">
-    <div class="uk-padding-small uk-background-muted">
+    <div class="uk-padding-small uk-background-muted uk-animation-slide-bottom-small">
       {{#vault-tree-filter model=model as |tree|}}
       <ul class="uk-list uk-list-divider uk-height-large uk-overflow-auto" uk-height-viewport="offset-top: true; offset-bottom: true">
         {{#each-in tree.children s=(action "test") as |name child|}}

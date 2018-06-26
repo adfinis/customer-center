@@ -14,7 +14,7 @@ export default Model.extend({
   customer: belongsTo('timed-customer'),
 
   totalTime: computed('purchasedTime', 'spentTime', function() {
-    return this.purchasedTime.subtract(this.spentTime)
+    return moment.duration(this.purchasedTime - this.spentTime)
   }),
 
   unconfirmedTime: computed('orders', function() {

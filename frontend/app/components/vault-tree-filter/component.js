@@ -11,7 +11,9 @@ import Component from '@ember/component'
 function match(name, node, term) {
   return (
     name.indexOf(term) > -1 ||
-    Object.keys(node).some(key => node[key].indexOf(term) > -1)
+    Object.keys(node).some(key =>
+      node[key].toLowerCase().includes(term.toLowerCase())
+    )
   )
 }
 

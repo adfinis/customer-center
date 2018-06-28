@@ -12,12 +12,6 @@ Before you start, please make sure that the following tools are installed:
 * docker + docker-compose
 * vault (https://www.vaultproject.io/downloads.html)
 
-To use the sysupport/timed part, clone the timed-backend repository on the same level as customer-center:
-
-```shell
-git clone git@github.com:adfinis-sygroup/timed-backend.git
-```
-
 ## Setup
 
 ```shell

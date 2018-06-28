@@ -11,7 +11,6 @@ before_script:
 
 stages:
     - deploy
-
 deploy:
   environment:
     name: customer-center
@@ -19,17 +18,6 @@ deploy:
   stage: deploy
   script:
     - ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts
-    - ssh $DEPLOY_USER@$DEPLOY_HOST "
-      cd ~/adsycc &&
-      git fetch &&
-      git checkout $CI_COMMIT_REF_NAME &&
-      make install-frontend install-backend &&
-      cd frontend &&
-      ember build --environment=production &&
-      cd ../backend &&
-      make migrations &&
-      yarn build &&
-      pm2 restart $CC_PM_ID"
-
+    - ssh $DEPLOY_USER@$DEPLOY_HOST "cd ~/adsycc && make deploy"
   only:
     - tags

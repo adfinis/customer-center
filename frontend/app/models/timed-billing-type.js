@@ -4,5 +4,6 @@ import { hasMany } from 'ember-data/relationships'
 
 export default Model.extend({
   name: attr('string'),
-  projects: hasMany('timed-subscription-project')
+  projects: hasMany('timed-subscription-project'),
+  packages: hasMany('timed-subscription-packages')
 })

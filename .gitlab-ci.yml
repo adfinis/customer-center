@@ -20,7 +20,6 @@ deploy:
   script:
     - ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts
     - ssh $DEPLOY_USER@$DEPLOY_HOST "
-      su -- $SERVICE_USER &&
       cd ~/adsycc &&
       git fetch &&
       git checkout $CI_COMMIT_REF_NAME &&

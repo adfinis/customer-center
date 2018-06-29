@@ -1,0 +1,23 @@
+variables:
+    LANG: C.UTF-8
+    LC_ALL: C.UTF-8
+
+before_script:
+    - source /etc/profile
+    - mkdir -p /root/.ssh/
+    - echo "$RUNNER_SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
+    - echo "$RUNNER_SSH_PUBLIC_KEY" > /root/.ssh/id_rsa.pub
+    - chmod -R 600 /root/.ssh/
+
+stages:
+    - deploy
+deploy:
+  environment:
+    name: customer-center
+    url: $APP_URL
+  stage: deploy
+  script:
+    - ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts
+    - ssh $DEPLOY_USER@$DEPLOY_HOST "cd ~/adsycc && make deploy"
+  only:
+    - tags

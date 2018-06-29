@@ -24,7 +24,6 @@
     "jsonapi-serializer": "^3.5.5",
     "jwt-redis-session": "^1.0.2",
     "knex": "^0.12.9",
-    "ldap-server-mock": "^1.0.0",
     "ldapjs": "^1.0.0",
     "lodash": "^4.15.0",
     "morgan": "^1.6.1",

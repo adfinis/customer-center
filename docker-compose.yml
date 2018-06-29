@@ -103,20 +103,18 @@ services:
       - "8200:8200"
 
   timedbackend:
-      build: ../timed-backend/
-      ports:
-        - '8000:80'
-      volumes:
-        - ../timed-backend/:/app
-      depends_on:
-        - postgres
-      environment:
-        - DATABASE_URL=psql://test:test@postgres:5432/timed
-        - DJANGO_DATABASE_HOST=postgres
-        - DJANGO_DATABASE_USER=test
-        - DJANGO_DATABASE_PASSWORD=test
-        - ENV=docker
-        - STATIC_ROOT=/var/www/static
+    image: adfinissygroup/timed-backend
+    ports:
+      - '8000:80'
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=psql://test:test@postgres:5432/timed
+      - DJANGO_DATABASE_HOST=postgres
+      - DJANGO_DATABASE_USER=test
+      - DJANGO_DATABASE_PASSWORD=test
+      - ENV=docker
+      - STATIC_ROOT=/var/www/static
 
   gitlab:
       image: 'gitlab/gitlab-ce:latest'

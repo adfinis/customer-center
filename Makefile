@@ -28,12 +28,12 @@ timed-test-data:
 	docker-compose exec postgres psql -U test -d timed -f /tmp/timed-test-data.sql
 
 setup-gitlab-runner:
-	docker-compose exec gitlab-runner gitlab-runner register 
+	docker-compose exec gitlab-runner gitlab-runner register
 
 serve-local:
 	docker-compose stop frontend
 	cd frontend/;ember serve --proxy http://localhost:8080
 
-deploy:
-	(cd frontend; yarn; yarn build)
-	(cd backend; yarn; yarn build; pm2 restart index)
+deploy: install-frontend install-backend
+	(cd frontend && yarn build)
+	(cd backend && make migrations && yarn build && pm2 restart index)

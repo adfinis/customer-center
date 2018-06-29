@@ -98,3 +98,7 @@ body {
 .calendar-not-current-month {
   color: lightgray;
 }
+
+.cc-data-table tbody tr:hover {
+  background-color: rgb(91, 142, 219);
+}

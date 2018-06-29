@@ -1,19 +1,17 @@
-<h2>{{t 'sysupport.admin.projects'}}</h2>
+<h2>{{t 'sysupport.admin.projects'}}</h2>.uk-flex-inline
 
 <div class="uk-overflow-auto" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 50;">
   {{#cc-data-table headers=headers model=model as |results|}}
     {{#each results as |project index|}}
-      <tr class="cc-data-table-alert">
-      {{#link-to "sysupport-admin.detail" project.id data-test-project=index class="uk-link-reset"}}
-        <td class="uk-text-bold uk-text-primary">{{project.name}}</td>
-      {{/link-to}}
+      {{#link-to "sysupport-admin.detail" project.id data-test-project=index class="{{if (gte alertTime project.totalTime._milliseconds) "uk-text-danger"}} uk-link-reset" tagName="tr"}}
+        <td class="uk-text-bold uk-text-default">{{project.name}}</td>
         <td>{{project.customer.name}}</td>
         <td>{{project.billingType.name}}</td>
         <td>{{format-duration-short project.purchasedTime}}</td>
         <td>{{format-duration-short project.spentTime}}</td>
-        <td>{{format-duration-short project.totalTime}}</td>
+        <td class="uk-flex-inline uk-flex-between uk-width-1-1"><span>{{format-duration-short project.totalTime}}</span>{{mdi-icon "clock-alert-outline" fill="#ff0000" class="uk-margin-small-left"}}</td>
         <td>{{format-duration-short project.unconfirmedTime}}</td>
-      </tr>
+      {{/link-to}}
     {{else}}{{t 'global.empty'}}{{/each}}
   {{/cc-data-table}}
 </div>

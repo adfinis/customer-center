@@ -15,6 +15,7 @@ Before you start, please make sure that the following tools are installed:
 ## Setup
 
 ```shell
+make install-frontend install-backend
 docker-compose up
 make install
 ```

@@ -21,25 +21,25 @@ export default Controller.extend({
       },
       {
         type: 'sort',
-        title: 'sysupport.admin.orderedTime',
+        title: 'sysupport.time.ordered',
         attr: 'purchasedTime',
         customFilter: this._sortDurations
       },
       {
         type: 'sort',
-        title: 'sysupport.admin.usedTime',
+        title: 'sysupport.time.used',
         attr: 'spentTime',
         customFilter: this._sortDurations
       },
       {
         type: 'sort',
-        title: 'sysupport.admin.timeTotal',
+        title: 'sysupport.time.total',
         attr: 'totalTime',
         customFilter: this._sortDurations
       },
       {
         type: 'sort',
-        title: 'sysupport.admin.unconfirmedTime',
+        title: 'sysupport.time.unconfirmed',
         attr: 'unconfirmedTime',
         customFilter: this._sortDurations
       }

@@ -1,6 +1,7 @@
 import { module, test } from 'qunit'
 import { setupTest } from 'ember-qunit'
 import moment from 'moment'
+import ENV from 'customer-center/config/environment'
 
 import { run } from '@ember/runloop'
 
@@ -32,5 +33,29 @@ module('Unit | Model | timed subscription project', function(hooks) {
     )
     assert.equal(model.get('totalTime').as('hours'), 2)
     assert.equal(model.get('unconfirmedTime').as('hours'), 10)
+    assert.equal(model.get('isTimeAlmostConsumed'), true)
+
+    model = run(() =>
+      store.createRecord('timed-subscription-project', {
+        name: 'X',
+        purchasedTime: moment.duration(ENV.APP.alertTime + 1, 'hours'),
+        spentTime: moment.duration(0, 'hours'),
+        orders: [
+          store.createRecord('timed-subscription-order', {
+            acknowledged: true,
+            duration: moment.duration(5, 'hours')
+          }),
+          store.createRecord('timed-subscription-order', {
+            acknowledged: false,
+            duration: moment.duration(5, 'hours')
+          }),
+          store.createRecord('timed-subscription-order', {
+            acknowledged: false,
+            duration: moment.duration(5, 'hours')
+          })
+        ]
+      })
+    )
+    assert.equal(model.get('isTimeAlmostConsumed'), false)
   })
 })

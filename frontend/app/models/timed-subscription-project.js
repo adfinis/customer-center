@@ -3,6 +3,7 @@ import Model from 'ember-data/model'
 import { hasMany, belongsTo } from 'ember-data/relationships'
 import { computed } from '@ember/object'
 import moment from 'moment'
+import ENV from 'customer-center/config/environment'
 
 export default Model.extend({
   name: attr('string'),
@@ -23,5 +24,9 @@ export default Model.extend({
       .reduce((accumulator, order) => {
         return accumulator.add(order.get('duration'))
       }, moment.duration())
+  }),
+
+  isTimeAlmostConsumed: computed('totalTime', function() {
+    return this.totalTime.asHours() <= ENV.APP.alertTime
   })
 })

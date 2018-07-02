@@ -36,6 +36,8 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ./frontend:/usr/src/app
+      - /usr/src/app/tmp
+      - /usr/src/app/dist
     ports:
       - "7020:7020"
     command: yarn start-proxy

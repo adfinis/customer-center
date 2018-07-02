@@ -8,10 +8,12 @@
         {{/card.header}}
         {{#card.body}}
           <dl class="uk-description-list">
-            <dt>{{t 'sysupport.index.time.total'}}:</dt>
+            <dt>{{t 'sysupport.time.ordered'}}:</dt>
             <dd>{{format-duration project.purchasedTime}}</dd>
-            <dt>{{t 'sysupport.index.time.used'}}:</dt>
+            <dt>{{t 'sysupport.time.used'}}:</dt>
             <dd>{{format-duration project.spentTime}}</dd>
+            <dt>{{t 'sysupport.time.total'}}:</dt>
+            <dd>{{format-duration project.totalTime}}</dd>
           </dl>
         {{/card.body}}
         {{#card.footer}}

@@ -2,6 +2,7 @@ import Helper from '@ember/component/helper'
 import { translationMacro as t } from 'ember-i18n'
 import { inject as service } from '@ember/service'
 import { observer } from '@ember/object'
+import moment from 'moment'
 
 const { trunc } = Math
 
@@ -25,7 +26,7 @@ export default Helper.extend({
   ),
 
   compute([duration]) {
-    let minutes = duration.minutes()
+    let minutes = moment.duration(Math.abs(duration)).minutes()
     let hours = trunc(duration.as('hours'))
 
     this.set('minutesCount', minutes)

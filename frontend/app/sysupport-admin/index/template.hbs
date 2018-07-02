@@ -6,9 +6,8 @@
       {{#link-to "sysupport-admin.detail" project.id
         data-test-project=index
         class=(if project.isTimeAlmostConsumed
-            "uk-text-danger uk-link-reset pointer"
-            "uk-link-reset pointer"
-          )
+          "uk-text-danger uk-link-reset pointer"
+          "uk-link-reset pointer")
         tagName="tr"
       }}
         <td class="uk-text-bold uk-text-default">{{project.name}}</td>
@@ -27,5 +26,5 @@
         <td>{{format-duration-short project.unconfirmedTime}}</td>
       {{/link-to}}
     {{else}}{{t 'global.empty'}}{{/each}}
-    {{/cc-data-table}}
+  {{/cc-data-table}}
 </div>

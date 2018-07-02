@@ -26,6 +26,7 @@ Router.map(function() {
     this.route('sysupport-admin', { resetNamespace: true }, function() {
       this.route('detail', { path: ':project' })
       this.route('confirm-subscriptions')
+      this.route('reload', { path: ':project/reload' })
     })
 
     this.route('gitlab', { resetNamespace: true, path: 'projects' })

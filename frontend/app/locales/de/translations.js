@@ -146,6 +146,7 @@ export default {
     admin: {
       subscriptions: 'Abonnements',
       'confirm-subscription': 'Bestellung bestätigen',
+      reload: 'Aufladen',
       customer: 'Kunde',
       project: 'Projekt',
       projects: 'Projekte',

@@ -1,5 +1,10 @@
+<div class="uk-flex-inline uk-flex-right uk-width-1-1 uk-margin">
+  {{#link-to 'sysupport-admin.reload' model.project.id class="uk-link-reset"}}
+    {{uk-button label=(t 'sysupport.admin.reload') class="uk-animation-slide-right-small uk-button uk-button-primary uk-button-large"}}
+  {{/link-to}}
+</div>
 <div uk-grid class="uk-child-width-1-1 uk-child-width-1-2@m" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
-  <div uk-grid class="uk-flex uk-flex-column" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
+  <div uk-grid class="uk-margin-remove-left uk-flex uk-flex-column" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
     <div>
       {{#uk-card as |card|}}
         {{#card.header}}

@@ -17,7 +17,7 @@ module('Integration | Helper | format duration', function(hooks) {
     this.set('duration', moment.duration({ hours: 2, minutes: 5 }))
     assert.dom('*').hasText('2 Hours 5 Minutes')
 
-    this.set('duration', moment.duration({ hours: -2, minutes: 5 }))
+    this.set('duration', moment.duration({ hours: -2, minutes: -5 }))
     assert.dom('*').hasText('-2 Hours 5 Minutes')
   })
 })

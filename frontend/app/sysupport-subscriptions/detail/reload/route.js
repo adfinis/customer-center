@@ -12,10 +12,13 @@ export default Route.extend({
     })
   },
 
-  model() {
+  async model() {
+    let project = await this.modelFor('sysupport-subscriptions.detail')
     return RSVP.hash({
-      project: this.modelFor('sysupport-subscriptions.detail'),
-      packages: this.store.findAll('timed-subscription-package')
+      project,
+      packages: this.store.findAll('timed-subscription-package', {
+        billing_type: project.get('billingType.id')
+      })
     })
   }
 })

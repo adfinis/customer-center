@@ -15,10 +15,10 @@
           </dl>
         {{/card.body}}
         {{#card.footer}}
-          {{#link-to 'sysupport-subscriptions.detail.reload' project.id}}
+          {{#link-to 'sysupport-subscriptions.detail.reload' project.id class="uk-link-reset"}}
             {{uk-button data-test-reload-link=index color='primary' size='large' fill=true label=(t 'sysupport.index.charge') }}
           {{/link-to}}
-          {{#link-to "sysupport-subscriptions.detail.index" project.id}}
+          {{#link-to "sysupport-subscriptions.detail.index" project.id class="uk-link-reset"}}
             {{uk-button data-test-detail-link=index color='default' size='large' fill=true label=(t 'sysupport.index.details') }}
           {{/link-to}}
         {{/card.footer}}

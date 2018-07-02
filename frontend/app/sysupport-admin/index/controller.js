@@ -1,10 +1,7 @@
 import Controller from '@ember/controller'
 import { computed } from '@ember/object'
-import ENV from 'customer-center/config/environment'
 
 export default Controller.extend({
-  alertTime: ENV.APP.alertTime * 60 * 60 * 1000,
-
   headers: computed(function() {
     return [
       {

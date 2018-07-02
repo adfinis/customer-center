@@ -7,7 +7,7 @@ const { trunc } = Math
 export function formatDurationShort([duration]) {
   //remove "-" from negative numbers
   let negative = duration < 0
-  duration = negative ? moment.duration(-duration) : duration
+  duration = moment.duration(Math.abs(duration))
   let str = startPaddingTag(2)`${trunc(
     duration.asHours()
   )}:${duration.minutes()}`

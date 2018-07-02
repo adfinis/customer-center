@@ -26,6 +26,7 @@ export default Helper.extend({
   ),
 
   compute([duration]) {
+    // We dont want to show the minutes as minus
     let minutes = moment.duration(Math.abs(duration)).minutes()
     let hours = trunc(duration.as('hours'))
 

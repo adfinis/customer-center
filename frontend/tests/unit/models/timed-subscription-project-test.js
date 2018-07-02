@@ -32,5 +32,6 @@ module('Unit | Model | timed subscription project', function(hooks) {
     )
     assert.equal(model.get('totalTime').as('hours'), 2)
     assert.equal(model.get('unconfirmedTime').as('hours'), 10)
+    assert.equal(model.get('isTimeAlmostConsumed'), true)
   })
 })

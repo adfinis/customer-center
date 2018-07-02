@@ -100,6 +100,12 @@ export default {
     date: 'Date',
     accept: 'Confirm',
     deny: 'Delete',
+    time: {
+      total: 'Time Total',
+      used: 'Time Used',
+      ordered: 'Time Ordered',
+      unconfirmed: 'Needs confirmation'
+    },
 
     durations: {
       minute: {
@@ -113,10 +119,6 @@ export default {
     },
     index: {
       title: 'Sysupport Subscriptions',
-      time: {
-        total: 'Time Total',
-        used: 'Time Used'
-      },
       charge: 'Reload',
       details: 'Details'
     },
@@ -146,10 +148,6 @@ export default {
       project: 'Project',
       projects: 'Projects',
       billingType: 'Billing Type',
-      orderedTime: 'Time Ordered',
-      usedTime: 'Time Used',
-      timeTotal: 'Time Total',
-      unconfirmedTime: 'Needs confirmation',
       admin: 'Admin',
       confirmSuccess: 'Order accepted.',
       confirmDeny: 'Order denied.'

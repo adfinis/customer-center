@@ -101,6 +101,12 @@ export default {
     date: 'Datum',
     accept: 'Bestätigen',
     deny: 'Löschen',
+    time: {
+      total: 'Totales Guthaben',
+      used: 'Gebrauchtes Guthaben',
+      ordered: 'Bestellte Zeit',
+      unconfirmed: 'Ausstehende Zeit'
+    },
 
     durations: {
       minute: {
@@ -115,10 +121,6 @@ export default {
 
     index: {
       title: 'Sysupport Abonnements',
-      time: {
-        total: 'Totales Guthaben',
-        used: 'Gebrauchtes Guthaben'
-      },
       charge: 'Aufladen',
       details: 'Details'
     },
@@ -148,10 +150,6 @@ export default {
       project: 'Projekt',
       projects: 'Projekte',
       billingType: 'Verrechnungs Art',
-      orderedTime: 'Bestellte Zeit',
-      usedTime: 'Verbrauchte Zeit',
-      timeTotal: 'Insgesamte Zeit',
-      unconfirmedTime: 'Ausstehende Zeit',
       admin: 'Admin',
       confirmSuccess: 'Bestellung akzeptiert.',
       confirmDeny: 'Bestellung abgelehnt.'

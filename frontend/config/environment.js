@@ -32,7 +32,8 @@ module.exports = function(environment) {
       adminGroup: 'adsy-user',
       // Services : redmine, mon, sysupport, wiki, rt, vault
       enabledServices: ['vault', 'sysupport', 'gitlab'],
-      // Define alertTime in minutes
+      // Define alertTime in hours
+      // When total time comes close to alertTime, text color changes
       alertTime: 60
     },
 

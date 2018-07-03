@@ -5,7 +5,7 @@
     {{#each results as |project index|}}
       {{#link-to "sysupport-admin.detail" project.id
         data-test-project=index
-        class=(and "uk-link-reset pointer"
+        class=(concat "uk-link-reset pointer "
           (if project.isTimeAlmostConsumed "uk-text-danger"))
         tagName="tr"
       }}

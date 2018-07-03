@@ -3,5 +3,12 @@ import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin'
 
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: '/api/proxy/sysupport',
-  authorizer: 'authorizer:application'
+  authorize(xhr) {
+    if (this.get('session.data.authenticated.data.token')) {
+      xhr.setRequestHeader(
+        'X-Authorization',
+        this.get('session.data.authenticated.data.token')
+      )
+    }
+  }
 })

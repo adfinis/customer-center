@@ -18,7 +18,7 @@ const routes = {
   subscriptionOrders: {
     path: /^\/subscription-orders$/,
     access: {
-      admin: ['GET', 'DELETE'],
+      admin: ['GET', 'DELETE', 'POST'],
       customer: ['GET', 'POST']
     }
   },

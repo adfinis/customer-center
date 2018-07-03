@@ -1,4 +1,4 @@
-<div class="uk-width-1-1 uk-margin">
+<div class="uk-width-1-1 uk-margin uk-animation-slide-top-small">
   <ul uk-accordion>
     <li>
       <a class="uk-accordion-title" href="#">{{t 'sysupport.admin.reload'}} {{model.name}}</a>
@@ -30,7 +30,7 @@
               {{/if}}
             </div>
           </div>
-          {{uk-button on-click="saveOrder" label="Save" class="uk-button-primary"}}
+          {{uk-button loading=save.isRunning disabled=(or save.isRunning (not duration)) on-click=(action "saveOrder") label="Save" class="uk-button-primary"}}
         </div>
       </div>
     </li>
@@ -85,7 +85,7 @@
               </tr>
             </thead>
             <tbody>
-              {{#each model.orders as |order index|}}
+              {{#each orders as |order index|}}
                 <tr data-test-project-order="{{index}}">
                   <td>{{moment-format order.ordered 'DD.MM.YYYY'}}</td>
                   <td>{{format-duration order.duration format='hours'}}</td>

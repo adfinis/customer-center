@@ -2,6 +2,7 @@ import Controller from '@ember/controller'
 import { inject as service } from '@ember/service'
 import { computed } from '@ember/object'
 import moment from 'moment'
+import { task } from 'ember-concurrency'
 
 export default Controller.extend({
   i18n: service(),
@@ -47,9 +48,26 @@ export default Controller.extend({
     }
   }),
 
+  orders: computed(function() {
+    return this.store.query('timed-subscription-order', {
+      project: this.get('model.project'),
+      ordering: '-ordered'
+    })
+    //return this.get('model.orders')
+  }),
+
+  save: task(function*() {
+    let order = this.store.createRecord('timed-subscription-order', {
+      duration: this.duration,
+      acknowledged: true,
+      project: this.get('model.project')
+    })
+    yield order.save()
+  }).drop(),
+
   actions: {
     saveOrder() {
-      this.set('preview', false)
+      this.save.perform()
     },
     validate(field) {
       if (this.get(field)) {

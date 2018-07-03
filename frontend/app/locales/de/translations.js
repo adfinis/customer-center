@@ -153,7 +153,9 @@ export default {
       billingType: 'Verrechnungs Art',
       admin: 'Admin',
       confirmSuccess: 'Bestellung akzeptiert.',
-      confirmDeny: 'Bestellung abgelehnt.'
+      confirmDeny: 'Bestellung abgelehnt.',
+      'reload-form-error': 'Bitte geben Sie nur valide Nummern ein.',
+      form: 'Anzahl Stunden/Minuten:'
     }
   },
 

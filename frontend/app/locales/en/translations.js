@@ -151,7 +151,9 @@ export default {
       billingType: 'Billing Type',
       admin: 'Admin',
       confirmSuccess: 'Order accepted.',
-      confirmDeny: 'Order denied.'
+      confirmDeny: 'Order denied.',
+      'reload-form-error': 'Please enter only valid numbers',
+      form: 'Number of hours/minutes:'
     }
   },
 

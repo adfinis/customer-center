@@ -5,9 +5,8 @@
     {{#each results as |project index|}}
       {{#link-to "sysupport-admin.detail" project.id
         data-test-project=index
-        class=(if project.isTimeAlmostConsumed
-          "uk-text-danger uk-link-reset pointer"
-          "uk-link-reset pointer")
+        class=(and "uk-link-reset pointer"
+          (if project.isTimeAlmostConsumed "uk-text-danger"))
         tagName="tr"
       }}
         <td class="uk-text-bold uk-text-default">{{project.name}}</td>
@@ -16,7 +15,7 @@
         <td>{{format-duration-short project.purchasedTime}}</td>
         <td>{{format-duration-short project.spentTime}}</td>
         {{#if project.isTimeAlmostConsumed}}
-          <td class="uk-flex uk-flex-between">
+          <td class="uk-flex">
             <span>{{format-duration-short project.totalTime}}</span>
             {{mdi-icon "clock-alert-outline" fill="#ff0000" class="uk-margin-small-left"}}
           </td>

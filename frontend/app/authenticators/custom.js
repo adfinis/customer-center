@@ -1,8 +1,8 @@
 import { isEmpty } from '@ember/utils'
 import fetch from 'fetch'
-import Base from 'ember-simple-auth/authenticators/base'
+import BaseAuthenticator from 'ember-simple-auth/authenticators/base'
 
-export default Base.extend({
+export default BaseAuthenticator.extend({
   serverTokenRevocationEndpoint: '/api/v1/logout',
   session: 'session:custom',
 

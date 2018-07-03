@@ -59,7 +59,7 @@
             <div class="uk-width-1-2">
               <dl class="uk-description-list">
                 <dt>{{t 'sysupport.time.total'}}:</dt>
-                <dd class={{if (and duration preview) "uk-text-success"}}>{{format-duration (if (and duration preview) newDuration model.project.totalTime)}}</dd>
+                <dd class={{if (and duration preview) "uk-text-success"}}>{{format-duration (if (and duration preview) previewDuration model.project.totalTime)}}</dd>
                 <dt>{{t 'sysupport.time.unconfirmed'}}:</dt>
                 <dd>{{format-duration model.project.unconfirmedTime}}</dd>
               </dl>

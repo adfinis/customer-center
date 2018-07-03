@@ -28,7 +28,7 @@ export default Controller.extend({
     } else return null
   }),
 
-  newDuration: computed('duration', 'preview', function() {
+  previewDuration: computed('duration', 'preview', function() {
     return (
       this.duration &&
       this.preview &&
@@ -48,13 +48,20 @@ export default Controller.extend({
     }
   }),
 
-  orders: computed(function() {
-    return this.store.query('timed-subscription-order', {
+  orders: computed('fetchOrders.lastSuccessful.value', function() {
+    //console.log(this.fetchOrders)
+    //console.log('value:', this.get('fetchOrders.lastSuccessful.value'))
+    return /*this.get('fetchOrders.lastSuccessful.value') || */ this.get(
+      'model.orders'
+    )
+  }),
+
+  fetchOrders: task(function*() {
+    return yield this.store.query('timed-subscription-order', {
       project: this.get('model.project'),
       ordering: '-ordered'
     })
-    //return this.get('model.orders')
-  }),
+  }).drop(),
 
   save: task(function*() {
     let order = this.store.createRecord('timed-subscription-order', {
@@ -68,6 +75,7 @@ export default Controller.extend({
   actions: {
     saveOrder() {
       this.save.perform()
+      this.fetchOrders.perform()
     },
     validate(field) {
       if (this.get(field)) {

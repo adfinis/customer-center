@@ -9,7 +9,6 @@
 
             <div class="uk-flex uk-flex-center uk-flex-middle uk-margin-right">
               {{input
-                key-up=(action "validate" "hour")
                 focus-out=(action (mut preview ) false)
                 class=(concat "uk-text-center uk-input uk-form-width-small " (if hour (if validation.hour "uk-form-success" "uk-form-danger")))
                 type="number"
@@ -17,7 +16,6 @@
                 value=hour}}
               <span class="uk-margin-small-right uk-margin-small-left uk-text-large">:</span>
               {{input
-                key-up=(action "validate" "minute")
                 focus-out=(action (mut preview ) false)
                 class=(concat "uk-text-center uk-input uk-form-width-small " (if minute (if validation.minute "uk-form-success" "uk-form-danger")))
                 type="number"

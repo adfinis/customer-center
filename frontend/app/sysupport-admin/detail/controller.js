@@ -1,18 +1,14 @@
 import Controller from '@ember/controller'
-import { inject as service } from '@ember/service'
 import { computed } from '@ember/object'
-import moment from 'moment'
+import { inject as service } from '@ember/service'
+
 import { task } from 'ember-concurrency'
+import moment from 'moment'
 import UIkit from 'UIkit'
 
 export default Controller.extend({
   i18n: service(),
   notify: service(),
-
-  init() {
-    this._super(...arguments)
-    this.set('validation', {})
-  },
 
   duration: computed('validation.{hour,minute}', 'hour', 'minute', function() {
     if (this.hour || this.minute) {
@@ -30,6 +26,23 @@ export default Controller.extend({
     } else return null
   }),
 
+  error: computed('validation.{hour,minute}', 'hour', 'minute', function() {
+    if (
+      (this.hour && !this.get('validation.hour')) ||
+      (this.minute && !this.get('validation.minute'))
+    ) {
+      return true
+    } else {
+      return false
+    }
+  }),
+
+  orders: computed('fetchOrders.lastSuccessful.value', function() {
+    return (
+      this.get('fetchOrders.lastSuccessful.value') || this.get('model.orders')
+    )
+  }),
+
   previewDuration: computed('duration', 'preview', function() {
     return (
       this.duration &&
@@ -42,18 +55,17 @@ export default Controller.extend({
     )
   }),
 
-  error: computed('validation.{hour,minute}', function() {
-    if (this.hour && this.minute) {
-      return !(this.get('validation.hour') && this.get('validation.minute'))
-    } else {
-      return false
+  validation: computed('hour', 'minute', function() {
+    let validation = {
+      hour: Boolean(Number(this.hour)),
+      minute: Boolean(Number(this.minute))
     }
-  }),
 
-  orders: computed('fetchOrders.lastSuccessful.value', function() {
-    return (
-      this.get('fetchOrders.lastSuccessful.value') || this.get('model.orders')
-    )
+    if (validation.hour && validation.minute) {
+      this.set('preview', true)
+    }
+
+    return validation
   }),
 
   fetchOrders: task(function*() {
@@ -89,22 +101,6 @@ export default Controller.extend({
   actions: {
     saveOrder() {
       this.save.perform()
-    },
-    validate(field) {
-      if (this.get(field)) {
-        if (!Number(this.get(field))) {
-          this.set(`validation.${field}`, false)
-          this.set(
-            'error',
-            this.i18n.t(`sysupport.durations.${field}`) +
-              ': ' +
-              this.i18n.t('sysupport.admin.reload-form-error')
-          )
-        } else {
-          this.set(`validation.${field}`, true)
-          this.set('preview', true)
-        }
-      }
     }
   }
 })

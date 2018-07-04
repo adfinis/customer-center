@@ -61,7 +61,7 @@ export default Controller.extend({
       minute: Boolean(Number(this.minute))
     }
 
-    if (validation.hour && validation.minute) {
+    if (validation.hour || validation.minute) {
       this.set('preview', true)
     }
 

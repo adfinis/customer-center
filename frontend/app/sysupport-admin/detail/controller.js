@@ -3,9 +3,11 @@ import { inject as service } from '@ember/service'
 import { computed } from '@ember/object'
 import moment from 'moment'
 import { task } from 'ember-concurrency'
+import UIkit from 'UIkit'
 
 export default Controller.extend({
   i18n: service(),
+  notify: service(),
 
   init() {
     this._super(...arguments)
@@ -49,33 +51,44 @@ export default Controller.extend({
   }),
 
   orders: computed('fetchOrders.lastSuccessful.value', function() {
-    //console.log(this.fetchOrders)
-    //console.log('value:', this.get('fetchOrders.lastSuccessful.value'))
-    return /*this.get('fetchOrders.lastSuccessful.value') || */ this.get(
-      'model.orders'
+    return (
+      this.get('fetchOrders.lastSuccessful.value') || this.get('model.orders')
     )
   }),
 
   fetchOrders: task(function*() {
-    return yield this.store.query('timed-subscription-order', {
-      project: this.get('model.project'),
-      ordering: '-ordered'
-    })
+    try {
+      return yield this.store.query('timed-subscription-order', {
+        project: this.get('model.project.id'),
+        ordering: '-ordered'
+      })
+    } catch (e) {
+      this.notify.error(this.i18n.t('sysupport.reload.error-loading'))
+    }
   }).drop(),
 
   save: task(function*() {
-    let order = this.store.createRecord('timed-subscription-order', {
-      duration: this.duration,
-      acknowledged: true,
-      project: this.get('model.project')
-    })
-    yield order.save()
+    try {
+      let order = this.store.createRecord('timed-subscription-order', {
+        duration: this.duration,
+        acknowledged: true,
+        project: this.get('model.project')
+      })
+      yield order.save()
+
+      this.notify.success(this.i18n.t('sysupport.reload.success'))
+      UIkit.accordion('[data-reload-acc]').toggle()
+      this.setProperties({ hour: null, minute: null })
+    } catch (e) {
+      this.notify.error(this.i18n.t('sysupport.reload.error'))
+    } finally {
+      this.fetchOrders.perform()
+    }
   }).drop(),
 
   actions: {
     saveOrder() {
       this.save.perform()
-      this.fetchOrders.perform()
     },
     validate(field) {
       if (this.get(field)) {
@@ -89,6 +102,7 @@ export default Controller.extend({
           )
         } else {
           this.set(`validation.${field}`, true)
+          this.set('preview', true)
         }
       }
     }

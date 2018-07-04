@@ -1,5 +1,5 @@
 <div class="uk-width-1-1 uk-margin uk-animation-slide-top-small">
-  <ul uk-accordion>
+  <ul uk-accordion data-reload-acc>
     <li>
       <a class="uk-accordion-title" href="#">{{t 'sysupport.admin.reload'}} {{model.name}}</a>
       <div class="uk-accordion-content">
@@ -9,22 +9,20 @@
 
             <div class="uk-flex uk-flex-center uk-flex-middle uk-margin-right">
               {{input
-              key-up=(action "validate" "hour")
-              focus-out=(action (mut preview ) true)
-              focus-in=(action (mut preview) false)
-              class=(concat "uk-text-center uk-input uk-form-width-small " (if hour (if validation.hour "uk-form-success" "uk-form-danger")))
-              type="number"
-              placeholder="Hours"
-              value=hour}}
+                key-up=(action "validate" "hour")
+                focus-out=(action (mut preview ) false)
+                class=(concat "uk-text-center uk-input uk-form-width-small " (if hour (if validation.hour "uk-form-success" "uk-form-danger")))
+                type="number"
+                placeholder="Hours"
+                value=hour}}
               <span class="uk-margin-small-right uk-margin-small-left uk-text-large">:</span>
               {{input
-              key-up=(action "validate" "minute")
-              focus-out=(action (mut preview ) true)
-              focus-in=(action (mut preview) false)
-              class=(concat "uk-text-center uk-input uk-form-width-small " (if minute (if validation.minute "uk-form-success" "uk-form-danger")))
-              type="number"
-              placeholder="Minutes"
-              value=minute}}
+                key-up=(action "validate" "minute")
+                focus-out=(action (mut preview ) false)
+                class=(concat "uk-text-center uk-input uk-form-width-small " (if minute (if validation.minute "uk-form-success" "uk-form-danger")))
+                type="number"
+                placeholder="Minutes"
+                value=minute}}
               {{#if error}}
                 <span class="uk-margin-left">{{t 'sysupport.admin.reload-form-error'}}</span>
               {{/if}}
@@ -86,17 +84,19 @@
             </thead>
             <tbody>
               {{#each orders as |order index|}}
-                <tr data-test-project-order="{{index}}">
+                <tr class="uk-animation-fade" data-test-project-order="{{index}}">
                   <td>{{moment-format order.ordered 'DD.MM.YYYY'}}</td>
                   <td>{{format-duration order.duration format='hours'}}</td>
                   {{#if order.acknowledged}}
-                    <td>{{uk-icon 'check' scale=2 data-test-acknowledged=index}}</td>
+                  <td>{{uk-icon 'check' scale=2 data-test-acknowledged=index}}</td>
                   {{else}}
-                    <td>{{uk-icon 'close' scale=2 data-test-unconfirmed=index}}</td>
+                  <td>{{uk-icon 'close' scale=2 data-test-unconfirmed=index}}</td>
                   {{/if}}
                 </tr>
-              {{else}}{{t 'global.empty'}}{{/each}}
-              </tbody>
+              {{else}}
+                {{t 'global.empty'}}
+              {{/each}}
+            </tbody>
           </table>
         {{/card.body}}
       {{/uk-card}}
@@ -127,8 +127,10 @@
                 <td>{{report.user.fullName}}</td>
                 <td>{{report.comment}}</td>
               </tr>
-            {{else}}<tr><td colspan="4">{{t 'global.empty'}}</td></tr>{{/each}}
-            </tbody>
+            {{else}}
+              <tr><td colspan="4">{{t 'global.empty'}}</td></tr>
+            {{/each}}
+          </tbody>
         </table>
       {{/card.body}}
     {{/uk-card}}

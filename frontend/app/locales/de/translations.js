@@ -131,12 +131,14 @@ export default {
       success: 'Ihre Bestellung wurde erfolgreich verarbeitet.',
       error:
         'Bei der Verarbeitung Ihrer Bestellung ist ein Fehler aufgetreten. Bitte vergewissern Sie sich ob die Bestellung verarbeitet wurde und falls nicht, versuchen Sie es noch einmal.',
-      charge: 'Aufladen'
+      charge: 'Aufladen',
+      'error-loading':
+        'Die Bestellungen für dieses Projekt konten nicht geladen werden. Bitte versuchen Sie es erneut.'
     },
 
     detail: {
       expense: 'Aufwände',
-      charges: 'Aufladungen',
+      charges: 'Bestellungen',
       effort: 'Aufwand',
       employee: 'Mitarbeiter',
       description: 'Beschreibung',

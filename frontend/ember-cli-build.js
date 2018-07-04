@@ -14,6 +14,9 @@ module.exports = function(defaults) {
     },
     babel: {
       optional: ['es7.asyncFunctions', 'es7.decorators']
+    },
+    'ember-uikit': {
+      importUIkitJS: true
     }
   })
 

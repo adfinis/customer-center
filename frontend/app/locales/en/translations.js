@@ -129,7 +129,9 @@ export default {
       success: 'Your order was saved successfully.',
       error:
         'An error occured while processing your order. Please check if your order was saved and if not, try again.',
-      charge: 'Reload'
+      charge: 'Reload',
+      'error-loading':
+        "The orders for his project couldn't be loaded. Please try again."
     },
 
     detail: {

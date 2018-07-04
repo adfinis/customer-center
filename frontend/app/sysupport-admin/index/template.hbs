@@ -6,18 +6,21 @@
       {{#link-to "sysupport-admin.detail" project.id
         data-test-project=index
         class=(concat "uk-link-reset pointer "
-          (if project.isTimeAlmostConsumed "uk-text-danger"))
+          (if project.isTimeAlmostConsumed "highlight-left"))
         tagName="tr"
       }}
-        <td class="uk-text-bold uk-text-default">{{project.name}}</td>
+        <td class={{concat "uk-text-bold uk-text-default "
+          (if project.isTimeAlmostConsumed "uk-text-danger")}}>
+          {{project.name}}
+        </td>
         <td>{{project.customer.name}}</td>
         <td>{{project.billingType.name}}</td>
         <td>{{format-duration-short project.purchasedTime}}</td>
         <td>{{format-duration-short project.spentTime}}</td>
         {{#if project.isTimeAlmostConsumed}}
-          <td class="uk-flex">
+          <td class="uk-flex uk-text-danger">
             <span>{{format-duration-short project.totalTime}}</span>
-            {{mdi-icon "clock-alert-outline" fill="#ff0000" class="uk-margin-small-left"}}
+            {{mdi-icon "clock-alert-outline" fill="#f0506e" class="uk-margin-small-left"}}
           </td>
         {{else}}
           <td>{{format-duration-short project.totalTime}}</td>

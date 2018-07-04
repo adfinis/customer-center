@@ -63,17 +63,25 @@ module('Unit | Controller | sysupport-admin/detail', function(hooks) {
     assert.ok(controller.error)
   })
 
-  test('orders', function(assert) {
+  test('orders and project model', function(assert) {
     let controller = this.owner.lookup('controller:sysupport-admin/detail')
 
-    controller.set('fetchOrders', {
-      lastSuccessful: { value: 'test1' }
+    controller.set('fetchModels', {
+      orders: {
+        lastSuccessful: { value: 'test1' }
+      },
+      project: {
+        lastSuccessful: { value: 'test1' }
+      }
     })
     controller.set('model', { orders: 'test2' })
+    controller.set('model', { project: 'test2' })
     assert.equal(controller.orders, 'test1')
+    assert.equal(controller.project, 'test1')
 
-    controller.set('fetchOrders', null)
+    controller.set('fetchModels', null)
     assert.equal(controller.orders, 'test2')
+    assert.equal(controller.project, 'test2')
   })
 
   test('previewDuration', function(assert) {
@@ -89,20 +97,6 @@ module('Unit | Controller | sysupport-admin/detail', function(hooks) {
 
     assert.notOk(controller.previewDuration.hours())
     assert.notOk(controller.previewDuration.minutes())
-  })
-
-  test('validation', function(assert) {
-    let controller = this.owner.lookup('controller:sysupport-admin/detail')
-
-    controller.set('preview', false)
-    controller.setProperties({ hour: 1, minute: 'sdf' })
-    assert.deepEqual(controller.validation, { hour: true, minute: false })
-    assert.ok(controller.preview)
-
-    controller.set('preview', false)
-    controller.setProperties({ hour: 'sdf', minute: 'sdf' })
-    assert.deepEqual(controller.validation, { hour: false, minute: false })
-    assert.notOk(controller.preview)
   })
 
   test('validation', function(assert) {

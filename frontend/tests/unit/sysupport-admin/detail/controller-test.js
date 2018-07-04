@@ -67,15 +67,14 @@ module('Unit | Controller | sysupport-admin/detail', function(hooks) {
     let controller = this.owner.lookup('controller:sysupport-admin/detail')
 
     controller.set('fetchModels', {
-      orders: {
-        lastSuccessful: { value: 'test1' }
-      },
-      project: {
-        lastSuccessful: { value: 'test1' }
+      lastSuccessful: {
+        value: {
+          orders: 'test1',
+          project: 'test1'
+        }
       }
     })
-    controller.set('model', { orders: 'test2' })
-    controller.set('model', { project: 'test2' })
+    controller.set('model', { orders: 'test2', project: 'test2' })
     assert.equal(controller.orders, 'test1')
     assert.equal(controller.project, 'test1')
 

@@ -1,7 +1,7 @@
 <div class="uk-width-1-1 uk-margin uk-animation-slide-top-small">
   <ul uk-accordion data-reload-acc>
     <li>
-      <a class="uk-accordion-title" href="#">{{t 'sysupport.admin.reload'}} {{model.name}}</a>
+      <a data-test-reload-accordion class="uk-accordion-title" href="#">{{t 'sysupport.admin.reload'}} {{model.name}}</a>
       <div class="uk-accordion-content">
         <div class="uk-margin-left uk-flex uk-flex-middle uk-flex-between uk-flex-wrap">
           <div class="uk-flex uk-flex-middle uk-flex-left uk-flex-wrap">
@@ -9,24 +9,24 @@
 
             <div class="uk-flex uk-flex-center uk-flex-middle uk-margin-right">
               {{input
-                focus-out=(action (mut preview ) false)
                 class=(concat "uk-text-center uk-input uk-form-width-small " (if hour (if validation.hour "uk-form-success" "uk-form-danger")))
                 type="number"
                 placeholder="Hours"
-                value=hour}}
+                value=hour
+                data-test-hour-input=true}}
               <span class="uk-margin-small-right uk-margin-small-left uk-text-large">:</span>
               {{input
-                focus-out=(action (mut preview ) false)
                 class=(concat "uk-text-center uk-input uk-form-width-small " (if minute (if validation.minute "uk-form-success" "uk-form-danger")))
                 type="number"
                 placeholder="Minutes"
-                value=minute}}
+                value=minute
+                data-test-minute-input=true}}
               {{#if error}}
-                <span class="uk-margin-left">{{t 'sysupport.admin.reload-form-error'}}</span>
+                <span class="uk-margin-left" data-test-reload-error>{{t 'sysupport.admin.reload-form-error'}}</span>
               {{/if}}
             </div>
           </div>
-          {{uk-button loading=save.isRunning disabled=(or save.isRunning (not duration)) on-click=(action "saveOrder") label="Save" class="uk-button-primary"}}
+          {{uk-button loading=save.isRunning disabled=(or save.isRunning (or (not duration) error)) on-click=(action "saveOrder") label="Save" class="uk-button-primary" data-test-reload-submit=true}}
         </div>
       </div>
     </li>
@@ -39,7 +39,7 @@
       {{#uk-card as |card|}}
         {{#card.header}}
           {{#card.title}}
-            {{model.project.name}}
+            {{project.name}}
           {{/card.title}}
         {{/card.header}}
         {{#card.body}}
@@ -47,17 +47,19 @@
             <div class="uk-width-1-2">
               <dl class="uk-description-list">
                 <dt>{{t 'sysupport.admin.customer'}}:</dt>
-                <dd data-test-customer-name="{{model.project.id}}">{{model.project.customer.name}}</dd>
+                <dd data-test-customer-name="{{project.id}}">{{project.customer.name}}</dd>
                 <dt>{{t 'sysupport.admin.billingType'}}:</dt>
-                <dd data-test-billing-type-name="{{model.project.id}}">{{model.project.billingType.name}}</dd>
+                <dd data-test-billing-type-name="{{project.id}}">{{project.billingType.name}}</dd>
               </dl>
             </div>
             <div class="uk-width-1-2">
               <dl class="uk-description-list">
                 <dt>{{t 'sysupport.time.total'}}:</dt>
-                <dd class={{if (and duration preview) "uk-text-success"}}>{{format-duration (if (and duration preview) previewDuration model.project.totalTime)}}</dd>
+                <dd class={{if (and duration preview) "uk-text-success"}} data-test-project-total-time >
+                  {{format-duration (if (and duration preview) previewDuration project.totalTime) }}
+                </dd>
                 <dt>{{t 'sysupport.time.unconfirmed'}}:</dt>
-                <dd>{{format-duration model.project.unconfirmedTime}}</dd>
+                <dd>{{format-duration project.unconfirmedTime}}</dd>
               </dl>
             </div>
           </div>
@@ -83,8 +85,7 @@
             <tbody>
               {{#each orders as |order index|}}
                 <tr class="uk-animation-fade" data-test-project-order="{{index}}">
-                  <td>{{moment-format order.ordered 'DD.MM.YYYY'}}</td>
-                  <td>{{format-duration order.duration format='hours'}}</td>
+                  <td data-test-order-duration="{{order.duration}}">{{format-duration order.duration format='hours'}}</td>
                   {{#if order.acknowledged}}
                   <td>{{uk-icon 'check' scale=2 data-test-acknowledged=index}}</td>
                   {{else}}

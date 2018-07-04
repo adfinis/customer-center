@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service'
 
 import { task } from 'ember-concurrency'
 import moment from 'moment'
+import { hash } from 'rsvp'
 import UIkit from 'UIkit'
 
 export default Controller.extend({
@@ -11,18 +12,11 @@ export default Controller.extend({
   notify: service(),
 
   duration: computed('validation.{hour,minute}', 'hour', 'minute', function() {
-    if (this.hour || this.minute) {
-      let options = {}
-
-      if (this.hour && this.get('validation.hour')) {
-        options.hours = this.hour
-      }
-
-      if (this.minute && this.get('validation.minute')) {
-        options.minutes = this.minute
-      }
-
-      return moment.duration(options)
+    if (this.get('validation.hour') || this.get('validation.minute')) {
+      return moment.duration({
+        hours: this.get('validation.hour') && this.hour,
+        minutes: this.get('validation.minute') && this.minute
+      })
     } else return null
   }),
 
@@ -37,9 +31,10 @@ export default Controller.extend({
     }
   }),
 
-  orders: computed('fetchOrders.lastSuccessful.value', function() {
+  orders: computed('fetchModels.lastSuccessful.value', function() {
     return (
-      this.get('fetchOrders.lastSuccessful.value') || this.get('model.orders')
+      this.get('fetchModels.lastSuccessful.value.orders') ||
+      this.get('model.orders')
     )
   }),
 
@@ -48,10 +43,17 @@ export default Controller.extend({
       this.duration &&
       this.preview &&
       moment.duration(
-        this.get('model.project.purchasedTime') +
+        this.get('project.purchasedTime') +
           this.duration -
-          this.get('model.project.spentTime')
+          this.get('project.spentTime')
       )
+    )
+  }),
+
+  project: computed('fetchModels.lastSuccessful.value', function() {
+    return (
+      this.get('fetchModels.lastSuccessful.value.project') ||
+      this.get('model.project')
     )
   }),
 
@@ -68,11 +70,20 @@ export default Controller.extend({
     return validation
   }),
 
-  fetchOrders: task(function*() {
+  fetchModels: task(function*() {
     try {
-      return yield this.store.query('timed-subscription-order', {
-        project: this.get('model.project.id'),
-        ordering: '-ordered'
+      return yield hash({
+        orders: this.store.query('timed-subscription-order', {
+          project: this.get('model.project.id'),
+          ordering: '-ordered'
+        }),
+        project: this.store.findRecord(
+          'timed-subscription-project',
+          this.get('model.project.id'),
+          {
+            include: 'billing_type,customer'
+          }
+        )
       })
     } catch (e) {
       this.notify.error(this.i18n.t('sysupport.reload.error-loading'))
@@ -84,7 +95,7 @@ export default Controller.extend({
       let order = this.store.createRecord('timed-subscription-order', {
         duration: this.duration,
         acknowledged: true,
-        project: this.get('model.project')
+        project: this.get('project')
       })
       yield order.save()
 
@@ -94,7 +105,8 @@ export default Controller.extend({
     } catch (e) {
       this.notify.error(this.i18n.t('sysupport.reload.error'))
     } finally {
-      this.fetchOrders.perform()
+      this.fetchModels.perform()
+      this.set('preview', false)
     }
   }).drop(),
 

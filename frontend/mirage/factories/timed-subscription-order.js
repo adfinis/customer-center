@@ -7,7 +7,7 @@ export default Factory.extend({
   duration() {
     return DjangoDurationTransform.create().serialize(
       moment.duration({
-        hours: faker.random.number(200),
+        hours: faker.random.number(100),
         minutes: faker.random.arrayElement([15, 30, 45, 0])
       })
     )

@@ -37,7 +37,7 @@
 <hr>
 <div uk-grid class="uk-child-width-1-1 uk-child-width-1-2@m" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
   <div uk-grid class="uk-margin-remove-left uk-flex uk-flex-column" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
-    <div>
+    <div class="uk-padding-remove-left">
       {{#uk-card as |card|}}
         {{#card.header}}
           {{#card.title}}
@@ -66,7 +66,7 @@
         {{/card.body}}
       {{/uk-card}}
     </div>
-    <div>
+    <div class="uk-padding-remove-left">
       {{#uk-card as |card|}}
         {{#card.header}}
           {{#card.title}}

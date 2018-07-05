@@ -132,10 +132,10 @@ export default {
       error:
         'Bei der Verarbeitung Ihrer Bestellung ist ein Fehler aufgetreten. Bitte vergewissern Sie sich ob die Bestellung verarbeitet wurde und falls nicht, versuchen Sie es noch einmal.',
       charge: 'Aufladen',
-      noPackage: `<p>Es scheint als hätten Sie keine Pakete.<br>
+      noPackage: `<span class="uk-card-title">Es scheint als hätten Sie keine Pakete.</span><br>
         Bitte Kontaktieren Sie unseren Support unter:<br>
         Telefon: +41 61 500 31 30<br>
-        E-Mail: <a href="mailto:support@adfinis-sygroup.ch" class="uk-height-1-1"> support@adfinis-sygroup.ch</a></p>`
+        E-Mail: <a href="mailto:support@adfinis-sygroup.ch" class="uk-height-1-1"> support@adfinis-sygroup.ch</a>`
     },
 
     detail: {

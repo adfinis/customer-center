@@ -19,5 +19,10 @@
         {{/card.footer}}
       {{/uk-card}}
     </div>
-  {{else}}{{t 'sysupport.reload.noPackage'}}{{/each}}
+  {{else}}
+    <p class="uk-card uk-card-default uk-card-body uk-background-muted uk-position-center uk-box-shadow-large">
+      {{mdi-icon "information-outline" size=30 class="uk-margin-small-bottom"}}
+      {{t 'sysupport.reload.noPackage'}}
+    </p>
+  {{/each}}
 </div>

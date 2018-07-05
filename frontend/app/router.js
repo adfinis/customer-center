@@ -18,12 +18,12 @@ Router.map(function() {
     this.route('vault', { resetNamespace: true }, function() {
       this.route('edit', { path: '/*path' })
     })
-    this.route('sysupport-subscriptions', { resetNamespace: true }, function() {
+    this.route('timed-subscriptions', { resetNamespace: true }, function() {
       this.route('detail', { path: ':project_id' }, function() {
         this.route('reload')
       })
     })
-    this.route('sysupport-admin', { resetNamespace: true }, function() {
+    this.route('timed-admin', { resetNamespace: true }, function() {
       this.route('detail', { path: ':project' })
       this.route('confirm-subscriptions')
     })

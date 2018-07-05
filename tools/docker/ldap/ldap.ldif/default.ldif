@@ -44,10 +44,21 @@ objectclass: top
 sambagrouptype: 2
 sambasid: S-1-5-21--2000
 
-dn: cn=customer-sysupport,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
-cn: customer-sysupport
+dn: cn=adsy-admin,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+cn: adsy-admin
+gidnumber: 505
+memberuid: uid=admin1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+objectclass: posixGroup
+objectclass: sambaGroupMapping
+objectclass: top
+sambagrouptype: 2
+sambasid: S-1-5-21--2000
+
+dn: cn=customer-timed,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+cn: customer-timed
 gidnumber: 501
 memberuid: uid=user1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+memberuid: uid=admin1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 objectclass: posixGroup
 objectclass: sambaGroupMapping
 objectclass: top
@@ -58,6 +69,7 @@ dn: cn=customer-gitlab,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 cn: customer-gitlab
 gidnumber: 502
 memberuid: uid=user1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+memberuid: uid=admin1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 objectclass: posixGroup
 objectclass: sambaGroupMapping
 objectclass: top
@@ -68,6 +80,18 @@ dn: cn=customer-redmine,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 cn: customer-redmine
 gidnumber: 503
 memberuid: uid=user1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+memberuid: uid=admin1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+objectclass: posixGroup
+objectclass: sambaGroupMapping
+objectclass: top
+sambagrouptype: 2
+sambasid: S-1-5-21--2000
+
+dn: cn=customer-vault,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+cn: customer-vault
+gidnumber: 504
+memberuid: uid=user1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+memberuid: uid=admin1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 objectclass: posixGroup
 objectclass: sambaGroupMapping
 objectclass: top
@@ -122,6 +146,22 @@ objectclass: top
 sn: Maximus
 uid: user1
 uidnumber: 1001
+userpassword: {CRYPT}R71YutPMJYJAc
+
+
+dn: uid=admin1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+cn: admin1
+gidnumber: 511
+givenname: Testus
+homedirectory: /home/users/admin1
+loginshell: /bin/sh
+mail: admin1@adsy.ch
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+sn: Maximus
+uid: admin1
+uidnumber: 1011
 userpassword: {CRYPT}R71YutPMJYJAc
 
 # Entry 10: ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
@@ -214,10 +254,10 @@ objectclass: top
 sambagrouptype: 2
 sambasid: S-1-5-21--2002
 
-# Entry 18: cn=customer1-sysupport,ou=customer1,ou=customers,dc=adsy-ext,...
-dn: cn=customer1-sysupport,ou=customer1,ou=customers,dc=adsy-ext,dc=becs,dc=
+# Entry 18: cn=customer1-timed,ou=customer1,ou=customers,dc=adsy-ext,...
+dn: cn=customer1-timed,ou=customer1,ou=customers,dc=adsy-ext,dc=becs,dc=
  adfinis-sygroup,dc=ch
-cn: customer1-sysupport
+cn: customer1-timed
 gidnumber: 501
 memberuid: uid=customer1,ou=customer1,ou=customers,dc=adsy-ext,dc=becs,dc=ad
  finis-sygroup,dc=ch
@@ -340,10 +380,10 @@ objectclass: top
 sambagrouptype: 2
 sambasid: S-1-5-21--2002
 
-# Entry 28: cn=customer2-sysupport,ou=customer2,ou=customers,dc=adsy-ext,...
-dn: cn=customer2-sysupport,ou=customer2,ou=customers,dc=adsy-ext,dc=becs,dc=
+# Entry 28: cn=customer2-timed,ou=customer2,ou=customers,dc=adsy-ext,...
+dn: cn=customer2-timed,ou=customer2,ou=customers,dc=adsy-ext,dc=becs,dc=
  adfinis-sygroup,dc=ch
-cn: customer2-sysupport
+cn: customer2-timed
 gidnumber: 501
 memberuid: uid=customer2,ou=customer2,ou=customers,dc=adsy-ext,dc=becs,dc=ad
  finis-sygroup,dc=ch

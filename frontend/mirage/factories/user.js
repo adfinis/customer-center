@@ -5,7 +5,6 @@ export default Mirage.Factory.extend({
   firstName: faker.name.firstName,
   lastName: faker.name.lastName,
   language: 'en',
-  sysupport: 'adsy',
   email() {
     return `${faker.name.firstName()}@${this.shortname}.com`
   },
@@ -22,7 +21,13 @@ export default Mirage.Factory.extend({
   admin: trait({
     username: 'admin',
     groups() {
-      return ['sysupport', 'adsy-user', 'adsy-vault']
+      return ['timed', 'adsy-admin', 'adsy-vault']
+    }
+  }),
+  intern: trait({
+    username: 'intern',
+    groups() {
+      return ['timed', 'adsy-user', 'adsy-vault']
     }
   }),
   customer: trait({
@@ -30,7 +35,7 @@ export default Mirage.Factory.extend({
     groups() {
       return [
         `${this.shortname}-vault`,
-        `${this.shortname}-sysupport`,
+        `${this.shortname}-timed`,
         `test1-gitlab`,
         `test2-gitlab`,
         `test3-gitlab`,

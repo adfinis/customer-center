@@ -5,8 +5,8 @@ import passport from 'passport'
 import LdapStrategy from 'passport-ldapauth'
 import User from '../user/model'
 import config from '../config'
-import { timedLogin } from '../sysupport/token'
-import { getCustomer as getTimedCustomer } from '../sysupport/custom'
+import { timedLogin } from '../timed/token'
+import { getCustomer as getTimedCustomer } from '../timed/custom'
 
 passport.use(
   'ldapauth-user',
@@ -115,8 +115,8 @@ function loginSuccessful(req, res, next, ldapUser) {
       )
     }
 
-    // If user is in the sysupport group, get timed token
-    if (isMember('sysupport')) {
+    // If user is in the timed group, get timed token
+    if (isMember('timed')) {
       req.session = await addTimedTokenToSession(
         req.session,
         users.get(ldapUser)

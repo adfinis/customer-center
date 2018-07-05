@@ -86,7 +86,7 @@ module.exports = {
     timed: {
       type: 'timed',
       host: 'http://timedbackend',
-      user: 'sysupport_api',
+      user: 'timed_api',
       password: 'hallo123',
       prefix: '/api/v1',
       authPath: '/auth/login',

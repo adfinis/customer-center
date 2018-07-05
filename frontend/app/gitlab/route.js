@@ -6,7 +6,10 @@ import { computed } from '@ember/object'
 
 export default Route.extend(RouteAccessMixin, {
   //specify which groups have access to this route.
-  groups: computed(() => ['adsy-customer', 'gitlab']),
+  groups: computed(() => ({
+    requireAll: ['gitlab'],
+    requireOne: ['adsy-customer']
+  })),
 
   i18n: service(),
   session: service(),

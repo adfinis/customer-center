@@ -12,6 +12,9 @@ module.exports = {
     cert: '/path/to/root_ca_cert.crt'
   },
   login: {
+    adminRole: 'some-role',
+    internRole: 'some-other-role',
+
     ldap: {
       // Further information how to configure LDAP under:
       // https://github.com/vesse/passport-ldapauth

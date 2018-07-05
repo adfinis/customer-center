@@ -29,8 +29,8 @@ export default Model.extend({
     return this._checkGroup('vault')
   }),
 
-  sysupport: computed('groups.[]', function() {
-    return this._checkGroup('sysupport')
+  timed: computed('groups.[]', function() {
+    return this._checkGroup('timed')
   }),
 
   gitlab: computed('groups.[]', function() {
@@ -62,6 +62,10 @@ export default Model.extend({
 
   admin: computed('groups.[]', function() {
     return this._checkGroup(ENV.APP.adminGroup)
+  }),
+
+  adsyUser: computed('groups.[]', function() {
+    return this._checkGroup(ENV.APP.adsyUserGroup)
   }),
 
   _checkGroup(name) {

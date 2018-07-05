@@ -43,13 +43,13 @@ module('Acceptance | Sysupport Subscriptions', function(hooks) {
   })
 
   test('subscription-project reload empty', async function(assert) {
-    this.server.create('timed-subscription-project')
+    server.create('timed-subscription-project')
     await visit('/sysupport-subscriptions')
 
     await click('[data-test-reload-link="0"]')
     assert.equal(currentURL(), '/sysupport-subscriptions/1/reload')
     assert
-      .dom('[class="uk-first-column"]')
+      .dom('[data-test-info-panel="0"]')
       .includesText('support@adfinis-sygroup.ch')
   })
 })

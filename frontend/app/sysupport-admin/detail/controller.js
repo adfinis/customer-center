@@ -17,18 +17,14 @@ export default Controller.extend({
         hours: this.get('validation.hour') && this.hour,
         minutes: this.get('validation.minute') && this.minute
       })
-    } else return null
+    }
   }),
 
   error: computed('validation.{hour,minute}', 'hour', 'minute', function() {
-    if (
-      (this.hour && !this.get('validation.hour')) ||
+    return (this.hour && !this.get('validation.hour')) ||
       (this.minute && !this.get('validation.minute'))
-    ) {
-      return true
-    } else {
-      return false
-    }
+      ? true
+      : false
   }),
 
   orders: computed('fetchModels.lastSuccessful.value', function() {

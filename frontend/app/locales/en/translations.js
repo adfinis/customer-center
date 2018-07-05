@@ -129,7 +129,11 @@ export default {
       success: 'Your order was saved successfully.',
       error:
         'An error occured while processing your order. Please check if your order was saved and if not, try again.',
-      charge: 'Reload'
+      charge: 'Reload',
+      noPackage: `<p>It seems like you don't have any Subscription Packages.<br>
+        Please contact our Support under:<br>
+        Call: +41 61 500 31 30<br>
+        E-Mail: <a href="mailto:support@adfinis-sygroup.ch" class="uk-height-1-1">support@adfinis-sygroup.ch</a></p>`
     },
 
     detail: {

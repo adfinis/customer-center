@@ -129,7 +129,13 @@ export default {
       success: 'Your order was saved successfully.',
       error:
         'An error occured while processing your order. Please check if your order was saved and if not, try again.',
-      charge: 'Reload'
+      charge: 'Reload',
+      noPackage: {
+        title:
+          "It seems like there aren't any Subscription Packages available.",
+        text: 'To charge your time, please contact our Support under:',
+        phone: 'Call'
+      }
     },
 
     detail: {

@@ -6,8 +6,7 @@ const broccoliAssetRevDefaults = require('broccoli-asset-rev/lib/default-options
 module.exports = function(defaults) {
   const app = new EmberApp(defaults, {
     fingerprint: {
-      extensions: broccoliAssetRevDefaults.extensions.concat(['svg']), //add svg extension
-      prepend: '/ember-mdi/' //if do you have rootURL use `prepend` option
+      extensions: broccoliAssetRevDefaults.extensions.concat(['svg']) //add svg extension
     },
     sassOptions: {
       includePaths: ['node_modules']

@@ -71,7 +71,7 @@ export default bookshelf.Model.extend(
     },
 
     /**
-     * Check if user is inter
+     * Check if user is intern
      *
      * @returns {boolean}
      * @public
@@ -79,6 +79,17 @@ export default bookshelf.Model.extend(
      */
     isAdsyUser() {
       return this.getGroupNames().includes(config.login.internRole)
+    },
+
+    /**
+     * Is user a adsy user
+     *
+     * @returns {boolean}
+     * @public
+     * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
+     */
+    isIntern() {
+      return this.isAdmin() || this.isAdsyUser()
     },
 
     /**

@@ -146,7 +146,7 @@ async function addTimedTokenToSession(session, user) {
   try {
     session.timedToken = await timedLogin()
     session.timedTokenTTL = new Date().getTime()
-    if (!user.isAdmin()) {
+    if (!user.isIntern()) {
       session.timedCustomer = await getTimedCustomer(session.timedToken, user)
     }
   } catch (e) {

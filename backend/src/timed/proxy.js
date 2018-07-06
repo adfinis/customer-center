@@ -59,10 +59,12 @@ const routes = {
  * @return boolean - returns true if has access
  **/
 function checkAccess(req) {
-  if (!req.user.isAdmin() && typeof req.session.timedCustomer === 'undefined') {
+  if (!req.user.isIntern && typeof req.session.timedCustomer === 'undefined') {
     return false
   }
-  let access = req.user.isAdmin() ? 'admin' : 'customer'
+  let access = req.user.isAdmin()
+    ? 'admin'
+    : req.user.isAdsyUser() ? 'user' : 'customer'
   for (let route in routes) {
     if (req.path.match(routes[route].path)) {
       if (routes[route].access.hasOwnProperty(access)) {
@@ -93,7 +95,7 @@ function createProxy(config) {
         .map(key => `${key}=${queryParams[key]}`)
         .join('&')
 
-      if (!req.user.isAdmin()) {
+      if (!req.user.isIntern()) {
         newPath += `customer=${req.session.timedCustomer.id}`
       }
       if (req.path.match(routes.reports.path)) {

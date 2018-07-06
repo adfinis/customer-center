@@ -1,9 +1,16 @@
+import { computed } from '@ember/object'
 import Route from '@ember/routing/route'
 import { inject as service } from '@ember/service'
 
-export default Route.extend({
+import RouteAccessMixin from 'customer-center/mixins/route-access-mixin'
+
+export default Route.extend(RouteAccessMixin, {
   i18n: service(),
   notify: service(),
+
+  groups: computed(() => ({
+    requireAll: ['timed', 'adsy-admin']
+  })),
 
   init() {
     this._super(...arguments)

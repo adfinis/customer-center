@@ -18,7 +18,7 @@ export default Mixin.create({
             role => user.get(role) || user.get('groups').includes(role)
           )
         : true) &&
-      (this.groups.requireAll
+      (this.groups.requireOne
         ? this.groups.requireOne.some(
             role => user.get(role) || user.get('groups').includes(role)
           )

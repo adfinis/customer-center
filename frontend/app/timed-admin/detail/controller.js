@@ -28,10 +28,6 @@ export default Controller.extend({
     )
   }),
 
-  isAdmin: computed('session', async function() {
-    return await this.get('session.user').isAdmin
-  }),
-
   orders: computed('fetchModels.lastSuccessful.value', function() {
     return (
       this.get('fetchModels.lastSuccessful.value.orders') ||

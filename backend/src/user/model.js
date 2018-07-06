@@ -78,7 +78,7 @@ export default bookshelf.Model.extend(
      * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
      */
     isAdsyUser() {
-      return this.getGroupNames().includes(config.login.internRole)
+      return this.getGroupNames().includes(config.login.employeeRole)
     },
 
     /**

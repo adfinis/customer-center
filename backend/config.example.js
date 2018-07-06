@@ -13,7 +13,7 @@ module.exports = {
   },
   login: {
     adminRole: 'some-role',
-    internRole: 'some-other-role',
+    employeeRole: 'some-other-role',
 
     ldap: {
       // Further information how to configure LDAP under:

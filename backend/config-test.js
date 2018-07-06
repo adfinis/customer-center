@@ -11,6 +11,7 @@ module.exports = {
   },
   login: {
     adminRole: 'adsy-user',
+    employeeRole: 'adsy-user',
 
     ldap: {
       searchBase: 'cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',

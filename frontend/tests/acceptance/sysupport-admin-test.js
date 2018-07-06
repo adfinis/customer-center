@@ -77,12 +77,7 @@ module('Acceptance | Sysupport Admin', function(hooks) {
     assert.dom('[data-test-project-order]').exists({ count: 11 })
 
     assert
-      .dom(
-        `[data-test-order-duration="${moment.duration({
-          hours: 10,
-          minutes: 30
-        })}"]`
-      )
+      .dom('[data-test-project-order]:last-child > [data-test-order-duration]')
       .hasText('10 Hours 30 Minutes')
 
     await click('[data-test-reload-accordion]')

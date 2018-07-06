@@ -86,7 +86,7 @@
               {{#each orders as |order index|}}
                 <tr class="uk-animation-fade" data-test-project-order="{{index}}">
                   <td>{{moment-format order.ordered 'DD.MM.YYYY'}}</td>
-                  <td data-test-order-duration="{{order.duration}}">{{format-duration order.duration format='hours'}}</td>
+                  <td data-test-order-duration>{{format-duration order.duration format='hours'}}</td>
                   {{#if order.acknowledged}}
                   <td>{{uk-icon 'check' scale=2 data-test-acknowledged=index}}</td>
                   {{else}}

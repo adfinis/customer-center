@@ -7,7 +7,7 @@ import {
 } from 'ember-simple-auth/test-support'
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage'
 
-module('Acceptance | Sysupport Subscriptions', function(hooks) {
+module('Acceptance | Timed Subscriptions', function(hooks) {
   setupApplicationTest(hooks)
   setupMirage(hooks)
 
@@ -22,10 +22,10 @@ module('Acceptance | Sysupport Subscriptions', function(hooks) {
 
   test('subscription-project detail', async function(assert) {
     server.create('timed-subscription-project')
-    await visit('/sysupport-subscriptions')
+    await visit('/timed-subscriptions')
 
     await click('[data-test-detail-link="0"]')
-    assert.equal(currentURL(), '/sysupport-subscriptions/1')
+    assert.equal(currentURL(), '/timed-subscriptions/1')
     assert.dom('[data-test-project-report]').exists({ count: 5 })
     assert.dom('[data-test-project-order]').exists({ count: 10 })
   })
@@ -33,21 +33,21 @@ module('Acceptance | Sysupport Subscriptions', function(hooks) {
   test('subscription-project reload', async function(assert) {
     this.server.create('timed-subscription-project')
     this.server.create('timed-subscription-package')
-    await visit('/sysupport-subscriptions')
+    await visit('/timed-subscriptions')
 
     await click('[data-test-reload-link="0"]')
-    assert.equal(currentURL(), '/sysupport-subscriptions/1/reload')
+    assert.equal(currentURL(), '/timed-subscriptions/1/reload')
     await click('[data-test-project-reload="0"]')
-    assert.equal(currentURL(), '/sysupport-subscriptions/1')
+    assert.equal(currentURL(), '/timed-subscriptions/1')
     assert.dom('[data-test-project-order]').exists({ count: 11 })
   })
 
   test('subscription-project reload empty', async function(assert) {
     server.create('timed-subscription-project')
-    await visit('/sysupport-subscriptions')
+    await visit('/timed-subscriptions')
 
     await click('[data-test-reload-link="0"]')
-    assert.equal(currentURL(), '/sysupport-subscriptions/1/reload')
+    assert.equal(currentURL(), '/timed-subscriptions/1/reload')
     assert
       .dom('[data-test-info-panel="0"]')
       .includesText('support@adfinis-sygroup.ch')

@@ -9,7 +9,7 @@ udm groups/group create --set name=wiki --set description="Wiki-Funktion für Ad
 udm groups/group create --set name=redmine --set description="Redmine-Funktion Admin" --position "cn=groups,$ldap_base"
 udm groups/group create --set name=rhev --set description="RHEV-Funktion Admin" --position "cn=groups,$ldap_base"
 udm groups/group create --set name=mon --set description="Monitoring-Funktion Admin" --position "cn=groups,$ldap_base"
-udm groups/group create --set name=sysupport --set description="SySupport-Funktion Admin" --position "cn=groups,$ldap_base"
+udm groups/group create --set name=timed --set description="timed-Funktion Admin" --position "cn=groups,$ldap_base"
 udm groups/group create --set name=vault --set description="Vault-Funktion Admin" --position "cn=groups,$ldap_base"
 
 udm groups/group create --set name="adsy-user" --set description="adsy user group" --position="cn=groups,$ldap_base"
@@ -30,6 +30,6 @@ udm users/user create \
       --set groups="cn=wiki,cn=groups,$ldap_base" \
       --set groups="cn=redmine,cn=groups,$ldap_base" \
       --set groups="cn=rhev,cn=groups,$ldap_base" \
-      --set groups="cn=sysupport,cn=groups,$ldap_base" \
+      --set groups="cn=timed,cn=groups,$ldap_base" \
       --set groups="cn=mon,cn=groups,$ldap_base" \
       --set groups="cn=vault,cn=groups,$ldap_base"

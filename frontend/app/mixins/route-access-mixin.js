@@ -12,8 +12,17 @@ export default Mixin.create({
   },
 
   _hasPermissions(user) {
-    return this.groups.every(
-      role => user.get(role) || user.get('groups').includes(role)
+    return (
+      (this.groups.requireAll
+        ? this.groups.requireAll.every(
+            role => user.get(role) || user.get('groups').includes(role)
+          )
+        : true) &&
+      (this.groups.requireOne
+        ? this.groups.requireOne.some(
+            role => user.get(role) || user.get('groups').includes(role)
+          )
+        : true)
     )
   }
 })

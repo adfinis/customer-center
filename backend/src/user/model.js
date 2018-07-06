@@ -6,8 +6,7 @@ const { isArray } = Array
 const bookshelf = new Bookshelf(knex(config.database))
 
 /**
- * User model
- *
+ * User model *
  * @class User
  * @public
  */
@@ -69,6 +68,28 @@ export default bookshelf.Model.extend(
      */
     isAdmin() {
       return this.getGroupNames().includes(config.login.adminRole)
+    },
+
+    /**
+     * Check if user is employee
+     *
+     * @returns {boolean}
+     * @public
+     * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
+     */
+    isAdsyUser() {
+      return this.getGroupNames().includes(config.login.employeeRole)
+    },
+
+    /**
+     * Is user a adsy user
+     *
+     * @returns {boolean}
+     * @public
+     * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
+     */
+    isEmployee() {
+      return this.isAdmin() || this.isAdsyUser()
     },
 
     /**

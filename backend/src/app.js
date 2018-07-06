@@ -10,7 +10,7 @@ import passwordreset from './password-reset'
 import services from './services'
 import userRoute from './user/route'
 import vaultTokenRenewer from './vault/vault-token'
-import { timedTokenRenew } from './sysupport/token'
+import { timedTokenRenew } from './timed/token'
 import config from './config'
 
 const app = express()

@@ -91,10 +91,10 @@ export default function() {
     return new Response(201, JSON.parse(requestBody))
   })
 
-  // Sysupport
+  // timed
 
   this.get(
-    '/proxy/sysupport/subscription-projects',
+    '/proxy/timed/subscription-projects',
     ({ timedSubscriptionProjects }, request) => {
       if (request.queryParams.include) {
         let includes = request.queryParams.include.split(',')
@@ -109,7 +109,7 @@ export default function() {
   )
 
   this.get(
-    '/proxy/sysupport/subscription-projects/:id',
+    '/proxy/timed/subscription-projects/:id',
     ({ timedSubscriptionProjects }, request) => {
       if (request.queryParams.include) {
         let includes = request.queryParams.include.split(',')
@@ -123,10 +123,10 @@ export default function() {
     }
   )
 
-  this.get('/proxy/sysupport/reports', 'timed-reports')
+  this.get('/proxy/timed/reports', 'timed-reports')
 
   this.get(
-    '/proxy/sysupport/subscription-orders',
+    '/proxy/timed/subscription-orders',
     ({ timedSubscriptionOrders }, request) => {
       let blacklist = ['ordering', 'include', 'project']
       let queryParams = JSON.parse(JSON.stringify(request.queryParams))
@@ -151,17 +151,14 @@ export default function() {
       return timedSubscriptionOrders.where(queryParams)
     }
   )
-  this.post('/proxy/sysupport/subscription-orders', 'timed-subscription-orders')
-  this.get(
-    '/proxy/sysupport/subscription-orders/:id',
-    'timed-subscription-orders'
-  )
+  this.post('/proxy/timed/subscription-orders', 'timed-subscription-orders')
+  this.get('/proxy/timed/subscription-orders/:id', 'timed-subscription-orders')
   this.delete(
-    '/proxy/sysupport/subscription-orders/:id',
+    '/proxy/timed/subscription-orders/:id',
     'timed-subscription-orders'
   )
   this.post(
-    '/proxy/sysupport/subscription-orders/:id/confirm',
+    '/proxy/timed/subscription-orders/:id/confirm',
     ({ timedSubscriptionOrders }, request) => {
       let order = timedSubscriptionOrders.find(request.params.id)
       order.update({ acknowledged: true })
@@ -170,13 +167,10 @@ export default function() {
     }
   )
 
-  this.get(
-    '/proxy/sysupport/subscription-packages',
-    'timed-subscription-packages'
-  )
+  this.get('/proxy/timed/subscription-packages', 'timed-subscription-packages')
 
-  this.get('/proxy/sysupport/billing-types', 'timed-billing-types')
-  this.get('/proxy/sysupport/billing-types/:id', 'timed-billing-types')
+  this.get('/proxy/timed/billing-types', 'timed-billing-types')
+  this.get('/proxy/timed/billing-types/:id', 'timed-billing-types')
 
   this.get('/proxy/gitlab/groups/:group/', (scheme, req) => {
     let group = req.params.group

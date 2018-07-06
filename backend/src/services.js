@@ -1,7 +1,7 @@
 import express from 'express'
 import VaultProxy from './vault/vault-proxy'
 import vaultCustom from './vault/vault-custom'
-import SysupportProxy from './sysupport/proxy'
+import TimedProxy from './timed/proxy'
 import gitlabProxy from './gitlab/proxy'
 import config from './config'
 
@@ -12,7 +12,7 @@ const { vault, timed, gitlab } = config.services
 router.use('/vault', vaultCustom(vault))
 router.use('/proxy/vault', VaultProxy.createProxy(vault))
 
-router.use('/proxy/sysupport', SysupportProxy.createProxy(timed))
+router.use('/proxy/timed', TimedProxy.createProxy(timed))
 
 router.use('/proxy/gitlab', gitlabProxy(gitlab))
 

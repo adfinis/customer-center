@@ -12,8 +12,8 @@ export default Helper.extend({
   hoursCount: 0,
   minutesCount: 0,
 
-  hoursTranslation: t('sysupport.durations.hour', { count: 'hoursCount' }),
-  minutesTranslation: t('sysupport.durations.minute', {
+  hoursTranslation: t('timed.durations.hour', { count: 'hoursCount' }),
+  minutesTranslation: t('timed.durations.minute', {
     count: 'minutesCount'
   }),
 

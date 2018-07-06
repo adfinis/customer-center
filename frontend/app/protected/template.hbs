@@ -35,18 +35,20 @@
         {{#list.item 'gitlab'}}{{t 'nav.gitlab'}}{{/list.item}}
       {{/if}}
 
-      {{#if (and (service-enabled 'sysupport') model.sysupport)}}
-        {{#if model.admin}}
-          {{#list.item 'sysupport-admin' }}{{t 'nav.sysupport'}}{{/list.item}}
-          <ul class="uk-nav-sub">
-            <li>
-              {{#link-to "sysupport-admin.confirm-subscriptions"}}
-                {{t 'sysupport.admin.confirm-subscription'}}
-              {{/link-to}}
-            </li>
-        </ul>
+      {{#if (and (service-enabled 'timed') model.timed)}}
+        {{#if (or model.adsyUser model.admin)}}
+          {{#list.item 'timed-admin' }}{{t 'nav.timed'}}{{/list.item}}
+            {{#if model.admin}}
+              <ul class="uk-nav-sub">
+                <li>
+                  {{#link-to "timed-admin.confirm-subscriptions"}}
+                    {{t 'timed.admin.confirm-subscription'}}
+                  {{/link-to}}
+                </li>
+              </ul>
+            {{/if}}
         {{else}}
-          {{#list.item 'sysupport-subscriptions' }}{{t 'nav.sysupport'}}{{/list.item}}
+          {{#list.item 'timed-subscriptions' }}{{t 'nav.timed'}}{{/list.item}}
         {{/if}}
       {{/if}}
     {{/nav.list}}

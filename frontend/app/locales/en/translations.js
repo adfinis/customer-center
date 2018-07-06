@@ -57,8 +57,8 @@ export default {
       symonitoring: 'SyMonitoring',
       'symonitoring.description': 'Monitoring of servers and services',
 
-      sysupport: 'SySupport',
-      'sysupport.description': 'Support subscriptions',
+      timed: 'Credits / Reports',
+      'timed.description': 'Support subscriptions',
 
       ppa: 'PPA',
       'ppa.description': 'Manage your web-hostings',
@@ -74,7 +74,7 @@ export default {
   nav: {
     dashboard: 'Dashboard',
     vault: 'Vault',
-    sysupport: 'SySupport',
+    timed: 'Credits / Reports',
     gitlab: 'Projects',
     settings: 'Settings',
     logout: 'Sign out'
@@ -91,7 +91,7 @@ export default {
     'clipboard-error': 'The secret could not be saved to your clipboard.'
   },
 
-  sysupport: {
+  timed: {
     breadcrumbs: {
       reload: 'Reload',
       overview: 'Overview'
@@ -118,7 +118,7 @@ export default {
       }
     },
     index: {
-      title: 'Sysupport Subscriptions',
+      title: 'Credits / Reports',
       charge: 'Reload',
       details: 'Details'
     },

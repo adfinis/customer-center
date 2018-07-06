@@ -29,9 +29,10 @@ module.exports = function(environment) {
         mail: 'support@adfinis-sygroup.ch'
       },
       // Define admin group
-      adminGroup: 'adsy-user',
-      // Services : redmine, mon, sysupport, wiki, rt, vault
-      enabledServices: ['vault', 'sysupport', 'gitlab'],
+      adminGroup: 'adsy-admin',
+      adsyUserGroup: 'adsy-user',
+      // Services : redmine, mon, timed, wiki, rt, vault
+      enabledServices: ['vault', 'timed', 'gitlab'],
       // Define alertTime in hours
       // When total time comes close to alertTime, text color changes
       alertTime: 60
@@ -63,8 +64,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    // Services : redmine, mon, sysupport, wiki, rt, vault
-    ENV.APP.enabledServices = ['vault', 'sysupport']
+    // Services : redmine, mon, timed, wiki, rt, vault
+    ENV.APP.enabledServices = ['vault', 'timed']
   }
 
   return ENV

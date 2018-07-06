@@ -57,8 +57,8 @@ export default {
       symonitoring: 'SyMonitoring',
       'symonitoring.description': 'Überwachung von Server und Diensten',
 
-      sysupport: 'SySupport',
-      'sysupport.description': 'Support Abonnemente',
+      timed: 'Credits / Reports',
+      'timed.description': 'Support Abonnemente',
 
       ppa: 'PPA',
       'ppa.description': 'Verwaltung ihrer Webhostings',
@@ -74,7 +74,7 @@ export default {
   nav: {
     dashboard: 'Übersicht',
     vault: 'Vault',
-    sysupport: 'SySupport',
+    timed: 'Credits / Reports',
     gitlab: 'Projekte',
     settings: 'Einstellungen',
     logout: 'Logout'
@@ -92,7 +92,7 @@ export default {
       'Das Passwort konnte nicht in die Zwischenablage kopiert werden.'
   },
 
-  sysupport: {
+  timed: {
     breadcrumbs: {
       reload: 'Aufladen',
       overview: 'Übersicht'
@@ -120,7 +120,7 @@ export default {
     },
 
     index: {
-      title: 'Sysupport Abonnements',
+      title: 'Abonnements',
       charge: 'Aufladen',
       details: 'Details'
     },

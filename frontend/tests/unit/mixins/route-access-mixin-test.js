@@ -9,20 +9,30 @@ module('Unit | Mixin | route access mixin', function(hooks) {
   test('access mixin positive', async function(assert) {
     assert.expect(1)
     let mixin = EmberObject.extend(RouteAccessMixinMixin).create({
-      groups: ['adsy-user']
+      groups: {
+        requireAll: ['timed'],
+        requireOne: ['adsy-customer', 'adsy-user']
+      }
     })
     assert.ok(
-      mixin._hasPermissions(EmberObject.create({ groups: ['adsy-user'] }))
+      mixin._hasPermissions(
+        EmberObject.create({ groups: ['timed', 'adsy-user'] })
+      )
     )
   })
 
   test('access mixin negative', async function(assert) {
     assert.expect(1)
     let mixin = EmberObject.extend(RouteAccessMixinMixin).create({
-      groups: ['adsy-user']
+      groups: {
+        requireAll: ['timed', 'adsy-admin'],
+        requireOne: ['adsy-customer', 'adsy-user']
+      }
     })
     assert.notOk(
-      mixin._hasPermissions(EmberObject.create({ groups: ['adsy-customer'] }))
+      mixin._hasPermissions(
+        EmberObject.create({ groups: ['timed', 'adsy-customer'] })
+      )
     )
   })
 })

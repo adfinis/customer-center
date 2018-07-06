@@ -11,6 +11,7 @@ module.exports = {
   },
   login: {
     adminRole: 'adsy-user',
+    employeeRole: 'adsy-user',
 
     ldap: {
       searchBase: 'cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
@@ -86,7 +87,7 @@ module.exports = {
     timed: {
       type: 'timed',
       host: 'http://timedbackend',
-      user: 'sysupport_api',
+      user: 'timed_api',
       password: 'hallo123',
       prefix: '/api/v1',
       authPath: '/auth/login',

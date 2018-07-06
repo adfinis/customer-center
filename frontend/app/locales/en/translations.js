@@ -130,10 +130,12 @@ export default {
       error:
         'An error occured while processing your order. Please check if your order was saved and if not, try again.',
       charge: 'Reload',
-      noPackage: `<span class="uk-card-title">It seems like there aren't any Subscription Packages available.</span><br>
-        To charge your time, please contact our Support under:<br>
-        Call: +41 61 500 31 30<br>
-        E-Mail: <a href="mailto:support@adfinis-sygroup.ch" class="uk-height-1-1">support@adfinis-sygroup.ch</a>`
+      noPackage: {
+        title:
+          "It seems like there aren't any Subscription Packages available.",
+        text: 'To charge your time, please contact our Support under:',
+        phone: 'Call'
+      }
     },
 
     detail: {

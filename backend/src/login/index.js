@@ -108,7 +108,7 @@ function loginSuccessful(req, res, next, ldapUser) {
     const isMember = group => userGroups.some(g => g.endsWith(group))
 
     // If user is in the vault group, get vault token
-    if (isMember('vault')) {
+    if (isMember('vault') || users.get(ldapUser).isEmployee()) {
       req.session = await addVaultTokenToSession(
         req.session,
         username,

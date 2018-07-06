@@ -26,7 +26,7 @@ export default Model.extend({
   }),
 
   vault: computed('groups.[]', function() {
-    return this._checkGroup('vault')
+    return this._checkGroup('vault') || this.adsyUser
   }),
 
   timed: computed('groups.[]', function() {

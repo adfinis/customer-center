@@ -44,10 +44,10 @@ module('Acceptance | Timed Subscriptions', function(hooks) {
 
   test('subscription-project reload empty', async function(assert) {
     server.create('timed-subscription-project')
-    await visit('/sysupport-subscriptions')
+    await visit('/timed-subscriptions')
 
     await click('[data-test-reload-link="0"]')
-    assert.equal(currentURL(), '/sysupport-subscriptions/1/reload')
+    assert.equal(currentURL(), '/timed-subscriptions/1/reload')
     assert
       .dom('[data-test-info-panel="0"]')
       .includesText('support@adfinis-sygroup.ch')

@@ -24,8 +24,8 @@ export default Mirage.Factory.extend({
       return ['timed', 'adsy-admin', 'adsy-vault']
     }
   }),
-  intern: trait({
-    username: 'intern',
+  employee: trait({
+    username: 'employee',
     groups() {
       return ['timed', 'adsy-user', 'adsy-vault']
     }

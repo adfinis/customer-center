@@ -1,6 +1,6 @@
 export default function(server) {
   server.createList('user', 1, 'customer')
-  server.createList('user', 1, 'intern')
+  server.createList('user', 1, 'employee')
   server.createList('user', 1, 'admin')
 
   // timed

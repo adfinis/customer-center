@@ -71,7 +71,7 @@ export default bookshelf.Model.extend(
     },
 
     /**
-     * Check if user is intern
+     * Check if user is employee
      *
      * @returns {boolean}
      * @public
@@ -88,7 +88,7 @@ export default bookshelf.Model.extend(
      * @public
      * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
      */
-    isIntern() {
+    isEmployee() {
       return this.isAdmin() || this.isAdsyUser()
     },
 

@@ -59,7 +59,10 @@ const routes = {
  * @return boolean - returns true if has access
  **/
 function checkAccess(req) {
-  if (!req.user.isIntern && typeof req.session.timedCustomer === 'undefined') {
+  if (
+    !req.user.isEmployee() &&
+    typeof req.session.timedCustomer === 'undefined'
+  ) {
     return false
   }
   let access = req.user.isAdmin()
@@ -95,7 +98,7 @@ function createProxy(config) {
         .map(key => `${key}=${queryParams[key]}`)
         .join('&')
 
-      if (!req.user.isIntern()) {
+      if (!req.user.isEmployee()) {
         newPath += `customer=${req.session.timedCustomer.id}`
       }
       if (req.path.match(routes.reports.path)) {

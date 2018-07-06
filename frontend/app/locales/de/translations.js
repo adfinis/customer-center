@@ -127,13 +127,19 @@ export default {
 
     reload: {
       price: 'Preis',
-      select: 'Wählen Sie ein Packet aus',
+      select: 'Wählen Sie ein Paket aus',
       success: 'Ihre Bestellung wurde erfolgreich verarbeitet.',
       error:
         'Bei der Verarbeitung Ihrer Bestellung ist ein Fehler aufgetreten. Bitte vergewissern Sie sich ob die Bestellung verarbeitet wurde und falls nicht, versuchen Sie es noch einmal.',
       charge: 'Aufladen',
       'error-loading':
-        'Die Bestellungen für dieses Projekt konten nicht geladen werden. Bitte versuchen Sie es erneut.'
+        'Die Bestellungen für dieses Projekt konten nicht geladen werden. Bitte versuchen Sie es erneut.',
+      noPackage: {
+        title: 'Es scheint als hätten Sie keine Pakete.',
+        text:
+          'Um ihre Zeit aufzuladen, kontaktieren Sie bitte unseren Support unter:',
+        phone: 'Telefon'
+      }
     },
 
     detail: {

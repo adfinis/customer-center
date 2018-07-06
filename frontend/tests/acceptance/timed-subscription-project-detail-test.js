@@ -41,4 +41,15 @@ module('Acceptance | Sysupport Subscriptions', function(hooks) {
     assert.equal(currentURL(), '/sysupport-subscriptions/1')
     assert.dom('[data-test-project-order]').exists({ count: 11 })
   })
+
+  test('subscription-project reload empty', async function(assert) {
+    server.create('timed-subscription-project')
+    await visit('/sysupport-subscriptions')
+
+    await click('[data-test-reload-link="0"]')
+    assert.equal(currentURL(), '/sysupport-subscriptions/1/reload')
+    assert
+      .dom('[data-test-info-panel="0"]')
+      .includesText('support@adfinis-sygroup.ch')
+  })
 })

@@ -131,7 +131,13 @@ export default {
         'An error occured while processing your order. Please check if your order was saved and if not, try again.',
       charge: 'Reload',
       'error-loading':
-        "The orders for his project couldn't be loaded. Please try again."
+        "The orders for his project couldn't be loaded. Please try again.",
+      noPackage: {
+        title:
+          "It seems like there aren't any Subscription Packages available.",
+        text: 'To charge your time, please contact our Support under:',
+        phone: 'Call'
+      }
     },
 
     detail: {

@@ -30,7 +30,7 @@ export default Model.extend({
   }),
 
   timed: computed('groups.[]', function() {
-    return this._checkGroup('timed') || this.admin || this.adsyUser
+    return this._checkGroup('timed') || this.adsyUser
   }),
 
   gitlab: computed('groups.[]', function() {

@@ -56,20 +56,9 @@ objectclass: top
 sambagrouptype: 2
 sambasid: S-1-5-21--2000
 
-dn: cn=adsy-admin,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
-cn: adsy-admin
+dn: cn=adsy-timed-admin,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+cn: adsy-timed-admin
 gidnumber: 505
-memberuid: uid=admin1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
-objectclass: posixGroup
-objectclass: sambaGroupMapping
-objectclass: top
-sambagrouptype: 2
-sambasid: S-1-5-21--2000
-
-dn: cn=customer-timed,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
-cn: customer-timed
-gidnumber: 501
-memberuid: uid=user1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 memberuid: uid=admin1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 objectclass: posixGroup
 objectclass: sambaGroupMapping

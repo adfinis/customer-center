@@ -117,7 +117,7 @@ function loginSuccessful(req, res, next, ldapUser) {
     }
 
     // If user is in the timed group, get timed token
-    if (isMember('timed')) {
+    if (isMember('timed') || users.get(ldapUser).isEmployee()) {
       req.session = await addTimedTokenToSession(
         req.session,
         users.get(ldapUser)

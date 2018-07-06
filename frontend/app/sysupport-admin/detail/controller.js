@@ -21,10 +21,10 @@ export default Controller.extend({
   }),
 
   error: computed('validation.{hour,minute}', 'hour', 'minute', function() {
-    return (this.hour && !this.get('validation.hour')) ||
+    return (
+      (this.hour && !this.get('validation.hour')) ||
       (this.minute && !this.get('validation.minute'))
-      ? true
-      : false
+    )
   }),
 
   orders: computed('fetchModels.lastSuccessful.value', function() {

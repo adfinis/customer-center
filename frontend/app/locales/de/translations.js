@@ -132,6 +132,8 @@ export default {
       error:
         'Bei der Verarbeitung Ihrer Bestellung ist ein Fehler aufgetreten. Bitte vergewissern Sie sich ob die Bestellung verarbeitet wurde und falls nicht, versuchen Sie es noch einmal.',
       charge: 'Aufladen',
+      'error-loading':
+        'Die Bestellungen für dieses Projekt konten nicht geladen werden. Bitte versuchen Sie es erneut.',
       noPackage: {
         title: 'Es scheint als hätten Sie keine Pakete.',
         text:
@@ -142,7 +144,7 @@ export default {
 
     detail: {
       expense: 'Aufwände',
-      charges: 'Aufladungen',
+      charges: 'Bestellungen',
       effort: 'Aufwand',
       employee: 'Mitarbeiter',
       description: 'Beschreibung',
@@ -152,13 +154,16 @@ export default {
     admin: {
       subscriptions: 'Abonnements',
       'confirm-subscription': 'Bestellung bestätigen',
+      reload: 'Aufladen',
       customer: 'Kunde',
       project: 'Projekt',
       projects: 'Projekte',
       billingType: 'Verrechnungs Art',
       admin: 'Admin',
       confirmSuccess: 'Bestellung akzeptiert.',
-      confirmDeny: 'Bestellung abgelehnt.'
+      confirmDeny: 'Bestellung abgelehnt.',
+      'reload-form-error': 'Bitte geben Sie nur valide Nummern ein.',
+      form: 'Anzahl Stunden/Minuten:'
     }
   },
 

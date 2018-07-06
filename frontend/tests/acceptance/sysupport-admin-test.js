@@ -1,11 +1,15 @@
-import { click, currentURL, visit } from '@ember/test-helpers'
-import { module, test } from 'qunit'
+import { fillIn, click, currentURL, visit } from '@ember/test-helpers'
+
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage'
 import { setupApplicationTest } from 'ember-qunit'
 import {
   authenticateSession,
   invalidateSession
 } from 'ember-simple-auth/test-support'
-import setupMirage from 'ember-cli-mirage/test-support/setup-mirage'
+import moment from 'moment'
+import { module, test } from 'qunit'
+
+import DjangoDurationTransform from 'customer-center/transforms/django-duration'
 
 module('Acceptance | Sysupport Admin', function(hooks) {
   setupApplicationTest(hooks)
@@ -41,6 +45,45 @@ module('Acceptance | Sysupport Admin', function(hooks) {
       .hasText(project.billingType.name)
     assert.dom('[data-test-project-order]').exists({ count: 10 })
     assert.dom('[data-test-project-report]').exists({ count: 5 })
+  })
+
+  test('subscription-admin reload', async function(assert) {
+    let project = this.server.create('timed-subscription-project', {
+      spentTime: DjangoDurationTransform.create().serialize(
+        moment.duration({ hours: 10 })
+      ),
+      purchasedTime: DjangoDurationTransform.create().serialize(
+        moment.duration({ hours: 15 })
+      )
+    })
+
+    await visit('/sysupport-admin')
+
+    await click('[data-test-project="0"]')
+    assert.equal(currentURL(), `/sysupport-admin/${project.id}`)
+
+    assert.dom('[data-test-project-total-time]').hasText('5 Hours')
+
+    await click('[data-test-reload-accordion]')
+    await fillIn('[data-test-hour-input]', 10)
+    await fillIn('[data-test-minute-input]', 30)
+
+    assert.dom('[data-test-project-total-time]').hasText('15 Hours 30 Minutes')
+
+    assert.dom('[data-test-project-order]').exists({ count: 10 })
+
+    await click('[data-test-reload-submit]')
+
+    assert.dom('[data-test-project-order]').exists({ count: 11 })
+
+    assert
+      .dom('[data-test-project-order]:last-child > [data-test-order-duration]')
+      .hasText('10 Hours 30 Minutes')
+
+    await click('[data-test-reload-accordion]')
+    assert.dom('[data-test-reload-submit]').isDisabled()
+    await fillIn('[data-test-minute-input]', 30)
+    assert.dom('[data-test-reload-submit]').isNotDisabled()
   })
 
   test('subscription-admin confirm-subscriptions accept', async function(assert) {

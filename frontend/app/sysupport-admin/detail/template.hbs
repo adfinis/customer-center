@@ -1,10 +1,45 @@
+<div class="uk-width-1-1 uk-margin uk-animation-slide-top-small">
+  <ul uk-accordion data-reload-acc>
+    <li>
+      <a data-test-reload-accordion class="uk-accordion-title" href="#">{{t 'sysupport.admin.reload'}} {{model.name}}</a>
+      <div class="uk-accordion-content">
+        <div class="uk-margin-left uk-flex uk-flex-middle uk-flex-between uk-flex-wrap">
+          <div class="uk-flex uk-flex-middle uk-flex-left uk-flex-wrap">
+            <span class="uk-text-large uk-margin-right">{{t 'sysupport.admin.form'}}</span>
+
+            <div class="uk-flex uk-flex-center uk-flex-middle uk-margin-right">
+              {{input
+                class=(concat "uk-text-center uk-input uk-form-width-small " (if hour (if validation.hour "uk-form-success" "uk-form-danger")))
+                type="number"
+                placeholder="Hours"
+                value=hour
+                data-test-hour-input=true}}
+              <span class="uk-margin-small-right uk-margin-small-left uk-text-large">:</span>
+              {{input
+                class=(concat "uk-text-center uk-input uk-form-width-small " (if minute (if validation.minute "uk-form-success" "uk-form-danger")))
+                type="number"
+                placeholder="Minutes"
+                value=minute
+                data-test-minute-input=true}}
+              {{#if error}}
+                <span class="uk-margin-left" data-test-reload-error>{{t 'sysupport.admin.reload-form-error'}}</span>
+              {{/if}}
+            </div>
+          </div>
+          {{uk-button loading=save.isRunning disabled=(or save.isRunning (or (not duration) error)) on-click=(action "saveOrder") label="Save" class="uk-button-primary" data-test-reload-submit=true}}
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<hr>
 <div uk-grid class="uk-child-width-1-1 uk-child-width-1-2@m" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
-  <div uk-grid class="uk-flex uk-flex-column" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
-    <div>
+  <div uk-grid class="uk-margin-remove-left uk-flex uk-flex-column" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
+    <div class="uk-padding-remove-left">
       {{#uk-card as |card|}}
         {{#card.header}}
           {{#card.title}}
-            {{model.project.name}}
+            {{project.name}}
           {{/card.title}}
         {{/card.header}}
         {{#card.body}}
@@ -12,24 +47,26 @@
             <div class="uk-width-1-2">
               <dl class="uk-description-list">
                 <dt>{{t 'sysupport.admin.customer'}}:</dt>
-                <dd data-test-customer-name="{{model.project.id}}">{{model.project.customer.name}}</dd>
+                <dd data-test-customer-name="{{project.id}}">{{project.customer.name}}</dd>
                 <dt>{{t 'sysupport.admin.billingType'}}:</dt>
-                <dd data-test-billing-type-name="{{model.project.id}}">{{model.project.billingType.name}}</dd>
+                <dd data-test-billing-type-name="{{project.id}}">{{project.billingType.name}}</dd>
               </dl>
             </div>
             <div class="uk-width-1-2">
               <dl class="uk-description-list">
                 <dt>{{t 'sysupport.time.total'}}:</dt>
-                <dd>{{format-duration model.project.purchasedTime}}</dd>
-                <dt>{{t 'sysupport.time.used'}}:</dt>
-                <dd>{{format-duration model.project.spentTime}}</dd>
+                <dd class={{if (and duration preview) "uk-text-success"}} data-test-project-total-time >
+                  {{format-duration (if (and duration preview) previewDuration project.totalTime) }}
+                </dd>
+                <dt>{{t 'sysupport.time.unconfirmed'}}:</dt>
+                <dd>{{format-duration project.unconfirmedTime}}</dd>
               </dl>
             </div>
           </div>
         {{/card.body}}
       {{/uk-card}}
     </div>
-    <div>
+    <div class="uk-padding-remove-left">
       {{#uk-card as |card|}}
         {{#card.header}}
           {{#card.title}}
@@ -46,18 +83,20 @@
               </tr>
             </thead>
             <tbody>
-              {{#each model.orders as |order index|}}
-                <tr data-test-project-order="{{index}}">
+              {{#each orders as |order index|}}
+                <tr class="uk-animation-fade" data-test-project-order="{{index}}">
                   <td>{{moment-format order.ordered 'DD.MM.YYYY'}}</td>
-                  <td>{{format-duration order.duration format='hours'}}</td>
+                  <td data-test-order-duration>{{format-duration order.duration format='hours'}}</td>
                   {{#if order.acknowledged}}
-                    <td>{{uk-icon 'check' scale=2 data-test-acknowledged=index}}</td>
+                  <td>{{uk-icon 'check' scale=2 data-test-acknowledged=index}}</td>
                   {{else}}
-                    <td>{{uk-icon 'close' scale=2 data-test-unconfirmed=index}}</td>
+                  <td>{{uk-icon 'close' scale=2 data-test-unconfirmed=index}}</td>
                   {{/if}}
                 </tr>
-              {{else}}{{t 'global.empty'}}{{/each}}
-              </tbody>
+              {{else}}
+                {{t 'global.empty'}}
+              {{/each}}
+            </tbody>
           </table>
         {{/card.body}}
       {{/uk-card}}
@@ -88,8 +127,10 @@
                 <td>{{report.user.fullName}}</td>
                 <td>{{report.comment}}</td>
               </tr>
-            {{else}}<tr><td colspan="4">{{t 'global.empty'}}</td></tr>{{/each}}
-            </tbody>
+            {{else}}
+              <tr><td colspan="4">{{t 'global.empty'}}</td></tr>
+            {{/each}}
+          </tbody>
         </table>
       {{/card.body}}
     {{/uk-card}}

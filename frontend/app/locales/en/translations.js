@@ -130,6 +130,8 @@ export default {
       error:
         'An error occured while processing your order. Please check if your order was saved and if not, try again.',
       charge: 'Reload',
+      'error-loading':
+        "The orders for his project couldn't be loaded. Please try again.",
       noPackage: {
         title:
           "It seems like there aren't any Subscription Packages available.",
@@ -150,13 +152,16 @@ export default {
     admin: {
       subscriptions: 'Subscriptions',
       'confirm-subscription': 'Confirm subscriptions',
+      reload: 'Reload',
       customer: 'Customer',
       project: 'Project',
       projects: 'Projects',
       billingType: 'Billing Type',
       admin: 'Admin',
       confirmSuccess: 'Order accepted.',
-      confirmDeny: 'Order denied.'
+      confirmDeny: 'Order denied.',
+      'reload-form-error': 'Please enter only valid numbers',
+      form: 'Number of hours/minutes:'
     }
   },
 

@@ -35,7 +35,7 @@ module.exports = function(environment) {
       enabledServices: ['vault', 'timed', 'gitlab'],
       // Define alertTime in hours
       // When total time comes close to alertTime, text color changes
-      alertTime: 60
+      alertTime: 5
     },
 
     i18n: {

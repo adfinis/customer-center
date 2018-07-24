@@ -6,7 +6,7 @@ INSERT INTO projects_customer (name, email, website, comment, archived, referenc
 INSERT INTO projects_billingtype (name) VALUES ('Subscription'),('Workhours based'),('We throw random moniez at u');
 INSERT INTO subscription_package(duration, price_currency, price, billing_type_id) VALUES ('100:00:00', 'CHF', 1000, 1),('200:00:00', 'CHF', 2000, 2),('200:00:00', 'CHF', 2000, 3);
 
-insert into projects_project (name, comment, archived, billing_type_id, customer_id, estimated_time) values ('Super Mario Galaxy 3', 'Giv mor!', false, 1,1,'10:00:00');
+insert into projects_project (name, comment, archived, billing_type_id, customer_id, estimated_time, customer_visible) values ('Super Mario Galaxy 3', 'Giv mor!', false, 1,1,'10:00:00', true);
 INSERT INTO projects_task(name, archived, project_id, estimated_time) VALUES ('Work', false, 1, '123:00:00');
 INSERT INTO tracking_report(comment, date, duration, review, not_billable, added, updated, task_id, user_id)
 	VALUES
@@ -26,7 +26,7 @@ INSERT INTO subscription_order(
     ,('50:00:00',current_date - integer '412', true, 1)
     ,('50:00:00',current_date - integer '523', true, 1);
 
-insert into projects_project (name, comment, archived, billing_type_id, customer_id, estimated_time) values ('The Elder Scrolls VI', 'Giv mor!', false, 2,1,'230:00:00');
+insert into projects_project (name, comment, archived, billing_type_id, customer_id, estimated_time, customer_visible) values ('The Elder Scrolls VI', 'Giv mor!', false, 2,1,'230:00:00', true);
 INSERT INTO projects_task(name, archived, project_id, estimated_time) VALUES ('Work', false, 2, '123:00:00');
 INSERT INTO tracking_report(comment, date, duration, review, not_billable, added, updated, task_id, user_id)
 	VALUES
@@ -46,7 +46,7 @@ INSERT INTO tracking_report(comment, date, duration, review, not_billable, added
     ,('50:00:00',current_date - integer '412', true, 2)
     ,('50:00:00',current_date - integer '523', true, 2);
 
-insert into projects_project (name, comment, archived, billing_type_id, customer_id, estimated_time) values ('Monster Hunter World', 'Giv mor!', false, 3,1,'30:00:00');
+insert into projects_project (name, comment, archived, billing_type_id, customer_id, estimated_time, customer_visible) values ('Monster Hunter World', 'Giv mor!', false, 3,1,'30:00:00', true);
 INSERT INTO projects_task(name, archived, project_id, estimated_time) VALUES ('Work', false, 3, '123:00:00');
 INSERT INTO tracking_report(comment, date, duration, review, not_billable, added, updated, task_id, user_id)
 	VALUES
@@ -66,7 +66,7 @@ INSERT INTO tracking_report(comment, date, duration, review, not_billable, added
     ,('50:00:00',current_date - integer '412', true, 3)
     ,('50:00:00',current_date - integer '523', true, 3);
 
-insert into projects_project (name, comment, archived, billing_type_id, customer_id, estimated_time) values ('Star Citizen', 'Giv mor!', false, 1,1,'5:00:00');
+insert into projects_project (name, comment, archived, billing_type_id, customer_id, estimated_time, customer_visible) values ('Star Citizen', 'Giv mor!', false, 1,1,'5:00:00', true);
 INSERT INTO projects_task(name, archived, project_id, estimated_time) VALUES ('Work', false, 4, '123:00:00');
 INSERT INTO tracking_report(comment, date, duration, review, not_billable, added, updated, task_id, user_id)
 	VALUES

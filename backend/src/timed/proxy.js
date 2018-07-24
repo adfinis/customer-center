@@ -1,5 +1,8 @@
 import path from 'path'
 import httpProxy from 'express-http-proxy'
+import rp from 'request-promise'
+import config from '../config'
+import moment from 'moment'
 
 const routes = {
   subscriptionProject: {
@@ -80,6 +83,93 @@ function checkAccess(req) {
   return false
 }
 
+/**
+ * Send confirmation mail for order
+ * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
+ */
+async function sendMail(req) {
+  function parseDjangoDuration(duration) {
+    let re = new RegExp(/^(-?\d+)?\s?(\d{2}):(\d{2}):(\d{2})(\.\d{6})?$/)
+
+    let [, days, hours, minutes, seconds, microseconds] = duration
+      .match(re)
+      .map(m => Number(m) || 0)
+
+    return moment.duration({
+      days,
+      hours,
+      minutes,
+      seconds,
+      milliseconds: microseconds * 1000
+    })
+  }
+
+  let mailTransporter = req.app.get('mailTransporter')
+  mailTransporter.verify(async function(error) {
+    if (error) {
+      console.log(`Mail transporter failed: ${error}`)
+      return
+    }
+
+    let { host, prefix } = config.services.timed
+    let {
+      data: {
+        id: projectId,
+        attributes: {
+          name: projectName,
+          'purchased-time': projectPurchasedTime,
+          'spent-time': projectSpentTime
+        }
+      }
+    } = JSON.parse(
+      await rp({
+        method: 'get',
+        uri: `${host}${prefix}/subscription-projects/${
+          req.body.data.relationships.project.data.id
+        }`,
+        headers: {
+          accept: 'application/vnd.api+json',
+          'content-type': 'application/vnd.api+json',
+          Authorization: `Bearer ${req.session.timedToken}`
+        }
+      })
+    )
+
+    let customer = req.session.timedCustomer,
+      duration = parseDjangoDuration(req.body.data.attributes.duration),
+      newTime = parseDjangoDuration(projectPurchasedTime)
+        .add(duration)
+        .subtract(parseDjangoDuration(projectSpentTime))
+
+    mailTransporter.sendMail({
+      from: config.mail.from,
+      to: config.mail.to,
+      subject: `Customer Center Credits/Reports: ${
+        customer.attributes.name
+      } hat ${duration.asHours()} Stunde/n bestellt.`,
+      text: `Kunde ${
+        customer.attributes.name
+      } hat für ${projectName} ${duration.asHours()} Stunden bestellt.\n Das neue Projekt Total (falls die Bestellung akzeptiert wird) wäre ${newTime.asHours()} Stunden.\n\n https://my.adfinis-sygroup.ch/timed-admin/confirm-subscriptions`,
+      html: `
+        <b>Aufladung von ${duration.asHours()} Stunde/n</b>
+        <ul>
+        <li>Kunde: ${customer.attributes.name}</li>
+        <li>Projekt: ${projectName}</li>
+        <li>Projekt Total mit Aufladung: ${newTime.asHours()} Stunde/n</li>
+        </ul>
+
+        <div style="font-size: 12px;">
+        __________________________________<br>
+        <a href="https://my.adfinis-sygroup.ch/timed-admin/confirm-subscriptions">Im Customer Center anzeigen</a><br>
+        <a href="https://my.adfinis-sygroup.ch/timed-admin/${projectId}">Kunde anzeigen</a>
+        <br><br>
+        <b>Customer Center</b><br>Credits / Reports
+        </div>
+      `
+    })
+  })
+}
+
 function createProxy(config) {
   return httpProxy(config.host, {
     filter(req) {
@@ -90,6 +180,13 @@ function createProxy(config) {
     proxyReqPathResolver(req) {
       let newPath = `${path.join(config.prefix, req.path)}?`
       const queryParams = req.query
+
+      if (
+        req.path.match(routes.subscriptionOrders.path) &&
+        req.method === 'POST'
+      ) {
+        sendMail(req)
+      }
 
       // Frontend can not set the query param "customer"
       Reflect.deleteProperty(queryParams, 'customer')

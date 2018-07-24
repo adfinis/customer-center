@@ -105,7 +105,7 @@ services:
       - "8200:8200"
 
   timedbackend:
-    image: adfinissygroup/timed-backend
+    image: adfinissygroup/timed-backend:v0.11.0
     ports:
       - '8000:80'
     depends_on:
@@ -119,15 +119,20 @@ services:
       - STATIC_ROOT=/var/www/static
 
   gitlab:
-      image: 'gitlab/gitlab-ce:latest'
-      logging:
-        driver: "none"
-      ports:
-        - '5080:80'
-        - '5443:443'
-        - '5022:22'
+    image: 'gitlab/gitlab-ce:latest'
+    logging:
+      driver: "none"
+    ports:
+      - '5080:80'
+      - '5443:443'
+      - '5022:22'
 
   gitlab-runner:
-      image: 'gitlab/gitlab-runner:latest'
-      depends_on:
-        - gitlab
+    image: 'gitlab/gitlab-runner:latest'
+    depends_on:
+      - gitlab
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - '1080:1080'

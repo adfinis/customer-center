@@ -1,0 +1,8 @@
+<li class={{unless @links.prev "uk-disabled"}}>
+  <a href="#" {{action 'load' 'prev'}}><span class="uk-margin-small-right" uk-pagination-previous></span> Previous</a>
+</li>
+{{log 'translate in pagination component Page 1 of 23'}}
+<li>Page {{@meta.page}} of {{@meta.pages}}</li>
+<li class={{unless @links.next "uk-disabled"}}>
+  <a href="#" {{action 'load' 'next'}}>Next <span class="uk-margin-small-left" uk-pagination-next></span></a>
+</li>

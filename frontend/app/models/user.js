@@ -37,6 +37,10 @@ export default Model.extend({
     return this._checkGroup('gitlab')
   }),
 
+  rt: computed('groups.[]', function() {
+    return this._checkGroup('rt')
+  }),
+
   /**
    * Get all groups with a `-gitlab` suffix.
    *

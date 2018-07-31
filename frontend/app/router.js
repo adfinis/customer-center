@@ -29,6 +29,7 @@ Router.map(function() {
     })
 
     this.route('gitlab', { resetNamespace: true, path: 'projects' })
+    this.route('rt', { resetNamespace: true, path: 'tickets' })
   })
 
   this.route('notfound', { path: '/*path' })

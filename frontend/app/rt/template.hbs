@@ -1,0 +1,34 @@
+{{bread-crumbs tagName="ul" linkable=true class='uk-breadcrumb uk-animation-slide-top-small'}}
+<hr>
+
+<div class="uk-flex uk-flex-right">
+  <div class="uk-margin-right uk-flex uk-flex-middle" data-test-select="select">
+    <div class="uk-text-nowrap uk-margin-right">{{t 'rt.pageSize'}}:</div>
+    <select class="uk-select" id="form-horizontal-select" disabled={{unless pageSizes "disabled"}} onchange={{action "setPageSize" value="target.value"}}>
+      <option selected value="{{pageSize}}">{{pageSize}}</option>
+      {{#each pageSizes as |size|}}
+        {{#unless (eq size pageSize)}}
+          <option value={{size}}>{{size}}</option>
+        {{/unless}}
+      {{/each}}
+    </select>
+  </div>
+</div>
+
+<div class="uk-overflow-auto" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 50;">
+  {{#cc-data-table headers=headers model=model as |results|}}
+    {{#each results as |ticket index|}}
+      <tr>
+
+        <td><a target="_blank" href="https://rt.adfinis-sygroup.ch/rt/Ticket/Display.html?id={{ticket.effectiveid}}">{{ticket.effectiveid}}</a></td>
+        <td>{{ticket.subject}}</td>
+        <td>{{ticket.status}}</td>
+        <td>{{format-datetime ticket.updated}}</td>
+        <td>{{format-datetime ticket.created}}</td>
+        <td>{{if ticket.creator.fullName ticket.creator.fullName ticket.creator.username}}</td>
+        <td>{{if ticket.owner.fullName ticket.owner.fullName ticket.owner.username}}</td>
+      </tr>
+      {{else}}<tr><td colspan="7">{{t 'rt.empty'}}</td></tr>{{/each}}
+  {{/cc-data-table}}
+  {{uk-pagination meta=model.meta.pagination links=model.links loadPage=(action 'loadPage')}}
+</div>

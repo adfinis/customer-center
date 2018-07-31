@@ -1,0 +1,13 @@
+- Dokumentieren db dump in Wiki für Timed deployment
+- Noch zur Ergänzung. Als Ersatz von "SySupport" käme allenfalls "Credits / Reports" in Frage.
+- Mail an administration@adfinis-sygroup.ch bei Paketbestellung
+- Ohne Pakete aufladen muss für Admin möglich sein
+- Reload nur möglich, wenn Pakete vorhanden, ansonsten Reload ausblenden oder Message "Melden sie sich bei unserem Verkauf"
+/*- Saldo anzeigen bei Kundensicht*/
+/*- Standort-Adresse korrigieren*/
+/*- Minuszahlen korrigieren*/
+/*- Anzuzeigende Projekte als "Customer visible" markieren*/
+/*- Adresse zurich*/
+Y - Minus hervorheben
+
+

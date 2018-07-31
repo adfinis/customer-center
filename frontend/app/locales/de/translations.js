@@ -76,6 +76,7 @@ export default {
     vault: 'Vault',
     timed: 'Credits / Reports',
     gitlab: 'Projekte',
+    rt: 'Tickets',
     settings: 'Einstellungen',
     logout: 'Logout'
   },
@@ -204,6 +205,23 @@ export default {
       created: 'Erstellt',
       pending: 'Ausstehend',
       running: 'Laufend'
+    }
+  },
+
+  rt: {
+    empty: 'Es wurden keine Tickets gefunden.',
+    pageSize: 'Anzahl Einträge:',
+    breadcrumbs: {
+      tickets: 'Tickets'
+    },
+    ticket: {
+      effectiveid: 'ID',
+      subject: 'Subjekt',
+      status: 'Status',
+      updated: 'Zulezt aktualisiert',
+      created: 'Erstellt',
+      creator: 'Ersteller',
+      owner: 'Verantwortlich'
     }
   }
 }

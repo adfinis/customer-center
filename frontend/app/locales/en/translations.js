@@ -16,6 +16,15 @@ export default {
     error: 'Oops something went wrong'
   },
 
+  components: {
+    'uk-pagination': {
+      page: 'Page',
+      of: 'of',
+      next: 'Next',
+      prev: 'Previous'
+    }
+  },
+
   login: {
     login: 'Sign in',
     'logging-in': 'Signing in',

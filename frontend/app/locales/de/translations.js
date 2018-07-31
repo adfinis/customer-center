@@ -16,6 +16,15 @@ export default {
     error: 'Oops etwas ist schief gelaufen'
   },
 
+  components: {
+    'uk-pagination': {
+      page: 'Seite',
+      of: 'von',
+      next: 'Nächste Seite',
+      prev: 'Vorherige Seite'
+    }
+  },
+
   login: {
     login: 'Login',
     'logging-in': 'Login',
@@ -210,7 +219,7 @@ export default {
 
   rt: {
     empty: 'Es wurden keine Tickets gefunden.',
-    pageSize: 'Anzahl Einträge:',
+    pageSize: 'Anzahl Einträge',
     breadcrumbs: {
       tickets: 'Tickets'
     },

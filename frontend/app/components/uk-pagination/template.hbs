@@ -1,8 +1,7 @@
 <li class={{unless @links.prev "uk-disabled"}}>
-  <a href="#" {{action 'load' 'prev'}}><span class="uk-margin-small-right" uk-pagination-previous></span> Previous</a>
+  <a href="#" {{action 'load' 'prev'}}><span class="uk-margin-small-right" uk-pagination-previous></span>{{t 'components.uk-pagination.prev'}}</a>
 </li>
-{{log 'translate in pagination component Page 1 of 23'}}
-<li>Page {{@meta.page}} of {{@meta.pages}}</li>
+<li>{{t 'components.uk-pagination.page'}} {{@meta.page}} {{t 'components.uk-pagination.of'}} {{@meta.pages}}</li>
 <li class={{unless @links.next "uk-disabled"}}>
-  <a href="#" {{action 'load' 'next'}}>Next <span class="uk-margin-small-left" uk-pagination-next></span></a>
+  <a href="#" {{action 'load' 'next'}}>{{t 'components.uk-pagination.next'}} <span class="uk-margin-small-left" uk-pagination-next></span></a>
 </li>

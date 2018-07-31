@@ -26,12 +26,14 @@ export default Controller.extend({
       {
         type: 'sort',
         title: 'rt.ticket.updated',
-        attr: 'updated'
+        attr: 'updated',
+        customFilter: this._sortDate
       },
       {
         type: 'sort',
         title: 'rt.ticket.created',
-        attr: 'created'
+        attr: 'created',
+        customFilter: this._sortDate
       },
       {
         type: 'search',
@@ -66,17 +68,36 @@ export default Controller.extend({
     }
   },
 
-  _searchUser(data, { order, attr }) {
+  _searchUser(data, search) {
+    return data.filter(model =>
+      model
+        .get(
+          search.attr +
+            (model.get(search.attr + '.fullName') ? '.fullName' : '.username')
+        )
+        .toLowerCase()
+        .includes(search.term.trim().toLowerCase())
+    )
+  },
+
+  _sortStatus(data, { order, attr }) {
+    const states = ['new', 'open', 'stalled', 'resolved', 'rejected', 'deleted']
     return data.toArray().sort((a, b) => {
       if (order === 'asc') {
-        return a.get(attr) - b.get(attr)
+        return (
+          states.findIndex(s => s === a.get(attr)) -
+          states.findIndex(s => s === b.get(attr))
+        )
       } else if (order === 'desc') {
-        return b.get(attr) - a.get(attr)
+        return (
+          states.findIndex(s => s === b.get(attr)) -
+          states.findIndex(s => s === a.get(attr))
+        )
       }
     })
   },
 
-  _sortStatus(data, { order, attr }) {
+  _sortDate(data, { order, attr }) {
     return data.toArray().sort((a, b) => {
       if (order === 'asc') {
         return a.get(attr) - b.get(attr)

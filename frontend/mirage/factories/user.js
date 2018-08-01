@@ -21,13 +21,13 @@ export default Mirage.Factory.extend({
   admin: trait({
     username: 'admin',
     groups() {
-      return ['timed', 'adsy-admin', 'adsy-vault']
+      return ['timed', 'adsy-admin', 'vault', 'rt']
     }
   }),
   employee: trait({
     username: 'employee',
     groups() {
-      return ['timed', 'adsy-user', 'adsy-vault']
+      return ['timed', 'adsy-user', 'vault', 'rt']
     }
   }),
   customer: trait({
@@ -36,6 +36,7 @@ export default Mirage.Factory.extend({
       return [
         `${this.shortname}-vault`,
         `${this.shortname}-timed`,
+        `${this.shortname}-rt`,
         `test1-gitlab`,
         `test2-gitlab`,
         `test3-gitlab`,

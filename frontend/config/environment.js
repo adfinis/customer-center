@@ -25,7 +25,8 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       rt: {
-        pageSizes: [10, 20, 50]
+        pageSizes: [10, 20, 50],
+        states: ['new', 'open', 'stalled', 'resolved', 'rejected', 'deleted']
       },
       // Define admin group
       adminGroup: 'adsy-admin',

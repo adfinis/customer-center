@@ -1,7 +1,32 @@
 {{bread-crumbs tagName="ul" linkable=true class='uk-breadcrumb uk-animation-slide-top-small'}}
 <hr>
 
-<div class="uk-flex uk-flex-right">
+<div class="uk-flex uk-flex-right uk-flex-middle uk-flex-wrap">
+
+  <form class="uk-flex uk-flex-between uk-margin-right">
+    <div class="uk-search uk-search-default">
+      <span uk-search-icon></span>
+      {{input data-test-search=true class="uk-search-input" value=term type="search" placeholder=(t 'global.search-placeholder') autofocus=true}}
+    </div>
+
+    {{uk-button
+    color='primary'
+    label=(t 'global.search')
+    type='submit'
+    on-click=(action 'search')
+    }}
+
+  </form>
+
+  <div class="uk-margin-right" data-test-select="select">
+    <select class="uk-select" id="form-horizontal-select"  onchange={{action 'setState' value="target.value"}}>
+      <option selected={{unless status true}} value="">{{t 'rt.all-states'}}</option>
+      {{#each states as |s|}}
+        <option selected={{if (eq status s) true}} value={{s}}>{{s}}</option>
+      {{/each}}
+    </select>
+  </div>
+
   <div class="uk-margin-right uk-flex uk-flex-middle" data-test-select="select">
     <div class="uk-text-nowrap uk-margin-right">{{t 'rt.pageSize'}}:</div>
     <select class="uk-select" id="form-horizontal-select" disabled={{unless pageSizes "disabled"}} onchange={{action "setPageSize" value="target.value"}}>
@@ -13,13 +38,24 @@
       {{/each}}
     </select>
   </div>
+
 </div>
 
-<div class="uk-overflow-auto" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 50;">
-  {{#cc-data-table headers=headers model=model as |results|}}
-    {{#each results as |ticket index|}}
+<table class="uk-table uk-table-responsive uk-table-hover uk-table-striped">
+  <thead uk-height-match>
+    <tr uk-height-match>
+      <th class="uk-width-auto">{{t 'rt.ticket.effectiveid'}}</th>
+      <th class="uk-width-1-4">{{t 'rt.ticket.subject'}}</th>
+      <th class="uk-width-auto">{{t 'rt.ticket.status'}}</th>
+      <th class="uk-width-auto">{{t 'rt.ticket.updated'}}</th>
+      <th class="uk-width-auto">{{t 'rt.ticket.created'}}</th>
+      <th class="uk-width-auto">{{t 'rt.ticket.creator'}}</th>
+      <th class="uk-width-auto">{{t 'rt.ticket.owner'}}</th>
+    </tr>
+  </thead>
+  <tbody class="uk-overflow-auto" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 50;">
+    {{#each model as |ticket index|}}
       <tr>
-
         <td><a target="_blank" href="https://rt.adfinis-sygroup.ch/rt/Ticket/Display.html?id={{ticket.effectiveid}}">{{ticket.effectiveid}}</a></td>
         <td>{{ticket.subject}}</td>
         <td>{{ticket.status}}</td>
@@ -28,7 +64,7 @@
         <td>{{if ticket.creator.fullName ticket.creator.fullName ticket.creator.username}}</td>
         <td>{{if ticket.owner.fullName ticket.owner.fullName ticket.owner.username}}</td>
       </tr>
-      {{else}}<tr><td colspan="7">{{t 'rt.empty'}}</td></tr>{{/each}}
-  {{/cc-data-table}}
-  {{uk-pagination meta=model.meta.pagination links=model.links loadPage=(action 'loadPage')}}
-</div>
+    {{else}}<tr><td colspan="7">{{t 'rt.empty'}}</td></tr>{{/each}}
+  </tbody>
+</table>
+{{uk-pagination meta=model.meta.pagination links=model.links loadPage=(action 'loadPage')}}

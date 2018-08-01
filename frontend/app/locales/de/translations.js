@@ -3,6 +3,7 @@ export default {
   en: 'Englisch',
 
   global: {
+    'search-placeholder': 'Suche...',
     Username: 'Benutzername',
     Password: 'Passwort',
     save: 'Speichern',
@@ -218,6 +219,7 @@ export default {
   },
 
   rt: {
+    'all-states': 'Alle Status',
     empty: 'Es wurden keine Tickets gefunden.',
     pageSize: 'Anzahl Einträge',
     breadcrumbs: {

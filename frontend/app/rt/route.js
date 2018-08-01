@@ -18,16 +18,20 @@ export default Route.extend(RouteAccessMixin, {
     })
   },
 
-  model({ page = 1, page_size = 10 }) {
+  model({ page = 1, page_size = 10, search = null, status = null }) {
     return this.store.query('rt-ticket', {
       include: 'creator,owner',
       page,
-      page_size
+      page_size,
+      search,
+      status
     })
   },
 
   queryParams: {
     page: { refreshModel: true },
-    page_size: { refreshModel: true }
+    page_size: { refreshModel: true },
+    search: { refreshModel: true },
+    status: { refreshModel: true }
   }
 })

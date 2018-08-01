@@ -3,6 +3,7 @@ export default {
   en: 'English',
 
   global: {
+    'search-placeholder': 'Search...',
     Username: 'Username',
     Password: 'Password',
     save: 'save',
@@ -216,6 +217,7 @@ export default {
   },
 
   rt: {
+    'all-states': 'All states',
     empty: 'No tickets found.',
     pageSize: 'Page size',
     breadcrumbs: {

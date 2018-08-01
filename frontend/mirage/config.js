@@ -2,6 +2,42 @@ import { Response } from 'ember-cli-mirage'
 import moment from 'moment'
 
 export default function() {
+  /*
+ * Create pagination for mirage.
+ * @param models
+ * @param page
+ * @param pageSize
+ * @returns json
+ * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
+ */
+  const _pagination = (models, page, pageSize) => {
+    pageSize = parseInt(pageSize)
+    page = parseInt(page)
+
+    let pages = [],
+      pageCount = Math.ceil(models.length / pageSize)
+
+    for (let i = 0; i < pageCount; i++) {
+      let start = pageSize * i,
+        end = start + pageSize
+      pages.push(models.slice(start, end))
+    }
+
+    let json = models.length
+      ? this.serializerOrRegistry.serialize(pages[page - 1])
+      : this.serializerOrRegistry.serialize(models)
+    json.meta = { pagination: { page_size: pageSize, page, pages: pageCount } }
+    json.links = {
+      next:
+        page < pageCount
+          ? `localhost?page_size=${pageSize}&page=${page + 1}`
+          : '',
+      prev: page > 1 ? `localhost?page_size=${pageSize}&page=${page - 1}` : ''
+    }
+
+    return json
+  }
+
   //code coverage
   this.passthrough('/write-coverage')
 
@@ -171,6 +207,28 @@ export default function() {
 
   this.get('/proxy/timed/billing-types', 'timed-billing-types')
   this.get('/proxy/timed/billing-types/:id', 'timed-billing-types')
+
+  this.get(
+    '/proxy/rt/tickets',
+    (
+      { rtTickets },
+      { queryParams: { page_size: pageSize, page, status, search } }
+    ) => {
+      let tickets = rtTickets.all()
+
+      if (status) {
+        tickets = tickets.filter(ticket => ticket.status === status)
+      }
+
+      if (search) {
+        tickets = tickets.filter(ticket =>
+          ticket.subject.toLowerCase().includes(search.trim().toLowerCase())
+        )
+      }
+
+      return _pagination(tickets, page, pageSize)
+    }
+  )
 
   this.get('/proxy/gitlab/groups/:group/', (scheme, req) => {
     let group = req.params.group

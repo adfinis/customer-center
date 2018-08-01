@@ -54,10 +54,6 @@ export default Model.extend({
       .map(group => group.replace('-gitlab', ''))
   }),
 
-  rt: computed('email', 'emails.[]', function() {
-    return this.email || this.get('emails.length')
-  }),
-
   wikis: computed('groups.[]', function() {
     return this.groups
       .filter(g => g.endsWith('-wiki'))

@@ -1,24 +1,24 @@
-import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
-import { run } from '@ember/runloop';
+import { module, test } from 'qunit'
+import { setupTest } from 'ember-qunit'
+import { run } from '@ember/runloop'
 
 module('Unit | Serializer | rt user', function(hooks) {
-  setupTest(hooks);
+  setupTest(hooks)
 
   // Replace this with your real tests.
   test('it exists', function(assert) {
-    let store = this.owner.lookup('service:store');
-    let serializer = store.serializerFor('rt-user');
+    let store = this.owner.lookup('service:store')
+    let serializer = store.serializerFor('rt-user')
 
-    assert.ok(serializer);
-  });
+    assert.ok(serializer)
+  })
 
   test('it serializes records', function(assert) {
-    let store = this.owner.lookup('service:store');
-    let record = run(() => store.createRecord('rt-user', {}));
+    let store = this.owner.lookup('service:store')
+    let record = run(() => store.createRecord('rt-user', {}))
 
-    let serializedRecord = record.serialize();
+    let serializedRecord = record.serialize()
 
-    assert.ok(serializedRecord);
-  });
-});
+    assert.ok(serializedRecord)
+  })
+})

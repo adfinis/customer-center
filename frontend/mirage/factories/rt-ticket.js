@@ -1,4 +1,4 @@
-import { Factory, faker, association } from 'ember-cli-mirage'
+import { Factory, faker, association, trait } from 'ember-cli-mirage'
 import moment from 'moment'
 
 import DjangoDateTimeTransform from 'customer-center/transforms/django-datetime'
@@ -24,5 +24,28 @@ export default Factory.extend({
   },
 
   creator: association(),
-  owner: association()
+  owner: association(),
+
+  new: trait({
+    status: 'new'
+  }),
+  open: trait({
+    status: 'open'
+  }),
+  stalled: trait({
+    status: 'stalled'
+  }),
+  resolved: trait({
+    status: 'resolved'
+  }),
+  rejected: trait({
+    status: 'rejected'
+  }),
+  deleted: trait({
+    status: 'deleted'
+  }),
+
+  testname: trait({
+    subject: 'averyspecificteststring'
+  })
 })

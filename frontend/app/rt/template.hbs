@@ -3,7 +3,7 @@
 
 <div class="uk-flex uk-flex-right uk-flex-middle uk-flex-wrap">
 
-  <form class="uk-flex uk-flex-between uk-margin-right">
+  <div class="uk-flex uk-flex-between uk-margin-right">
     <div class="uk-search uk-search-default">
       <span uk-search-icon></span>
       {{input data-test-search=true class="uk-search-input" value=term type="search" placeholder=(t 'global.search-placeholder') autofocus=true}}
@@ -14,11 +14,12 @@
     label=(t 'global.search')
     type='submit'
     on-click=(action 'search')
+    data-test-search-submit=true
     }}
 
-  </form>
+  </div>
 
-  <div class="uk-margin-right" data-test-select="select">
+  <div class="uk-margin-right" data-test-select-status="select">
     <select class="uk-select" id="form-horizontal-select"  onchange={{action 'setState' value="target.value"}}>
       <option selected={{unless status true}} value="">{{t 'rt.all-states'}}</option>
       {{#each states as |s|}}
@@ -27,9 +28,9 @@
     </select>
   </div>
 
-  <div class="uk-margin-right uk-flex uk-flex-middle" data-test-select="select">
+  <div class="uk-margin-right uk-flex uk-flex-middle" data-test-select-pagesize="select">
     <div class="uk-text-nowrap uk-margin-right">{{t 'rt.pageSize'}}:</div>
-    <select class="uk-select" id="form-horizontal-select" disabled={{unless pageSizes "disabled"}} onchange={{action "setPageSize" value="target.value"}}>
+    <select class="uk-select" id="form-horizontal-select"  onchange={{action "setPageSize" value="target.value"}}>
       <option selected value="{{pageSize}}">{{pageSize}}</option>
       {{#each pageSizes as |size|}}
         {{#unless (eq size pageSize)}}
@@ -55,10 +56,10 @@
   </thead>
   <tbody class="uk-overflow-auto" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 50;">
     {{#each model as |ticket index|}}
-      <tr>
-        <td><a target="_blank" href="https://rt.adfinis-sygroup.ch/rt/Ticket/Display.html?id={{ticket.effectiveid}}">{{ticket.effectiveid}}</a></td>
-        <td>{{ticket.subject}}</td>
-        <td>{{ticket.status}}</td>
+      <tr data-test-ticket>
+        <td><a target="_blank" href="https://rt.adfinis-sygroup.ch/rt/Ticket/Display.html?id={{ticket.effectiveid}}" data-test-ticket-link>{{ticket.effectiveid}}</a></td>
+        <td data-test-ticket-subject>{{ticket.subject}}</td>
+        <td data-test-ticket-status>{{ticket.status}}</td>
         <td>{{format-datetime ticket.updated}}</td>
         <td>{{format-datetime ticket.created}}</td>
         <td>{{if ticket.creator.fullName ticket.creator.fullName ticket.creator.username}}</td>
@@ -67,4 +68,4 @@
     {{else}}<tr><td colspan="7">{{t 'rt.empty'}}</td></tr>{{/each}}
   </tbody>
 </table>
-{{uk-pagination meta=model.meta.pagination links=model.links loadPage=(action 'loadPage')}}
+{{uk-pagination meta=model.meta.pagination links=model.links loadPage=(action 'loadPage') data-test-pagination=true}}

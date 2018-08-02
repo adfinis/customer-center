@@ -18,14 +18,14 @@ export default Route.extend(RouteAccessMixin, {
     })
   },
 
-  model({ page = 1, page_size = 10, search = null, status = null }) {
-    return this.store.query('rt-ticket', {
-      include: 'creator,owner',
-      page,
-      page_size,
-      search,
-      status
-    })
+  model(query) {
+    query.include = 'creator,owner'
+    query.page = query.page || 1
+    query.page_size = query.page_size || 10
+    query.search || delete query.search
+    query.status || delete query.status
+
+    return this.store.query('rt-ticket', query)
   },
 
   queryParams: {

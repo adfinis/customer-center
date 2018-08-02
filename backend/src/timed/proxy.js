@@ -3,6 +3,7 @@ import httpProxy from 'express-http-proxy'
 import rp from 'request-promise'
 import config from '../config'
 import moment from 'moment'
+import parseDjangoDuration from '../utils/parse-django-duration'
 
 const routes = {
   subscriptionProject: {
@@ -88,22 +89,6 @@ function checkAccess(req) {
  * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
  */
 async function sendMail(req) {
-  function parseDjangoDuration(duration) {
-    let re = new RegExp(/^(-?\d+)?\s?(\d{2}):(\d{2}):(\d{2})(\.\d{6})?$/)
-
-    let [, days, hours, minutes, seconds, microseconds] = duration
-      .match(re)
-      .map(m => Number(m) || 0)
-
-    return moment.duration({
-      days,
-      hours,
-      minutes,
-      seconds,
-      milliseconds: microseconds * 1000
-    })
-  }
-
   let mailTransporter = req.app.get('mailTransporter')
   mailTransporter.verify(async function(error) {
     if (error) {

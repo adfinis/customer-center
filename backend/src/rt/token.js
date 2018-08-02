@@ -2,7 +2,6 @@ import config from '../config'
 import rp from 'request-promise'
 
 export async function rtLogin(username, password) {
-  console.log(username, password)
   const { host, authPath } = config.services.rt
   const res = await rp({
     method: 'post',
@@ -58,7 +57,6 @@ export function rtTokenRenew() {
         req.session.rtToken = newToken
         req.session.rtTokenTTL = new Date().getTime()
         req.session.update()
-        next()
       } catch (e) {
         next(e)
       }

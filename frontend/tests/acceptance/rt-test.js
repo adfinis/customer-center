@@ -23,12 +23,12 @@ module('Acceptance | rt', function(hooks) {
   test('Filter and search', async function(assert) {
     this.server.createList('rt-ticket', 5, {
       status: 'open',
-      subject: 'testname'
+      subject: 'averyspecificteststring'
     })
     this.server.createList('rt-ticket', 5, { status: 'open' })
     this.server.createList('rt-ticket', 5, {
       status: 'resolved',
-      subject: 'testname'
+      subject: 'averyspecificteststring'
     })
     this.server.createList('rt-ticket', 5, { status: 'resolved' })
 

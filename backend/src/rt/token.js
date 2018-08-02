@@ -7,23 +7,16 @@ export async function rtLogin(username, password) {
     method: 'post',
     uri: `${host}${authPath}`,
     headers: {
-      accept: 'application/vnd.api+json',
-      'content-type': 'application/vnd.api+json'
+      Accept: 'application/json'
     },
     body: {
-      data: {
-        type: 'obtain-json-web-tokens',
-        id: null,
-        attributes: {
-          username,
-          password
-        }
-      }
+      username,
+      password
     },
     json: true
   })
 
-  return res.data.token
+  return res.token
 }
 
 export async function refreshToken(token) {
@@ -32,16 +25,15 @@ export async function refreshToken(token) {
     method: 'post',
     uri: `${host}${authRefresh}`,
     headers: {
-      accept: 'application/vnd.api+json',
-      'content-type': 'application/vnd.api+json'
+      accept: 'application/json'
     },
     body: {
-      data: { type: 'refresh-json-web-tokens', attributes: { token } }
+      token
     },
     json: true
   })
 
-  return res.data.token
+  return res.token
 }
 
 export function rtTokenRenew() {

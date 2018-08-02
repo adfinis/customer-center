@@ -21,10 +21,16 @@ module('Acceptance | rt', function(hooks) {
   })
 
   test('Filter and search', async function(assert) {
-    this.server.createList('rt-ticket', 5, 'open', 'testname')
-    this.server.createList('rt-ticket', 5, 'open')
-    this.server.createList('rt-ticket', 5, 'resolved', 'testname')
-    this.server.createList('rt-ticket', 5, 'resolved')
+    this.server.createList('rt-ticket', 5, {
+      status: 'open',
+      subject: 'testname'
+    })
+    this.server.createList('rt-ticket', 5, { status: 'open' })
+    this.server.createList('rt-ticket', 5, {
+      status: 'resolved',
+      subject: 'testname'
+    })
+    this.server.createList('rt-ticket', 5, { status: 'resolved' })
 
     assert.expect(8)
 
@@ -58,9 +64,9 @@ module('Acceptance | rt', function(hooks) {
   })
 
   test('Pagination', async function(assert) {
-    this.server.createList('rt-ticket', 10, 'new')
-    this.server.createList('rt-ticket', 10, 'open')
-    this.server.createList('rt-ticket', 10, 'resolved')
+    this.server.createList('rt-ticket', 10, { status: 'new' })
+    this.server.createList('rt-ticket', 10, { status: 'open' })
+    this.server.createList('rt-ticket', 10, { status: 'resolved' })
 
     assert.expect(12)
 

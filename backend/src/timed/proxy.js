@@ -2,7 +2,6 @@ import path from 'path'
 import httpProxy from 'express-http-proxy'
 import rp from 'request-promise'
 import config from '../config'
-import moment from 'moment'
 import parseDjangoDuration from '../utils/parse-django-duration'
 
 const routes = {

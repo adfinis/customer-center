@@ -25,14 +25,14 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       rt: {
-        host: 'rt.sygroup.ch',
-        mail: 'support@adfinis-sygroup.ch'
+        pageSizes: [10, 20, 50],
+        states: ['new', 'open', 'stalled', 'resolved', 'rejected', 'deleted']
       },
       // Define admin group
       adminGroup: 'adsy-admin',
       adsyUserGroup: 'adsy-user',
       // Services : redmine, mon, timed, wiki, rt, vault
-      enabledServices: ['vault', 'timed', 'gitlab'],
+      enabledServices: ['vault', 'timed', 'gitlab', 'rt'],
       // Define alertTime in hours
       // When total time comes close to alertTime, text color changes
       alertTime: 5

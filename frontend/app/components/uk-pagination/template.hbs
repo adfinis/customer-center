@@ -1,0 +1,7 @@
+<li class={{unless @links.prev "uk-disabled"}}>
+  <a href="#" {{action 'load' 'prev'}} data-test-pagination-prev><span class="uk-margin-small-right" uk-pagination-previous></span>{{t 'components.uk-pagination.prev'}}</a>
+</li>
+<li>{{t 'components.uk-pagination.page'}} {{@meta.page}} {{t 'components.uk-pagination.of'}} {{@meta.pages}}</li>
+<li class={{unless @links.next "uk-disabled"}}>
+  <a href="#" {{action 'load' 'next'}} data-test-pagination-next>{{t 'components.uk-pagination.next'}} <span class="uk-margin-small-left" uk-pagination-next></span></a>
+</li>

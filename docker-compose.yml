@@ -136,3 +136,15 @@ services:
     image: schickling/mailcatcher
     ports:
       - '1080:1080'
+  rt:
+    build: ../rt-rest-api.src
+    ports:
+      - '8001:80'
+    volumes:
+      - ../rt-rest-api.src:/app
+    environment:
+      - DJANGO_DB_USER=${DJANGO_DB_USER}
+      - DJANGO_DB_PASSWORD=${DJANGO_DB_PASSWORD}
+      - DJANGO_DB_HOST=${DJANGO_DB_HOST}
+      - STATIC_ROOT=/var/www/static
+      - DJANGO_AUTH_LDAP_SERVER_URI=ldap://ldap:389

@@ -51,6 +51,10 @@
           {{#list.item 'timed-subscriptions' }}{{t 'nav.timed'}}{{/list.item}}
         {{/if}}
       {{/if}}
+
+      {{#if (and (service-enabled 'rt') model.rt)}}
+        {{#list.item 'rt'}}{{t 'nav.rt'}}{{/list.item}}
+      {{/if}}
     {{/nav.list}}
 
     {{#nav.list as |list|}}

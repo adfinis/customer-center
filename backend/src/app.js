@@ -11,6 +11,7 @@ import services from './services'
 import userRoute from './user/route'
 import vaultTokenRenewer from './vault/vault-token'
 import { timedTokenRenew } from './timed/token'
+import { rtTokenRenew } from './rt/token'
 import config from './config'
 import nodemailer from 'nodemailer'
 
@@ -62,6 +63,7 @@ app.set('mailTransporter', nodemailer.createTransport(config.mailTransporter))
 
 app.use(vaultTokenRenewer())
 app.use(timedTokenRenew())
+app.use(rtTokenRenew())
 app.use('/api/v1', login)
 app.use('/api/v1', passwordreset)
 

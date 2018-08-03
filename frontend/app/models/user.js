@@ -37,6 +37,10 @@ export default Model.extend({
     return this._checkGroup('gitlab')
   }),
 
+  rt: computed('groups.[]', function() {
+    return this._checkGroup('rt')
+  }),
+
   /**
    * Get all groups with a `-gitlab` suffix.
    *
@@ -48,10 +52,6 @@ export default Model.extend({
     return this.groups
       .filter(g => g.endsWith('gitlab'))
       .map(group => group.replace('-gitlab', ''))
-  }),
-
-  rt: computed('email', 'emails.[]', function() {
-    return this.email || this.get('emails.length')
   }),
 
   wikis: computed('groups.[]', function() {

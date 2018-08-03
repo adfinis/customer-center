@@ -3,6 +3,7 @@ export default {
   en: 'English',
 
   global: {
+    'search-placeholder': 'Search...',
     Username: 'Username',
     Password: 'Password',
     save: 'save',
@@ -14,6 +15,15 @@ export default {
     show: 'Show',
     back: 'Back',
     error: 'Oops something went wrong'
+  },
+
+  components: {
+    'uk-pagination': {
+      page: 'Page',
+      of: 'of',
+      next: 'Next',
+      prev: 'Previous'
+    }
   },
 
   login: {
@@ -76,6 +86,7 @@ export default {
     vault: 'Vault',
     timed: 'Credits / Reports',
     gitlab: 'Projects',
+    rt: 'Tickets',
     settings: 'Settings',
     logout: 'Sign out'
   },
@@ -202,6 +213,24 @@ export default {
       created: 'Created',
       pending: 'Pending',
       running: 'Running'
+    }
+  },
+
+  rt: {
+    'all-states': 'All states',
+    empty: 'No tickets found.',
+    pageSize: 'Page size',
+    breadcrumbs: {
+      tickets: 'Tickets'
+    },
+    ticket: {
+      effectiveid: 'ID',
+      subject: 'Subject',
+      status: 'Status',
+      updated: 'Last updated',
+      created: 'Created',
+      creator: 'Creator',
+      owner: 'Owner'
     }
   }
 }

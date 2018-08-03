@@ -1,5 +1,5 @@
-import ApplicationAdapter from './application'
+import TimedAdapter from './timed'
 
-export default ApplicationAdapter.extend({
+export default TimedAdapter.extend({
   pathForType: () => 'subscription-orders'
 })

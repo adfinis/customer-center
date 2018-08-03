@@ -6,6 +6,7 @@ import LdapStrategy from 'passport-ldapauth'
 import User from '../user/model'
 import config from '../config'
 import { timedLogin } from '../timed/token'
+import { rtLogin } from '../rt/token'
 import { getCustomer as getTimedCustomer } from '../timed/custom'
 
 passport.use(
@@ -123,6 +124,10 @@ function loginSuccessful(req, res, next, ldapUser) {
       )
     }
 
+    if (isMember('rt')) {
+      req.session = await addRTTokenToSession(req.session, req.body)
+    }
+
     req.session.create(claims, (sessionError, token) => {
       if (sessionError) return next(sessionError)
 
@@ -153,6 +158,16 @@ async function addTimedTokenToSession(session, user) {
     console.log('timed auth error', e.message)
   }
 
+  return session
+}
+
+async function addRTTokenToSession(session, { username, password }) {
+  try {
+    session.rtToken = await rtLogin(username, password)
+    session.rtTokenTTL = new Date().getTime()
+  } catch (e) {
+    console.log('rt auth error', e.message)
+  }
   return session
 }
 

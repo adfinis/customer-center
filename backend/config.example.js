@@ -121,6 +121,14 @@ module.exports = {
       host: 'http://gitlab:80',
       token: 'your_token',
       prefix: '/api/v4'
+    },
+    rt: {
+      type: 'rt',
+      host: 'http://rt',
+      prefix: '/api/v1',
+      authPath: '/api-token-auth/',
+      authRefresh: '/api-token-refresh/',
+      ttl: 7200
     }
   }
 }

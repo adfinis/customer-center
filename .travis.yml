@@ -21,10 +21,10 @@ before_install:
   - if [ "$DIR" = "backend" ]; then wget https://raw.githubusercontent.com/eficode/wait-for/master/wait-for; fi
   - if [ "$DIR" = "backend" ]; then sudo service postgresql stop; fi
   - if [ "$DIR" = "backend" ]; then while sudo lsof -Pi :5432 -sTCP:LISTEN -t; do sleep 1; done; fi
-  - if [ "$DIR" = "backend" ]; 
+  - if [ "$DIR" = "backend" ];
       then
-        (docker run -d -p 4389:389 
-        -v $PWD/tools/docker/ldap/ldap.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom 
+        (docker run -d -p 4389:389
+        -v $PWD/tools/docker/ldap/ldap.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom
         --env LDAP_ORGANISATION=adsy
         --env LDAP_DOMAIN=adsy-ext.becs.adfinis-sygroup.ch
         --env LDAP_ADMIN_PASSWORD=123qwe
@@ -37,7 +37,7 @@ before_install:
         --loglevel debug);
       fi
   - if [ "$DIR" = "backend" ]; then bash wait-for localhost:4389; fi
-  - if [ "$DIR" = "backend" ]; 
+  - if [ "$DIR" = "backend" ];
       then
         (docker run -d -p 5432:5432
         -v $PWD/tools/docker/postgres/setup/:/docker-entrypoint-initdb.d/
@@ -50,6 +50,8 @@ before_install:
   - if [ "$DIR" = "backend" ]; then bash wait-for localhost:5432; fi
   - if [ "$DIR" = "backend" ]; then docker run -d -p 6379:6379 redis; fi
   - if [ "$DIR" = "backend" ]; then bash wait-for localhost:6379; fi
+  - if [ "$DIR" = "backend" ]; then docker run -d -p 1080:1080 schickling/mailcatcher; fi
+  - if [ "$DIR" = "backend" ]; then bash wait-for localhost:1080; fi
 
 install:
   - (cd $DIR; yarn)

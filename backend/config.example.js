@@ -49,6 +49,17 @@ module.exports = {
     },
     secret: 'ponies'
   },
+  mailTransporter: {
+    host: 'yourmailserver', // hostname
+    secureConnection: true, // use SSL
+    port: 587, // port for secure SMTP
+    secure: false,
+    requireTLS: true
+  },
+  mail: {
+    from: 'your.service@email.address',
+    to: 'your.target@email.address'
+  },
   database: {
     client: 'pg',
     connection: {

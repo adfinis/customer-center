@@ -12,6 +12,7 @@ import userRoute from './user/route'
 import vaultTokenRenewer from './vault/vault-token'
 import { timedTokenRenew } from './timed/token'
 import config from './config'
+import nodemailer from 'nodemailer'
 
 const app = express()
 export default app
@@ -55,6 +56,9 @@ app.use(
 )
 app.use(passport.initialize())
 app.use(passport.session())
+
+// mail
+app.set('mailTransporter', nodemailer.createTransport(config.mailTransporter))
 
 app.use(vaultTokenRenewer())
 app.use(timedTokenRenew())

@@ -232,7 +232,15 @@ export default {
       updated: 'Zulezt aktualisiert',
       created: 'Erstellt',
       creator: 'Ersteller',
-      owner: 'Verantwortlich'
+      owner: 'Verantwortlich',
+      states: {
+        new: 'Neu',
+        open: 'Offen',
+        stalled: 'Verzögert',
+        resolved: 'Abgeschlossen',
+        rejected: 'Abelehnt',
+        deleted: 'Gelöscht'
+      }
     }
   }
 }

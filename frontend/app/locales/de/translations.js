@@ -242,5 +242,18 @@ export default {
         deleted: 'Gelöscht'
       }
     }
+  },
+  dashboard: {
+    links: {
+      timed: 'Alle Projekte anzeigen',
+      tickets: 'Alle Tickets anzeigen'
+    },
+    remaining: ' übrig.',
+    headers: { contact: 'Kontakt', tickets: 'Tickets', support: 'Support' },
+    'contact-info':
+      'Von Montag-Freitag sind wir während den Bürozeiten (08:00 bis 17:30 Uhr) für Sie da.',
+    'support-info':
+      'Sie brauchen Support? Kontaktieren Sie uns per Mail oder Telefonisch.',
+    tickets: { open: 'offene Tickets', recent: 'Top 3 aktualisierte Tickets' }
   }
 }

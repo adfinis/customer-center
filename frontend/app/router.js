@@ -13,8 +13,7 @@ Router.map(function() {
   })
 
   this.route('protected', { path: '/' }, function() {
-    this.route('index', { path: '/', resetNamespace: true })
-    this.route('dashboard', { path: '/dashboard', resetNamespace: true })
+    this.route('dashboard', { path: '/', resetNamespace: true })
 
     this.route('vault', { resetNamespace: true }, function() {
       this.route('edit', { path: '/*path' })

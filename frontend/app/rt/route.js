@@ -5,8 +5,7 @@ import { inject as service } from '@ember/service'
 
 export default Route.extend(RouteAccessMixin, {
   groups: computed(() => ({
-    requireAll: ['rt'],
-    requireOne: ['adsy-customer']
+    requireAll: ['rt']
   })),
 
   i18n: service(),

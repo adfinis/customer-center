@@ -240,5 +240,14 @@ export default {
         deleted: 'Deleted'
       }
     }
+  },
+  dashboard: {
+    links: { timed: 'Show all projects', tickets: 'Show all tickets' },
+    remaining: ' remaining.',
+    headers: { contact: 'Contact', tickets: 'Tickets', support: 'Support' },
+    'contact-info':
+      'From Monday-Friday we are available for you during office hours (08:00 to 17:30).',
+    'support-info': 'You need support? Contact us by mail or by phone.',
+    tickets: { open: 'open tickets', recent: 'Top 3 most recently updated' }
   }
 }

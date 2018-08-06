@@ -34,6 +34,18 @@ objectclass: organizationalRole
 objectclass: top
 
 # Entry 4: cn=adsy-user,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,...
+dn: cn=adsy-rt,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+cn: adsy-rt
+gidnumber: 533
+memberuid: uid=user1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+memberuid: uid=admin1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+objectclass: posixGroup
+objectclass: sambaGroupMapping
+objectclass: top
+sambagrouptype: 2
+sambasid: S-1-5-21--2000
+
+# Entry 4: cn=adsy-user,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,...
 dn: cn=adsy-user,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 cn: adsy-user
 gidnumber: 500
@@ -189,6 +201,18 @@ objectclass: organizationalUnit
 objectclass: top
 ou: customer1
 
+dn: cn=customer1-rt,ou=customer1,ou=customers,dc=adsy-ext,dc=becs,d
+ c=adfinis-sygroup,dc=ch
+cn: customer1-rt
+gidnumber: 538
+memberuid: uid=customer1,ou=customer1,ou=customers,dc=adsy-ext,dc=becs,dc=ad
+ finis-sygroup,dc=ch
+objectclass: posixGroup
+objectclass: sambaGroupMapping
+objectclass: top
+sambagrouptype: 2
+sambasid: S-1-5-21--2002
+
 # Entry 13: cn=customer1-git1-gitlab,ou=customer1,ou=customers,dc=adsy-ex...
 dn: cn=customer1-git1-gitlab,ou=customer1,ou=customers,dc=adsy-ext,dc=becs,d
  c=adfinis-sygroup,dc=ch
@@ -314,6 +338,18 @@ dn: ou=customer2,ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 objectclass: organizationalUnit
 objectclass: top
 ou: customer2
+
+dn: cn=customer2-rt,ou=customer2,ou=customers,dc=adsy-ext,dc=becs,d
+ c=adfinis-sygroup,dc=ch
+cn: customer2-rt
+gidnumber: 583
+memberuid: uid=customer2,ou=customer2,ou=customers,dc=adsy-ext,dc=becs,dc=ad
+ finis-sygroup,dc=ch
+objectclass: posixGroup
+objectclass: sambaGroupMapping
+objectclass: top
+sambagrouptype: 2
+sambasid: S-1-5-21--2002
 
 # Entry 23: cn=customer2-git1-gitlab,ou=customer2,ou=customers,dc=adsy-ex...
 dn: cn=customer2-git1-gitlab,ou=customer2,ou=customers,dc=adsy-ext,dc=becs,d

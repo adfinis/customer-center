@@ -25,7 +25,7 @@
     </div>
 
     {{#nav.list as |list|}}
-      {{#list.item 'index'}}{{t 'nav.dashboard'}}{{/list.item}}
+      {{#list.item 'dashboard'}}{{t 'nav.dashboard'}}{{/list.item}}
 
       {{#if (and (service-enabled 'vault') model.vault)}}
         {{#list.item 'vault'}}{{t 'nav.vault'}}{{/list.item}}

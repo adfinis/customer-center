@@ -212,7 +212,7 @@ export default function() {
     '/proxy/rt/tickets',
     (
       { rtTickets },
-      { queryParams: { page_size: pageSize, page, status, search } }
+      { queryParams: { page_size: pageSize, page, status, search, statistics } }
     ) => {
       let tickets = rtTickets.all()
 
@@ -226,7 +226,24 @@ export default function() {
         )
       }
 
-      return _pagination(tickets, page, pageSize)
+      let json = _pagination(tickets, page, pageSize)
+
+      if (statistics) {
+        json.meta.statistics = {
+          in_progress: 132,
+          all: 393,
+          states: {
+            new: 21,
+            open: 89,
+            stalled: 92,
+            resolved: 21,
+            rejected: 2,
+            deleted: 83
+          }
+        }
+      }
+
+      return json
     }
   )
 

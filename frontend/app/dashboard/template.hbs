@@ -1,0 +1,220 @@
+<h1>{{t 'index.greeting'}}</h1>
+
+<section>
+  <div>
+    <div uk-grid class="uk-child-width-1-1 uk-child-width-1-2@m" >
+      <div uk-grid class="uk-child-width-1-1" >
+
+        <div class="uk-padding uk-padding-remove-bottom">
+          {{#uk-card hover=true as |card|}}
+            {{#card.header}}
+              {{#card.title}}{{t 'nav.timed'}}{{/card.title}}
+            {{/card.header}}
+            {{#card.body}}
+              <div class="uk-child-width-1-1  uk-child-width-1-2@m  uk-text-center uk-grid-divider" uk-grid >
+                {{#each projects as |p index|}}
+                  <div>
+                    <div class="uk-flex uk-flex-column uk-flex-between uk-height-1-1	" data-test-project={{p.id}}>
+                      <div>
+                        {{#if (await session.user)}}
+                          {{#link-to (concat (if (or (get (await session.user) 'adsyUser') (get (await session.user) 'admin')) "timed-admin" "timed-subscriptions") ".detail") p.id class="uk-link-text" }}
+                            <p class="uk-text-lead" data-test-project-name>{{p.name}}</p>
+                          {{/link-to}}
+                        {{/if}}
+                        <p data-test-project-total>{{format-duration p.totalTime}}{{t 'dashboard.remaining'}}</p>
+                      </div>
+                      {{svg-battery percentage=p.percentage data-test-percentage=true}}
+                    </div>
+                  </div>
+                {{else}}
+                  {{t 'global.empty'}}
+                {{/each}}
+              </div>
+            {{/card.body}}
+            {{#card.footer}}
+              {{#if (await session.user)}}
+                {{#link-to (if (or (get (await session.user) 'adsyUser') (get (await session.user) 'admin')) "timed-admin" "timed-subscriptions") class="uk-link-muted" data-test-all-projects=true}}{{t 'dashboard.links.timed'}}{{/link-to}}
+              {{/if}}
+            {{/card.footer}}
+          {{/uk-card}}
+        </div>
+
+        <div class="uk-padding uk-padding-remove-top">
+          {{#uk-card hover=true as |card|}}
+            {{#card.header}}
+              {{#card.title}}{{t 'dashboard.headers.contact'}}{{/card.title}}
+            {{/card.header}}
+            {{#card.body class="uk-text-center"}}
+              <p>{{t 'dashboard.contact-info'}}</p>
+              <div uk-grid class="uk-child-width-1-3" >
+                <div>
+                  <a href="tel:+41 78 898 0035">{{mdi-icon "phone-in-talk" size=50 fill="#999"}}</a>
+                  <p>Bern</p>
+                </div>
+                <div>
+                  <a href="tel:+41 61 500 31 31">{{mdi-icon "phone-in-talk" size=50 fill="#999"}}</a>
+                  <p>Basel</p>
+                </div>
+                <div>
+                  <a href="tel:+41 43 500 38 90">{{mdi-icon "phone-in-talk" size=50 fill="#999"}}</a>
+                  <p>Zürich</p>
+                </div>
+              </div>
+              <hr>
+              <div uk-grid class="uk-child-width-1-5 uk-margin-remove">
+                <div>
+                  <a uk-icon="facebook" class="uk-icon-button" href="https://facebook.com/AdfinisSyGroup"></a>
+                </div>
+                <div>
+                  <a uk-icon="linkedin" class="uk-icon-button" href="https://linkedin.com/company/2610138"></a>
+                </div>
+                <div>
+                  <a uk-icon="xing" class="uk-icon-button" href="https://xing.com/companies/adfinissygroupag"></a>
+                </div>
+                <div>
+                  <a uk-icon="github" class="uk-icon-button" href="https://github.com/adfinis-sygroup"></a>
+                </div>
+                <div>
+                  <a uk-icon="twitter" class="uk-icon-button" href="https://twitter.com/adfinissygroup"></a>
+                </div>
+              </div>
+            {{/card.body}}
+          {{/uk-card}}
+        </div>
+
+      </div>
+      <div uk-grid class="uk-child-width-1-1 uk-margin-remove-top" >
+
+        <div class="uk-padding uk-padding-remove-bottom">
+          {{#uk-card hover=true as |card|}}
+            {{#card.header}}
+              {{#card.title}}{{t 'dashboard.headers.tickets'}}{{/card.title}}
+            {{/card.header}}
+            {{#card.body}}
+              <div uk-grid class="uk-child-width-1-1  uk-child-width-1-2@m uk-text-center">
+                <div class="uk-flex uk-flex-middle uk-flex-around">
+                  <div class="cc-lead-text" data-test-all>{{model.tickets.meta.statistics.in_progress}}</div><div class="uk-text-lead uk-margin-small-left">{{t 'dashboard.tickets.open'}}</div>
+                </div>
+                <div class="uk-text-left uk-margin-auto-vertical">
+                  {{#each-in model.tickets.meta.statistics.states as |state count|}}
+                    {{#if count}}
+                      <p data-test-state={{state}}>{{count}} {{t (concat 'rt.ticket.states.' state)}}</p>
+                    {{/if}}
+                  {{else}}
+                    {{t 'global.empty'}}
+                  {{/each-in}}
+                </div>
+              </div>
+              <hr>
+              <div>
+                <p class="uk-text-lead">{{t 'dashboard.tickets.recent'}}</p>
+                <table class="uk-table uk-table-divider">
+                  <tbody>
+                    {{#each model.tickets as |ticket|}}
+                    <tr data-test-ticket>
+                      <td><a target="_blank" href="https://rt.adfinis-sygroup.ch/rt/Ticket/Display.html?id={{ticket.effectiveid}}" data-test-ticket-link>{{ticket.effectiveid}}</a></td>
+                      <td>{{ticket.subject}}</td>
+                    </tr>
+                    {{else}}
+                      {{t 'global.empty'}}
+                    {{/each}}
+                  </tbody>
+                </table>
+
+              </div>
+            {{/card.body}}
+            {{#card.footer}}
+              {{#link-to "rt" class="uk-link-muted" data-test-all-tickets=true}}{{t 'dashboard.links.tickets'}}{{/link-to}}
+            {{/card.footer}}
+          {{/uk-card}}
+        </div>
+
+        <div class="uk-padding uk-padding-remove-top">
+          {{#uk-card hover=true as |card|}}
+            {{#card.header}}
+              {{#card.title}}{{t 'dashboard.headers.support'}}{{/card.title}}
+            {{/card.header}}
+            {{#card.body class="uk-text-center"}}
+              <p>{{t 'dashboard.support-info'}}</p>
+              <div uk-grid class="uk-child-width-1-2" >
+                <a href="tel:+41 61 500 31 30">{{mdi-icon "phone-in-talk" size=50 fill="#999"}}</a>
+                <a href="mailto:support@adfinis-sygroup.ch">{{mdi-icon "email" size=50 fill="#999"}}</a>
+              </div>
+            {{/card.body}}
+          {{/uk-card}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="uk-heading-divider">
+    <div uk-grid class="uk-child-width-1-1 uk-child-width-auto@s uk-grid-small uk-margin-remove">
+      <div>
+        {{t 'dashboard.locations'}}
+      </div>
+    </div>
+  </h2>
+
+  <div class="uk-child-width-1-1 uk-child-width-1-3@s uk-margin-bottom" uk-grid>
+    <div>
+      {{#uk-card class='uk-height-1-1' color='default' hover=true as |card|}}
+        {{#card.header}}
+          {{#card.title tagName='h3'}}
+            {{t 'index.location' location='Basel'}}
+          {{/card.title}}
+        {{/card.header}}
+        {{#card.body}}
+          <p>
+            Adfinis SyGroup AG<br>
+            Güterstrasse 86<br>
+            CH-4053 Basel
+          </p>
+        {{/card.body}}
+        {{#card.footer}}
+          <a href={{t 'index.directions.bs.url'}} target="_blank">
+            {{t 'index.directions'}}
+          </a>
+        {{/card.footer}}
+      {{/uk-card}}
+    </div>
+    <div>
+      {{#uk-card class='uk-height-1-1' color='default' hover=true as |card|}}
+        {{#card.header}}
+          {{#card.title tagName='h3'}}
+            {{t 'index.location' location='Bern'}}
+          {{/card.title}}
+        {{/card.header}}
+        {{#card.body}}
+          <p>
+            Adfinis SyGroup AG<br>
+            Giessereiweg 5<br>
+            CH-3007 Bern
+          </p>
+        {{/card.body}}
+        {{#card.footer}}
+          <a href={{t 'index.directions.be.url'}} target="_blank">
+            {{t 'index.directions'}}
+          </a>
+        {{/card.footer}}
+      {{/uk-card}}
+    </div>
+    <div>
+      {{#uk-card class='uk-height-1-1' color='default' hover=true as |card|}}
+        {{#card.header}}
+          {{#card.title tagName='h3'}}
+            {{t 'index.location' location='Zürich'}}
+          {{/card.title}}
+        {{/card.header}}
+        {{#card.body}}
+          <p>
+            Adfinis SyGroup AG<br>
+            Europaallee 41<br>
+            CH-8004 Zürich
+          </p>
+        {{/card.body}}
+      {{/uk-card}}
+    </div>
+  </div>
+</section>

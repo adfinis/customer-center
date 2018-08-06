@@ -17,13 +17,13 @@ export default Controller.extend({
       .slice(0, 2)
 
     projects.forEach(p => {
-      p.set('percentage', this._getPercenage(p))
+      p.set('percentage', this._getPercentage(p))
     })
 
     return projects
   }),
 
-  _getPercenage(project) {
+  _getPercentage(project) {
     return project.totalTime < 0 ? 0 : project.totalTime / project.purchasedTime
   }
 })

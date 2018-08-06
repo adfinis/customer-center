@@ -9,16 +9,18 @@ export default Controller.extend({
     this._super(...arguments)
   },
   projects: computed('model.projects', function() {
-    return this.model.projects
+    let projects = this.model.projects
       .toArray()
       .sort((a, b) => {
         return a.totalTime - b.totalTime
       })
       .slice(0, 2)
-      .map(p => {
-        p.set('percentage', this._getPercenage(p))
-        return p
-      })
+
+    projects.forEach(p => {
+      p.set('percentage', this._getPercenage(p))
+    })
+
+    return projects
   }),
 
   _getPercenage(project) {

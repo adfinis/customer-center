@@ -6,7 +6,6 @@ export default Route.extend({
     return hash({
       projects: this.store.findAll('timed-subscription-project'),
       tickets: this.store.query('rt-ticket', {
-        statistics: true,
         page_size: 3,
         page: 1
       })

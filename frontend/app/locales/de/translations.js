@@ -244,6 +244,7 @@ export default {
     }
   },
   dashboard: {
+    locations: 'Standorte',
     links: {
       timed: 'Alle Projekte anzeigen',
       tickets: 'Alle Tickets anzeigen'

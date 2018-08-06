@@ -242,6 +242,7 @@ export default {
     }
   },
   dashboard: {
+    locations: 'Locations',
     links: { timed: 'Show all projects', tickets: 'Show all tickets' },
     remaining: ' remaining.',
     headers: { contact: 'Contact', tickets: 'Tickets', support: 'Support' },

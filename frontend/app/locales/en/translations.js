@@ -230,7 +230,15 @@ export default {
       updated: 'Last updated',
       created: 'Created',
       creator: 'Creator',
-      owner: 'Owner'
+      owner: 'Owner',
+      states: {
+        new: 'New',
+        open: 'Open',
+        stalled: 'Stalled',
+        resolved: 'Resolved',
+        rejected: 'Rejected',
+        deleted: 'Deleted'
+      }
     }
   }
 }

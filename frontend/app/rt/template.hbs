@@ -23,7 +23,7 @@
     <select class="uk-select" id="form-horizontal-select"  onchange={{action 'setState' value="target.value"}}>
       <option selected={{unless status true}} value="">{{t 'rt.all-states'}}</option>
       {{#each states as |s|}}
-        <option selected={{if (eq status s) true}} value={{s}}>{{s}}</option>
+        <option selected={{if (eq status s) true}} value={{s}}>{{t (concat 'rt.ticket.states.' s)}}</option>
       {{/each}}
     </select>
   </div>
@@ -59,7 +59,7 @@
       <tr data-test-ticket>
         <td><a target="_blank" href="https://rt.adfinis-sygroup.ch/rt/Ticket/Display.html?id={{ticket.effectiveid}}" data-test-ticket-link>{{ticket.effectiveid}}</a></td>
         <td data-test-ticket-subject>{{ticket.subject}}</td>
-        <td data-test-ticket-status>{{ticket.status}}</td>
+        <td data-test-ticket-status>{{t (concat 'rt.ticket.states.' ticket.status)}}</td>
         <td>{{format-datetime ticket.updated}}</td>
         <td>{{format-datetime ticket.created}}</td>
         <td>{{if ticket.creator.fullName ticket.creator.fullName ticket.creator.username}}</td>

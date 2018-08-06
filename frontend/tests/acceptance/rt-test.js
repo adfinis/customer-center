@@ -43,12 +43,12 @@ module('Acceptance | rt', function(hooks) {
 
     await fillIn('[data-test-select-status] > select', 'resolved')
     assert.dom('[data-test-ticket]').exists({ count: 5 })
-    assert.dom('[data-test-ticket-status]').hasText('resolved')
+    assert.dom('[data-test-ticket-status]').hasText('Resolved')
 
     await fillIn('[data-test-search]', '')
     await click('[data-test-search-submit]')
     assert.dom('[data-test-ticket]').exists({ count: 10 })
-    assert.dom('[data-test-ticket-status]').hasText('resolved')
+    assert.dom('[data-test-ticket-status]').hasText('Resolved')
 
     await fillIn('[data-test-select-status] > select', '')
     assert.dom('[data-test-ticket]').exists({ count: 20 })

@@ -12,7 +12,7 @@ export default Controller.extend({
     return this.model.projects
       .toArray()
       .sort((a, b) => {
-        return this._getPercenage(a) > this._getPercenage(b)
+        return a.totalTime - b.totalTime
       })
       .slice(0, 2)
       .map(p => {

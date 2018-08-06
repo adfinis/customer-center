@@ -3,7 +3,7 @@
 <section>
   <div>
     <div uk-grid class="uk-child-width-1-1 uk-child-width-1-2@m" >
-    <div uk-grid class="uk-child-width-1-1" >
+      <div uk-grid class="uk-child-width-1-1" >
 
       <div class="uk-padding uk-padding-remove-bottom">
         {{#uk-card hover=true as |card|}}
@@ -14,16 +14,16 @@
             <div class="uk-child-width-1-1  uk-child-width-1-2@m  uk-text-center uk-grid-divider" uk-grid >
               {{#each projects as |p index|}}
               <div>
-                <div class="uk-flex uk-flex-column uk-flex-between uk-height-1-1	">
+                <div class="uk-flex uk-flex-column uk-flex-between uk-height-1-1	" data-test-project={{p.id}}>
                   <div>
                     {{#if (await session.user)}}
-                      {{#link-to (concat (if (or (get (await session.user) 'adsyUser') (get (await session.user) 'admin')) "timed-admin" "timed-subscriptions") ".detail") p.id tagName="div" class="uk-link-text" }}
-                        <p class="uk-text-lead">{{p.name}}</p>
+                      {{#link-to (concat (if (or (get (await session.user) 'adsyUser') (get (await session.user) 'admin')) "timed-admin" "timed-subscriptions") ".detail") p.id class="uk-link-text" }}
+                        <p class="uk-text-lead" data-test-project-name>{{p.name}}</p>
                       {{/link-to}}
                     {{/if}}
-                    <p>{{format-duration p.totalTime}}{{t 'dashboard.remaining'}}</p>
+                    <p data-test-project-total>{{format-duration p.totalTime}}{{t 'dashboard.remaining'}}</p>
                   </div>
-                  {{svg-battery percentage=p.percentage}}
+                  {{svg-battery percentage=p.percentage data-test-percentage=true}}
                 </div>
               </div>
               {{else}}
@@ -33,7 +33,7 @@
           {{/card.body}}
           {{#card.footer}}
           {{#if (await session.user)}}
-          {{#link-to (if (or (get (await session.user) 'adsyUser') (get (await session.user) 'admin')) "timed-admin" "timed-subscriptions") class="uk-link-muted"}}{{t 'dashboard.links.timed'}}{{/link-to}}
+          {{#link-to (if (or (get (await session.user) 'adsyUser') (get (await session.user) 'admin')) "timed-admin" "timed-subscriptions") class="uk-link-muted" data-test-all-projects=true}}{{t 'dashboard.links.timed'}}{{/link-to}}
           {{/if}}
           {{/card.footer}}
         {{/uk-card}}
@@ -82,8 +82,8 @@
         {{/uk-card}}
       </div>
 
-      </div>
-    <div uk-grid class="uk-child-width-1-1" >
+    </div>
+    <div uk-grid class="uk-child-width-1-1 uk-margin-remove-top" >
 
       <div class="uk-padding uk-padding-remove-bottom">
         {{#uk-card hover=true as |card|}}
@@ -93,12 +93,12 @@
           {{#card.body}}
             <div uk-grid class="uk-child-width-1-1  uk-child-width-1-2@m uk-text-center">
               <div class="uk-flex uk-flex-middle uk-flex-around">
-                <div class="cc-lead-text">{{model.tickets.meta.statistics.in_progress}}</div><div class="uk-text-lead uk-margin-small-left">{{t 'dashboard.tickets.open'}}</div>
+                <div class="cc-lead-text" data-test-all>{{model.tickets.meta.statistics.in_progress}}</div><div class="uk-text-lead uk-margin-small-left">{{t 'dashboard.tickets.open'}}</div>
               </div>
               <div class="uk-text-left uk-margin-auto-vertical">
                 {{#each-in model.tickets.meta.statistics.states as |state count|}}
                   {{#if count}}
-                    <p>{{count}} {{t (concat 'rt.ticket.states.' state)}}</p>
+                    <p data-test-state={{state}}>{{count}} {{t (concat 'rt.ticket.states.' state)}}</p>
                   {{/if}}
                 {{else}}
                   {{t 'global.empty'}}
@@ -111,7 +111,7 @@
               <table class="uk-table uk-table-divider">
                 <tbody>
                   {{#each model.tickets as |ticket|}}
-                  <tr>
+                  <tr data-test-ticket>
                     <td><a target="_blank" href="https://rt.adfinis-sygroup.ch/rt/Ticket/Display.html?id={{ticket.effectiveid}}" data-test-ticket-link>{{ticket.effectiveid}}</a></td>
                     <td>{{ticket.subject}}</td>
                   </tr>
@@ -124,7 +124,7 @@
             </div>
           {{/card.body}}
           {{#card.footer}}
-          {{#link-to "rt" class="uk-link-muted"}}{{t 'dashboard.links.tickets'}}{{/link-to}}
+          {{#link-to "rt" class="uk-link-muted" data-test-all-tickets=true}}{{t 'dashboard.links.tickets'}}{{/link-to}}
           {{/card.footer}}
         {{/uk-card}}
       </div>

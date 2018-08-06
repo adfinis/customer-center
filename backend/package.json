@@ -1,7 +1,7 @@
 {
   "name": "customer-center-backend",
   "description": "Adfinis SyGroup AG Customer Center - Backend",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "babel-node src/index.js",

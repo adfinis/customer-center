@@ -5,6 +5,7 @@ import setupMirage from 'ember-cli-mirage/test-support/setup-mirage'
 
 module('Unit | Component | dashboard-timed', function(hooks) {
   setupTest(hooks)
+  //this is needed since the component make a request in the init hook
   setupMirage(hooks)
 
   test('percentage is correctly calculated', function(assert) {

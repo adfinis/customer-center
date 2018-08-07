@@ -6,42 +6,46 @@
     {{#if fetchTickets.isRunning}}
       <div class="uk-overlay uk-position-center uk-flex uk-flex-center uk-flex-middle"><div>{{uk-spinner}}</div></div>
     {{else}}
-      <div uk-grid class="uk-child-width-1-1  uk-child-width-1-2@m uk-text-center">
-        {{#if statistics}}
-          <div class="uk-flex uk-flex-middle uk-flex-around">
-              {{#if statistics.in_progress}}
-                <div class="cc-lead-text" data-test-all>{{statistics.in_progress}}</div><div class="uk-text-lead uk-margin-small-left">{{t 'dashboard.tickets.open'}}</div>
-              {{/if}}
-          </div>
-          <div class="uk-text-left uk-margin-auto-vertical">
-            {{#each-in statistics.states as |state count|}}
-              {{#if count}}
-                <p data-test-state={{state}}>{{count}} {{t (concat 'rt.ticket.states.' state)}}</p>
-              {{/if}}
+      {{#with fetchTickets.lastSuccessful.value as |tickets|}}
+        <div uk-grid class="uk-child-width-1-1  uk-child-width-1-2@m uk-text-center">
+          {{#with tickets.meta.statistics as |statistics|}}
+            {{#if statistics}}
+              <div class="uk-flex uk-flex-middle uk-flex-around">
+                  {{#if statistics.in_progress}}
+                    <div class="cc-lead-text" data-test-all>{{statistics.in_progress}}</div><div class="uk-text-lead uk-margin-small-left">{{t 'dashboard.tickets.open'}}</div>
+                  {{/if}}
+              </div>
+              <div class="uk-text-left uk-margin-auto-vertical">
+                {{#each-in statistics.states as |state count|}}
+                  {{#if count}}
+                    <p data-test-state={{state}}>{{count}} {{t (concat 'rt.ticket.states.' state)}}</p>
+                  {{/if}}
+                {{else}}
+                  {{t 'global.empty'}}
+                {{/each-in}}
+              </div>
             {{else}}
               {{t 'global.empty'}}
-            {{/each-in}}
-          </div>
-        {{else}}
-          {{t 'global.empty'}}
-        {{/if}}
-      </div>
-      <hr>
-      <div>
-        <p class="uk-text-lead">{{t 'dashboard.tickets.recent'}}</p>
-        <table class="uk-table uk-table-divider">
-          <tbody>
-            {{#each tickets as |ticket|}}
-            <tr data-test-ticket>
-              <td><a target="_blank" href="https://rt.adfinis-sygroup.ch/rt/Ticket/Display.html?id={{ticket.effectiveid}}" data-test-ticket-link>{{ticket.effectiveid}}</a></td>
-              <td>{{ticket.subject}}</td>
-            </tr>
-            {{else}}
-              <tr><td>{{t 'global.empty'}}</td></tr>
-            {{/each}}
-          </tbody>
-        </table>
-      </div>
+            {{/if}}
+          {{/with}}
+        </div>
+        <hr>
+        <div>
+          <p class="uk-text-lead">{{t 'dashboard.tickets.recent'}}</p>
+          <table class="uk-table uk-table-divider">
+            <tbody>
+              {{#each tickets as |ticket|}}
+              <tr data-test-ticket>
+                <td><a target="_blank" href="https://rt.adfinis-sygroup.ch/rt/Ticket/Display.html?id={{ticket.effectiveid}}" data-test-ticket-link>{{ticket.effectiveid}}</a></td>
+                <td>{{ticket.subject}}</td>
+              </tr>
+              {{else}}
+                <tr><td>{{t 'global.empty'}}</td></tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      {{/with}}
     {{/if}}
   {{/card.body}}
   {{#card.footer}}

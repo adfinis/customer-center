@@ -2,8 +2,8 @@ import Component from '@ember/component'
 import { computed } from '@ember/object'
 
 export default Component.extend({
-  height: computed('percentage', function() {
-    return 351 * this.percentage
+  percent: computed('percentage', function() {
+    return 100 * this.percentage
   }),
   color: computed('percentage', function() {
     return this.percentage
@@ -20,5 +20,8 @@ export default Component.extend({
           '#00E500'
         ][Math.round(this.percentage * 10) - 1]
       : '#ff0000'
+  }),
+  name: computed('percentage', function() {
+    return this.percentage.toString().split('.')[1]
   })
 })

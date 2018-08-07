@@ -26,11 +26,11 @@ export default Model.extend({
   }),
 
   vault: computed('groups.[]', function() {
-    return this._checkGroup('vault')
+    return this._checkGroup('vault') || this.adsyUser
   }),
 
   timed: computed('groups.[]', function() {
-    return this._checkGroup('timed')
+    return this._checkGroup('timed') || this.adsyUser
   }),
 
   gitlab: computed('groups.[]', function() {

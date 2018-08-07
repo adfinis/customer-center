@@ -26,11 +26,11 @@ export default Model.extend({
   }),
 
   vault: computed('groups.[]', function() {
-    return this._checkGroup('vault') || this.adsyUser
+    return this._checkGroupOrEmployee('vault')
   }),
 
   timed: computed('groups.[]', function() {
-    return this._checkGroup('timed') || this.adsyUser
+    return this._checkGroupOrEmployee('timed')
   }),
 
   gitlab: computed('groups.[]', function() {
@@ -38,7 +38,7 @@ export default Model.extend({
   }),
 
   rt: computed('groups.[]', function() {
-    return this._checkGroup('rt')
+    return this._checkGroupOrEmployee('rt')
   }),
 
   /**
@@ -70,5 +70,9 @@ export default Model.extend({
 
   _checkGroup(name) {
     return this.groups.find(g => g.endsWith(name))
+  },
+
+  _checkGroupOrEmployee(name) {
+    return this._checkGroup(name) || this.admin || this.adsyUser
   }
 })

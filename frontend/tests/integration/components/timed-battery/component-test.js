@@ -1,25 +1,31 @@
 import { module, test } from 'qunit'
 import { setupRenderingTest } from 'ember-qunit'
-import { render } from '@ember/test-helpers'
+import { render, waitUntil } from '@ember/test-helpers'
 import hbs from 'htmlbars-inline-precompile'
 
-module('Integration | Component | timed-battery', function(hooks) {
+module('Integration | Component | svg-battery', function(hooks) {
   setupRenderingTest(hooks)
 
   test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{timed-battery percentage=0.4 index=1}}`)
+    await render(hbs`{{timed-battery percentage=0.4}}`)
 
     assert.equal(this.element.textContent.trim(), '')
     assert.equal(
-      this.element.querySelector('.battery-body').style.backgroundColor,
-      'rgb(246, 164, 0)'
+      this.element.querySelector('.power').getAttribute('fill'),
+      '#F6A400'
+    )
+
+    await waitUntil(
+      () =>
+        this.element.querySelector('.power').getAttribute('height') == 140.4,
+      { timeout: 2000 }
     )
     assert.equal(
-      this.element.querySelector('.battery-body').style.height,
-      '40%'
+      this.element.querySelector('.power').getAttribute('height'),
+      '140.4'
     )
   })
 })

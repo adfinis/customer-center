@@ -93,9 +93,7 @@ function login(strategy, req, res, next) {
 }
 
 function loginSuccessful(req, res, next, ldapUser) {
-  const {
-    body: { username, password }
-  } = req
+  const { body: { username, password } } = req
 
   req.login(ldapUser, async loginError => {
     if (loginError) return next(loginError)

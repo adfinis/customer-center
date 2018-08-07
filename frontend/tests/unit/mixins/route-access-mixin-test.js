@@ -25,7 +25,7 @@ module('Unit | Mixin | route access mixin', function(hooks) {
     assert.expect(1)
     let mixin = EmberObject.extend(RouteAccessMixinMixin).create({
       groups: {
-        requireAll: ['timed', 'adsy-admin'],
+        requireAll: ['timed', 'adsy-timed-admin'],
         requireOne: ['adsy-customer', 'adsy-user']
       }
     })

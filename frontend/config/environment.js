@@ -29,7 +29,7 @@ module.exports = function(environment) {
         states: ['new', 'open', 'stalled', 'resolved', 'rejected', 'deleted']
       },
       // Define admin group
-      adminGroup: 'adsy-admin',
+      adminGroup: 'adsy-timed-admin',
       adsyUserGroup: 'adsy-user',
       // Services : redmine, mon, timed, wiki, rt, vault
       enabledServices: ['vault', 'timed', 'gitlab', 'rt'],

@@ -21,7 +21,7 @@ export default Mirage.Factory.extend({
   admin: trait({
     username: 'admin',
     groups() {
-      return ['timed', 'adsy-admin', 'vault', 'rt']
+      return ['timed', 'adsy-timed-admin', 'vault', 'rt']
     }
   }),
   employee: trait({

@@ -106,9 +106,11 @@ function loginSuccessful(req, res, next, ldapUser) {
 
     const userGroups = users.get(ldapUser).getGroupNames()
     const isMember = group => userGroups.some(g => g.endsWith(group))
+    const isMemberOrEmployee = group =>
+      isMember(group) || users.get(ldapUser).isEmployee()
 
     // If user is in the vault group, get vault token
-    if (isMember('vault')) {
+    if (isMemberOrEmployee('vault')) {
       req.session = await addVaultTokenToSession(
         req.session,
         username,
@@ -117,14 +119,14 @@ function loginSuccessful(req, res, next, ldapUser) {
     }
 
     // If user is in the timed group, get timed token
-    if (isMember('timed')) {
+    if (isMemberOrEmployee('timed')) {
       req.session = await addTimedTokenToSession(
         req.session,
         users.get(ldapUser)
       )
     }
 
-    if (isMember('rt')) {
+    if (isMemberOrEmployee('rt')) {
       req.session = await addRTTokenToSession(req.session, req.body)
     }
 

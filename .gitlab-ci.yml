@@ -20,7 +20,7 @@ deploy:
     url: $APP_URL
   stage: deploy
   script:
-    - ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts
+    - ssh-keyscan $DEPLOY_HOST >> ~/.ssh/known_hosts
     - ssh $DEPLOY_USER@$DEPLOY_HOST "cd ~/adsycc && git fetch origin && git checkout $CI_COMMIT_REF_NAME && make deploy"
   only:
     - tags

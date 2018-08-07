@@ -1,25 +1,18 @@
 import Component from '@ember/component'
 import { computed } from '@ember/object'
+import { next } from '@ember/runloop'
 
 export default Component.extend({
+  classNames: ['uk-flex', 'uk-flex-center'],
+
   didRender() {
     this._super(...arguments)
-    this.animate
-  },
-
-  animate: computed('percentage', function() {
     let element = document.getElementById(`battery-body-${this.index}`)
-    element.animate(
-      [{ height: '170px' }, { height: `${100 * this.percentage}%` }],
-      {
-        delay: 200,
-        duration: 2000,
-        easing: 'ease-in-out',
-        fill: 'forwards'
-      }
-    )
-    element.style.backgroundColor = this.color
-  }),
+    next(() => {
+      element.style.height = `${100 * this.percentage}%`
+      element.style.backgroundColor = this.color
+    })
+  },
 
   color: computed('percentage', function() {
     return this.percentage

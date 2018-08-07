@@ -136,5 +136,8 @@ body {
 .battery-body {
   height: 170px;
   background-color: #6be585;
-  transition: background-color 2s ease-in-out 200ms;
+  transition-property: height, background-color;
+  transition-duration: 2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 200ms;
 }

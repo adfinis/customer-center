@@ -2,9 +2,21 @@ import Component from '@ember/component'
 import { computed } from '@ember/object'
 
 export default Component.extend({
-  percent: computed('percentage', function() {
-    return 100 * this.percentage
+  animate: computed('percentage', function() {
+    let element = document.getElementById(`battery-body-${this.index}`)
+    element.animate(
+      [{ height: '170px' }, { height: `${100 * this.percentage}%` }],
+      {
+        delay: 200,
+        duration: 2000,
+        easing: 'ease-in-out',
+        fill: 'forwards'
+      }
+    )
+    console.log(element.style)
+    element.style.backgroundColor = this.color
   }),
+
   color: computed('percentage', function() {
     return this.percentage
       ? [
@@ -20,8 +32,5 @@ export default Component.extend({
           '#00E500'
         ][Math.round(this.percentage * 10) - 1]
       : '#ff0000'
-  }),
-  name: computed('percentage', function() {
-    return this.percentage.toString().split('.')[1]
   })
 })

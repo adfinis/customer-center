@@ -17,5 +17,9 @@ module('Integration | Component | timed-battery', function(hooks) {
       this.element.querySelector('.battery-body').style.backgroundColor,
       'rgb(246, 164, 0)'
     )
+    assert.equal(
+      this.element.querySelector('.battery-body').style.height,
+      '40%'
+    )
   })
 })

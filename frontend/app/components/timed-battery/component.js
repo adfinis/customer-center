@@ -2,6 +2,11 @@ import Component from '@ember/component'
 import { computed } from '@ember/object'
 
 export default Component.extend({
+  didRender() {
+    this._super(...arguments)
+    this.animate
+  },
+
   animate: computed('percentage', function() {
     let element = document.getElementById(`battery-body-${this.index}`)
     element.animate(
@@ -13,7 +18,6 @@ export default Component.extend({
         fill: 'forwards'
       }
     )
-    console.log(element.style)
     element.style.backgroundColor = this.color
   }),
 

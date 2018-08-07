@@ -28,6 +28,7 @@ module('Acceptance | dashboard', function(hooks) {
     assert.equal(currentURL(), '/')
 
     assert.dom('[data-test-project]').exists({ count: 2 })
+
     assert
       .dom(`[data-test-project="${p1.id}"] [data-test-project-name]`)
       .hasText(p1.name)

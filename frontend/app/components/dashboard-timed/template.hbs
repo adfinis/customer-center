@@ -17,7 +17,7 @@
                     {{/link-to}}
                   <p data-test-project-total>{{format-duration p.totalTime}}{{t 'dashboard.remaining'}}</p>
                 </div>
-                {{svg-battery percentage=p.percentage data-test-percentage=true}}
+                {{timed-battery percentage=p.percentage index=index data-test-percentage=true}}
               </div>
             </div>
           {{else}}

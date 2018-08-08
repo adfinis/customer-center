@@ -229,7 +229,7 @@ export default function() {
       let json = _pagination(tickets, page, pageSize)
 
       json.meta.statistics = {
-        in_progress: 132,
+        'in-progress': 132,
         all: 393,
         states: {
           new: 21,

@@ -11,8 +11,8 @@
           {{#with tickets.meta.statistics as |statistics|}}
             {{#if statistics}}
               <div class="uk-flex uk-flex-middle uk-flex-around">
-                  {{#if statistics.in_progress}}
-                    <div class="cc-lead-text" data-test-all>{{statistics.in_progress}}</div><div class="uk-text-lead uk-margin-small-left">{{t 'dashboard.tickets.open'}}</div>
+                  {{#if statistics.in-progress}}
+                    <div class="cc-lead-text" data-test-all>{{statistics.in-progress}}</div><div class="uk-text-lead uk-margin-small-left">{{t 'dashboard.tickets.open'}}</div>
                   {{/if}}
               </div>
               <div class="uk-text-left uk-margin-auto-vertical">

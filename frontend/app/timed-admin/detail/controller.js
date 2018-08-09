@@ -47,7 +47,7 @@ export default Controller.extend({
     )
   }),
 
-  project: computed('fetchModels.lastSuccessful.value', function() {
+  project: computed('fetchModels.lastSuccessful.value', 'model', function() {
     return (
       this.get('fetchModels.lastSuccessful.value.project') ||
       this.get('model.project')

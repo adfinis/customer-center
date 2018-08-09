@@ -3,13 +3,13 @@
 <section>
   <div>
     <div uk-grid="masonry:true" class="uk-child-width-1-1 uk-child-width-1-2@m" >
-        {{#if (get (await session.user) 'timed')}}
+        {{#if (and (service-enabled 'timed') (get (await session.user) 'timed'))}}
           <div class="uk-padding uk-padding-remove-bottom">
             {{dashboard-timed user=(await session.user)}}
           </div>
         {{/if}}
 
-        {{#if (get (await session.user) 'rt')}}
+        {{#if (and (service-enabled 'rt') (get (await session.user) 'rt'))}}
           <div class="uk-padding uk-padding-remove-bottom">
             {{dashboard-rt}}
           </div>

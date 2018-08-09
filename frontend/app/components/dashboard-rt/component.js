@@ -13,7 +13,8 @@ export default Component.extend({
   fetchTickets: task(function*() {
     return yield this.store.query('rt-ticket', {
       page_size: 3,
-      page: 1
+      page: 1,
+      statistics: true
     })
   })
 })

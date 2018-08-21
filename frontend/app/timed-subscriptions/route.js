@@ -4,7 +4,6 @@ import RouteAccessMixin from 'customer-center/mixins/route-access-mixin'
 
 export default Route.extend(RouteAccessMixin, {
   groups: computed(() => ({
-    requireAll: ['timed'],
-    requireOne: ['adsy-customer']
+    requireAll: ['timed', 'adsy-customer']
   }))
 })

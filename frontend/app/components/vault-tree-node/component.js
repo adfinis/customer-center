@@ -3,7 +3,7 @@ import Component from '@ember/component'
 export default Component.extend({
   tagName: '',
 
-  visible: true,
+  visible: false,
 
   showOnOverview(property) {
     return property !== 'path'

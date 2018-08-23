@@ -9,7 +9,7 @@ export default Route.extend(RouteAccessMixin, {
   notify: service(),
 
   groups: computed(() => ({
-    requireAll: ['timed', 'adsy-timed-admin']
+    requireAll: ['adsy-timed-admin']
   })),
 
   init() {

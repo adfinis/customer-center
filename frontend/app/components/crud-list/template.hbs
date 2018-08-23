@@ -7,16 +7,13 @@
       <table class="uk-table uk-table-small uk-table-divider uk-margin-remove uk-table-middle">
         <thead>
           <tr>
-            {{#if showName}}
-              <th>Name</th>
-            {{/if}}
             <th>{{t 'vault.value'}}</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           {{#each _model as |entry index|}}
-            {{crud-list-item entry=entry edit=entry.edit showName=showName index=index on-save=(action 'save') on-delete=(action 'delete')}}
+            {{crud-list-item entry=entry edit=entry.edit index=index on-save=(action 'save') on-delete=(action 'delete')}}
           {{^}}
             <tr>
               <td colspan="3" class="uk-text-center">{{t 'global.empty'}}</td>
@@ -26,9 +23,4 @@
       </table>
     </form>
   {{/card.body}}
-  {{#card.footer class='uk-text-right'}}
-    {{#uk-button color='primary' on-click=(action 'add')}}
-      {{t 'vault.add'}}
-    {{/uk-button}}
-  {{/card.footer}}
 {{/uk-card}}

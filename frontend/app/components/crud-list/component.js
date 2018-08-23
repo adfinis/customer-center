@@ -1,6 +1,5 @@
 import Component from '@ember/component'
 import EmberObject from '@ember/object'
-import { computed } from '@ember/object'
 
 function external(internalModel) {
   return internalModel.reduce((prev, curr) => {
@@ -38,21 +37,8 @@ export default Component.extend({
     this.set('_model', internal(this.model))
   },
 
-  showName: computed('_model', function() {
-    return (
-      this._model &&
-      this._model.some(e => {
-        return e.key !== 'value'
-      })
-    )
-  }),
-
   actions: {
-    add() {
-      this._model.pushObject({ edit: true })
-    },
-
-    async save(index, { key = 'value', value, comment }) {
+    async save(index, { key = 'value', value, comment = '' }) {
       this._model.replace(index, 1, [
         EmberObject.create({ key, value, comment, edit: false })
       ])

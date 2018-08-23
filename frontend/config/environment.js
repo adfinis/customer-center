@@ -3,6 +3,8 @@
 
 module.exports = function(environment) {
   let ENV = {
+    'ember-simple-auth': { routeAfterAuthentication: 'dashboard' },
+
     modulePrefix: 'customer-center',
     environment,
     rootURL: '/',

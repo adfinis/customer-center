@@ -11,8 +11,6 @@ function stripPrefix(path) {
 }
 
 async function listVault(token, path, client) {
-  const result = {}
-
   const req = client.request({
     ':path': encodeURI(path) + '?list=true',
     'X-Vault-Token': token
@@ -22,12 +20,13 @@ async function listVault(token, path, client) {
 
   // IMPORTANT: the data event can also be called if the sever has not yet
   // returned the whole data set. We need to concatenate untill the request ends.
-  await new Promise(resolve => {
+  return new Promise(resolve => {
     let data = ''
-    req.on('data', async rawResponse => {
+    req.on('data', rawResponse => {
       data += rawResponse
     })
     req.on('end', async () => {
+      let result = {}
       try {
         const resp = JSON.parse(data)
         if (resp.data && resp.data.keys) {
@@ -53,11 +52,9 @@ async function listVault(token, path, client) {
       } finally {
         data = ''
       }
-      resolve()
+      resolve(result)
     })
   })
-
-  return result
 }
 
 export default function vaultListhandler(service) {

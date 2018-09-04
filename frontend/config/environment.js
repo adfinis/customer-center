@@ -65,7 +65,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // Services : redmine, mon, timed, wiki, rt, vault
-    ENV.APP.enabledServices = ['vault', 'timed']
+    ENV.APP.enabledServices = ['vault', 'timed', 'gitlab', 'rt']
   }
 
   return ENV

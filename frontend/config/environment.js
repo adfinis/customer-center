@@ -32,7 +32,7 @@ module.exports = function(environment) {
       adminGroup: 'adsy-timed-admin',
       adsyUserGroup: 'adsy-user',
       // Services : redmine, mon, timed, wiki, rt, vault
-      enabledServices: ['vault', 'timed', 'gitlab', 'rt'],
+      enabledServices: ['vault', 'timed'],
       // Define alertTime in hours
       // When total time comes close to alertTime, text color changes
       alertTime: 5

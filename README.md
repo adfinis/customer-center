@@ -22,11 +22,15 @@ make install
 
 ## Configuration
 
-Copy and rename the `config.example.js` to `config.js` and configure the needed endpoints.
+Set `ldap.bindCredentials` and `services.timed.password` in `backend/config.js` to their respective passwords.
 
-Unclear parts of the configuration will have a comment with further information.
+To use the timedbackend service you need to configure the api user in the django admin.
+
+Configure the endpoints as needed.
 
 ## Development
+
+Change `config-dev.js` to `config.js`
 
 Run `docker-compose up` (inital setup) or `docker-compose start`.
 

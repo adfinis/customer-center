@@ -1,5 +1,5 @@
 import { click, currentURL, visit } from '@ember/test-helpers'
-import { module, test } from 'qunit'
+import { module, test, skip } from 'qunit'
 import { setupApplicationTest } from 'ember-qunit'
 import {
   authenticateSession,
@@ -64,7 +64,7 @@ module('Acceptance | dashboard', function(hooks) {
     assert.equal(currentURL(), '/')
   })
 
-  test('rt', async function(assert) {
+  skip('rt', async function(assert) {
     this.server.createList('rt-ticket', 6, {
       status: 'open',
       subject: 'averyspecificteststring'

@@ -95,7 +95,9 @@ app.use((err, req, res, _) => {
     detail = 'Internal server error'
   }
 
-  res.send({
-    errors: [{ status, detail }]
+  req.session.destroy(function() {
+    res.send({
+      errors: [{ status, detail }]
+    })
   })
 })

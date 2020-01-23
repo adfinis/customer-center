@@ -174,7 +174,9 @@ export default {
       confirmSuccess: 'Bestellung akzeptiert.',
       confirmDeny: 'Bestellung abgelehnt.',
       'reload-form-error': 'Bitte geben Sie nur valide Nummern ein.',
-      form: 'Anzahl Stunden/Minuten:'
+      form: 'Anzahl Stunden/Minuten:',
+      filter: 'Filter',
+      timeAlmostConsumedFilter: 'Zeit fast verbraucht'
     }
   },
 

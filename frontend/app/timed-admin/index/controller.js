@@ -2,6 +2,8 @@ import Controller from '@ember/controller'
 import { computed } from '@ember/object'
 
 export default Controller.extend({
+  timeAlmostConsumedFilter: false,
+
   headers: computed(function() {
     return [
       {
@@ -46,6 +48,13 @@ export default Controller.extend({
     ]
   }),
 
+  projects: computed('model.[]', 'timeAlmostConsumedFilter', function() {
+    if (this.timeAlmostConsumedFilter) {
+      return this.model.filterBy('isTimeAlmostConsumed')
+    }
+    return this.model
+  }),
+
   _sortDurations(data, { order, attr }) {
     return data.toArray().sort((a, b) => {
       if (order === 'asc') {
@@ -54,5 +63,11 @@ export default Controller.extend({
         return b.get(attr) - a.get(attr)
       }
     })
+  },
+
+  actions: {
+    filterTimeAlmostConsumed() {
+      this.set('timeAlmostConsumedFilter', !this.timeAlmostConsumedFilter)
+    }
   }
 })

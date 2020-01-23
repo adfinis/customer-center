@@ -118,33 +118,34 @@ services:
       - ENV=docker
       - STATIC_ROOT=/var/www/static
 
-  gitlab:
-    image: 'gitlab/gitlab-ce:latest'
-    logging:
-      driver: "none"
-    ports:
-      - '5080:80'
-      - '5443:443'
-      - '5022:22'
+  # gitlab:
+  #   image: 'gitlab/gitlab-ce:latest'
+  #   logging:
+  #     driver: "none"
+  #   ports:
+  #     - '5080:80'
+  #     - '5443:443'
+  #     - '5022:22'
 
-  gitlab-runner:
-    image: 'gitlab/gitlab-runner:latest'
-    depends_on:
-      - gitlab
+  # gitlab-runner:
+  #   image: 'gitlab/gitlab-runner:latest'
+  #   depends_on:
+  #     - gitlab
 
-  mailcatcher:
-    image: schickling/mailcatcher
-    ports:
-      - '1080:1080'
-  rt:
-    build: ../rt-rest-api.src
-    ports:
-      - '8001:80'
-    volumes:
-      - ../rt-rest-api.src:/app
-    environment:
-      - DJANGO_DB_USER=${DJANGO_DB_USER}
-      - DJANGO_DB_PASSWORD=${DJANGO_DB_PASSWORD}
-      - DJANGO_DB_HOST=${DJANGO_DB_HOST}
-      - STATIC_ROOT=/var/www/static
-      - DJANGO_AUTH_LDAP_SERVER_URI=ldap://ldap:389
+  # mailcatcher:
+  #   image: schickling/mailcatcher
+  #   ports:
+  #     - '1080:1080'
+
+  # rt:
+  #   build: ../rt-rest-api.src
+  #   ports:
+  #     - '8001:80'
+  #   volumes:
+  #     - ../rt-rest-api.src:/app
+  #   environment:
+  #     - DJANGO_DB_USER=${DJANGO_DB_USER}
+  #     - DJANGO_DB_PASSWORD=${DJANGO_DB_PASSWORD}
+  #     - DJANGO_DB_HOST=${DJANGO_DB_HOST}
+  #     - STATIC_ROOT=/var/www/static
+  #     - DJANGO_AUTH_LDAP_SERVER_URI=ldap://ldap:389

@@ -172,7 +172,9 @@ export default {
       confirmSuccess: 'Order accepted.',
       confirmDeny: 'Order denied.',
       'reload-form-error': 'Please enter only valid numbers',
-      form: 'Number of hours/minutes:'
+      form: 'Number of hours/minutes:',
+      filter: 'Filter',
+      timeAlmostConsumedFilter: 'Time almost consumed'
     }
   },
 

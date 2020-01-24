@@ -91,7 +91,7 @@ export default Controller.extend({
     try {
       let order = this.store.createRecord('timed-subscription-order', {
         duration: this.duration,
-        acknowledged: true,
+        acknowledged: false,
         project: this.get('project')
       })
       yield order.save()

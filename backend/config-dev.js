@@ -9,7 +9,7 @@ module.exports = {
     url: "ldap://ldap:389",
     bindDn: "cn=admin,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
     // ldap password
-    bindCredentials: "",
+    bindCredentials: "123qwe",
     cert: ""
   },
   login: {
@@ -35,11 +35,11 @@ module.exports = {
     ldapCustomer: {
       // Further information how to configure LDAP under:
       // https://github.com/vesse/passport-ldapauth
-      searchBase: "cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
+      searchBase: "ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
       searchFilter: "uid={{username}}",
       searchAttributes: ["uid", "sn", "givenName", "mail"],
 
-      groupSearchBase: "cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
+      groupSearchBase: "ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
       groupSearchFilter: "(|(uniqueMember={{dn}})(memberUid={{dn}}))",
       groupSearchScope: "sub",
       groupDnProperty: "dn",
@@ -100,35 +100,35 @@ module.exports = {
   },
   services: {
     vault: {
-      type: 'vault',
-      host: 'http://vault1:8200/',
-      prefix: '/v1/',
-      backend: 'secret/',
-      authBackend: 'userpass',
+      type: "vault",
+      host: "http://vault:8200/",
+      prefix: "/v1/",
+      backend: "secret/",
+      authBackend: "userpass",
       ttl: 600000 // Time in ms until to renew vault token
     },
     timed: {
       type: "timed",
       host: "http://timedbackend",
       user: "timed_api",
-      password: "",
+      password: "123qweasd",
       prefix: "/api/v1",
       authPath: "/auth/login",
       authRefresh: "/auth/refresh",
       ttl: 7200 // token TTL in seconds
     },
     gitlab: {
-      type: 'gitlab',
-      host: 'http://gitlab:80',
-      token: 'your_token',
-      prefix: '/api/v4'
+      type: "gitlab",
+      host: "http://gitlab:80",
+      token: "your_token",
+      prefix: "/api/v4"
     },
     rt: {
-      type: 'rt',
-      host: 'http://rt',
-      prefix: '/api/v1',
-      authPath: '/api-token-auth/',
-      authRefresh: '/api-token-refresh/',
+      type: "rt",
+      host: "http://rt",
+      prefix: "/api/v1",
+      authPath: "/api-token-auth/",
+      authRefresh: "/api-token-refresh/",
       ttl: 7200
     }
   }

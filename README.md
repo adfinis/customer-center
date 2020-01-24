@@ -30,9 +30,9 @@ Configure the endpoints as needed.
 
 ## Development
 
-Change `config-dev.js` to `config.js`
+Create a symlink for config.js `ln -s config-dev.js config.js`.
 
-Run `docker-compose up` (inital setup) or `docker-compose start`.
+Run `yarn start-proxy` to start the frontend.
 
 ## Deployment
 

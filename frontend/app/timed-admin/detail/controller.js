@@ -1,5 +1,6 @@
 import Controller from '@ember/controller'
 import { computed } from '@ember/object'
+import { alias } from '@ember/object/computed'
 import { inject as service } from '@ember/service'
 
 import { task } from 'ember-concurrency'
@@ -11,6 +12,11 @@ export default Controller.extend({
   i18n: service(),
   notify: service(),
   session: service(),
+
+  loading: alias('fetchModels.isRunning'),
+  project: alias('fetchModels.lastSuccessful.value.project'),
+  orders: alias('fetchModels.lastSuccessful.value.orders'),
+  reports: alias('fetchModels.lastSuccessful.value.reports'),
 
   duration: computed('validation.{hour,minute}', 'hour', 'minute', function() {
     if (this.get('validation.hour') || this.get('validation.minute')) {
@@ -28,13 +34,6 @@ export default Controller.extend({
     )
   }),
 
-  orders: computed('fetchModels.lastSuccessful.value', function() {
-    return (
-      this.get('fetchModels.lastSuccessful.value.orders') ||
-      this.get('model.orders')
-    )
-  }),
-
   previewDuration: computed('duration', 'preview', function() {
     return (
       this.duration &&
@@ -44,13 +43,6 @@ export default Controller.extend({
           this.duration -
           this.get('project.spentTime')
       )
-    )
-  }),
-
-  project: computed('fetchModels.lastSuccessful.value', 'model', function() {
-    return (
-      this.get('fetchModels.lastSuccessful.value.project') ||
-      this.get('model.project')
     )
   }),
 
@@ -70,13 +62,18 @@ export default Controller.extend({
   fetchModels: task(function*() {
     try {
       return yield hash({
+        reports: this.store.query('timed-report', {
+          project: this.get('model'),
+          include: 'user',
+          ordering: '-date'
+        }),
         orders: this.store.query('timed-subscription-order', {
-          project: this.get('model.project.id'),
+          project: this.get('model'),
           ordering: '-ordered'
         }),
         project: this.store.findRecord(
           'timed-subscription-project',
-          this.get('model.project.id'),
+          this.get('model'),
           {
             include: 'billing_type,customer'
           }

@@ -63,26 +63,6 @@ module('Unit | Controller | timed-admin/detail', function(hooks) {
     assert.ok(controller.error)
   })
 
-  test('orders and project model', function(assert) {
-    let controller = this.owner.lookup('controller:timed-admin/detail')
-
-    controller.set('fetchModels', {
-      lastSuccessful: {
-        value: {
-          orders: 'test1',
-          project: 'test1'
-        }
-      }
-    })
-    controller.set('model', { orders: 'test2', project: 'test2' })
-    assert.equal(controller.orders, 'test1')
-    assert.equal(controller.project, 'test1')
-
-    controller.set('fetchModels', null)
-    assert.equal(controller.orders, 'test2')
-    assert.equal(controller.project, 'test2')
-  })
-
   test('previewDuration', function(assert) {
     let controller = this.owner.lookup('controller:timed-admin/detail')
     controller.set('preview', true)

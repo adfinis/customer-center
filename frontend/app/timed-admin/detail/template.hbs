@@ -1,78 +1,117 @@
-{{#if (get (await session.user) 'admin')}}
-<div class="uk-width-1-1 uk-margin uk-animation-slide-top-small">
-  <ul uk-accordion data-reload-acc>
-    <li>
-      <a data-test-reload-accordion class="uk-accordion-title" href="#">{{t 'timed.admin.reload'}} {{model.name}}</a>
-      <div class="uk-accordion-content">
-        <div class="uk-margin-left uk-flex uk-flex-middle uk-flex-between uk-flex-wrap">
-          <div class="uk-flex uk-flex-middle uk-flex-left uk-flex-wrap">
-            <span class="uk-text-large uk-margin-right">{{t 'timed.admin.form'}}</span>
+{{#if loading}}
+  <div class="uk-overlay uk-position-center uk-flex uk-flex-center uk-flex-middle"><div>{{uk-spinner}}</div></div>
+{{else}}
+  {{#if (get (await session.user) 'admin')}}
+    <div class="uk-width-1-1 uk-margin uk-animation-slide-top-small">
+      <ul uk-accordion data-reload-acc>
+        <li>
+          <a data-test-reload-accordion class="uk-accordion-title" href="#">{{t 'timed.admin.reload'}} {{project.name}}</a>
+          <div class="uk-accordion-content">
+            <div class="uk-margin-left uk-flex uk-flex-middle uk-flex-between uk-flex-wrap">
+              <div class="uk-flex uk-flex-middle uk-flex-left uk-flex-wrap">
+                <span class="uk-text-large uk-margin-right">{{t 'timed.admin.form'}}</span>
 
-            <div class="uk-flex uk-flex-center uk-flex-middle uk-margin-right">
-              {{input
-                class=(concat "uk-text-center uk-input uk-form-width-small " (if hour (if validation.hour "uk-form-success" "uk-form-danger")))
-                type="number"
-                placeholder="Hours"
-                value=hour
-                data-test-hour-input=true}}
-              <span class="uk-margin-small-right uk-margin-small-left uk-text-large">:</span>
-              {{input
-                class=(concat "uk-text-center uk-input uk-form-width-small " (if minute (if validation.minute "uk-form-success" "uk-form-danger")))
-                type="number"
-                placeholder="Minutes"
-                value=minute
-                data-test-minute-input=true}}
-              {{#if error}}
-                <span class="uk-margin-left" data-test-reload-error>{{t 'timed.admin.reload-form-error'}}</span>
-              {{/if}}
+                <div class="uk-flex uk-flex-center uk-flex-middle uk-margin-right">
+                  {{input
+                    class=(concat "uk-text-center uk-input uk-form-width-small " (if hour (if validation.hour "uk-form-success" "uk-form-danger")))
+                    type="number"
+                    placeholder="Hours"
+                    value=hour
+                    data-test-hour-input=true}}
+                  <span class="uk-margin-small-right uk-margin-small-left uk-text-large">:</span>
+                  {{input
+                    class=(concat "uk-text-center uk-input uk-form-width-small " (if minute (if validation.minute "uk-form-success" "uk-form-danger")))
+                    type="number"
+                    placeholder="Minutes"
+                    value=minute
+                    data-test-minute-input=true}}
+                  {{#if error}}
+                    <span class="uk-margin-left" data-test-reload-error>{{t 'timed.admin.reload-form-error'}}</span>
+                  {{/if}}
+                </div>
+              </div>
+              {{uk-button loading=save.isRunning disabled=(or save.isRunning (or (not duration) error)) on-click=(action "saveOrder") label="Save" class="uk-button-primary" data-test-reload-submit=true}}
             </div>
           </div>
-          {{uk-button loading=save.isRunning disabled=(or save.isRunning (or (not duration) error)) on-click=(action "saveOrder") label="Save" class="uk-button-primary" data-test-reload-submit=true}}
-        </div>
-      </div>
-    </li>
-  </ul>
-</div>
-<hr>
-{{/if}}
-<div uk-grid class="uk-child-width-1-1 uk-child-width-1-2@m" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
-  <div uk-grid class="uk-margin-remove-left uk-flex uk-flex-column" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
-    <div class="uk-padding-remove-left">
-      {{#uk-card as |card|}}
-        {{#card.header}}
-          {{#card.title}}
-            {{project.name}}
-          {{/card.title}}
-        {{/card.header}}
-        {{#card.body}}
-          <div class="uk-grid uk-grid-divider">
-            <div class="uk-width-1-2">
-              <dl class="uk-description-list">
-                <dt>{{t 'timed.admin.customer'}}:</dt>
-                <dd data-test-customer-name="{{project.id}}">{{project.customer.name}}</dd>
-                <dt>{{t 'timed.admin.billingType'}}:</dt>
-                <dd data-test-billing-type-name="{{project.id}}">{{project.billingType.name}}</dd>
-              </dl>
-            </div>
-            <div class="uk-width-1-2">
-              <dl class="uk-description-list">
-                <dt>{{t 'timed.time.total'}}:</dt>
-                <dd class={{if (and duration preview) "uk-text-success"}} data-test-project-total-time >
-                  {{format-duration (if (and duration preview) previewDuration project.totalTime) }}
-                </dd>
-                <dt>{{t 'timed.time.unconfirmed'}}:</dt>
-                <dd>{{format-duration project.unconfirmedTime}}</dd>
-              </dl>
-            </div>
-          </div>
-        {{/card.body}}
-      {{/uk-card}}
+        </li>
+      </ul>
     </div>
-    <div class="uk-padding-remove-left">
+    <hr>
+  {{/if}}
+  <div uk-grid class="uk-child-width-1-1 uk-child-width-1-2@m" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
+    <div uk-grid class="uk-margin-remove-left uk-flex uk-flex-column" uk-scrollspy="target: > div; cls:uk-animation-slide-bottom-small; delay: 100">
+      <div class="uk-padding-remove-left">
+        {{#uk-card as |card|}}
+          {{#card.header}}
+            {{#card.title}}
+              {{project.name}}
+            {{/card.title}}
+          {{/card.header}}
+          {{#card.body}}
+            <div class="uk-grid uk-grid-divider">
+              <div class="uk-width-1-2">
+                <dl class="uk-description-list">
+                  <dt>{{t 'timed.admin.customer'}}:</dt>
+                  <dd data-test-customer-name="{{project.id}}">{{project.customer.name}}</dd>
+                  <dt>{{t 'timed.admin.billingType'}}:</dt>
+                  <dd data-test-billing-type-name="{{project.id}}">{{project.billingType.name}}</dd>
+                </dl>
+              </div>
+              <div class="uk-width-1-2">
+                <dl class="uk-description-list">
+                  <dt>{{t 'timed.time.total'}}:</dt>
+                  <dd class={{if (and duration preview) "uk-text-success"}} data-test-project-total-time >
+                    {{format-duration (if (and duration preview) previewDuration project.totalTime) }}
+                  </dd>
+                  <dt>{{t 'timed.time.unconfirmed'}}:</dt>
+                  <dd>{{format-duration project.unconfirmedTime}}</dd>
+                </dl>
+              </div>
+            </div>
+          {{/card.body}}
+        {{/uk-card}}
+      </div>
+      <div class="uk-padding-remove-left">
+        {{#uk-card as |card|}}
+          {{#card.header}}
+            {{#card.title}}
+              {{t 'timed.detail.charges'}}
+            {{/card.title}}
+          {{/card.header}}
+          {{#card.body}}
+            <table class="uk-table uk-table-divider uk-width-1-1">
+              <thead>
+                <tr>
+                  <th>{{t 'timed.date'}}</th>
+                  <th>{{t 'timed.detail.amount'}}</th>
+                  <th>{{t 'timed.detail.acknowledged'}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each orders as |order index|}}
+                  <tr class="uk-animation-fade" data-test-project-order="{{index}}">
+                    <td>{{moment-format order.ordered 'DD.MM.YYYY'}}</td>
+                    <td data-test-order-duration>{{format-duration order.duration format='hours'}}</td>
+                    {{#if order.acknowledged}}
+                    <td>{{uk-icon 'check' scale=2 data-test-acknowledged=index}}</td>
+                    {{else}}
+                    <td>{{uk-icon 'close' scale=2 data-test-unconfirmed=index}}</td>
+                    {{/if}}
+                  </tr>
+                {{else}}
+                  {{t 'global.empty'}}
+                {{/each}}
+              </tbody>
+            </table>
+          {{/card.body}}
+        {{/uk-card}}
+      </div>
+    </div>
+    <div>
       {{#uk-card as |card|}}
         {{#card.header}}
           {{#card.title}}
-            {{t 'timed.detail.charges'}}
+            {{t 'timed.detail.expense'}}
           {{/card.title}}
         {{/card.header}}
         {{#card.body}}
@@ -80,23 +119,21 @@
             <thead>
               <tr>
                 <th>{{t 'timed.date'}}</th>
-                <th>{{t 'timed.detail.amount'}}</th>
-                <th>{{t 'timed.detail.acknowledged'}}</th>
+                <th>{{t 'timed.detail.effort'}}</th>
+                <th>{{t 'timed.detail.employee'}}</th>
+                <th>{{t 'timed.detail.description'}}</th>
               </tr>
             </thead>
             <tbody>
-              {{#each orders as |order index|}}
-                <tr class="uk-animation-fade" data-test-project-order="{{index}}">
-                  <td>{{moment-format order.ordered 'DD.MM.YYYY'}}</td>
-                  <td data-test-order-duration>{{format-duration order.duration format='hours'}}</td>
-                  {{#if order.acknowledged}}
-                  <td>{{uk-icon 'check' scale=2 data-test-acknowledged=index}}</td>
-                  {{else}}
-                  <td>{{uk-icon 'close' scale=2 data-test-unconfirmed=index}}</td>
-                  {{/if}}
+              {{#each reports as |report index|}}
+                <tr data-test-project-report="{{index}}">
+                  <td>{{moment-format report.date 'DD.MM.YYYY'}}</td>
+                  <td>{{format-duration-short report.duration}}</td>
+                  <td>{{report.user.fullName}}</td>
+                  <td>{{report.comment}}</td>
                 </tr>
               {{else}}
-                {{t 'global.empty'}}
+                <tr><td colspan="4">{{t 'global.empty'}}</td></tr>
               {{/each}}
             </tbody>
           </table>
@@ -104,37 +141,4 @@
       {{/uk-card}}
     </div>
   </div>
-  <div>
-    {{#uk-card as |card|}}
-      {{#card.header}}
-        {{#card.title}}
-          {{t 'timed.detail.expense'}}
-        {{/card.title}}
-      {{/card.header}}
-      {{#card.body}}
-        <table class="uk-table uk-table-divider uk-width-1-1">
-          <thead>
-            <tr>
-              <th>{{t 'timed.date'}}</th>
-              <th>{{t 'timed.detail.effort'}}</th>
-              <th>{{t 'timed.detail.employee'}}</th>
-              <th>{{t 'timed.detail.description'}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.reports as |report index|}}
-              <tr data-test-project-report="{{index}}">
-                <td>{{moment-format report.date 'DD.MM.YYYY'}}</td>
-                <td>{{format-duration-short report.duration}}</td>
-                <td>{{report.user.fullName}}</td>
-                <td>{{report.comment}}</td>
-              </tr>
-            {{else}}
-              <tr><td colspan="4">{{t 'global.empty'}}</td></tr>
-            {{/each}}
-          </tbody>
-        </table>
-      {{/card.body}}
-    {{/uk-card}}
-  </div>
-</div>
+{{/if}}

@@ -6,7 +6,7 @@ services:
       - ./tools/docker/nginx/nginx-dev.conf:/etc/nginx/nginx.conf
     links:
       - backend
-      - frontend
+        # - frontend
     ports:
       - "8080:80"
 

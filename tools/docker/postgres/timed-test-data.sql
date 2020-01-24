@@ -1,5 +1,5 @@
 INSERT INTO employment_user (password, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, tour_done)
-	VALUES ('pbkdf2_sha256$36000$YqQdh2qkA5ia$GmA0LkF3udVW1/tsEz6qOUg265C4Z9d/iqUgQXpQL7U=', false, 'timed_api', 'timed_api', 'timed_api', 'timed_api@adsy.ch', true, true, '2018-05-07 08:10:13+00', false);
+	VALUES ('pbkdf2_sha256$36000$cjfgJRo9z0xd$qER+RWK7XQ9ZFEs9aGAyf4xQeVumk5ArC0Nx6oPEctY=', false, 'timed_api', 'timed_api', 'timed_api', 'timed_api@adsy.ch', true, true, '2018-05-07 08:10:13+00', false);
 INSERT INTO projects_customer (name, email, website, comment, archived, reference)
 	VALUES ('customer1', 'customer1@adsy.ch', '', '', false, 'customer1');
 

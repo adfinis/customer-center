@@ -135,6 +135,16 @@
               {{else}}
                 <tr><td colspan="4">{{t 'global.empty'}}</td></tr>
               {{/each}}
+              {{#if fetchReports.isRunning}}
+                <tr class="uk-text-center"><td colspan="4">{{uk-spinner}}</td></tr>
+              {{/if}}
+              {{#if reportsNext}}
+                <tr class="uk-text-center">
+                  <td colspan="4" onclick={{perform fetchReports}}>
+                    <button class="uk-button">{{t 'timed.detail.loadMore'}}</button>
+                  </td>
+                </tr>
+              {{/if}}
             </tbody>
           </table>
         {{/card.body}}

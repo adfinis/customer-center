@@ -160,7 +160,10 @@ export default {
       employee: 'Mitarbeiter',
       description: 'Beschreibung',
       acknowledged: 'Bestätigt',
-      amount: 'Anzahl Stunden'
+      amount: 'Anzahl Stunden',
+      errorLoading:
+        'Es ist ein Problem aufgetreten beim holen der Daten. Bitte versuchen Sie es erneut',
+      loadMore: 'Mehr laden'
     },
     admin: {
       subscriptions: 'Abonnements',

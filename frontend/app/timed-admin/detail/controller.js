@@ -16,13 +16,6 @@ export default Controller.extend({
   loading: alias('fetchModels.isRunning'),
   project: alias('fetchModels.lastSuccessful.value.project'),
   orders: alias('fetchModels.lastSuccessful.value.orders'),
-  reportsPage: 1,
-  reportsNext: false,
-
-  init() {
-    this._super(...arguments)
-    this.set('reports', [])
-  },
 
   duration: computed('validation.{hour,minute}', 'hour', 'minute', function() {
     if (this.get('validation.hour') || this.get('validation.minute')) {
@@ -98,7 +91,7 @@ export default Controller.extend({
 
       reports.forEach(report => this.reports.pushObject(report))
       this.set('reportsPage', this.get('reportsPage') + 1)
-      this.set('reportsNext', !!reports.get('links.next'))
+      this.set('reportsNext', Boolean(reports.get('links.next')))
 
       return reports
     } catch (e) {

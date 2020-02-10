@@ -162,7 +162,7 @@ export default {
       acknowledged: 'Bestätigt',
       amount: 'Anzahl Stunden',
       errorLoading:
-        'Es ist ein Problem aufgetreten beim holen der Daten. Bitte versuchen Sie es erneut',
+        'Es ist ein Problem aufgetreten beim laden der Daten. Bitte versuchen Sie es erneut',
       loadMore: 'Mehr laden'
     },
     admin: {

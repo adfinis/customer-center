@@ -15,6 +15,9 @@ export default Route.extend({
 
   setupController(controller) {
     this._super(...arguments)
+    controller.set('reportsPage', 1)
+    controller.set('reportsNext', false)
+    controller.set('reports', [])
     controller.fetchModels.perform()
   }
 })

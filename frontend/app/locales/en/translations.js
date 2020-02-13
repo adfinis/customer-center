@@ -158,7 +158,10 @@ export default {
       employee: 'Employee',
       description: 'Description',
       acknowledged: 'Acknowledged',
-      amount: 'Amount'
+      amount: 'Amount',
+      errorLoading:
+        'A Problem occured while fetching the data. Please try again.',
+      loadMore: 'Load more'
     },
     admin: {
       subscriptions: 'Subscriptions',

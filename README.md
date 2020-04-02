@@ -16,11 +16,13 @@ Before you start, please make sure that the following tools are installed:
 
 ```shell
 make install-frontend install-backend
-docker-compose up
+docker-compose up -d
 make install
 ```
 
 ## Configuration
+
+*Info: for development setup see Development*
 
 Set `ldap.bindCredentials` and `services.timed.password` in `backend/config.js` to their respective passwords.
 
@@ -33,6 +35,8 @@ Configure the endpoints as needed.
 Create a symlink for config.js `ln -s config-dev.js config.js`.
 
 Run `yarn start-proxy` to start the frontend.
+
+The default password for all users is `123qweasd`.
 
 ## Deployment
 

@@ -121,6 +121,8 @@ export default Controller.extend({
 
   actions: {
     saveOrder() {
+      // Reset page
+      this.set('reportsPage', 1)
       this.save.perform()
     }
   }

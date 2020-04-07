@@ -22,7 +22,7 @@ services:
       - ldap
       # - redmine
       # - rt
-      - vault
+      # - vault
       - timedbackend
     environment:
       - NODE_ENV=development
@@ -31,16 +31,16 @@ services:
       - "3000:3000"
     command: yarn watch
 
-  frontend:
-    image: node:8
-    working_dir: /usr/src/app
-    volumes:
-      - ./frontend:/usr/src/app
-      - /usr/src/app/tmp
-      - /usr/src/app/dist
-    ports:
-      - "7020:7020"
-    command: yarn start-proxy
+  # frontend:
+  #   image: node:8
+  #   working_dir: /usr/src/app
+  #   volumes:
+  #     - ./frontend:/usr/src/app
+  #     - /usr/src/app/tmp
+  #     - /usr/src/app/dist
+  #   ports:
+  #     - "7020:7020"
+  #   command: yarn start-proxy
 
   redis:
     image: redis
@@ -96,13 +96,13 @@ services:
       - DEFAULT_PASSWORD=admin
 
   # User older version because the newer version does not work
-  vault:
-    image: vault:0.9.0
-    environment:
-      - VAULT_DEV_ROOT_TOKEN_ID=myroot
-      - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
-    ports:
-      - "8200:8200"
+  # vault:
+  #   image: vault:0.9.0
+  #   environment:
+  #     - VAULT_DEV_ROOT_TOKEN_ID=myroot
+  #     - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
+  #   ports:
+  #     - "8200:8200"
 
   timedbackend:
     image: adfinissygroup/timed-backend:v0.11.0

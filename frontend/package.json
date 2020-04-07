@@ -10,7 +10,7 @@
   "scripts": {
     "build": "ember build -prod",
     "start": "ember server",
-    "start-proxy": "ember server --proxy http://localhost:80/",
+    "start-proxy": "ember server --proxy http://localhost:8080/",
     "test": "ember test"
   },
   "repository": "",
@@ -38,7 +38,7 @@
     "ember-cli-mirage": "0.4.7",
     "ember-cli-moment-shim": "^3.5.0",
     "ember-cli-qunit": "^4.3.2",
-    "ember-cli-sass": "^7.1.2",
+    "ember-cli-sass": "^10.0.0",
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-uglify": "^2.0.0",
@@ -71,6 +71,7 @@
     "loader.js": "^4.6.0",
     "pagination-pager": "^3.1.0",
     "prettier": "^1.9.2",
-    "qunit-dom": "^0.6.3"
+    "qunit-dom": "^0.6.3",
+    "sass": "^1.26.3"
   }
 }

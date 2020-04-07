@@ -12,11 +12,14 @@ module.exports = function(defaults) {
       includePaths: ['node_modules']
     },
     babel: {
-      optional: ['es7.asyncFunctions', 'es7.decorators']
+      plugins: ['@babel/plugin-proposal-object-rest-spread']
     }
   })
 
   app.import('node_modules/moment/locale/de.js')
+  app.import('node_modules/@sentry/browser/dist/index.js', {
+    using: [{ transformation: 'cjs', as: '@sentry/browser' }]
+  })
 
   return app.toTree()
 }

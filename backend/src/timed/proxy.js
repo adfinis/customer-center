@@ -59,6 +59,28 @@ const routes = {
   }
 }
 
+/*
+ * Report an invalid access lookup to sentry for debugging
+ */
+function reportInvalidAccess(req, access, route) {
+  captureExceptionWithUser(req.user, function(scope) {
+    scope.setLevel('info')
+
+    scope.setExtra('role', access)
+    scope.setExtra('request', `${req.method} ${req.path}`)
+    scope.setExtra(
+      'request-route-access',
+      JSON.stringify(
+        Object.assign({}, route, {
+          path: route.path.toString()
+        })
+      )
+    )
+
+    Sentry.captureException(new Error('Access lookup failed'))
+  })
+}
+
 /**
  * Check if user has access to route
  * @return boolean - returns true if has access
@@ -78,24 +100,12 @@ function checkAccess(req) {
       if (routes[route].access.hasOwnProperty(access)) {
         const hasAccess = routes[route].access[access].includes(req.method)
         if (!hasAccess) {
-          captureExceptionWithUser(req.user, function(scope) {
-            scope.setLevel('info')
-
-            scope.setExtra('role', access)
-            scope.setExtra('request', `${req.method} ${req.path}`)
-            scope.setExtra(
-              'request-route-access',
-              JSON.stringify(
-                Object.assign({}, routes[route], {
-                  path: routes[route].path.toString()
-                })
-              )
-            )
-
-            Sentry.captureException(new Error('Access lookup failed'))
-          })
+          reportInvalidAccess(req, access, routes[route])
         }
         return hasAccess
+      } else {
+        // Also report error if the role does not exist on access definition
+        reportInvalidAccess(req, access, routes[route])
       }
     }
   }

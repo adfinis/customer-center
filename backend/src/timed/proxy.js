@@ -76,26 +76,26 @@ function checkAccess(req) {
   for (let route in routes) {
     if (req.path.match(routes[route].path)) {
       if (routes[route].access.hasOwnProperty(access)) {
-        return routes[route].access[access].includes(req.method)
-      } else {
-        captureExceptionWithUser(req.user, function(scope) {
-          scope.setLevel('info')
+        const hasAccess = routes[route].access[access].includes(req.method)
+        if (!hasAccess) {
+          captureExceptionWithUser(req.user, function(scope) {
+            scope.setLevel('info')
 
-          scope.setExtra('role', access)
-          scope.setExtra('request', `${req.method} ${req.path}`)
-          scope.setExtra(
-            'request-route-access',
-            JSON.stringify(
-              Object.assign({}, routes[route], {
-                path: routes[route].path.toString()
-              })
+            scope.setExtra('role', access)
+            scope.setExtra('request', `${req.method} ${req.path}`)
+            scope.setExtra(
+              'request-route-access',
+              JSON.stringify(
+                Object.assign({}, routes[route], {
+                  path: routes[route].path.toString()
+                })
+              )
             )
-          )
 
-          Sentry.captureException(new Error('Access lookup failed'))
-        })
-
-        return false
+            Sentry.captureException(new Error('Access lookup failed'))
+          })
+        }
+        return hasAccess
       }
     }
   }

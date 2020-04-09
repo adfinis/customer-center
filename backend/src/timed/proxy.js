@@ -3,6 +3,8 @@ import httpProxy from 'express-http-proxy'
 import rp from 'request-promise'
 import config from '../config'
 import parseDjangoDuration from '../utils/parse-django-duration'
+import * as Sentry from '@sentry/node'
+import { captureExceptionWithUser } from '../utils/sentry'
 
 const routes = {
   subscriptionProject: {
@@ -76,6 +78,23 @@ function checkAccess(req) {
       if (routes[route].access.hasOwnProperty(access)) {
         return routes[route].access[access].includes(req.method)
       } else {
+        captureExceptionWithUser(req.user, function(scope) {
+          scope.setLevel('info')
+
+          scope.setExtra('role', access)
+          scope.setExtra('request', `${req.method} ${req.path}`)
+          scope.setExtra(
+            'request-route-access',
+            JSON.stringify(
+              Object.assign({}, routes[route], {
+                path: routes[route].path.toString()
+              })
+            )
+          )
+
+          Sentry.captureException(new Error('Access lookup failed'))
+        })
+
         return false
       }
     }

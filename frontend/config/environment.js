@@ -43,6 +43,13 @@ module.exports = function(environment) {
     }
   }
 
+  if (process.env.SENTRY_DSN) {
+    ENV.SENTRY = {
+      dsn: process.env.SENTRY_DSN
+    }
+    ENV.SENTRY_IGNORE = ['TransitionAborted']
+  }
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;

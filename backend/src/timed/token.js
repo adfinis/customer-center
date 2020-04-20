@@ -47,6 +47,7 @@ export async function refreshToken(refreshToken) {
 export function timedTokenRenew() {
   return async (req, res, next) => {
     if (
+      req.session.timedTokens &&
       req.session.timedTokens.access &&
       req.session.timedTokenTTL &&
       (new Date().getTime() - req.session.timedTokenTTL) / 1000 >=

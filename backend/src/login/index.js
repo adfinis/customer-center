@@ -151,10 +151,10 @@ async function addVaultTokenToSession(session, username, password) {
 
 async function addTimedTokenToSession(session, user) {
   try {
-    session.timedToken = await timedLogin()
+    session.timedTokens = await timedLogin()
     session.timedTokenTTL = new Date().getTime()
     if (!user.isEmployee()) {
-      session.timedCustomer = await getTimedCustomer(session.timedToken, user)
+      session.timedCustomer = await getTimedCustomer(session.timedTokens.access, user)
     }
   } catch (e) {
     console.log('timed auth error', e.message)

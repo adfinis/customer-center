@@ -143,7 +143,7 @@ async function sendMail(req) {
         headers: {
           accept: 'application/vnd.api+json',
           'content-type': 'application/vnd.api+json',
-          Authorization: `Bearer ${req.session.timedToken}`
+          Authorization: `Bearer ${req.session.timedTokens.access}`
         }
       })
     )

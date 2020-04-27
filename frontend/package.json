@@ -67,7 +67,7 @@
     "ember-test-selectors": "^0.3.8",
     "ember-truth-helpers": "^2.0.0",
     "ember-uikit": "^0.5.0",
-    "ember-uikit-adsy-theme": "^0.1.0",
+    "ember-uikit-adsy-theme": "^0.3.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-ember": "^5.0.2",
     "eslint-plugin-prettier": "^2.4.0",

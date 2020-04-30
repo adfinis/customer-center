@@ -220,7 +220,10 @@ function createProxy(config) {
       return newPath
     },
 
-    proxyReqOptDecorator(proxyReqOpts, { session: { timedTokens: { access: token } } }) {
+    proxyReqOptDecorator(
+      proxyReqOpts,
+      { session: { timedTokens: { access: token } } }
+    ) {
       if (token) {
         proxyReqOpts.headers.Authorization = `Bearer ${token}`
       }

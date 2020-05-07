@@ -6,25 +6,28 @@ let src = ['src/**/*.js', 'routes/**/*.js', 'middleware/*.js']
 
 let testFiles = ['tests/helper.js', 'tests/**/*-test.js']
 
-gulp.task('test', ['lint'], () => {
+function test() {
   return gulp.src(testFiles).pipe(
     mocha({
       reporter: 'spec',
       compilers: 'js:babel-core/register'
     })
   )
-})
+}
 
-gulp.task('lint', () => {
+function lint() {
   return gulp
     .src(src.concat(testFiles))
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failOnError())
-})
+}
 
-gulp.task('travis', ['test'])
+function testWatch() {
+  gulp.watch(src.concat(testFiles), test).on('error', console.error)
+}
 
-gulp.task('test-watch', ['test'], () => {
-  gulp.watch(src.concat(testFiles), ['test']).on('error', console.error)
-})
+exports.test = gulp.series(lint, test)
+exports.lint = lint
+exports.travis = test
+exports['test-watch'] = testWatch

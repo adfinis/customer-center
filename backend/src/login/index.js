@@ -154,7 +154,10 @@ async function addTimedTokenToSession(session, user) {
     session.timedTokens = await timedLogin()
     session.timedTokenTTL = new Date().getTime()
     if (!user.isEmployee()) {
-      session.timedCustomer = await getTimedCustomer(session.timedTokens.access, user)
+      session.timedCustomer = await getTimedCustomer(
+        session.timedTokens.access,
+        user
+      )
     }
   } catch (e) {
     console.log('timed auth error', e.message)

@@ -66,8 +66,8 @@ function reportInvalidAccess(req, access, route) {
   captureExceptionWithUser(req.user, function(scope) {
     scope.setLevel('info')
 
+    scope.setTag('request', `${req.method} ${req.path}`)
     scope.setExtra('role', access)
-    scope.setExtra('request', `${req.method} ${req.path}`)
     scope.setExtra(
       'request-route-access',
       JSON.stringify(

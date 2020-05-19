@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/adfinis-sygroup/customer-center.svg?branch=master)](https://travis-ci.org/adfinis-sygroup/customer-center)
 
-# Adfinis SyGroup AG - Customer Center
+# Adfinis AG - Customer Center
 
 This is still very much in progress.
 

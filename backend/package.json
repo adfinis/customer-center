@@ -1,6 +1,6 @@
 {
   "name": "customer-center-backend",
-  "description": "Adfinis SyGroup AG Customer Center - Backend",
+  "description": "Adfinis AG Customer Center - Backend",
   "version": "1.1.0",
   "private": true,
   "scripts": {

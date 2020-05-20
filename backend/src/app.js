@@ -14,9 +14,12 @@ import { timedTokenRenew } from './timed/token'
 import { rtTokenRenew } from './rt/token'
 import config from './config'
 import nodemailer from 'nodemailer'
+import * as Sentry from '@sentry/node'
 
 const app = express()
 export default app
+
+app.use(Sentry.Handlers.requestHandler())
 
 app.log = {}
 app.log.error = debug('app:error')

@@ -1,6 +1,7 @@
 import { computed } from '@ember/object'
 import Route from '@ember/routing/route'
 import { inject as service } from '@ember/service'
+import { captureException } from '@sentry/browser'
 
 import RouteAccessMixin from 'customer-center/mixins/route-access-mixin'
 
@@ -37,12 +38,17 @@ export default Route.extend(RouteAccessMixin, {
   },
 
   _accept(order) {
-    order.set('acknowledged', true)
-    order.confirm()
-    order.unloadRecord()
-    this.notify.info(
-      this.i18n.t('timed.admin.confirmSuccess', order.get('project.name'))
-    )
+    try {
+      order.set('acknowledged', true)
+      order.confirm()
+      order.unloadRecord()
+      this.notify.info(
+        this.i18n.t('timed.admin.confirmSuccess', order.get('project.name'))
+      )
+    } catch (e) {
+      this.notify.error(this.i18n.t('global.error'))
+      captureException(e)
+    }
   },
 
   _deny(order) {

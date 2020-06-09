@@ -20,8 +20,8 @@ export default Controller.extend({
   duration: computed('validation.{hour,minute}', 'hour', 'minute', function() {
     if (this.get('validation.hour') || this.get('validation.minute')) {
       return moment.duration({
-        hours: this.get('validation.hour') && this.hour,
-        minutes: this.get('validation.minute') && this.minute
+        hours: (this.get('validation.hour') && this.hour) || 0,
+        minutes: (this.get('validation.minute') && this.minute) || 0
       })
     }
   }),

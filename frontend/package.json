@@ -50,6 +50,7 @@
     "ember-data": "~3.1.0",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^3.4.3",
+    "ember-flatpickr": "^2.16.2",
     "ember-font-awesome": "^4.0.0-rc.1",
     "ember-i18n": "^5.0.2",
     "ember-load-initializers": "^1.0.0",

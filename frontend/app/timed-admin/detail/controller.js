@@ -20,8 +20,8 @@ export default Controller.extend({
   duration: computed('validation.{hour,minute}', 'hour', 'minute', function() {
     if (this.get('validation.hour') || this.get('validation.minute')) {
       return moment.duration({
-        hours: this.get('validation.hour') && this.hour,
-        minutes: this.get('validation.minute') && this.minute
+        hours: (this.get('validation.hour') && this.hour) || 0,
+        minutes: (this.get('validation.minute') && this.minute) || 0
       })
     }
   }),
@@ -104,7 +104,8 @@ export default Controller.extend({
       let order = this.store.createRecord('timed-subscription-order', {
         duration: this.duration,
         acknowledged: false,
-        project: this.get('project')
+        project: this.get('project'),
+        ordered: moment(this.get('ordered'))
       })
       yield order.save()
 

@@ -25,6 +25,15 @@
                     placeholder="Minutes"
                     value=minute
                     data-test-minute-input=true}}
+
+                  {{ember-flatpickr
+                    locale=this.i18n.locale
+                    date=(readonly (or ordered (moment-to-date now)))
+                    dateFormat="d.m.Y"
+                    onChange=(action (mut ordered) value="firstObject")
+                    minDate=(moment-to-date (moment (moment-format now "MM.DD.YY")))
+                    class="uk-input uk-margin-small-left"
+                  }}
                   {{#if error}}
                     <span class="uk-margin-left" data-test-reload-error>{{t 'timed.admin.reload-form-error'}}</span>
                   {{/if}}

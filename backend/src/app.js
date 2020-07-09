@@ -15,6 +15,9 @@ import { rtTokenRenew } from './rt/token'
 import config from './config'
 import nodemailer from 'nodemailer'
 import * as Sentry from '@sentry/node'
+import { Issuer } from 'openid-client'
+import expressSession from 'express-session'
+
 
 const app = express()
 export default app
@@ -43,6 +46,9 @@ app.use(
 // eslint-disable-next-line no-magic-numbers
 const sessionLifeTime = 24 * 60 * 60 // 1 day
 
+/**
+ * JWT
+ */
 app.use(
   jwt({
     client: redis.createClient(
@@ -58,6 +64,38 @@ app.use(
     requestArg: 'Authorization'
   })
 )
+
+/**
+ * OpenID
+ */
+Issuer.discover('TIMED URL').then(timedIssuer => {
+  let client = new timedIssuer.Client({
+    client_id: 'CONFIDENTIAL_CLIENT_ID',
+    client_secret: '',
+    redirect_uris: ['http://localhost:3000/auth/callback'],
+    post_logout_redirect_uris: ['http://localhost:3000/logout/callback'],
+    token_endpoint_auth_method: ''
+  })
+
+  // catch 404 and forward to error handler
+  app.use(function(req, res, next) {
+    next(createError(404))
+  })
+
+  // error handler
+  app.use(function(err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message
+    res.locals.error = req.app.get('env') === 'development' ? err : {}
+
+    // render the error page
+    res.status(err.status || 500)
+    res.render('error')
+  })
+
+
+})
+
 app.use(passport.initialize())
 app.use(passport.session())
 

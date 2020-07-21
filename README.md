@@ -8,17 +8,16 @@ This is still very much in progress.
 
 Before you start, please make sure that the following tools are installed:
 
-* node + yarn
-* docker + docker-compose
-* vault (https://www.vaultproject.io/downloads.html)
+* Node + Yarn
+* Docker + Docker Compose
+* [Vault](https://www.vaultproject.io/downloads.html)
 
 ## Setup
 
-```shell
-make install-frontend install-backend
-docker-compose up -d
-make install
-```
+* `ln -s config-dev.js backend/config.js` (for development)
+* `make install-frontend install-backend`
+* `docker-compose up -d`
+* `make install`
 
 ## Configuration
 
@@ -32,9 +31,7 @@ Configure the endpoints as needed.
 
 ## Development
 
-Create a symlink for config.js `ln -s config-dev.js config.js`.
-
-Run `yarn start-proxy` to start the frontend.
+Run `make serve-local` to start the frontend directly.
 
 The default password for all users is `123qweasd`.
 

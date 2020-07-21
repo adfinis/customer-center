@@ -1,12 +1,20 @@
 /* eslint-env node */
 'use strict'
 
+const { name } = require('../package')
+
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'customer-center',
     environment,
+    modulePrefix: name,
+    podModulePrefix: `${name}/pods`,
+
     rootURL: '/',
     locationType: 'auto',
+
+    tests: false,
+    hinting: false,
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -25,17 +33,18 @@ module.exports = function(environment) {
     },
 
     APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
       rt: {
         pageSizes: [10, 20, 50],
         states: ['new', 'open', 'stalled', 'resolved', 'rejected', 'deleted']
       },
+
       // Define admin group
       adminGroup: 'adsy-timed-admin',
       adsyUserGroup: 'adsy-user',
+
       // Services : redmine, mon, timed, wiki, rt, vault
-      enabledServices: ['vault', 'timed'],
+      enabledServices: ['timed'],
+
       // Define alertTime in hours
       // When total time comes close to alertTime, text color changes
       alertTime: 5

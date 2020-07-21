@@ -11,8 +11,8 @@ npm-debug.log
 
 # Project
 config.json.*
-tools/docker/rt4/var/mason_data
-tools/docker/rt4/var/rt4
+provisioning/rt4/var/mason_data
+provisioning/rt4/var/rt4
 millis-test-sync
 frontend/root
 ldap/lib

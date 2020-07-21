@@ -8,7 +8,7 @@ export default function() {
  * @param page
  * @param pageSize
  * @returns json
- * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
+ * @author Jonas Cosandey <jonas.cosandey@adfinis-sygroup.ch>
  */
   const _pagination = (models, page, pageSize) => {
     pageSize = parseInt(pageSize)

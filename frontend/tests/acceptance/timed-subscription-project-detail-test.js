@@ -48,8 +48,6 @@ module('Acceptance | Timed Subscriptions', function(hooks) {
 
     await click('[data-test-reload-link="0"]')
     assert.equal(currentURL(), '/timed-subscriptions/1/reload')
-    assert
-      .dom('[data-test-info-panel="0"]')
-      .includesText('support@adfinis-sygroup.ch')
+    assert.dom('[data-test-info-panel="0"]').includesText('support@adfinis.com')
   })
 })

@@ -45,7 +45,7 @@ export default Model.extend({
    * Get all groups with a `-gitlab` suffix.
    *
    * @returns {Object[]} Returns all gitlab groups.
-   * @author Jonas Cosandey (jonas.cosandey@adfinis-sygroup.ch)
+   * @author Jonas Cosandey <jonas.cosandey@adfinis-sygroup.ch>
    */
   gitlabGroups: computed('groups.[]', function() {
     // get all groups with the suffix and then remove it

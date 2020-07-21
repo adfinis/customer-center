@@ -131,5 +131,4 @@ module.exports = {
       ttl: 7200
     }
   }
-}
-
+};

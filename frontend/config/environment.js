@@ -20,6 +20,9 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'style-src': "'self' 'unsafe-inline'"
     },
+    'ember-simple-auth': {
+      routeAfterAuthentication: 'dashboard'
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance

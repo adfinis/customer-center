@@ -4,7 +4,7 @@ import path from 'path'
 const routes = {
   group: /^\/groups\/(.*)\/$/,
   pipelines: /^\/(.*)\/.*\/pipelines\.json$/,
-  commits: /^\/projects\/(.*)\%2F.*\/repository\/commits$/
+  commits: /^\/projects\/(.*)%2F.*\/repository\/commits$/
 }
 
 /**

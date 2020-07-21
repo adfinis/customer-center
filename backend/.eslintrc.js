@@ -13,6 +13,7 @@ module.exports = {
   extends: ['eslint:recommended', 'prettier'],
   rules: {
     'no-console': 'off',
-    'prettier/prettier': 'error'
+    'prettier/prettier': 'error',
+    'no-prototype-builtins': 'off'
   }
 }

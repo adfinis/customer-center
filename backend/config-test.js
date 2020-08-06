@@ -94,6 +94,12 @@ module.exports = {
     port: 6379,
     options: {}
   },
+  keycloak: {
+    host: 'https://sso.adfinis-sygroup.ch',
+    tokenPath: '/auth/realms/adsy/protocol/openid-connect/token',
+    clientId: 'timed-confidential',
+    clientSecret: ''
+  },
   services: {
     timed: {
       type: 'timed',

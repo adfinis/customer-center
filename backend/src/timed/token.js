@@ -1,64 +1,41 @@
 import config from '../config'
-import rp from 'request-promise'
+import fetch from 'node-fetch'
 
 export async function timedLogin() {
-  const { host, user, password, prefix, authPath } = config.services.timed
-  const res = await rp({
-    method: 'post',
-    uri: `${host}${prefix}${authPath}`,
-    headers: {
-      accept: 'application/vnd.api+json',
-      'content-type': 'application/vnd.api+json'
-    },
-    body: {
-      data: {
-        type: 'token-obtain-pair-views',
-        id: null,
-        attributes: {
-          username: user,
-          password
-        }
-      }
-    },
-    json: true
-  })
+  const { host, tokenPath, clientId, clientSecret } = config.keycloak
 
-  return res.data
-}
+  const data = new URLSearchParams()
+  data.append('grant_type', 'client_credentials')
+  data.append('client_id', clientId)
+  data.append('client_secret', clientSecret)
 
-export async function refreshToken(refreshToken) {
-  const { host, prefix, authRefresh } = config.services.timed
-  const res = await rp({
-    method: 'post',
-    uri: `${host}${prefix}${authRefresh}`,
-    headers: {
-      accept: 'application/vnd.api+json',
-      'content-type': 'application/vnd.api+json'
-    },
-    body: {
-      data: { type: 'token-refresh-views', attributes: { refreshToken } }
-    },
-    json: true
-  })
+  const uri = host + tokenPath
+  const options = {
+    method: 'POST',
+    body: data
+  }
 
-  return res.data.access
+  const response = await fetch(uri, options)
+
+  // Do not use the refresh token. The token should
+  // not be included in the response anyway.
+  // https://tools.ietf.org/html/rfc6749#section-4.4.3
+  const { access_token, expires_in } = await response.json()
+
+  return {
+    access: access_token,
+    expires: Date.now() + expires_in * 1000
+  }
 }
 
 export function timedTokenRenew() {
   return async (req, res, next) => {
-    if (
-      req.session.timedTokens &&
-      req.session.timedTokens.access &&
-      req.session.timedTokenTTL &&
-      (new Date().getTime() - req.session.timedTokenTTL) / 1000 >=
-        config.services.timed.ttl
-    ) {
+    const token = req.session.timedTokens || {}
+
+    if (token.expires && token.expires <= Date.now()) {
       try {
-        const newToken = await refreshToken(req.session.timedTokens.refresh)
-        req.session.timedTokens.access = newToken
-        req.session.timedTokenTTL = new Date().getTime()
+        req.session.timedTokens = await timedLogin()
         req.session.update()
-        next()
       } catch (e) {
         next(e)
       }

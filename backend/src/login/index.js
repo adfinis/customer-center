@@ -35,6 +35,7 @@ passport.serializeUser(async (ldap, done) => {
     done(e)
   }
 })
+
 passport.deserializeUser(async (uid, done) => {
   try {
     let user = await new User({ username: uid }).fetch({ required: true })
@@ -75,7 +76,7 @@ router.post('/login', (req, res, next) => {
     } else if (err) {
       return next(err)
     }
-    return next(...arguments)
+    return next()
   })
 })
 
@@ -152,7 +153,6 @@ async function addVaultTokenToSession(session, username, password) {
 async function addTimedTokenToSession(session, user) {
   try {
     session.timedTokens = await timedLogin()
-    session.timedTokenTTL = new Date().getTime()
     if (!user.isEmployee()) {
       session.timedCustomer = await getTimedCustomer(
         session.timedTokens.access,

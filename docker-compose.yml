@@ -1,29 +1,22 @@
-version: '2'
+version: '3'
 services:
   web:
     image: nginx
     volumes:
       - ./tools/docker/nginx/nginx-dev.conf:/etc/nginx/nginx.conf
-    links:
+    depends_on:
       - backend
-        # - frontend
     ports:
-      - "8080:80"
+      - "8888:80"
 
   backend:
-    image: node:8
+    image: node:10
     working_dir: /usr/src/app
     volumes:
       - ./backend:/usr/src/app
       - ./tools/docker/rt4/var/rt4:/var/rt4/rt4
-    links:
+    depends_on:
       - redis
-      - postgres
-      - ldap
-      # - redmine
-      # - rt
-      # - vault
-      - timedbackend
     environment:
       - NODE_ENV=development
       - DEBUG=app:*
@@ -89,6 +82,8 @@ services:
 
   pgadmin:
     image: fenglc/pgadmin4
+    depends_on:
+      - postgres
     ports:
       - "5050:5050"
     environment:
@@ -105,16 +100,21 @@ services:
   #     - "8200:8200"
 
   timedbackend:
-    image: adfinissygroup/timed-backend:v0.13.1
+    image: adfinissygroup/timed-backend:v1.0.0
     ports:
       - '8000:80'
     depends_on:
       - postgres
     environment:
-      - DATABASE_URL=psql://test:test@postgres:5432/timed
+      - DJANGO_OIDC_CREATE_USER=True
+      - DJANGO_OIDC_CHECK_INTROSPECT=True
+      - DJANGO_OIDC_CLIENT_ID=timed-confidential
+      - DJANGO_OIDC_CLIENT_SECRET=802635ae-2395-4419-b15b-b09dc838db14
+      - DJANGO_OIDC_DEFAULT_BASE_URL=http://keycloak:8080/auth/realms/master/protocol/openid-connect
       - DJANGO_DATABASE_HOST=postgres
       - DJANGO_DATABASE_USER=test
       - DJANGO_DATABASE_PASSWORD=test
+      - DJANGO_DATABASE_NAME=timed
       - ENV=docker
       - STATIC_ROOT=/var/www/static
     command: /bin/sh -c "wait-for-it.sh -t 60 postgres:5432 -- ./manage.py migrate && uwsgi"
@@ -150,3 +150,29 @@ services:
   #     - DJANGO_DB_HOST=${DJANGO_DB_HOST}
   #     - STATIC_ROOT=/var/www/static
   #     - DJANGO_AUTH_LDAP_SERVER_URI=ldap://ldap:389
+
+  keycloak:
+    image: jboss/keycloak:10.0.2
+    depends_on:
+      - postgres
+    volumes:
+      - ./tools/docker/keycloak/:/etc/keycloak/
+    environment:
+      - DB_VENDOR=postgres
+      - DB_ADDR=postgres
+      - DB_USER=test
+      - DB_PASSWORD=test
+      - DB_DATABASE=customercenter
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - PROXY_ADDRESS_FORWARDING=true
+    ports:
+      - "8080:8080"
+    command: # http://www.keycloak.org/docs/3.3/server_admin/topics/export-import.html
+      [
+        "-Dkeycloak.migration.action=import",
+        "-Dkeycloak.migration.provider=singleFile",
+        "-Dkeycloak.migration.file=/etc/keycloak/config.json",
+        "-b",
+        "0.0.0.0",
+      ]

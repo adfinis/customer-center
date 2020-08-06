@@ -1,80 +1,81 @@
 module.exports = {
   application: {
-    name: "Customer Center",
-    host: "customer-center.example.com"
+    name: 'Customer Center',
+    host: 'customer-center.example.com'
   },
   ldap: {
     // Further information how to configure LDAP under:
     // https://github.com/vesse/passport-ldapauth
-    url: "ldap://ldap:389",
-    bindDn: "cn=admin,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
+    url: 'ldap://ldap:389',
+    bindDn: 'cn=admin,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
     // ldap password
-    bindCredentials: "123qwe",
-    cert: ""
+    bindCredentials: '123qwe',
+    cert: ''
   },
   login: {
-    adminRole: "adsy-timed-admin",
-    employeeRole: "adsy-user",
+    adminRole: 'adsy-timed-admin',
+    employeeRole: 'adsy-user',
 
     ldap: {
       // Further information how to configure LDAP under:
       // https://github.com/vesse/passport-ldapauth
-      searchBase: "cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
-      searchFilter: "uid={{username}}",
-      searchAttributes: ["uid", "sn", "givenName", "mail"],
+      searchBase: 'cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
+      searchFilter: 'uid={{username}}',
+      searchAttributes: ['uid', 'sn', 'givenName', 'mail'],
 
-      groupSearchBase: "cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
-      groupSearchFilter: "(|(uniqueMember={{dn}})(memberUid={{dn}}))",
-      groupSearchScope: "sub",
-      groupDnProperty: "dn",
-      groupSearchAttributes: ["cn"],
+      groupSearchBase: 'cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
+      groupSearchFilter: '(|(uniqueMember={{dn}})(memberUid={{dn}}))',
+      groupSearchScope: 'sub',
+      groupDnProperty: 'dn',
+      groupSearchAttributes: ['cn'],
 
-      usernameField: "uid",
-      passwordField: "userPassword"
+      usernameField: 'uid',
+      passwordField: 'userPassword'
     },
     ldapCustomer: {
       // Further information how to configure LDAP under:
       // https://github.com/vesse/passport-ldapauth
-      searchBase: "ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
-      searchFilter: "uid={{username}}",
-      searchAttributes: ["uid", "sn", "givenName", "mail"],
+      searchBase: 'ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
+      searchFilter: 'uid={{username}}',
+      searchAttributes: ['uid', 'sn', 'givenName', 'mail'],
 
-      groupSearchBase: "ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch",
-      groupSearchFilter: "(|(uniqueMember={{dn}})(memberUid={{dn}}))",
-      groupSearchScope: "sub",
-      groupDnProperty: "dn",
-      groupSearchAttributes: ["cn"],
+      groupSearchBase:
+        'ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
+      groupSearchFilter: '(|(uniqueMember={{dn}})(memberUid={{dn}}))',
+      groupSearchScope: 'sub',
+      groupDnProperty: 'dn',
+      groupSearchAttributes: ['cn'],
 
-      usernameField: "uid",
-      passwordField: "userPassword"
+      usernameField: 'uid',
+      passwordField: 'userPassword'
     },
-    secret: "ponies"
+    secret: 'ponies'
   },
   mailTransporter: {
-    host: "yourmailserver", // hostname
+    host: 'yourmailserver', // hostname
     secureConnection: true, // use SSL
     port: 587, // port for secure SMTP
     secure: false,
     requireTLS: true
   },
   mail: {
-    from: "your.service@email.address",
-    to: "your.target@email.address"
+    from: 'your.service@email.address',
+    to: 'your.target@email.address'
   },
   database: {
-    client: "pg",
+    client: 'pg',
     connection: {
-      host: "postgres",
-      user: "test",
-      password: "test",
-      database: "customercenter"
+      host: 'postgres',
+      user: 'test',
+      password: 'test',
+      database: 'customercenter'
     },
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: "migrations"
+      tableName: 'migrations'
     }
   },
   passwordReset: {
@@ -82,54 +83,59 @@ module.exports = {
   },
   smtp: {
     port: 25,
-    host: "localhost",
+    host: 'localhost',
     secure: false,
     auth: {
-      user: "username",
-      pass: "password"
+      user: 'username',
+      pass: 'password'
     },
     ignoreTLS: false,
-    name: "customer-center.example.com",
-    localAddress: "0.0.0.0",
-    authMethod: "PLAIN"
+    name: 'customer-center.example.com',
+    localAddress: '0.0.0.0',
+    authMethod: 'PLAIN'
   },
   redis: {
-    host: "redis",
+    host: 'redis',
     port: 6379,
     options: {}
   },
+  keycloak: {
+    host: 'http://keycloak:8080',
+    tokenPath: '/auth/realms/master/protocol/openid-connect/token',
+    clientId: 'timed-confidential',
+    clientSecret: '802635ae-2395-4419-b15b-b09dc838db14'
+  },
   services: {
     vault: {
-      type: "vault",
-      host: "http://vault:8200/",
-      prefix: "/v1/",
-      backend: "secret/",
-      authBackend: "userpass",
+      type: 'vault',
+      host: 'http://vault:8200/',
+      prefix: '/v1/',
+      backend: 'secret/',
+      authBackend: 'userpass',
       ttl: 600000 // Time in ms until to renew vault token
     },
     timed: {
-      type: "timed",
-      host: "http://timedbackend",
-      user: "timed_api",
-      password: "123qweasd",
-      prefix: "/api/v1",
-      authPath: "/auth/login",
-      authRefresh: "/auth/refresh",
-      ttl: 7200 // token TTL in seconds
+      type: 'timed',
+      host: 'http://timedbackend',
+      user: 'timed_api',
+      password: '123qweasd',
+      prefix: '/api/v1',
+      authPath: '/auth/login',
+      authRefresh: '/auth/refresh'
     },
     gitlab: {
-      type: "gitlab",
-      host: "http://gitlab:80",
-      token: "your_token",
-      prefix: "/api/v4"
+      type: 'gitlab',
+      host: 'http://gitlab:80',
+      token: 'your_token',
+      prefix: '/api/v4'
     },
     rt: {
-      type: "rt",
-      host: "http://rt",
-      prefix: "/api/v1",
-      authPath: "/api-token-auth/",
-      authRefresh: "/api-token-refresh/",
+      type: 'rt',
+      host: 'http://rt',
+      prefix: '/api/v1',
+      authPath: '/api-token-auth/',
+      authRefresh: '/api-token-refresh/',
       ttl: 7200
     }
   }
-};
+}

@@ -1,10 +1,10 @@
-import gulp from 'gulp'
-import eslint from 'gulp-eslint'
-import mocha from 'gulp-spawn-mocha'
+import gulp from 'gulp';
+import eslint from 'gulp-eslint';
+import mocha from 'gulp-spawn-mocha';
 
-let src = ['src/**/*.js', 'routes/**/*.js', 'middleware/*.js']
+let src = ['app/**/*.js'];
 
-let testFiles = ['tests/helper.js', 'tests/**/*-test.js']
+let testFiles = ['tests/helper.js', 'tests/**/*-test.js'];
 
 function test() {
   return gulp.src(testFiles).pipe(
@@ -12,7 +12,7 @@ function test() {
       reporter: 'spec',
       compilers: 'js:babel-core/register'
     })
-  )
+  );
 }
 
 function lint() {
@@ -20,14 +20,14 @@ function lint() {
     .src(src.concat(testFiles))
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failOnError())
+    .pipe(eslint.failOnError());
 }
 
 function testWatch() {
-  gulp.watch(src.concat(testFiles), test).on('error', console.error)
+  gulp.watch(src.concat(testFiles), test).on('error', console.error);
 }
 
-exports.test = gulp.series(lint, test)
-exports.lint = lint
-exports.travis = test
-exports['test-watch'] = testWatch
+gulp.task('test', gulp.series(lint, test));
+gulp.task('lint', lint);
+gulp.task('travis', test);
+gulp.task('test-watch', testWatch);

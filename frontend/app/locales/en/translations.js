@@ -44,11 +44,7 @@ export default {
     'contact-us': 'Contact us',
     'create-ticket': 'Create support ticket',
     location: 'Location {{location}}',
-    directions: 'Directions',
-    'directions.bs.url':
-      'https://www.adfinis-sygroup.ch/de/kontakt/directions-basel.html',
-    'directions.be.url':
-      'https://www.adfinis-sygroup.ch/de/kontakt/directions-bern.html',
+    locationLink: 'https://adfinis.com/en/contact/#standorte',
     fax: 'Fax',
     phone: 'Phone',
     tools: {

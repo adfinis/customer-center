@@ -104,11 +104,7 @@ module.exports = {
     timed: {
       type: 'timed',
       host: 'http://timedbackend',
-      user: 'timed_api',
-      password: 'hallo123',
       prefix: '/api/v1',
-      authPath: '/auth/login',
-      ttl: 7200
     },
     vault: {
       type: 'vault',
@@ -133,4 +129,4 @@ module.exports = {
       ttl: 7200
     }
   }
-}
+};

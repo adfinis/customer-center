@@ -52,11 +52,11 @@ module.exports = {
     secret: 'ponies'
   },
   mailTransporter: {
-    host: 'yourmailserver', // hostname
-    secureConnection: true, // use SSL
-    port: 587, // port for secure SMTP
+    host: 'localhost',
+    port: 25,
     secure: false,
-    requireTLS: true
+    // secureConnection: true,
+    // requireTLS: true
   },
   mail: {
     from: 'your.service@email.address',
@@ -85,14 +85,14 @@ module.exports = {
     port: 25,
     host: 'localhost',
     secure: false,
-    auth: {
-      user: 'username',
-      pass: 'password'
-    },
     ignoreTLS: false,
     name: 'customer-center.example.com',
     localAddress: '0.0.0.0',
-    authMethod: 'PLAIN'
+    // auth: {
+    //   user: 'username',
+    //   pass: 'password'
+    // },
+    // authMethod: 'PLAIN'
   },
   redis: {
     host: 'redis',
@@ -108,20 +108,16 @@ module.exports = {
   services: {
     vault: {
       type: 'vault',
-      host: 'http://vault:8200/',
+      host: 'http://vault:8200',
       prefix: '/v1/',
       backend: 'secret/',
       authBackend: 'userpass',
-      ttl: 600000 // Time in ms until to renew vault token
+      ttl: 600000
     },
     timed: {
       type: 'timed',
       host: 'http://timedbackend',
-      user: 'timed_api',
-      password: '123qweasd',
       prefix: '/api/v1',
-      authPath: '/auth/login',
-      authRefresh: '/auth/refresh'
     },
     gitlab: {
       type: 'gitlab',

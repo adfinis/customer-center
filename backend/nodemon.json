@@ -4,5 +4,5 @@
     "py": "python",
     "rb": "ruby"
   },
-  "ignore": [ "test/*", "knexfile.js", "migrations/*", "gulpfile.js" ]
+  "ignore": ["test/*", "knexfile.js", "migrations/*", "gulpfile.js"]
 }

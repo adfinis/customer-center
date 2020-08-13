@@ -1,9 +1,9 @@
-import chai, { expect } from 'chai'
-import chaiAsPromised from 'chai-as-promised'
-import chaiHttp from 'chai-http'
+import chai, { expect } from 'chai';
+import chaiAsPromised from 'chai-as-promised';
+import chaiHttp from 'chai-http';
 
-chai.use(chaiAsPromised)
-chai.use(chaiHttp)
+chai.use(chaiAsPromised);
+chai.use(chaiHttp);
 
-global.request = chai.request
-global.expect = expect
+global.request = chai.request;
+global.expect = expect;

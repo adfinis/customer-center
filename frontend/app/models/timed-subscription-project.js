@@ -20,6 +20,7 @@ export default Model.extend({
 
   unconfirmedTime: computed('orders', function() {
     return this.orders
+      .filter(order => order !== null)
       .filter(order => !order.get('acknowledged'))
       .reduce((accumulator, order) => {
         return accumulator.add(order.get('duration'))

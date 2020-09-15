@@ -9,6 +9,7 @@ import nodemailer from 'nodemailer';
 import transport from 'nodemailer-smtp-transport';
 import Handlebars from 'handlebars';
 import denodeify from 'denodeify';
+import rp from 'request-promise';
 
 import { timedLogin } from '../timed/helpers';
 import { rtLogin } from '../rt/helpers';
@@ -76,14 +77,14 @@ function loginSuccessful(request, response, next, ldapUser) {
       isMember(group) || users.get(ldapUser).isEmployee();
 
     // If user is in the vault group, get vault token
-    // if (isMemberOrEmployee('vault')) {
-    //   const { body: { username, password } } = request
-    //   request.session = await addVaultTokenToSession(
-    //     request.session,
-    //     username,
-    //     password
-    //   )
-    // }
+    if (isMemberOrEmployee('vault')) {
+      const { body: { username, password } } = request;
+      request.session = await addVaultTokenToSession(
+        request.session,
+        username,
+        password
+      );
+    }
 
     // If user is in the timed group, get timed token
     if (isMemberOrEmployee('timed')) {
@@ -105,16 +106,16 @@ function loginSuccessful(request, response, next, ldapUser) {
   });
 }
 
-// export async function addVaultTokenToSession(session, username, password) {
-//   try {
-//     session.vaultToken = await vaultLogin(username, password);
-//     session.vaultTokenTTL = new Date().getTime();
-//   } catch (error) {
-//     debug.error('vault auth error', error.message);
-//   }
+export async function addVaultTokenToSession(session, username, password) {
+  try {
+    session.vaultToken = await vaultLogin(username, password);
+    session.vaultTokenTTL = new Date().getTime();
+  } catch (error) {
+    debug.error('vault auth error', error.message);
+  }
 
-//   return session;
-// }
+  return session;
+}
 
 async function addTimedTokenToSession(session, user) {
   try {
@@ -150,19 +151,19 @@ export async function addRTTokenToSession(session, { username, password }) {
  * @param {string} password password
  * @return {string} vault token
  */
-// async function vaultLogin(username, password) {
-//   const { host, ca, authBackend, prefix } = config.services.vault;
+async function vaultLogin(username, password) {
+  const { host, ca, authBackend, prefix } = config.services.vault;
 
-//   const resp = await rp({
-//     method: 'POST',
-//     uri: `${host}${prefix}auth/${authBackend}/login/${username}`,
-//     body: { password },
-//     json: true,
-//     ca: ca ? fs.readFileSync(ca) : undefined
-//   });
+  const resp = await rp({
+    method: 'POST',
+    uri: `${host}${prefix}auth/${authBackend}/login/${username}`,
+    body: { password },
+    json: true,
+    ca: ca ? fs.readFileSync(ca) : undefined
+  });
 
-//   return resp.auth.client_token;
-// }
+  return resp.auth.client_token;
+}
 
 //  ____                _
 // |  _ \ ___  ___  ___| |_

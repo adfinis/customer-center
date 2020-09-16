@@ -18,8 +18,7 @@ knex-migrations:
 	docker-compose exec backend make -C /usr/src/app migrations
 
 setup-vault:
-	echo "Vault integration is disabled."
-	#docker-compose exec vault sh ./tmp/vault/init.sh
+	docker-compose exec vault sh ./tmp/vault/init.sh
 
 setup-timed:
 	docker-compose exec timedbackend ./manage.py migrate

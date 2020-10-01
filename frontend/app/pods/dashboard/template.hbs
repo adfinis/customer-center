@@ -9,12 +9,6 @@
           </div>
         {{/if}}
 
-        {{#if (and (service-enabled 'rt') (get (await session.user) 'rt'))}}
-          <div class="uk-padding uk-padding-remove-bottom">
-            {{dashboard-rt}}
-          </div>
-        {{/if}}
-
         <div class="uk-padding uk-padding-remove-top">
           {{#uk-card hover=true as |card|}}
             {{#card.header}}

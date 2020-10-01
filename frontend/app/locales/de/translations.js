@@ -48,55 +48,16 @@ export default {
     fax: 'Fax',
     phone: 'Tel',
     tools: {
-      redmine: 'Redmine',
-      'redmine.description': 'Verwaltung von Tasks, Bugs, etc.',
-
-      gitlab: 'Gitlab',
-      'gitlab.description': 'Source Code Verwaltung',
-
-      rt: 'Request Tracker',
-      'rt.description': 'Support-Anfragen via Mail',
-
-      poweradmin: 'PowerAdmin',
-      'poweradmin.description': 'Verwaltung von DNS Zonen',
-
-      symonitoring: 'SyMonitoring',
-      'symonitoring.description': 'Überwachung von Server und Diensten',
-
       timed: 'Credits / Reports',
-      'timed.description': 'Support Abonnemente',
-
-      ppa: 'PPA',
-      'ppa.description': 'Verwaltung ihrer Webhostings',
-
-      rhev: 'RHV',
-      'rhev.description': 'Verwaltung ihrer virtuellen Server',
-
-      mailcleaner: 'Mail Cleaner',
-      'mailcleaner.description': 'Spam Filter'
+      'timed.description': 'Support Abonnemente'
     }
   },
 
   nav: {
     dashboard: 'Übersicht',
-    vault: 'Vault',
     timed: 'Credits / Reports',
-    gitlab: 'Projekte',
-    rt: 'Tickets',
     settings: 'Einstellungen',
     logout: 'Logout'
-  },
-
-  vault: {
-    metadata: 'Metadaten',
-    secrets: 'Secrets',
-    add: 'Eintrag hinzufügen',
-    'delete-entry': 'Ganzen Eintrag löschen',
-    value: 'Wert',
-    'save-success': 'Änderungen erfolgreich gespeichert.',
-    'clipboard-success': 'Das Passwort wurde in die Zwischenablage kopiert.',
-    'clipboard-error':
-      'Das Passwort konnte nicht in die Zwischenablage kopiert werden.'
   },
 
   timed: {
@@ -179,71 +140,6 @@ export default {
     }
   },
 
-  gitlab: {
-    projects: 'Projekte',
-    groups: 'Gruppen',
-    commitsSince: 'Änderungen anzeigen ab:',
-    allGroups: 'Alle Gruppen',
-    placeholder: 'Suche...',
-    table: {
-      project: 'Projekt',
-      commits: 'Änderungen',
-      pipelines: 'Pipelines'
-    },
-    commit: {
-      one: '1 Änderung',
-      other: '{{count}} Änderungen'
-    },
-    errors: {
-      group: 'Es ist ein Fehler beim Laden der folgenden Gruppe aufgetreten:',
-      commits:
-        'Es ist ein Fehler beim Laden der Änderungen für das folgende Projekt aufgetreten:',
-      pipelines:
-        'Es ist ein Fehler beim Laden der Pipelines für das folgende Projekt aufgetreten:'
-    },
-    empty: {
-      groups: 'Es wurden keine GitLab Gruppen gefunden.',
-      commits: 'Im angegeben Zeitraum gibt es keine Änderungen.',
-      pipelines: 'Das Projekt hat keine Pipelines.'
-    },
-    'pipeline-table': {
-      stage: 'Etappe',
-      status: 'Status'
-    },
-    status: {
-      failed: 'Fehlgeschlagen',
-      passed: 'Erfolgreich',
-      created: 'Erstellt',
-      pending: 'Ausstehend',
-      running: 'Laufend'
-    }
-  },
-
-  rt: {
-    'all-states': 'Alle Status',
-    empty: 'Es wurden keine Tickets gefunden.',
-    pageSize: 'Anzahl Einträge',
-    breadcrumbs: {
-      tickets: 'Tickets'
-    },
-    ticket: {
-      effectiveid: 'ID',
-      subject: 'Subjekt',
-      status: 'Status',
-      updated: 'Zulezt aktualisiert',
-      created: 'Erstellt',
-      creator: 'Ersteller',
-      owner: 'Verantwortlich',
-      states: {
-        new: 'Neu',
-        open: 'Offen',
-        stalled: 'Verzögert',
-        resolved: 'Abgeschlossen',
-        rejected: 'Abelehnt',
-        deleted: 'Gelöscht'
-      }
-    }
-  },
   dashboard: {
     locations: 'Standorte',
     links: {

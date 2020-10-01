@@ -1,5 +1,5 @@
 import { click, currentURL, visit } from '@ember/test-helpers'
-import { module, test, skip } from 'qunit'
+import { module, test } from 'qunit'
 import { setupApplicationTest } from 'ember-qunit'
 import {
   authenticateSession,
@@ -59,34 +59,6 @@ module('Acceptance | dashboard', function(hooks) {
 
     await click('[data-test-all-projects]')
     assert.equal(currentURL(), '/timed-subscriptions')
-
-    await visit('/')
-    assert.equal(currentURL(), '/')
-  })
-
-  skip('rt', async function(assert) {
-    this.server.createList('rt-ticket', 6, {
-      status: 'open',
-      subject: 'averyspecificteststring'
-    })
-
-    await visit('/')
-
-    assert.equal(currentURL(), '/')
-
-    assert.dom('[data-test-all]').hasText('132')
-    assert.dom('[data-test-state]').exists({ count: 6 })
-    assert.dom(`[data-test-state="new"]`).hasText('21 New')
-    assert.dom(`[data-test-state="open"]`).hasText('89 Open')
-    assert.dom(`[data-test-state="stalled"]`).hasText('92 Stalled')
-    assert.dom(`[data-test-state="resolved"]`).hasText('21 Resolved')
-    assert.dom(`[data-test-state="rejected"]`).hasText('2 Rejected')
-    assert.dom(`[data-test-state="deleted"]`).hasText('83 Deleted')
-
-    assert.dom('[data-test-ticket]').exists({ count: 3 })
-
-    await click('[data-test-all-tickets]')
-    assert.equal(currentURL(), '/tickets')
 
     await visit('/')
     assert.equal(currentURL(), '/')

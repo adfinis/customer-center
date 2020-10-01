@@ -106,32 +106,10 @@ module.exports = {
     clientSecret: '802635ae-2395-4419-b15b-b09dc838db14'
   },
   services: {
-    vault: {
-      type: 'vault',
-      host: 'http://vault:8200',
-      prefix: '/v1/',
-      backend: 'secret/',
-      authBackend: 'userpass',
-      ttl: 600000
-    },
     timed: {
       type: 'timed',
       host: 'http://timedbackend',
       prefix: '/api/v1',
     },
-    gitlab: {
-      type: 'gitlab',
-      host: 'http://gitlab:80',
-      token: 'your_token',
-      prefix: '/api/v4'
-    },
-    rt: {
-      type: 'rt',
-      host: 'http://rt',
-      prefix: '/api/v1',
-      authPath: '/api-token-auth/',
-      authRefresh: '/api-token-refresh/',
-      ttl: 7200
-    }
   }
 }

@@ -15,9 +15,6 @@ Router.map(function() {
   this.route('protected', { path: '/' }, function() {
     this.route('dashboard', { path: '/', resetNamespace: true })
 
-    this.route('vault', { resetNamespace: true }, function() {
-      this.route('edit', { path: '/*path' })
-    })
     this.route('timed-subscriptions', { resetNamespace: true }, function() {
       this.route('detail', { path: ':project_id' }, function() {
         this.route('reload')
@@ -27,9 +24,6 @@ Router.map(function() {
       this.route('detail', { path: ':project' })
       this.route('confirm-subscriptions')
     })
-
-    this.route('gitlab', { resetNamespace: true, path: 'projects' })
-    this.route('rt', { resetNamespace: true, path: 'tickets' })
   })
 
   this.route('notfound', { path: '/*path' })

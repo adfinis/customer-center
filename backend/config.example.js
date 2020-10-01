@@ -98,14 +98,6 @@ module.exports = {
     options: {}
   },
   services: {
-    vault: {
-      type: 'vault',
-      host: 'http://vault1:8200/',
-      prefix: '/v1/',
-      backend: 'secret/',
-      authBackend: 'userpass',
-      ttl: 600000 // Time in ms until to renew vault token
-    },
     timed: {
       type: 'timed',
       host: 'http://timedbackend1:80',
@@ -116,19 +108,5 @@ module.exports = {
       authRefresh: '/auth/refresh',
       ttl: 7200 // token TTL in seconds
     },
-    gitlab: {
-      type: 'gitlab',
-      host: 'http://gitlab:80',
-      token: 'your_token',
-      prefix: '/api/v4'
-    },
-    rt: {
-      type: 'rt',
-      host: 'http://rt',
-      prefix: '/api/v1',
-      authPath: '/api-token-auth/',
-      authRefresh: '/api-token-refresh/',
-      ttl: 7200
-    }
   }
 };

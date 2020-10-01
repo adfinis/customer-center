@@ -25,20 +25,8 @@ export default Model.extend({
     return this._checkGroup('mon')
   }),
 
-  vault: computed('groups.[]', function() {
-    return this._checkGroupOrEmployee('vault')
-  }),
-
   timed: computed('groups.[]', function() {
     return this._checkGroupOrEmployee('timed')
-  }),
-
-  gitlab: computed('groups.[]', function() {
-    return this._checkGroup('gitlab')
-  }),
-
-  rt: computed('groups.[]', function() {
-    return this._checkGroupOrEmployee('rt')
   }),
 
   /**

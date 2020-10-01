@@ -33,16 +33,11 @@ module.exports = function(environment) {
     },
 
     APP: {
-      rt: {
-        pageSizes: [10, 20, 50],
-        states: ['new', 'open', 'stalled', 'resolved', 'rejected', 'deleted']
-      },
-
       // Define admin group
       adminGroup: 'adsy-timed-admin',
       adsyUserGroup: 'adsy-user',
 
-      // Services : redmine, mon, timed, wiki, rt, vault
+      // Services : timed
       enabledServices: ['timed'],
 
       // Define alertTime in hours
@@ -84,7 +79,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // Services : redmine, mon, timed, wiki, rt, vault
-    // ENV.APP.enabledServices = ['vault', 'timed']
+    // ENV.APP.enabledServices = [timed'];
   }
 
   return ENV

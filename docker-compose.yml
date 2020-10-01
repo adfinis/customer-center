@@ -15,7 +15,6 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ./backend:/usr/src/app
-      - ./provisioning/rt4/var/rt4:/var/rt4/rt4
     depends_on:
       - redis
       - postgres
@@ -98,17 +97,6 @@ services:
     ports:
       - '5050:5050'
 
-  vault:
-    image: vault:1.1.2
-    volumes:
-      - ./provisioning/vault/scripts/:/tmp/vault/
-    environment:
-      - VAULT_DEV_ROOT_TOKEN_ID=myroot
-      - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
-      - VAULT_ADDR=http://vault:8200
-    ports:
-      - '8200:8200'
-
   timedbackend:
     image: adfinissygroup/timed-backend:v1.1.0
     depends_on:
@@ -128,33 +116,6 @@ services:
     command: /bin/sh -c "wait-for-it.sh -t 60 postgres:5432 -- ./manage.py migrate && uwsgi"
     ports:
       - '8000:80'
-
-  # gitlab:
-  #   image: 'gitlab/gitlab-ce:latest'
-  #   logging:
-  #     driver: "none"
-  #   ports:
-  #     - '5080:80'
-  #     - '5443:443'
-  #     - '5022:22'
-
-  # gitlab-runner:
-  #   image: 'gitlab/gitlab-runner:latest'
-  #   depends_on:
-  #     - gitlab
-
-  # rt:
-  #   build: ../rt-rest-api.src
-  #   ports:
-  #     - '8001:80'
-  #   volumes:
-  #     - ../rt-rest-api.src:/app
-  #   environment:
-  #     - DJANGO_DB_USER=${DJANGO_DB_USER}
-  #     - DJANGO_DB_PASSWORD=${DJANGO_DB_PASSWORD}
-  #     - DJANGO_DB_HOST=${DJANGO_DB_HOST}
-  #     - STATIC_ROOT=/var/www/static
-  #     - DJANGO_AUTH_LDAP_SERVER_URI=ldap://ldap:389
 
   keycloak:
     image: jboss/keycloak:10.0.2

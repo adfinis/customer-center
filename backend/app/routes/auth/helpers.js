@@ -11,7 +11,6 @@ import Handlebars from 'handlebars';
 import denodeify from 'denodeify';
 
 import { timedLogin } from '../timed/helpers';
-import { rtLogin } from '../rt/helpers';
 import { getCustomer as getTimedCustomer } from '../timed/helpers';
 import { users } from '../../initialize/passport';
 import PWGen from '../../utils/pwgen';
@@ -75,16 +74,6 @@ function loginSuccessful(request, response, next, ldapUser) {
     const isMemberOrEmployee = group =>
       isMember(group) || users.get(ldapUser).isEmployee();
 
-    // If user is in the vault group, get vault token
-    // if (isMemberOrEmployee('vault')) {
-    //   const { body: { username, password } } = request
-    //   request.session = await addVaultTokenToSession(
-    //     request.session,
-    //     username,
-    //     password
-    //   )
-    // }
-
     // If user is in the timed group, get timed token
     if (isMemberOrEmployee('timed')) {
       request.session = await addTimedTokenToSession(
@@ -92,10 +81,6 @@ function loginSuccessful(request, response, next, ldapUser) {
         users.get(ldapUser)
       );
     }
-
-    // if (isMemberOrEmployee('rt')) {
-    //   request.session = await addRTTokenToSession(request.session, request.body)
-    // }
 
     request.session.create(claims, (sessionError, token) => {
       if (sessionError) return next(sessionError);
@@ -132,37 +117,6 @@ async function addTimedTokenToSession(session, user) {
 
   return session;
 }
-
-export async function addRTTokenToSession(session, { username, password }) {
-  try {
-    session.rtToken = await rtLogin(username, password);
-    session.rtTokenTTL = new Date().getTime();
-  } catch (error) {
-    debug.error('rt auth error', error.message);
-  }
-  return session;
-}
-
-/**
- * Log in to vault with Customer-Center credentials
- *
- * @param {string} username username
- * @param {string} password password
- * @return {string} vault token
- */
-// async function vaultLogin(username, password) {
-//   const { host, ca, authBackend, prefix } = config.services.vault;
-
-//   const resp = await rp({
-//     method: 'POST',
-//     uri: `${host}${prefix}auth/${authBackend}/login/${username}`,
-//     body: { password },
-//     json: true,
-//     ca: ca ? fs.readFileSync(ca) : undefined
-//   });
-
-//   return resp.auth.client_token;
-// }
 
 //  ____                _
 // |  _ \ ___  ___  ___| |_

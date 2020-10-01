@@ -10,7 +10,6 @@ Before you start, please make sure that the following tools are installed:
 
 * Node + Yarn
 * Docker + Docker Compose
-* [Vault](https://www.vaultproject.io/downloads.html)
 
 ## Setup
 

@@ -6,7 +6,4 @@ export default function(server) {
   // timed
   server.createList('timed-subscription-package', 3)
   server.createList('timed-subscription-project', 10)
-
-  //rt
-  server.createList('rt-ticket', 100)
 }

@@ -48,32 +48,8 @@ export default {
     fax: 'Fax',
     phone: 'Phone',
     tools: {
-      redmine: 'Redmine',
-      'redmine.description': 'Managing tasks, bugs, etc.',
-
-      gitlab: 'Gitlab',
-      'gitlab.description': 'Code repository',
-
-      rt: 'Request Tracker',
-      'rt.description': 'Support-Requests by email',
-
-      poweradmin: 'PowerAdmin',
-      'poweradmin.description': 'DNS zone management',
-
-      symonitoring: 'SyMonitoring',
-      'symonitoring.description': 'Monitoring of servers and services',
-
       timed: 'Credits / Reports',
-      'timed.description': 'Support subscriptions',
-
-      ppa: 'PPA',
-      'ppa.description': 'Manage your web-hostings',
-
-      rhev: 'RHV',
-      'rhev.description': 'Manage your virtual servers',
-
-      mailcleaner: 'Mail Cleaner',
-      'mailcleaner.description': 'Spam Filter'
+      'timed.description': 'Support subscriptions'
     }
   },
 
@@ -81,21 +57,8 @@ export default {
     dashboard: 'Dashboard',
     vault: 'Vault',
     timed: 'Credits / Reports',
-    gitlab: 'Projects',
-    rt: 'Tickets',
     settings: 'Settings',
     logout: 'Sign out'
-  },
-
-  vault: {
-    metadata: 'Metadata',
-    secrets: 'Secrets',
-    add: 'Add Entry',
-    'delete-entry': 'Delete entire entry',
-    value: 'Value',
-    'save-success': 'Changes were saved.',
-    'clipboard-success': 'The secret was saved to your clipboard.',
-    'clipboard-error': 'The secret could not be saved to your clipboard.'
   },
 
   timed: {
@@ -177,71 +140,6 @@ export default {
     }
   },
 
-  gitlab: {
-    projects: 'Projects',
-    groups: 'Groups',
-    commitsSince: 'Show Changes since:',
-    allGroups: 'All Groups',
-    placeholder: 'Search...',
-    table: {
-      project: 'Project',
-      commits: 'Changes',
-      pipelines: 'Pipelines'
-    },
-    commit: {
-      one: '1 Change',
-      other: '{{count}} Changes'
-    },
-    errors: {
-      group: 'An error ocurred while loading the following group:',
-      commits:
-        'An error occured while loading the changes for the following group:',
-      pipelines:
-        'An error occured while loading the pipelines for the following group:'
-    },
-    empty: {
-      groups: 'No GitLab groups found.',
-      commits: 'There are no changes in the specified time span.',
-      pipelines: 'The project has no pipelines.'
-    },
-    'pipeline-table': {
-      stage: 'Stage',
-      status: 'Status'
-    },
-    status: {
-      failed: 'Failed',
-      passed: 'Passed',
-      created: 'Created',
-      pending: 'Pending',
-      running: 'Running'
-    }
-  },
-
-  rt: {
-    'all-states': 'All states',
-    empty: 'No tickets found.',
-    pageSize: 'Page size',
-    breadcrumbs: {
-      tickets: 'Tickets'
-    },
-    ticket: {
-      effectiveid: 'ID',
-      subject: 'Subject',
-      status: 'Status',
-      updated: 'Last updated',
-      created: 'Created',
-      creator: 'Creator',
-      owner: 'Owner',
-      states: {
-        new: 'New',
-        open: 'Open',
-        stalled: 'Stalled',
-        resolved: 'Resolved',
-        rejected: 'Rejected',
-        deleted: 'Deleted'
-      }
-    }
-  },
   dashboard: {
     locations: 'Locations',
     links: { timed: 'Show all projects', tickets: 'Show all tickets' },

@@ -14,7 +14,7 @@ do
   vault kv put "secret/firewall/abc04-fw0$i.dummy-domain.ch" value=topsecret
 done
 
-for user in "Hans-Peter" "Max-Mustermann" "Bea-Beispiel" "Tom-Taylor" "Adfinis AG"
+for user in "Hans-Peter" "Max-Mustermann" "Bea-Beispiel" "Tom-Taylor" "Adfinis-SyGroup-AG"
 do
   vault kv put "secret/firewall/abc04-fw02.dummy-domain.ch/VPN_Benutzer-Client_VPN/$user" value=topsecret
 done

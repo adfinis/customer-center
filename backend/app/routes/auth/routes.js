@@ -35,24 +35,24 @@ router.post('/login', (request, response, next) => {
 });
 
 router.post('/logout', async (request, response) => {
-  let token = request.session.vaultToken;
+  // let token = request.session.vaultToken;
 
-  if (token) {
-    const { host, ca, prefix } = config.services.vault;
+  // if (token) {
+  //   const { host, ca, prefix } = config.services.vault;
 
-    try {
-      await rp({
-        method: 'POST',
-        uri: `${host}${prefix}auth/token/revoke`,
-        headers: { 'X-Vault-Token': token },
-        body: { token },
-        json: true,
-        ca: ca ? fs.readFileSync(ca) : undefined
-      });
-    } catch (error) {
-      debug.error('Vault revoke error:', error.message);
-    }
-  }
+  //   try {
+  //     await rp({
+  //       method: 'POST',
+  //       uri: `${host}${prefix}auth/token/revoke`,
+  //       headers: { 'X-Vault-Token': token },
+  //       body: { token },
+  //       json: true,
+  //       ca: ca ? fs.readFileSync(ca) : undefined
+  //     });
+  //   } catch (error) {
+  //     debug.error('Vault revoke error:', error.message);
+  //   }
+  // }
 
   request.logout();
   response.status(200);

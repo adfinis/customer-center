@@ -1,15 +1,14 @@
-import attr from 'ember-data/attr'
-import Model from 'ember-data/model'
-import { belongsTo } from 'ember-data/relationships'
-import moment from 'moment'
-import { memberAction } from 'ember-api-actions'
+import Model, { attr, belongsTo } from "@ember-data/model";
+import { memberAction } from "ember-api-actions";
+import moment from "moment";
 
-export default Model.extend({
-  duration: attr('django-duration'),
-  acknowledged: attr('boolean', { defaultValue: false }),
-  ordered: attr('django-datetime', {
-    defaultValue: () => moment()
-  }),
-  project: belongsTo('timed-subscription-project'),
-  confirm: memberAction({ path: 'confirm', type: 'post' })
-})
+export default class TimedSubscriptionOrderModel extends Model {
+  @attr("boolean", { defaultValue: false }) acknowledged;
+
+  @attr("django-duration") duration;
+  @attr("django-datetime", { defaultValue: () => moment() }) ordered;
+
+  @belongsTo("timed-subscription-project") project;
+
+  confirm = memberAction({ path: "confirm", type: "post" });
+}

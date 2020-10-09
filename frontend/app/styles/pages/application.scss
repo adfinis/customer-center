@@ -1,0 +1,33 @@
+.site-header {
+  @extend .uk-navbar-container;
+
+  &__inner {
+    @extend .uk-container;
+    @extend .uk-width-expand;
+  }
+
+  &__navbar {
+    @extend .uk-navbar;
+  }
+
+  &__brand {
+    @extend .uk-navbar-left;
+
+    span {
+      @extend .uk-navbar-item;
+      @extend .uk-logo;
+    }
+  }
+
+  &__nav {
+    @extend .uk-navbar-right;
+
+    &__list {
+      @extend .uk-navbar-nav;
+    }
+
+    &__item:hover .uk-navbar-dropdown {
+      display: block !important;
+    }
+  }
+}

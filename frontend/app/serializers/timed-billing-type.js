@@ -1,5 +1,5 @@
-import NamespacedJSONAPISerializer from 'ember-model-namespaces/serializers/serializer'
+import NamespacedSerializer from "ember-model-namespaces/serializers/serializer";
 
-export default NamespacedJSONAPISerializer.extend({
-  namespace: 'timed'
-})
+export default class TimedBillingTypeSerializer extends NamespacedSerializer {
+  namespace = "timed";
+}

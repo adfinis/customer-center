@@ -1,10 +1,10 @@
-import attr from 'ember-data/attr'
-import Model from 'ember-data/model'
-import { belongsTo } from 'ember-data/relationships'
+import Model, { attr, belongsTo } from "@ember-data/model";
 
-export default Model.extend({
-  comment: attr('string'),
-  date: attr('django-date'),
-  duration: attr('django-duration'),
-  user: belongsTo('timed-user')
-})
+export default class TimedReportModel extends Model {
+  @attr("string") comment;
+
+  @attr("django-date") date;
+  @attr("django-duration") duration;
+
+  @belongsTo("timed-user") user;
+}

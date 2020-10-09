@@ -1,33 +1,40 @@
-import attr from 'ember-data/attr'
-import Model from 'ember-data/model'
-import { hasMany, belongsTo } from 'ember-data/relationships'
-import { computed } from '@ember/object'
-import moment from 'moment'
-import ENV from 'customer-center/config/environment'
+import Model, { attr, hasMany, belongsTo } from "@ember-data/model";
+import ENV from "customer-center/config/environment";
+import moment from "moment";
 
-export default Model.extend({
-  name: attr('string'),
-  purchasedTime: attr('django-duration'),
-  spentTime: attr('django-duration'),
+export default class TimedSubscriptionProjectModel extends Model {
+  @attr("string") name;
+  @attr("django-duration") purchasedTime;
+  @attr("django-duration") spentTime;
 
-  orders: hasMany('timed-subscription-order'),
-  billingType: belongsTo('timed-billing-type'),
-  customer: belongsTo('timed-customer'),
+  @hasMany("timed-subscription-order") orders;
+  @belongsTo("timed-billing-type") billingType;
+  @belongsTo("timed-customer") customer;
 
-  totalTime: computed('purchasedTime', 'spentTime', function() {
-    return moment.duration(this.purchasedTime - this.spentTime)
-  }),
+  get totalTime() {
+    return moment.duration(this.purchasedTime - this.spentTime);
+  }
 
-  unconfirmedTime: computed('orders', function() {
+  get unconfirmedTime() {
     return this.orders
-      .filter(order => order !== null)
-      .filter(order => !order.get('acknowledged'))
-      .reduce((accumulator, order) => {
-        return accumulator.add(order.get('duration'))
-      }, moment.duration())
-  }),
+      .filter((order) => order !== null)
+      .filter((order) => !order.get("acknowledged"))
+      .reduce(
+        (accumulator, order) => accumulator.add(order.get("duration")),
+        moment.duration()
+      );
+  }
 
-  isTimeAlmostConsumed: computed('totalTime', function() {
-    return this.totalTime.asHours() <= ENV.APP.alertTime
-  })
-})
+  get isTimeAlmostConsumed() {
+    return this.totalTime.asHours() <= ENV.APP.alertTime;
+  }
+
+  get percentage() {
+    return this.totalTime < 0 ? 0 : this.totalTime / this.purchasedTime;
+  }
+
+  /** This value is used to create the correct CSS classes. */
+  get percentageGroup() {
+    return this.percentage.toFixed(1) * 10;
+  }
+}

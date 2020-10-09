@@ -1,0 +1,14 @@
+<div class="
+  status-battery
+  {{if this.isEmpty 'status-battery--empty'}}
+">
+  <div class="status-battery__head"></div>
+
+  <div class="status-battery__frame">
+    <div
+      {{did-insert this.onInsertBody}}
+      {{will-destroy this.onDestroyBody}}
+      class="status-battery__body"
+    ></div>
+  </div>
+</div>

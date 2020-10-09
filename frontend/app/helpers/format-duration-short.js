@@ -1,17 +1,20 @@
-import Helper from '@ember/component/helper'
-import startPaddingTag from 'customer-center/utils/start-padding-tag'
-import moment from 'moment'
+import { helper } from "@ember/component/helper";
+import startPaddingTag from "customer-center/utils/start-padding-tag";
+import moment from "moment";
 
-const { trunc } = Math
+export function formatDurationShort(params) {
+  let [duration] = params;
 
-export function formatDurationShort([duration]) {
   //remove "-" from negative numbers
-  let negative = duration < 0
-  duration = moment.duration(Math.abs(duration))
-  let str = startPaddingTag(2)`${trunc(
+  const negative = duration < 0;
+
+  duration = moment.duration(Math.abs(duration));
+
+  const str = startPaddingTag(2)`${Math.trunc(
     duration.asHours()
-  )}:${duration.minutes()}`
-  return negative ? `-${str}` : str
+  )}:${duration.minutes()}`;
+
+  return negative ? `-${str}` : str;
 }
 
-export default Helper.helper(formatDurationShort)
+export default helper(formatDurationShort);

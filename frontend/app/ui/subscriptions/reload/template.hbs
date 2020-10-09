@@ -1,0 +1,125 @@
+<section class="page-header">
+  <div class="page-header__inner">
+
+    <NavBreadcrumbs @crumbs={{this.breadcrumbs}} />
+
+    <h1 class="page-header__title">
+      {{~t "page.subscriptions.reload.title"~}}
+    </h1>
+
+  </div>
+</section>
+
+<section class="
+  section
+  info-section
+  info-section--{{this.project.percentageGroup}}
+">
+  <div class="section__inner">
+
+    <ProjectInfo @project={{this.project}} />
+
+  </div>
+</section>
+
+{{#if this.account.isAdmin}}
+<section class="section">
+  <div class="section__inner">
+
+    <form
+      {{on "submit" this.charge}}
+      class="form"
+    >
+      <fieldset class="form__fieldset">
+        <p class="form__field">
+          <label class="form__label">
+            {{~t "page.subscriptions.reload.form.hours"~}}
+          </label>
+
+          <div class="form__input">
+            <Input
+              @value={{this.changeset.hours}}
+              class="form__input__text"
+              type="number"
+            />
+          </div>
+        </p>
+
+        <p class="form__field">
+          <label class="form__label">
+            {{~t "page.subscriptions.reload.form.minutes"~}}
+          </label>
+
+          <div class="form__input">
+            <Input
+              @value={{this.changeset.minutes}}
+              class="form__input__text"
+              type="number"
+            />
+          </div>
+        </p>
+      </fieldset>
+
+      <fieldset class="form__fieldset">
+        <p class="form__controls">
+          <button
+            type="submit"
+            class="form__submit"
+          >
+            {{~t "page.subscriptions.reload.form.submit"~}}
+          </button>
+        </p>
+      </fieldset>
+
+    </form>
+
+  </div>
+</section>
+{{/if}}
+
+{{#if this.account.isCustomer}}
+<section class="section">
+  <div class="section__inner">
+
+    <h2 class="section__title">
+      {{~t "page.subscriptions.reload.packages.title"~}}
+    </h2>
+
+    {{#if this.packages.length}}
+    <ul class="packages__list">
+      {{#each this.packages as |package|}}
+      <li class="packages__item">
+        <div>
+          <header class="packages__header">
+            <strong class="packages__title">
+              {{~format-duration package.duration~}}
+            </strong>
+          </header>
+
+          <div class="packages__body">
+            {{format-number package.price style="currency" currency="CHF"}}
+          </div>
+
+          <footer class="packages__footer">
+            <button
+              {{on "click" (fn this.order package)}}
+              class="packages__cta"
+              type="button"
+              uk-icon="cart"
+            >
+              {{~t "page.subscriptions.reload.packages.cta"~}}
+            </button>
+          </footer>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+    {{else}}
+    <p class="packages__empty">
+      {{~t "page.subscriptions.reload.packages.empty"~}}
+    </p>
+    {{/if}}
+
+  </div>
+</section>
+{{/if}}

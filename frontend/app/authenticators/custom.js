@@ -1,48 +1,57 @@
-import { isEmpty } from '@ember/utils'
-import fetch from 'fetch'
-import BaseAuthenticator from 'ember-simple-auth/authenticators/base'
+import { later } from "@ember/runloop";
+import { inject as service } from "@ember/service";
+import { isEmpty } from "@ember/utils";
+import Base from "ember-simple-auth/authenticators/base";
 
-export default BaseAuthenticator.extend({
-  serverTokenRevocationEndpoint: '/api/v1/logout',
-  session: 'session:custom',
+export default class CustomAuthenticator extends Base {
+  @service account;
 
-  async authenticate(credentials) {
-    let { identification: username, password } = credentials
-
-    let response = await fetch('/api/v1/login', {
-      method: 'post',
-      credentials: 'same-origin',
-      headers: {
-        Accept: 'application/vnd.api+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ username, password })
-    })
-
-    let json = await response.json()
-
-    if (!response.ok) {
-      let { errors: [{ detail }] } = json
-
-      throw new Error(detail)
+  async restore(session) {
+    if (isEmpty(session.token)) {
+      throw new Error("No token to restore found");
     }
 
-    return json
-  },
-  async restore(properties) {
-    if (isEmpty(properties.data.token)) {
-      throw new Error('No token to restore found')
-    }
+    later(() => this.account.fetchCurrentUser());
 
-    return properties
-  },
-  invalidate({ data }) {
-    return fetch('/api/v1/logout', {
-      method: 'post',
-      credentials: 'same-origin',
-      headers: {
-        'X-Authorization': data.token
-      }
-    })
+    return session;
   }
-})
+
+  async authenticate(username, password) {
+    const headers = {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/json",
+    };
+
+    const response_login = await fetch("/api/v1/login", {
+      method: "POST",
+      credentials: "same-origin",
+      headers,
+      body: JSON.stringify({ username, password }),
+    });
+
+    const json_login = await response_login.json();
+
+    if (!response_login.ok) {
+      const {
+        errors: [{ detail }],
+      } = json_login;
+      throw new Error(detail);
+    }
+
+    const { token } = json_login.data;
+
+    later(() => this.account.fetchCurrentUser());
+
+    return { token };
+  }
+
+  invalidate(session) {
+    return fetch("/api/v1/logout", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "X-Authorization": session.token,
+      },
+    });
+  }
+}

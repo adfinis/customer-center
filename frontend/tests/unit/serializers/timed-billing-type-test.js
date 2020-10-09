@@ -1,19 +1,22 @@
-import { module, test } from 'qunit'
-import { setupTest } from 'ember-qunit'
+import { setupTest } from "ember-qunit";
+import { module, test } from "qunit";
 
-import { run } from '@ember/runloop'
+module("Unit | Serializer | timed billing type", function (hooks) {
+  setupTest(hooks);
 
-module('Unit | Serializer | timed billing type', function(hooks) {
-  setupTest(hooks)
+  test("it exists", function (assert) {
+    const store = this.owner.lookup("service:store");
+    const serializer = store.serializerFor("timed-billing-type");
 
-  // Replace this with your real tests.
-  test('it serializes records', function(assert) {
-    let record = run(() =>
-      this.owner.lookup('service:store').createRecord('timed-billing-type')
-    )
+    assert.ok(serializer);
+  });
 
-    let serializedRecord = record.serialize()
+  test("it serializes records", function (assert) {
+    const store = this.owner.lookup("service:store");
+    const record = store.createRecord("timed-billing-type", {});
 
-    assert.ok(serializedRecord)
-  })
-})
+    const serializedRecord = record.serialize();
+
+    assert.ok(serializedRecord);
+  });
+});

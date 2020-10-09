@@ -1,5 +1,7 @@
-import TimedAdapter from './timed'
+import ApplicationAdapter from "./application";
 
-export default TimedAdapter.extend({
-  pathForType: () => 'billing-types'
-})
+export default class TimedBillingTypeAdapter extends ApplicationAdapter {
+  namespace = "/api/proxy/timed";
+
+  pathForType = () => "billing-types";
+}

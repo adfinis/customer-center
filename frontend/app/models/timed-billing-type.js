@@ -1,9 +1,8 @@
-import attr from 'ember-data/attr'
-import Model from 'ember-data/model'
-import { hasMany } from 'ember-data/relationships'
+import Model, { attr, hasMany } from "@ember-data/model";
 
-export default Model.extend({
-  name: attr('string'),
-  projects: hasMany('timed-subscription-project'),
-  packages: hasMany('timed-subscription-packages')
-})
+export default class TimedBillingTypeModel extends Model {
+  @attr("string") name;
+
+  @hasMany("timed-subscription-project") projects;
+  @hasMany("timed-subscription-package") packages;
+}

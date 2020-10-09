@@ -1,39 +1,12 @@
+"use strict";
+
 module.exports = {
-  globals: {
-    server: true
-  },
-  root: true,
-  parserOptions: {
-    ecmaVersion: 2017,
-    sourceType: 'module'
-  },
-  parser: 'babel-eslint',
-  env: {
-    browser: true
-  },
-  plugins: ['ember', 'prettier'],
-  extends: ['eslint:recommended', 'plugin:ember/recommended', 'prettier'],
+  extends: "@adfinis-sygroup/eslint-config/ember-app",
+
   rules: {
-    'prettier/prettier': 'error'
+    "no-unused-vars": "off",
+    "prefer-rest-params": "off",
+    "ember/use-brace-expansion": "off",
+    "ember/no-get": "off",
   },
-  overrides: [
-    // node files
-    {
-      files: [
-        'ember-cli-build.js',
-        'testem.js',
-        'blueprints/*/index.js',
-        'config/**/*.js',
-        'lib/*/index.js'
-      ],
-      parserOptions: {
-        sourceType: 'script',
-        ecmaVersion: 2015
-      },
-      env: {
-        browser: false,
-        node: true
-      }
-    }
-  ]
-}
+};

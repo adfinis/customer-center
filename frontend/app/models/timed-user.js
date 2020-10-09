@@ -1,14 +1,20 @@
-import attr from 'ember-data/attr'
-import Model from 'ember-data/model'
-import { computed } from '@ember/object'
-import { hasMany } from 'ember-data/relationships'
+import Model, { attr, hasMany } from "@ember-data/model";
 
-export default Model.extend({
-  firstName: attr('string'),
-  lastName: attr('string'),
+export default class TimedUserModel extends Model {
+  @attr("string") firstName;
+  @attr("string") lastName;
+  @attr("string") shortname;
 
-  fullName: computed('firstName', 'lastName', function() {
-    return `${this.firstName} ${this.lastName}`.trim()
-  }),
-  reports: hasMany('timed-reports')
-})
+  /** Returns the first and/or last name. */
+  get fullName() {
+    return [this.firstName, this.lastName].filter(Boolean).join(" ");
+  }
+
+  @attr("string") language;
+  @attr("string") email;
+
+  @hasMany("timed-reports") reports;
+
+  /** The groups are an array of strings. */
+  @attr() groups;
+}

@@ -1,16 +1,12 @@
-import { module, test } from 'qunit'
-import { setupTest } from 'ember-qunit'
+import { setupTest } from "ember-qunit";
+import { module, test } from "qunit";
 
-import { run } from '@ember/runloop'
+module("Unit | Model | timed customer", function (hooks) {
+  setupTest(hooks);
 
-module('Unit | Model | timed customer', function(hooks) {
-  setupTest(hooks)
-
-  test('it exists', function(assert) {
-    let model = run(() =>
-      this.owner.lookup('service:store').createRecord('timed-customer')
-    )
-    // let store = this.store();
-    assert.ok(!!model)
-  })
-})
+  test("it exists", function (assert) {
+    const store = this.owner.lookup("service:store");
+    const model = store.createRecord("timed-customer", {});
+    assert.ok(model);
+  });
+});

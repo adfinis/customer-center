@@ -1,0 +1,176 @@
+page:
+  account:
+    title: Account
+
+
+    login:
+      title: Login
+      form:
+        username: Username
+        password: Password
+        cancel: Cancel
+        submit: Submit
+      success: Login successful
+      reset: Reset password
+
+
+    logout:
+      success: Logout successful
+
+
+    password-reset:
+      title: Reset password
+      form:
+        username: Username
+        cancel: Cancel
+        submit: Submit
+      success: Reset successful
+
+
+    password-confirm:
+      title: Reset confirmation
+      new-password: "Your new password is:"
+      login: Go to login
+
+
+  application:
+    title: Customer Center
+    nav:
+      index: Dashboard
+      subscriptions: Subscriptions
+      subscriptions-confirm: Confirm subscriptions
+      account-logout: Logout
+
+
+  error:
+    title: Error
+
+
+  index:
+    title: Dashboard
+
+    projects:
+      title: Projects
+      empty: No projects associated with this account.
+
+    support:
+      title: Support
+      callout: |
+        You need support?<br>
+        Contact us by mail or by phone.
+      opening-hours: |
+        We are available from Monday through Friday<br>
+        from 08:00 to 17:30.
+
+    locations:
+      title: Locations
+
+
+  notfound:
+    title: Page not found
+    message: The page for "/{path}" could not be found.
+
+
+  subscriptions:
+    title: Subscriptions
+
+
+    own:
+      title: Own projects
+
+      projects:
+        time-purchased: Timed ordered
+        time-spent: Time used
+        time-total: Time total
+        details: Details
+        reload: Reload
+
+
+    list:
+      title: All projects
+      empty: No project match the filters.
+      filter: Only show projects where time is almost up.
+
+      table:
+        project: Project
+        customer: Customer
+        billing: Billing type
+        time-purchased: Timed ordered
+        time-spent: Time used
+        time-total: Time total
+        time-unconfirmed: Needs confirmation
+
+
+    confirm:
+      title: Confirm subscriptions
+      empty: No orders to confirm.
+      accept: Accept
+      deny: Deny
+      accepted: The order for project "{project}" has been accepted.
+      denied: The order for project "{project}" has been denied.
+
+      table:
+        customer: Customer
+        project: Project
+        duration: Hours
+        date: Date
+
+
+    detail:
+      title: Project details
+      reload: Reload
+
+      orders:
+        title: Past charges
+        empty: No orders for this project.
+
+        table:
+          date: Date
+          duration: Amount
+          acknowledged: Aknowledged
+
+      reports:
+        title: Expense
+        empty: No reports for this project.
+        more: Fetch more
+
+        table:
+          date: Date
+          duration: Effort
+          user: Employee
+          comment: Description
+
+
+    reload:
+      title: Reload subscription
+
+      form:
+        hours: Hours
+        minutes: Minutes
+        submit: Submit
+        success: Charge successful
+
+      packages:
+        title: Packages
+        empty: No packages available.
+        success: Charge successful
+        cta: Order
+
+
+component:
+  nav-breadcrumbs:
+    home: Home
+
+
+  project-info:
+    name: Project
+    customer: Customer
+    billing: Billing type
+    time-total: Time total
+    time-unconfirmed: Needs confirmation
+
+
+helper:
+  format-duration:
+    hours: "{count, plural, =0 {} =1 {1 hour} other {# hours}}"
+    minutes: "{count, plural, =0 {} =1 {1 minute} other {# minutes}}"

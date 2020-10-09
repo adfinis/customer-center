@@ -1,9 +1,8 @@
-import Model from 'ember-data/model'
-import attr from 'ember-data/attr'
-import { belongsTo } from 'ember-data/relationships'
+import Model, { attr, belongsTo } from "@ember-data/model";
 
-export default Model.extend({
-  duration: attr('django-duration'),
-  price: attr('string'),
-  billingType: belongsTo('timed-billing-type')
-})
+export default class TimedSubscriptionPackageModel extends Model {
+  @attr("django-duration") duration;
+  @attr("string") price;
+
+  @belongsTo("timed-billing-type") billingType;
+}

@@ -3,6 +3,15 @@
   "description": "Adfinis AG Customer Center - Backend",
   "version": "1.1.0",
   "private": true,
+  "author": {
+    "name": "Adfinis AG",
+    "email": "info@adfinis.com",
+    "url": "https://adfinis.com/"
+  },
+  "maintainers": [
+    "Akanksh Saxena <akanksh.saxena@adfinis.com>",
+    "Florian Mäder <florian.maeder@adfinis.com>"
+  ],
   "scripts": {
     "start": "babel-node app/start.js",
     "watch": "nodemon --exec yarn start",

@@ -45,7 +45,7 @@ router.post('/logout', async (request, response) => {
 router.post('/send-new-password', async (request, response, next) => {
   try {
     let ident = request.body.identification;
-    let token = await createToken(token);
+    let token = await createToken();
     let user = await new User({
       username: ident
     }).fetch(/*{ required: true }*/);

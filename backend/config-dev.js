@@ -82,17 +82,10 @@ module.exports = {
     expire: 3600
   },
   smtp: {
-    port: 25,
-    host: 'localhost',
+    port: 1025,
+    host: 'mailhog',
     secure: false,
-    ignoreTLS: false,
-    name: 'customer-center.example.com',
-    localAddress: '0.0.0.0',
-    // auth: {
-    //   user: 'username',
-    //   pass: 'password'
-    // },
-    // authMethod: 'PLAIN'
+    from: 'no-reply@adfinis.com',
   },
   redis: {
     host: 'redis',

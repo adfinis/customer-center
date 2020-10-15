@@ -147,9 +147,6 @@ services:
     image: mailhog/mailhog:latest
     ports:
       - '8025:8025'
-    user: root
-    environment:
-      - MH_SMTP_BIND_ADDR=0.0.0.0:25
 
 volumes:
   postgres:

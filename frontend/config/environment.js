@@ -23,6 +23,11 @@ module.exports = function (environment) {
       includeLocales: ["de"],
     },
 
+    "@sentry/ember": {
+      environment,
+      sentry: {},
+    },
+
     APP: {
       // These are used in the account service.
       adminGroup: "adsy-timed-admin",
@@ -55,7 +60,8 @@ module.exports = function (environment) {
   }
 
   if (environment === "production") {
-    // here you can enable a production-specific feature
+    // https://docs.sentry.io/platforms/javascript/guides/ember/configuration/
+    ENV["@sentry/ember"].sentry.dsn = process.env.SENTRY_DSN;
   }
 
   return ENV;

@@ -61,7 +61,7 @@ export default class SubscriptionsReloadController extends Controller {
 
   @action async order(choice) {
     try {
-      const duration = choice.get("duration");
+      const duration = choice.duration;
 
       await this.timed.placeSubscriptionOrder(this.project, duration);
 

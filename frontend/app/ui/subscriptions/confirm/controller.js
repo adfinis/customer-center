@@ -23,13 +23,13 @@ export default class SubscriptionsConfirmController extends Controller {
   //
 
   @action async accept(order) {
+    const project = order.project.get("name");
+
     try {
       await this.timed.acceptSubscriptionOrder(order);
 
       this.notify.success(
-        this.intl.t("page.subscriptions.confirm.accepted", {
-          project: order.get("project.name"),
-        })
+        this.intl.t("page.subscriptions.confirm.accepted", { project })
       );
     } catch (error) {
       this.notify.fromError(error);
@@ -37,13 +37,13 @@ export default class SubscriptionsConfirmController extends Controller {
   }
 
   @action async deny(order) {
+    const project = order.project.get("name");
+
     try {
       await this.timed.denySubscriptionOrder(order);
 
       this.notify.success(
-        this.intl.t("page.subscriptions.confirm.denied", {
-          project: order.get("project.name"),
-        })
+        this.intl.t("page.subscriptions.confirm.denied", { project })
       );
     } catch (error) {
       this.notify.fromError(error);

@@ -19,7 +19,7 @@ export default class SubscriptionsReloadRoute extends AuthenticatedRoute {
     // Customers get a list of packages to choose from.
     let packages = [];
     if (this.account.isCustomer) {
-      const billing_type = project.get("billingType.id");
+      const billing_type = project.billingType.get("id");
       packages = await this.timed.getReloadPackages(billing_type);
     }
 

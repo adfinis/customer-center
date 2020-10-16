@@ -18,9 +18,9 @@ export default class TimedSubscriptionProjectModel extends Model {
   get unconfirmedTime() {
     return this.orders
       .filter((order) => order !== null)
-      .filter((order) => !order.get("acknowledged"))
+      .filter((order) => !order.acknowledged)
       .reduce(
-        (accumulator, order) => accumulator.add(order.get("duration")),
+        (accumulator, order) => accumulator.add(order.duration),
         moment.duration()
       );
   }

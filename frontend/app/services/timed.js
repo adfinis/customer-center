@@ -75,7 +75,7 @@ export default class TimedService extends Service {
     const REGEX_PRICE = /^Fr\./;
 
     packages.forEach((item) => {
-      let price = item.get("price");
+      let { price } = item;
 
       if (REGEX_PRICE.test(price)) {
         const price_string = price.replace("Fr.", "").replace(",", "");

@@ -27,7 +27,7 @@ export default class SubscriptionsListController extends Controller {
     this.projects =
       normalized.length > 0
         ? this._projects.filter((project) => {
-            return project.get(key).toLowerCase().includes(normalized);
+            return project[key].toLowerCase().includes(normalized);
           })
         : this._projects;
   }
@@ -43,10 +43,7 @@ export default class SubscriptionsListController extends Controller {
   @action sortDuration(key, direction = "ASC") {
     this.projects = A(
       this.projects.toArray().sort((a, b) => {
-        if (direction === "ASC") {
-          return a.get(key) - b.get(key);
-        }
-        return b.get(key) - a.get(key);
+        return direction === "ASC" ? a[key] - b[key] : b[key] - a[key];
       })
     );
   }

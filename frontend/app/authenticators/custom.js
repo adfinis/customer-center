@@ -11,6 +11,7 @@ export default class CustomAuthenticator extends Base {
       throw new Error("No token to restore found");
     }
 
+    // We execute the fetch later as it needs the session we restore here.
     later(() => this.account.fetchCurrentUser());
 
     return session;
@@ -40,6 +41,7 @@ export default class CustomAuthenticator extends Base {
 
     const { token } = json_login.data;
 
+    // We execute the fetch later as it needs the session we create here.
     later(() => this.account.fetchCurrentUser());
 
     return { token };

@@ -6,6 +6,7 @@ export default class SubscriptionsListRoute extends AuthenticatedRoute {
   @service account;
 
   beforeModel(transition) {
+    // Customers/users don't have access to the full list.
     if (!this.account.isAdmin) {
       this.transitionTo("subscriptions.index");
     }

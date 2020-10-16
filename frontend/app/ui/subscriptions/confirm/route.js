@@ -6,6 +6,7 @@ export default class SubscriptionsConfirmRoute extends AuthenticatedRoute {
   @service account;
 
   beforeModel(transition) {
+    // Only admin can confirm orders.
     if (!this.account.isAdmin) {
       this.transitionTo("subscriptions.index");
     }

@@ -6,6 +6,7 @@ export default class SubscriptionsOwnRoute extends AuthenticatedRoute {
   @service account;
 
   beforeModel(transition) {
+    // Admins have too many projects for this view.
     if (this.account.isAdmin) {
       this.transitionTo("subscriptions.index");
     }

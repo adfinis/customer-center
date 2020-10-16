@@ -8,6 +8,7 @@ export default class SubscriptionsReloadRoute extends AuthenticatedRoute {
   async model(params) {
     const { project_id } = params;
 
+    // Users cannot recharge the subscription.
     if (!this.account.isAdmin && !this.account.isCustomer) {
       this.transitionTo("subscriptions.detail", project_id);
       return;
@@ -15,6 +16,7 @@ export default class SubscriptionsReloadRoute extends AuthenticatedRoute {
 
     const project = await this.timed.getProjectDetails(project_id);
 
+    // Customers get a list of packages to choose from.
     let packages = [];
     if (this.account.isCustomer) {
       const billing_type = project.get("billingType.id");

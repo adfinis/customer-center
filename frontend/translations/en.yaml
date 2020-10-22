@@ -108,6 +108,7 @@ page:
       deny: Deny
       accepted: The order for project "{project}" has been accepted.
       denied: The order for project "{project}" has been denied.
+      no-access: Your account is not permitted to confirm orders.
 
       table:
         customer: Customer
@@ -143,6 +144,7 @@ page:
 
     reload:
       title: Reload subscription
+      no-access: Your account is not permitted to place orders.
 
       form:
         hours: Hours

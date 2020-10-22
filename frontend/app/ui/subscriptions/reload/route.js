@@ -4,12 +4,15 @@ import AuthenticatedRoute from "customer-center/routes/-authenticated";
 export default class SubscriptionsReloadRoute extends AuthenticatedRoute {
   @service timed;
   @service account;
+  @service notify;
+  @service intl;
 
   async model(params) {
     const { project_id } = params;
 
-    // Users cannot recharge the subscription.
+    // Normal users cannot recharge the subscription.
     if (!this.account.isAdmin && !this.account.isCustomer) {
+      this.notify.error(this.intl.t("page.subscriptions.reload.no-access"));
       this.transitionTo("subscriptions.detail", project_id);
       return;
     }

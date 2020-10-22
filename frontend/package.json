@@ -1,6 +1,6 @@
 {
   "name": "customer-center",
-  "description": "Rewrite of the never release Adfinis customer center.",
+  "description": "Adfinis customer support portal with LDAP and Timed integration.",
   "repository": "https://github.com/adfinis-sygroup/customer-center",
   "version": "2.0.0",
   "license": "MIT",
@@ -11,8 +11,9 @@
     "url": "https://adfinis.com/"
   },
   "maintainers": [
+    "Florian Mäder <florian.maeder@adfinis.com>",
     "Akanksh Saxena <akanksh.saxena@adfinis.com>",
-    "Florian Mäder <florian.maeder@adfinis-sygroup.ch>"
+    "Jonas Cosandey <jonas.cosandey@adfinis.com>"
   ],
   "directories": {
     "doc": "doc",

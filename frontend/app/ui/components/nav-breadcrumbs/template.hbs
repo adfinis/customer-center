@@ -7,21 +7,21 @@
     </li>
 
     {{#each @crumbs as |crumb|}}
-    <li class="breadcrumbs__item">
-      {{#if crumb.route}}
-      {{#if crumb.model}}
-      <LinkTo @route={{crumb.route}} @model={{crumb.model}}>
-        {{~crumb.label~}}
-      </LinkTo>
-      {{else}}
-      <LinkTo @route={{crumb.route}}>
-        {{~crumb.label~}}
-      </LinkTo>
-      {{/if}}
-      {{else}}
-      <span>{{crumb.label}}</span>
-      {{/if}}
-    </li>
+      <li class="breadcrumbs__item">
+        {{#if crumb.route}}
+          {{#if crumb.model}}
+            <LinkTo @route={{crumb.route}} @model={{crumb.model}}>
+              {{~crumb.label~}}
+            </LinkTo>
+          {{else}}
+            <LinkTo @route={{crumb.route}}>
+              {{~crumb.label~}}
+            </LinkTo>
+          {{/if}}
+        {{else}}
+          <span>{{crumb.label}}</span>
+        {{/if}}
+      </li>
     {{/each}}
   </ol>
 </nav>

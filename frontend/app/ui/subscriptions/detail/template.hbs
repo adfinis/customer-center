@@ -9,14 +9,14 @@
       </h1>
 
       {{#if (or this.account.isAdmin this.account.isCustomer)}}
-      <LinkTo
-        @route="subscriptions.reload"
-        @model={{this.project.id}}
-        class="page-header__action"
-        uk-icon="refresh"
-      >
-        {{t "page.subscriptions.detail.reload"}}
-      </LinkTo>
+        <LinkTo
+          @route="subscriptions.reload"
+          @model={{this.project.id}}
+          class="page-header__action"
+          uk-icon="refresh"
+        >
+          {{t "page.subscriptions.detail.reload"}}
+        </LinkTo>
       {{/if}}
     </div>
 
@@ -43,28 +43,28 @@
     </h2>
 
     {{#if this.orders.length}}
-    <div class="table">
-      <table>
-        <thead>
-          <th>{{t "page.subscriptions.detail.orders.table.date"}}</th>
-          <th>{{t "page.subscriptions.detail.orders.table.duration"}}</th>
-          <th>{{t "page.subscriptions.detail.orders.table.acknowledged"}}</th>
-        </thead>
-        <tbody>
-          {{#each this.orders as |order|}}
-          <tr>
-            <td>{{moment-format order.ordered "DD.MM.YYYY"}}</td>
-            <td>{{format-duration order.duration}}</td>
-            <td class="order-list--{{if order.acknowledged "acknowledged" "pending"}}">
-              <span uk-icon={{if order.acknowledged "check" "clock"}}></span>
-            </td>
-          </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
+      <div class="table">
+        <table>
+          <thead>
+            <th>{{t "page.subscriptions.detail.orders.table.date"}}</th>
+            <th>{{t "page.subscriptions.detail.orders.table.duration"}}</th>
+            <th>{{t "page.subscriptions.detail.orders.table.acknowledged"}}</th>
+          </thead>
+          <tbody>
+            {{#each this.orders as |order|}}
+              <tr>
+                <td>{{moment-format order.ordered "DD.MM.YYYY"}}</td>
+                <td>{{format-duration order.duration}}</td>
+                <td class="order-list--{{if order.acknowledged "acknowledged" "pending"}}">
+                  <span uk-icon={{if order.acknowledged "check" "clock"}}></span>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
     {{else}}
-    <p>{{t "page.subscriptions.detail.orders.empty"}}</p>
+      <p>{{t "page.subscriptions.detail.orders.empty"}}</p>
     {{/if}}
 
   </div>
@@ -78,43 +78,43 @@
     </h2>
 
     {{#if this.reports.length}}
-    <div class="table">
-      <table>
-        <thead>
-          <th>{{t "page.subscriptions.detail.reports.table.date"}}</th>
-          <th>{{t "page.subscriptions.detail.reports.table.duration"}}</th>
-          <th>{{t "page.subscriptions.detail.reports.table.user"}}</th>
-          <th>{{t "page.subscriptions.detail.reports.table.comment"}}</th>
-        </thead>
-        <tbody>
-          {{#each this.reports as |report|}}
-          <tr>
-            <td>{{moment-format report.date "DD.MM.YYYY"}}</td>
-            <td>{{format-duration report.duration}}</td>
-            <td>{{report.user.fullName}}</td>
-            <td>{{report.comment}}</td>
-          </tr>
-          {{/each}}
+      <div class="table">
+        <table>
+          <thead>
+            <th>{{t "page.subscriptions.detail.reports.table.date"}}</th>
+            <th>{{t "page.subscriptions.detail.reports.table.duration"}}</th>
+            <th>{{t "page.subscriptions.detail.reports.table.user"}}</th>
+            <th>{{t "page.subscriptions.detail.reports.table.comment"}}</th>
+          </thead>
+          <tbody>
+            {{#each this.reports as |report|}}
+              <tr>
+                <td>{{moment-format report.date "DD.MM.YYYY"}}</td>
+                <td>{{format-duration report.duration}}</td>
+                <td>{{report.user.fullName}}</td>
+                <td>{{report.comment}}</td>
+              </tr>
+            {{/each}}
 
-          {{#if this.reportsNext}}
-          <tr>
-            <td colspan="4">
-              <button
-                {{on "click" (perform this.fetchNextReports)}}
-                type="button"
-                class="button"
-                disabled={{this.fetchNextReports.isRunning}}
-              >
-                {{~t "page.subscriptions.detail.reports.more"}}
-              </button>
-            </td>
-          </tr>
-          {{/if}}
-        </tbody>
-      </table>
-    </div>
+            {{#if this.reportsNext}}
+              <tr>
+                <td colspan="4">
+                  <button
+                    {{on "click" (perform this.fetchNextReports)}}
+                    type="button"
+                    class="button"
+                    disabled={{this.fetchNextReports.isRunning}}
+                  >
+                    {{~t "page.subscriptions.detail.reports.more"}}
+                  </button>
+                </td>
+              </tr>
+            {{/if}}
+          </tbody>
+        </table>
+      </div>
     {{else}}
-    <p>{{t "page.subscriptions.detail.reports.empty"}}</p>
+      <p>{{t "page.subscriptions.detail.reports.empty"}}</p>
     {{/if}}
 
   </div>

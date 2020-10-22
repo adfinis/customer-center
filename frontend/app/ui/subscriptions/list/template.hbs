@@ -70,23 +70,23 @@
 
         <tbody>
           {{#each this.projects as |project|}}
-          <tr class={{if project.isTimeAlmostConsumed "uk-alert-danger"}}>
-            <td>
-              <LinkTo @route="subscriptions.detail" @model={{project.id}}>
-                {{project.name}}
-              </LinkTo>
-            </td>
-            <td>{{project.customer.name}}</td>
-            <td>{{project.billingType.name}}</td>
-            <td>{{format-duration-short project.purchasedTime}}</td>
-            <td>{{format-duration-short project.spentTime}}</td>
-            <td>{{format-duration-short project.totalTime}}</td>
-            <td>{{format-duration-short project.unconfirmedTime}}</td>
-          </tr>
+            <tr class={{if project.isTimeAlmostConsumed "uk-alert-danger"}}>
+              <td>
+                <LinkTo @route="subscriptions.detail" @model={{project.id}}>
+                  {{project.name}}
+                </LinkTo>
+              </td>
+              <td>{{project.customer.name}}</td>
+              <td>{{project.billingType.name}}</td>
+              <td>{{format-duration-short project.purchasedTime}}</td>
+              <td>{{format-duration-short project.spentTime}}</td>
+              <td>{{format-duration-short project.totalTime}}</td>
+              <td>{{format-duration-short project.unconfirmedTime}}</td>
+            </tr>
           {{else}}
-          <tr>
-            <td colspan="7">{{t "page.subscriptions.list.empty"}}</td>
-          </tr>
+            <tr>
+              <td colspan="7">{{t "page.subscriptions.list.empty"}}</td>
+            </tr>
           {{/each}}
         </tbody>
       </table>

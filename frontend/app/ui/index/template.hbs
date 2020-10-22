@@ -18,29 +18,29 @@
     </h2>
 
     {{#if this.projects.length}}
-    <ul class="projects__list" uk-grid>
-      {{#each this.projects as |project|}}
-      <li class="projects__item">
-        <LinkTo @route="subscriptions.detail" @model={{project.id}}>
-          <div>
-            <div>
-              <h3 class="projects__title">
-                {{~project.name~}}
-              </h3>
+      <ul class="projects__list" uk-grid>
+        {{#each this.projects as |project|}}
+          <li class="projects__item">
+            <LinkTo @route="subscriptions.detail" @model={{project.id}}>
+              <div>
+                <div>
+                  <h3 class="projects__title">
+                    {{~project.name~}}
+                  </h3>
 
-              {{format-duration project.totalTime}}
-            </div>
+                  {{format-duration project.totalTime}}
+                </div>
 
-            <StatusBattery @percentage={{project.percentage}} />
-          </div>
-        </LinkTo>
-      </li>
-      {{/each}}
-    </ul>
+                <StatusBattery @percentage={{project.percentage}} />
+              </div>
+            </LinkTo>
+          </li>
+        {{/each}}
+      </ul>
     {{else}}
-    <p class="projects__empty">
-      {{~t "page.index.projects.empty"~}}
-    </p>
+      <p class="projects__empty">
+        {{~t "page.index.projects.empty"~}}
+      </p>
     {{/if}}
 
   </div>
@@ -84,54 +84,54 @@
     <hr>
 
     {{#if this.profiles.length}}
-    <ul class="profiles__list">
-      {{#each this.profiles as |profile|}}
-      <li class="profiles__item">
-        <a
-          href={{profile.address}}
-          title={{profile.title}}
-          target="_blank"
-          rel="noopener noreferrer"
-          uk-icon={{profile.icon}}
-        ></a>
-      </li>
-      {{/each}}
-    </ul>
+      <ul class="profiles__list">
+        {{#each this.profiles as |profile|}}
+          <li class="profiles__item">
+            <a
+              href={{profile.address}}
+              title={{profile.title}}
+              target="_blank"
+              rel="noopener noreferrer"
+              uk-icon={{profile.icon}}
+            ></a>
+          </li>
+        {{/each}}
+      </ul>
     {{/if}}
 
   </div>
 </section>
 
 {{#if this.locations.length}}
-<section class="section">
-  <div class="section__inner">
+  <section class="section">
+    <div class="section__inner">
 
-    <h2 class="section__title">
-      {{~t "page.index.locations.title"~}}
-    </h2>
+      <h2 class="section__title">
+        {{~t "page.index.locations.title"~}}
+      </h2>
 
-    <ul class="locations__list">
-      {{#each this.locations as |location|}}
-      <li class="locations__item">
-        <div>
-          <h3 class="locations_title">
-            {{~location.title~}}
-          </h3>
+      <ul class="locations__list">
+        {{#each this.locations as |location|}}
+          <li class="locations__item">
+            <div>
+              <h3 class="locations_title">
+                {{~location.title~}}
+              </h3>
 
-          <p>
-            {{location.address.title}}<br>
-            {{location.address.streetAddress}}<br>
-            {{location.address.country}}-{{location.address.postalCode}}
-            {{location.address.locality}}
-          </p>
+              <p>
+                {{location.address.title}}<br>
+                {{location.address.streetAddress}}<br>
+                {{location.address.country}}-{{location.address.postalCode}}
+                {{location.address.locality}}
+              </p>
 
-          <a href="tel:{{location.phone}}">{{location.phone}}</a>
-          <a href="mailto:{{location.email}}">{{location.email}}</a>
-        </div>
-      </li>
-      {{/each}}
-    </ul>
+              <a href="tel:{{location.phone}}">{{location.phone}}</a>
+              <a href="mailto:{{location.email}}">{{location.email}}</a>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
 
-  </div>
-</section>
+    </div>
+  </section>
 {{/if}}

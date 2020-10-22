@@ -9,33 +9,33 @@
       <nav class="site-header__nav">
         <ul class="site-header__nav__list">
           {{#if this.session.isAuthenticated}}
-          <li class="site-header__nav__item">
-            <LinkTo @route="index">
-              {{~t "page.application.nav.index"~}}
-            </LinkTo>
-          </li>
+            <li class="site-header__nav__item">
+              <LinkTo @route="index">
+                {{~t "page.application.nav.index"~}}
+              </LinkTo>
+            </li>
 
-          <li class="site-header__nav__item">
-            <LinkTo @route="subscriptions">
-              {{~t "page.application.nav.subscriptions"~}}
-            </LinkTo>
-          </li>
+            <li class="site-header__nav__item">
+              <LinkTo @route="subscriptions">
+                {{~t "page.application.nav.subscriptions"~}}
+              </LinkTo>
+            </li>
 
-          {{#if this.account.isAdmin}}
-          <li class="site-header__nav__item">
-            <LinkTo @route="subscriptions.confirm">
-              {{~t "page.application.nav.subscriptions-confirm"~}}
-            </LinkTo>
-          </li>
-          {{/if}}
+            {{#if this.account.isAdmin}}
+              <li class="site-header__nav__item">
+                <LinkTo @route="subscriptions.confirm">
+                  {{~t "page.application.nav.subscriptions-confirm"~}}
+                </LinkTo>
+              </li>
+            {{/if}}
 
-          <li class="site-header__nav__item">
-            <LinkTo
-              @route="account.logout"
-              title={{t "page.application.nav.account-logout"}}
-              uk-icon="sign-out"
-            />
-          </li>
+            <li class="site-header__nav__item">
+              <LinkTo
+                @route="account.logout"
+                title={{t "page.application.nav.account-logout"}}
+                uk-icon="sign-out"
+              />
+            </li>
           {{/if}}
 
           <li class="site-header__nav__item">
@@ -44,14 +44,14 @@
             <div class="uk-navbar-dropdown">
               <ul class="uk-nav uk-navbar-dropdown-nav">
                 {{#each this.languages as |language|}}
-                <li>
-                  <a
-                    {{on "click" (fn this.changeLanguage language.key)}}
-                    href="#"
-                  >
-                    {{~language.label~}}
-                  </a>
-                </li>
+                  <li>
+                    <a
+                      {{on "click" (fn this.changeLanguage language.key)}}
+                      href="#"
+                    >
+                      {{~language.label~}}
+                    </a>
+                  </li>
                 {{/each}}
               </ul>
             </div>

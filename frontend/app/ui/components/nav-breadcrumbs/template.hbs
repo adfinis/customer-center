@@ -1,9 +1,7 @@
 <nav class="breadcrumbs">
   <ol class="breadcrumbs__list">
     <li class="breadcrumbs__home">
-      <LinkTo @route="index">
-        {{~t "component.nav-breadcrumbs.home"}}
-      </LinkTo>
+      <LinkTo @route="index" uk-icon="home"></LinkTo>
     </li>
 
     {{#each @crumbs as |crumb|}}

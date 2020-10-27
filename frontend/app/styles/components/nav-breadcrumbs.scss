@@ -1,4 +1,18 @@
-.breadcrumbs__list {
-  @extend .uk-breadcrumb;
-  @extend .uk-margin-medium-bottom;
+.breadcrumbs {
+  &__list {
+    @extend .uk-breadcrumb;
+    @extend .uk-margin-medium-bottom;
+  }
+
+  &__home {
+    a {
+      vertical-align: text-bottom;
+    }
+
+    svg {
+      width: 18px;
+      height: 17px;
+      max-width: none;
+    }
+  }
 }

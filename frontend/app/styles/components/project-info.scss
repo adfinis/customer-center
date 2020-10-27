@@ -11,10 +11,6 @@
 }
 
 .project-info {
-  &__list {
-    @extend .uk-child-width-expand;
-  }
-
   &__title {
     @extend .uk-display-block;
   }

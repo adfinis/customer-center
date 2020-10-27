@@ -6,7 +6,7 @@ module("Unit | Model | timed billing type", function (hooks) {
 
   test("it exists", function (assert) {
     const store = this.owner.lookup("service:store");
-    const model = store.createRecord("timed-billing-type", {});
+    const model = store.createRecord("billing-type", {});
     assert.ok(model);
   });
 });

@@ -8,27 +8,27 @@ module("Unit | Model | timed subscription project", function (hooks) {
 
   test("it exists", function (assert) {
     const store = this.owner.lookup("service:store");
-    const model = store.createRecord("timed-subscription-project", {});
+    const model = store.createRecord("subscription-project", {});
     assert.ok(model);
   });
 
   test("it works", function (assert) {
     const store = this.owner.lookup("service:store");
 
-    const model = store.createRecord("timed-subscription-project", {
+    const model = store.createRecord("subscription-project", {
       name: "Project #1",
       purchasedTime: moment.duration(4, "hours"),
       spentTime: moment.duration(2, "hours"),
       orders: [
-        store.createRecord("timed-subscription-order", {
+        store.createRecord("subscription-order", {
           acknowledged: true,
           duration: moment.duration(5, "hours"),
         }),
-        store.createRecord("timed-subscription-order", {
+        store.createRecord("subscription-order", {
           acknowledged: false,
           duration: moment.duration(5, "hours"),
         }),
-        store.createRecord("timed-subscription-order", {
+        store.createRecord("subscription-order", {
           acknowledged: false,
           duration: moment.duration(5, "hours"),
         }),
@@ -43,7 +43,7 @@ module("Unit | Model | timed subscription project", function (hooks) {
   test("it warns when time is almost up", function (assert) {
     const store = this.owner.lookup("service:store");
 
-    const model_warn = store.createRecord("timed-subscription-project", {
+    const model_warn = store.createRecord("subscription-project", {
       name: "Project #1",
       purchasedTime: moment.duration(ENV.APP.alertTime, "hours"),
       spentTime: moment.duration(0, "hours"),
@@ -51,7 +51,7 @@ module("Unit | Model | timed subscription project", function (hooks) {
 
     assert.equal(model_warn.isTimeAlmostConsumed, true);
 
-    const model_ok = store.createRecord("timed-subscription-project", {
+    const model_ok = store.createRecord("subscription-project", {
       name: "Project #2",
       purchasedTime: moment.duration(ENV.APP.alertTime + 1, "hours"),
       spentTime: moment.duration(0, "hours"),

@@ -6,7 +6,7 @@ module("Unit | Model | timed subscription package", function (hooks) {
 
   test("it exists", function (assert) {
     const store = this.owner.lookup("service:store");
-    const model = store.createRecord("timed-subscription-package", {});
+    const model = store.createRecord("subscription-package", {});
     assert.ok(model);
   });
 });

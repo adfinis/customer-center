@@ -5,7 +5,7 @@ module("Unit | Adapter | timed subscription project", function (hooks) {
   setupTest(hooks);
 
   test("it exists", function (assert) {
-    const adapter = this.owner.lookup("adapter:timed-subscription-project");
+    const adapter = this.owner.lookup("adapter:subscription-project");
     assert.ok(adapter);
   });
 });

@@ -5,7 +5,7 @@ module("Unit | Adapter | timed user", function (hooks) {
   setupTest(hooks);
 
   test("it exists", function (assert) {
-    const adapter = this.owner.lookup("adapter:timed-user");
+    const adapter = this.owner.lookup("adapter:user");
     assert.ok(adapter);
   });
 });

@@ -6,7 +6,7 @@ module("Unit | Model | timed customer", function (hooks) {
 
   test("it exists", function (assert) {
     const store = this.owner.lookup("service:store");
-    const model = store.createRecord("timed-customer", {});
+    const model = store.createRecord("customer", {});
     assert.ok(model);
   });
 });

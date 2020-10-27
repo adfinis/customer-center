@@ -5,7 +5,7 @@ module("Unit | Adapter | timed report", function (hooks) {
   setupTest(hooks);
 
   test("it exists", function (assert) {
-    const adapter = this.owner.lookup("adapter:timed-report");
+    const adapter = this.owner.lookup("adapter:report");
     assert.ok(adapter);
   });
 });

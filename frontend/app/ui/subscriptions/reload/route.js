@@ -7,17 +7,20 @@ export default class SubscriptionsReloadRoute extends AuthenticatedRoute {
   @service notify;
   @service intl;
 
-  async model(params) {
-    const { project_id } = params;
-
+  beforeModel(transition) {
     // Normal users cannot recharge the subscription.
     if (!this.account.isAdmin && !this.account.isCustomer) {
       this.notify.error(this.intl.t("page.subscriptions.reload.no-access"));
-      this.transitionTo("subscriptions.detail", project_id);
+      this.transitionTo(
+        "subscriptions.detail",
+        transition.to.params.project_id
+      );
       return;
     }
+  }
 
-    const project = await this.timed.getProjectDetails(project_id);
+  async model(params) {
+    const project = await this.timed.getProjectDetails(params.project_id);
 
     // Customers get a list of packages to choose from.
     let packages = [];

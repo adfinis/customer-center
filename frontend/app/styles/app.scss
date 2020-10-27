@@ -89,6 +89,10 @@ body {
   th {
     @extend .uk-text-nowrap;
   }
+
+  &__fetch-more {
+    @extend .uk-text-center;
+  }
 }
 
 .form {

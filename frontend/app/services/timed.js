@@ -48,15 +48,19 @@ export default class TimedService extends Service {
       ordering: "-date",
       page: {
         number: page,
-        size: 20,
+        size: 5,
       },
     });
   }
 
-  async getProjectOrders(project) {
+  async getProjectOrders(project, page = 1) {
     return await this.store.query("subscription-order", {
       ordering: "-ordered",
       project,
+      page: {
+        number: page,
+        size: 5,
+      },
     });
   }
 

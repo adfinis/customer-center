@@ -1,145 +1,128 @@
-$table-hover-row-background: rgb(215, 231, 255);
+@import "ember-uikit";
 
-@import 'ember-uikit-adsy-theme';
-@import 'login';
-@import 'ember-power-datepicker';
-@import 'ember-mdi';
+@import "variables";
 
-* {
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
-}
+@import "components/data-table";
+@import "components/nav-breadcrumbs";
+@import "components/project-info";
+@import "components/status-battery";
 
-th {
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
+@import "pages/application";
+@import "pages/index";
+@import "pages/loading";
+@import "pages/subscriptions/detail";
+@import "pages/subscriptions/own";
+@import "pages/subscriptions/reload";
 
 body {
-  counter-reset: pnumber;
+  overflow-y: scroll;
 }
 
-.hidden-font,
-.hidden-font a {
-  color: rgba(0, 0, 0, 0);
+.button {
+  @extend .uk-button;
+  @extend .uk-button-default;
 }
 
-.pointer {
-  cursor: pointer;
+.text-button {
+  @extend .uk-button;
+  @extend .uk-button-text;
 }
 
-.nowrap {
-  white-space: nowrap;
-}
+.icon-button {
+  @extend .uk-button;
+  @extend .uk-button-default;
 
-.ember-notify-cn .ember-notify {
-  left: -310px;
+  position: relative;
+  padding-left: 60px;
+
+  svg {
+    position: absolute;
+    top: 8px;
+    left: 28px;
+  }
 }
 
 .ember-notify {
-  opacity: 0;
-  transition: opacity 0.75s;
+  @extend .uk-alert;
+
+  &.success {
+    @extend .uk-alert-success;
+  }
+
+  .close {
+    @extend .uk-icon;
+    @extend .uk-close;
+    @extend .uk-alert-close;
+  }
 }
 
-.ember-notify-show {
-  opacity: 1;
+.page-header,
+.section {
+  @extend .uk-section;
+  @extend .uk-section-small;
 }
 
-.ember-notify-default .ember-notify {
-  margin: 0;
-  padding: 0 0 0 20px;
-  border: none;
+.page-header__inner,
+.section__inner {
+  @extend .uk-container;
 }
 
-.ember-notify-cn,
-.ember-notify-cn .ember-notify-show {
-  left: 0;
-  right: auto;
+.page-header {
+  &__title {
+    @extend .uk-margin-remove;
+  }
+
+  &__action {
+    @extend .icon-button;
+    @extend .uk-button-primary;
+  }
 }
 
-.uk-border-remove {
-  border: 0 !important;
+.table {
+  @extend .uk-overflow-auto;
+
+  & > table {
+    @extend .uk-table;
+    @extend .uk-table-divider;
+  }
+
+  th {
+    @extend .uk-text-nowrap;
+  }
 }
 
-.cc-background-pipeline-running {
-  background-color: lightsalmon;
-}
+.form {
+  @extend .uk-form-stacked;
+  @extend .uk-width-1-2;
 
-.cc-background-pipeline-failed {
-  background-color: rgb(238, 75, 75);
-}
+  &__fieldset {
+    @extend .uk-fieldset;
+  }
 
-.cc-background-pipeline-passed {
-  background-color: #4eba4e;
-}
+  &__label {
+    @extend .uk-form-label;
+  }
 
-.cc-background-pipeline-skiped {
-  background-color: lightgray;
-}
+  &__input {
+    @extend .uk-form-controls;
 
-.blue-text {
-  color: lightblue;
-}
+    &__text,
+    &__password {
+      @extend .uk-input;
+    }
 
-.calendar-day {
-  padding: 10px;
-}
+    &__checkbox {
+      @extend .uk-checkbox;
+    }
+  }
 
-.calendar-current-day {
-  background-color: rgb(226, 226, 226);
-}
+  &__cancel {
+    @extend .uk-button;
+    @extend .uk-button-default;
+  }
 
-.calendar-selected-day {
-  background-color: rgb(225, 247, 255);
-}
-
-.calendar-not-current-month {
-  color: lightgray;
-}
-
-.highlight-left {
-  border-left: 8px solid #f0506e;
-}
-
-.cc-uk-divider-right {
-  border-right: 1px solid #e5e5e5;
-}
-
-.cc-lead-text {
-  font-size: 100px;
-}
-
-.battery-head {
-  width: 30px;
-  margin-left: 31px;
-  border: 5px solid;
-}
-
-.battery-frame {
-  display: flex;
-  flex-direction: column-reverse;
-  width: 70px;
-  height: 170px;
-  padding: 7px;
-  border: 10px solid;
-  border-radius: 20px;
-}
-
-.battery-empty {
-  border-color: #f00;
-}
-
-.battery-body {
-  height: 170px;
-  border-radius: 5px;
-  background-color: #6be585;
-
-  transition-property: height, background-color;
-  transition-duration: 2s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 200ms;
+  &__submit {
+    @extend .uk-button;
+    @extend .uk-button-primary;
+  }
 }

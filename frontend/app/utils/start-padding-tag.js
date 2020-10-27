@@ -7,7 +7,7 @@
  *
  * @return {Function} Tag for template literal.
  */
-export default function startPaddingTag(amount, padding = '0') {
+export default function startPaddingTag(amount, padding = "0") {
   /**
    * Tag function for template literal.
    *
@@ -17,14 +17,14 @@ export default function startPaddingTag(amount, padding = '0') {
    * @return {String} String with padding applied.
    */
   return (strings, ...values) => {
-    let newString = ''
-    values = values.map(String)
+    let newString = "";
+    values = values.map(String);
     strings.forEach((string, index) => {
-      newString += string
+      newString += string;
       if (values[index]) {
-        newString += values[index].toString().padStart(amount, padding)
+        newString += values[index].toString().padStart(amount, padding);
       }
-    })
-    return newString
-  }
+    });
+    return newString;
+  };
 }

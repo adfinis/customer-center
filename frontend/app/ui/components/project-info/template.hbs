@@ -1,0 +1,36 @@
+<ul class="project-info__list" uk-grid>
+  <li class="project-info__item">
+    <strong class="project-info__title">
+      {{t "component.project-info.name"}}
+    </strong>
+    {{@project.name}}
+  </li>
+
+  <li class="project-info__item">
+    <strong class="project-info__title">
+      {{t "component.project-info.customer"}}
+    </strong>
+    {{@project.customer.name}}
+  </li>
+
+  <li class="project-info__item">
+    <strong class="project-info__title">
+      {{t "component.project-info.billing"}}
+    </strong>
+    {{@project.billingType.name}}
+  </li>
+
+  <li class="project-info__item">
+    <strong class="project-info__title">
+      {{t "component.project-info.time-total"}}
+    </strong>
+    {{format-duration @project.totalTime}}
+  </li>
+
+  <li class="project-info__item">
+    <strong class="project-info__title">
+      {{t "component.project-info.time-unconfirmed"}}
+    </strong>
+    {{format-duration @project.unconfirmedTime}}
+  </li>
+</ul>

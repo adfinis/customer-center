@@ -1,6 +1,6 @@
 {
   "name": "customer-center-backend",
-  "description": "Adfinis AG Customer Center - Backend",
+  "description": "Adfinis customer support portal with LDAP and Timed integration.",
   "version": "1.1.0",
   "private": true,
   "author": {
@@ -9,8 +9,9 @@
     "url": "https://adfinis.com/"
   },
   "maintainers": [
+    "Florian Mäder <florian.maeder@adfinis.com>",
     "Akanksh Saxena <akanksh.saxena@adfinis.com>",
-    "Florian Mäder <florian.maeder@adfinis.com>"
+    "Jonas Cosandey <jonas.cosandey@adfinis.com>"
   ],
   "scripts": {
     "start": "babel-node app/start.js",

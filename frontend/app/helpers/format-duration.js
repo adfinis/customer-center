@@ -1,43 +1,29 @@
-import Helper from '@ember/component/helper'
-import { translationMacro as t } from 'ember-i18n'
-import { inject as service } from '@ember/service'
-import { observer } from '@ember/object'
-import moment from 'moment'
+import Helper from "@ember/component/helper";
+import { observer } from "@ember/object";
+import { inject as service } from "@ember/service";
+import moment from "moment";
 
-const { trunc } = Math
+export default class FormatDurationHelper extends Helper {
+  @service intl;
 
-export default Helper.extend({
-  i18n: service(),
+  compute(params) {
+    const [duration] = params;
+    const hours = Math.trunc(duration.as("hours"));
 
-  hoursCount: 0,
-  minutesCount: 0,
-
-  hoursTranslation: t('timed.durations.hour', { count: 'hoursCount' }),
-  minutesTranslation: t('timed.durations.minute', {
-    count: 'minutesCount'
-  }),
-
-  onLocaleChange: observer(
-    'hoursTranslation',
-    'minutesTranslation',
-    function() {
-      this.recompute()
-    }
-  ),
-
-  compute([duration]) {
-    let hours = trunc(duration.as('hours'))
     // We dont want to show the minutes as minus
-    let minutes =
+    const minutes =
       hours === 0
         ? duration.minutes()
-        : moment.duration(Math.abs(duration)).minutes()
+        : moment.duration(Math.abs(duration)).minutes();
 
-    this.set('minutesCount', minutes)
-    this.set('hoursCount', hours)
-    let hoursString = `${hours} ${this.hoursTranslation}`
-    let minutesString = minutes ? `${minutes} ${this.minutesTranslation}` : ''
+    const hoursString = this.intl.t("helper.format-duration.hours", {
+      count: hours,
+    });
 
-    return [hoursString, minutesString].filter(str => str).join(' ')
+    const minutesString = this.intl.t("helper.format-duration.minutes", {
+      count: minutes,
+    });
+
+    return [hoursString, minutesString].filter(Boolean).join(" ") || 0;
   }
-})
+}

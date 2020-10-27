@@ -1,0 +1,20 @@
+import { inject as service } from "@ember/service";
+import AuthenticatedRoute from "customer-center/routes/-authenticated";
+
+export default class SubscriptionsConfirmRoute extends AuthenticatedRoute {
+  @service timed;
+  @service account;
+  @service notify;
+  @service intl;
+
+  beforeModel(transition) {
+    if (!this.account.isAdmin) {
+      this.notify.error(this.intl.t("page.subscriptions.confirm.no-access"));
+      this.transitionTo("subscriptions.index");
+    }
+  }
+
+  model() {
+    return this.timed.getUnconfirmedOrders();
+  }
+}

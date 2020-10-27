@@ -1,24 +1,40 @@
-import startPaddingTag from 'customer-center/utils/start-padding-tag'
-import { module, test } from 'qunit'
+import startPaddingTag from "customer-center/utils/start-padding-tag";
+import { module, test } from "qunit";
 
-module('Unit | Utility | start padding tag', function() {
-  test('startPad test', function(assert) {
-    let tag = startPaddingTag(10, '-')
-    let a = 'Hello',
-      b = 'World'
-    let result = tag`${a} ${b}`
-    assert.equal(result, '-----Hello -----World')
+module("Unit | Utility | start padding tag", function () {
+  test("it works", function (assert) {
+    const tag = startPaddingTag(2);
 
-    tag = startPaddingTag(10, ' ')
-    a = 'Hello'
-    b = 'World'
-    result = tag`${a} ${b}`
-    assert.equal(result, '     Hello      World')
+    const a = 0;
+    const b = 0;
 
-    tag = startPaddingTag(2)
-    a = 0
-    b = 0
-    result = tag`${a}:${b}`
-    assert.equal(result, '00:00')
-  })
-})
+    const expected = "00:00";
+    const result = tag`${a}:${b}`;
+
+    assert.equal(result, expected);
+  });
+
+  test("it works with hivens", function (assert) {
+    const tag = startPaddingTag(10, "-");
+
+    const a = "Hello";
+    const b = "World";
+
+    const expected = "-----Hello -----World";
+    const result = tag`${a} ${b}`;
+
+    assert.equal(result, expected);
+  });
+
+  test("it wotk with white-spaces", function (assert) {
+    const tag = startPaddingTag(10, " ");
+
+    const a = "Hello";
+    const b = "World";
+
+    const expected = "     Hello      World";
+    const result = tag`${a} ${b}`;
+
+    assert.equal(result, expected);
+  });
+});

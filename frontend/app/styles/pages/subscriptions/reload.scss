@@ -1,0 +1,33 @@
+.packages {
+  &__list {
+    @extend .uk-grid;
+    @extend .uk-child-width-1-5;
+    @extend .uk-text-center;
+  }
+
+  &__item > div {
+    @extend .uk-card;
+    @extend .uk-card-default;
+  }
+
+  &__header {
+    @extend .uk-card-header;
+  }
+
+  &__title {
+    @extend .uk-card-title;
+  }
+
+  &__body {
+    @extend .uk-card-body;
+  }
+
+  &__footer {
+    @extend .uk-card-footer;
+  }
+
+  &__cta {
+    @extend .icon-button;
+    @extend .uk-button-primary;
+  }
+}

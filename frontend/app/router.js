@@ -1,32 +1,27 @@
-import EmberRouter from '@ember/routing/router'
-import config from './config/environment'
+import EmberRouter from "@ember/routing/router";
+import config from "customer-center/config/environment";
 
-const Router = EmberRouter.extend({
-  location: config.locationType,
-  rootURL: config.rootURL
-})
+export default class Router extends EmberRouter {
+  location = config.locationType;
+  rootURL = config.rootURL;
+}
 
-Router.map(function() {
-  this.route('login', function() {
-    this.route('password-reset')
-    this.route('new-password', { path: '/new-password/:token' })
-  })
+// eslint-disable-next-line array-callback-return
+Router.map(function () {
+  this.route("account", function () {
+    this.route("login");
+    this.route("logout");
+    this.route("password-reset");
+    this.route("password-confirm", { path: "/password-confirm/:token" });
+  });
 
-  this.route('protected', { path: '/' }, function() {
-    this.route('dashboard', { path: '/', resetNamespace: true })
+  this.route("subscriptions", function () {
+    this.route("own");
+    this.route("list");
+    this.route("confirm");
+    this.route("detail", { path: "/detail/:project_id" });
+    this.route("reload", { path: "/reload/:project_id" });
+  });
 
-    this.route('timed-subscriptions', { resetNamespace: true }, function() {
-      this.route('detail', { path: ':project_id' }, function() {
-        this.route('reload')
-      })
-    })
-    this.route('timed-admin', { resetNamespace: true }, function() {
-      this.route('detail', { path: ':project' })
-      this.route('confirm-subscriptions')
-    })
-  })
-
-  this.route('notfound', { path: '/*path' })
-})
-
-export default Router
+  this.route("notfound", { path: "/*path" });
+});

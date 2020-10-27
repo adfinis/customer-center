@@ -1,0 +1,21 @@
+.info-section {
+  @extend .uk-section;
+
+  border-top: 10px solid;
+
+  @for $i from 0 through 9 {
+    &--#{$i} {
+      border-top-color: nth($status-color, $i + 1);
+    }
+  }
+}
+
+.project-info {
+  &__list {
+    @extend .uk-child-width-expand;
+  }
+
+  &__title {
+    @extend .uk-display-block;
+  }
+}

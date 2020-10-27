@@ -1,28 +1,12 @@
-/* global require, module */
+"use strict";
 
-const EmberApp = require('ember-cli/lib/broccoli/ember-app')
-const broccoliAssetRevDefaults = require('broccoli-asset-rev/lib/default-options')
+const EmberApp = require("ember-cli/lib/broccoli/ember-app");
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
-    flatpickr: {
-      locales: ['de']
-    },
-    fingerprint: {
-      extensions: broccoliAssetRevDefaults.extensions.concat(['svg']) //add svg extension
-    },
-    sassOptions: {
-      includePaths: ['node_modules']
-    },
-    babel: {
-      plugins: ['@babel/plugin-proposal-object-rest-spread']
-    }
-  })
+    hinting: false,
+    tests: process.env.EMBER_ENV === "test",
+  });
 
-  app.import('node_modules/moment/locale/de.js')
-  app.import('node_modules/@sentry/browser/dist/index.js', {
-    using: [{ transformation: 'cjs', as: '@sentry/browser' }]
-  })
-
-  return app.toTree()
-}
+  return app.toTree();
+};

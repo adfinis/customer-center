@@ -6,6 +6,8 @@
   &__card {
     @extend .uk-card;
     @extend .uk-card-default;
+
+    border: 1px solid #eee;
   }
 
   &__header {

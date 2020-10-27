@@ -10,6 +10,8 @@
     @extend .uk-card-body;
     @extend .uk-link-toggle;
 
+    border: 1px solid #eee;
+
     & > div {
       @extend .uk-flex;
       @extend .uk-flex-between;
@@ -59,6 +61,8 @@
     @extend .uk-card;
     @extend .uk-card-default;
     @extend .uk-card-body;
+
+    border: 1px solid #eee;
   }
 
   &__title {

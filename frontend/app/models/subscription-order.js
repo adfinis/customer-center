@@ -8,7 +8,7 @@ export default class TimedSubscriptionOrderModel extends Model {
   @attr("django-duration") duration;
   @attr("django-datetime", { defaultValue: () => moment() }) ordered;
 
-  @belongsTo("timed-subscription-project") project;
+  @belongsTo("subscription-project") project;
 
   confirm = memberAction({ path: "confirm", type: "post" });
 }

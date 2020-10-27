@@ -43,9 +43,9 @@ export default class AccountService extends Service {
 
       // We push the reponse through the store
       // to deserialize the JSON:API payload.
-      this.store.pushPayload("timed-user", json);
+      this.store.pushPayload("user", json);
       // We must use peek here as the endpoint doesn't exist.
-      this.info = this.store.peekRecord("timed-user", id);
+      this.info = this.store.peekRecord("user", id);
 
       const { language } = this.info;
       this.intl.setLocale(language);

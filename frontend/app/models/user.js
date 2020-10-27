@@ -13,7 +13,7 @@ export default class TimedUserModel extends Model {
   @attr("string") language;
   @attr("string") email;
 
-  @hasMany("timed-reports") reports;
+  @hasMany("reports") reports;
 
   /** The groups are an array of strings. */
   @attr() groups;

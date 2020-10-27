@@ -6,5 +6,5 @@ export default class TimedReportModel extends Model {
   @attr("django-date") date;
   @attr("django-duration") duration;
 
-  @belongsTo("timed-user") user;
+  @belongsTo("user") user;
 }

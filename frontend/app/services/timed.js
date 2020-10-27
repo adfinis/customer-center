@@ -11,14 +11,14 @@ export default class TimedService extends Service {
   //
 
   async getAllProjects() {
-    return await this.store.findAll("timed-subscription-project", {
+    return await this.store.findAll("subscription-project", {
       include: "billing_type,customer,orders",
       ordering: "name",
     });
   }
 
   async getDashboardProjects() {
-    const projects = await this.store.findAll("timed-subscription-project");
+    const projects = await this.store.findAll("subscription-project");
 
     return projects
       .toArray()
@@ -29,13 +29,13 @@ export default class TimedService extends Service {
   }
 
   async getOwnProjects() {
-    return await this.store.query("timed-subscription-project", {
+    return await this.store.query("subscription-project", {
       ordering: "name",
     });
   }
 
   async getUnconfirmedOrders() {
-    return await this.store.query("timed-subscription-order", {
+    return await this.store.query("subscription-order", {
       include: "project,project.customer",
       ordering: "-ordered",
       acknowledged: 0,
@@ -43,13 +43,13 @@ export default class TimedService extends Service {
   }
 
   async getProjectDetails(project) {
-    return await this.store.findRecord("timed-subscription-project", project, {
+    return await this.store.findRecord("subscription-project", project, {
       include: "billing_type,customer",
     });
   }
 
   async getProjectReports(project, page = 1) {
-    return await this.store.query("timed-report", {
+    return await this.store.query("report", {
       project,
       include: "user",
       ordering: "-date",
@@ -61,14 +61,14 @@ export default class TimedService extends Service {
   }
 
   async getProjectOrders(project) {
-    return await this.store.query("timed-subscription-order", {
+    return await this.store.query("subscription-order", {
       ordering: "-ordered",
       project,
     });
   }
 
   async getReloadPackages(billing_type) {
-    const packages = await this.store.findAll("timed-subscription-package", {
+    const packages = await this.store.findAll("subscription-package", {
       billing_type,
     });
 
@@ -96,7 +96,7 @@ export default class TimedService extends Service {
   //
 
   async placeSubscriptionOrder(project, duration) {
-    const order = this.store.createRecord("timed-subscription-order", {
+    const order = this.store.createRecord("subscription-order", {
       duration,
       project,
     });

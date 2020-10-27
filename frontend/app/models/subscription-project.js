@@ -7,9 +7,9 @@ export default class TimedSubscriptionProjectModel extends Model {
   @attr("django-duration") purchasedTime;
   @attr("django-duration") spentTime;
 
-  @hasMany("timed-subscription-order") orders;
-  @belongsTo("timed-billing-type") billingType;
-  @belongsTo("timed-customer") customer;
+  @hasMany("subscription-order") orders;
+  @belongsTo("billing-type") billingType;
+  @belongsTo("customer") customer;
 
   get totalTime() {
     return moment.duration(this.purchasedTime - this.spentTime);

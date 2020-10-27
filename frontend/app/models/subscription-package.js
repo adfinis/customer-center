@@ -4,5 +4,5 @@ export default class TimedSubscriptionPackageModel extends Model {
   @attr("django-duration") duration;
   @attr("string") price;
 
-  @belongsTo("timed-billing-type") billingType;
+  @belongsTo("billing-type") billingType;
 }

@@ -1,7 +1,6 @@
 .projects {
   &__list {
     @extend .uk-grid;
-    @extend .uk-child-width-expand;
   }
 
   &__item > a {
@@ -54,7 +53,6 @@
 .locations {
   &__list {
     @extend .uk-grid;
-    @extend .uk-child-width-expand;
   }
 
   &__item > div {

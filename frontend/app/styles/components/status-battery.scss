@@ -1,4 +1,7 @@
 .status-battery {
+  @extend .uk-flex-none;
+  @extend .uk-margin-small-left;
+
   width: 50px;
 
   &__head {
@@ -17,7 +20,7 @@
     border: 5px solid #666;
     border-radius: 10px;
 
-    height: 55px;
+    height: 75px;
     display: flex;
     flex-direction: column-reverse;
 

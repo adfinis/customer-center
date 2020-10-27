@@ -1,12 +1,12 @@
 .packages {
   &__list {
     @extend .uk-grid;
-    @extend .uk-text-center;
   }
 
   &__item > div {
     @extend .uk-card;
     @extend .uk-card-default;
+    @extend .uk-text-center;
 
     border: 1px solid #eee;
   }

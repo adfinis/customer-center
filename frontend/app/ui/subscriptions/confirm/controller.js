@@ -15,13 +15,6 @@ export default class SubscriptionsConfirmController extends Controller {
     { label: this.intl.t("page.subscriptions.confirm.title") },
   ];
 
-  //     _        _   _
-  //    / \   ___| |_(_) ___  _ __  ___
-  //   / _ \ / __| __| |/ _ \| '_ \/ __|
-  //  / ___ \ (__| |_| | (_) | | | \__ \
-  // /_/   \_\___|\__|_|\___/|_| |_|___/
-  //
-
   @action async accept(order) {
     const project = order.project.get("name");
 

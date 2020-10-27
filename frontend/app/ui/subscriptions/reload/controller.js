@@ -30,13 +30,6 @@ export default class SubscriptionsReloadController extends Controller {
     ];
   }
 
-  //     _        _   _
-  //    / \   ___| |_(_) ___  _ __  ___
-  //   / _ \ / __| __| |/ _ \| '_ \/ __|
-  //  / ___ \ (__| |_| | (_) | | | \__ \
-  // /_/   \_\___|\__|_|\___/|_| |_|___/
-  //
-
   @action async charge(event) {
     event.preventDefault();
 
@@ -74,14 +67,6 @@ export default class SubscriptionsReloadController extends Controller {
       this.notify.fromError(error);
     }
   }
-
-  //  _     _  __                      _
-  // | |   (_)/ _| ___  ___ _   _  ___| | ___
-  // | |   | | |_ / _ \/ __| | | |/ __| |/ _ \
-  // | |___| |  _|  __/ (__| |_| | (__| |  __/
-  // |_____|_|_|  \___|\___|\__, |\___|_|\___|
-  //                        |___/
-  //
 
   setup(model, transition) {
     this.project = model.project;

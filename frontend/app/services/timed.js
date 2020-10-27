@@ -3,13 +3,6 @@ import Service, { inject as service } from "@ember/service";
 export default class TimedService extends Service {
   @service store;
 
-  //  ____                _
-  // |  _ \ ___  __ _  __| |
-  // | |_) / _ \/ _` |/ _` |
-  // |  _ <  __/ (_| | (_| |
-  // |_| \_\___|\__,_|\__,_|
-  //
-
   async getAllProjects() {
     return await this.store.findAll("subscription-project", {
       include: "billing_type,customer,orders",
@@ -87,13 +80,6 @@ export default class TimedService extends Service {
 
     return packages;
   }
-
-  // __        __    _ _
-  // \ \      / / __(_) |_ ___
-  //  \ \ /\ / / '__| | __/ _ \
-  //   \ V  V /| |  | | ||  __/
-  //    \_/\_/ |_|  |_|\__\___|
-  //
 
   async placeSubscriptionOrder(project, duration) {
     const order = this.store.createRecord("subscription-order", {

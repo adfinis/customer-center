@@ -32,14 +32,6 @@ export default class SubscriptionsDetailController extends Controller {
     }
   }
 
-  //  _     _  __                      _
-  // | |   (_)/ _| ___  ___ _   _  ___| | ___
-  // | |   | | |_ / _ \/ __| | | |/ __| |/ _ \
-  // | |___| |  _|  __/ (__| |_| | (__| |  __/
-  // |_____|_|_|  \___|\___|\__, |\___|_|\___|
-  //                        |___/
-  //
-
   setup(model, transition) {
     this.project = model.project;
     this.orders = model.orders;

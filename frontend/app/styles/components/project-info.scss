@@ -1,11 +1,13 @@
 .info-section {
   @extend .uk-section;
 
-  border-top: 10px solid;
+  border-top: 3px solid;
+  border-bottom: 1px dashed #ddd;
 
   @for $i from 0 through 9 {
     &--#{$i} {
-      border-top-color: nth($status-color, $i + 1);
+      $color: nth($status-color, $i + 1);
+      border-top-color: $color;
     }
   }
 }
@@ -13,5 +15,9 @@
 .project-info {
   &__title {
     @extend .uk-display-block;
+  }
+
+  &__item {
+    font-size: 1.1em;
   }
 }

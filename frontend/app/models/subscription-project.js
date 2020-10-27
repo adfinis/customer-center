@@ -3,7 +3,7 @@ import ENV from "customer-center/config/environment";
 import moment from "moment";
 
 export default class TimedSubscriptionProjectModel extends Model {
-  @attr("string") name;
+  @attr name;
   @attr("django-duration") purchasedTime;
   @attr("django-duration") spentTime;
 

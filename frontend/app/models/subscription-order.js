@@ -3,7 +3,7 @@ import { memberAction } from "ember-api-actions";
 import moment from "moment";
 
 export default class TimedSubscriptionOrderModel extends Model {
-  @attr("boolean", { defaultValue: false }) acknowledged;
+  @attr({ defaultValue: false }) acknowledged;
 
   @attr("django-duration") duration;
   @attr("django-datetime", { defaultValue: () => moment() }) ordered;

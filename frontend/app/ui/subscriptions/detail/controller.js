@@ -15,10 +15,15 @@ export default class SubscriptionsDetailController extends Controller {
   @tracked reports;
   @tracked reportsNext;
 
-  breadcrumbs = [
-    { label: this.intl.t("page.subscriptions.title"), route: "subscriptions" },
-    { label: this.intl.t("page.subscriptions.detail.title") },
-  ];
+  get breadcrumbs() {
+    return [
+      {
+        label: this.intl.t("page.subscriptions.title"),
+        route: "subscriptions",
+      },
+      { label: this.project.name },
+    ];
+  }
 
   @task *fetchNextReports() {
     try {

@@ -57,6 +57,10 @@ module.exports = function (environment) {
 
     ENV.APP.rootElement = "#ember-testing";
     ENV.APP.autoboot = false;
+
+    // If performance is enabled, the tests fail with:
+    // Failed to execute 'measure' on 'Performance'
+    ENV["@sentry/ember"].disablePerformance = true;
   }
 
   if (environment === "production") {

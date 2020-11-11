@@ -48,8 +48,11 @@ export default class AccountService extends Service {
       this.info = this.store.peekRecord("user", id);
 
       const { language } = this.info;
-      this.intl.setLocale(language);
-      this.moment.setLocale(language);
+
+      if (language) {
+        this.intl.setLocale(language);
+        this.moment.setLocale(language);
+      }
     } catch (error) {
       console.error(error);
       this.notify.fromError(error);

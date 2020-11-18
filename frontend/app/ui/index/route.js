@@ -46,6 +46,28 @@ export default class IndexRoute extends AuthenticatedRoute {
             country: "CH",
           },
         },
+        {
+          title: "Crissier",
+          phone: "+41 43 500 38 90",
+          address: {
+            title: "Adfinis AG",
+            streetAddress: "Rue de la Vernie 12",
+            postalCode: "1023",
+            locality: "Crissier",
+            country: "CH",
+          },
+        },
+        {
+          title: "Netherlands",
+          phone: "+41 43 500 38 90",
+          address: {
+            title: "Adfinis NL",
+            streetAddress: "Hortensiastraat 10",
+            postalCode: "7555 CS",
+            locality: "Hengelo",
+            country: "NL",
+          },
+        },
       ],
       profiles: [
         {

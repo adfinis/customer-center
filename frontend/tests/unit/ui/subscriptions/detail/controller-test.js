@@ -17,6 +17,7 @@ module("Unit | Controller | subscriptions/detail", function (hooks) {
 
     const project = {};
     const orders = [];
+    orders.links = { next: "..." };
     const reports = [];
     reports.links = { next: "..." };
 
@@ -24,7 +25,10 @@ module("Unit | Controller | subscriptions/detail", function (hooks) {
     controller.setup(model);
 
     assert.equal(controller.project, project);
-    assert.equal(controller.orders, orders);
+
+    assert.deepEqual(controller.orders, orders.toArray());
+    assert.equal(controller.ordersPage, 1);
+    assert.equal(controller.ordersNext, true);
 
     assert.deepEqual(controller.reports, reports.toArray());
     assert.equal(controller.reportsPage, 1);

@@ -14,7 +14,10 @@ module("Unit | Controller | application", function (hooks) {
   test("it works", function (assert) {
     const controller = this.owner.lookup("controller:application");
 
-    const expected = [{ key: "en", label: "EN" }];
+    const expected = [
+      { key: "de", label: "DE" },
+      { key: "en", label: "EN" },
+    ];
 
     assert.deepEqual(controller.languages, expected);
   });

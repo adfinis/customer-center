@@ -1,0 +1,178 @@
+page:
+  account:
+    title: Account
+
+
+    login:
+      title: Login
+      form:
+        username: Benutzername
+        password: Passwort
+        cancel: Abbrechen
+        submit: Einloggen
+      success: Login erfolgreich
+      reset: Passwort zurücksetzen
+
+
+    logout:
+      success: Logout erfolgreich
+
+
+    password-reset:
+      title: Passwort zurücksetzen
+      form:
+        username: Benutzername
+        cancel: Abbrechen
+        submit: Zurücksetzen
+      success: Password erfolgreich zurückgesetzt
+
+
+    password-confirm:
+      title: Bestätigung neues Passwort
+      new-password: "Ihr neues Passwort lautet:"
+      login: Zum Login
+
+
+  application:
+    title: Customer Center
+    nav:
+      index: Dashboard
+      subscriptions: Projekte
+      subscriptions-confirm: Bestellungen bestätigen
+      account-logout: Logout
+
+
+  error:
+    title: Error
+
+
+  index:
+    title: Dashboard
+
+    projects:
+      title: Projekte
+      empty: Dieser Account hat keine Projekte.
+
+    support:
+      title: Support
+      callout: |
+        Sie brauchen Support?<br>
+        Kontaktieren Sie uns per Mail oder Telefonisch.
+      opening-hours: |
+        Wir sind von Montag bis Freitag zu Bürozeiten für Sie da.<br>
+        (08:00 bis 17:30)
+
+    locations:
+      title: Standorte
+
+
+  notfound:
+    title: Seite nicht gefunden
+    message: Die Seite "/{path}" konnte nicht gefunden werden.
+
+
+  subscriptions:
+    title: Projekte
+
+
+    own:
+      title: Eigene Projekte
+
+      projects:
+        time-purchased: Bestellte Zeit
+        time-spent: Gebuchtes Guthaben
+        time-total: Totales Guthaben
+        details: Details
+        reload: Aufladen
+
+
+    list:
+      title: Alle Projekte
+      empty: Keine Projekte entsprechen dem Filter.
+      filter: Zeit fast verbraucht
+
+      table:
+        project: Projekt
+        customer: Kunde
+        billing: Verrechnungsart
+        time-purchased: Bestellte Zeit
+        time-spent: Gebuchtes Guthaben
+        time-total: Totales Guthaben
+        time-unconfirmed: Ausstehende Zeit
+
+
+    confirm:
+      title: Bestellungen bestätigen
+      empty: Keine Bestellungen zu bestätigen.
+      accept: Akzeptieren
+      deny: Ablehnen
+      accepted: Die Bestellung für "{project}" wurde angenommen.
+      denied: Die Bestellung für "{project}" wurde abgelehnt.
+      no-access: Ihr Account ist nicht berechtigt Bestellungen zu bestätigen.
+
+      table:
+        customer: Kunde
+        project: Projekt
+        duration: Stunden
+        date: Datum
+
+
+    detail:
+      title: Projektdetails
+      reload: Aufladen
+
+      orders:
+        title: Bestellungen
+        empty: Keine Bestellungen verbucht.
+
+        table:
+          date: Datum
+          duration: Anzahl Stunden
+          acknowledged: Bestätigt
+
+      reports:
+        title: Aufwände
+        empty: Keine verbuchten Aufwände.
+        more: Mehr laden
+
+        table:
+          date: Datum
+          duration: Aufwand
+          user: Mitarbeiter
+          comment: Beschreibung
+
+
+    reload:
+      title: Aufladen
+      no-access: Sie haben keine Berechtigung das Abo aufzuladen.
+
+      form:
+        hours: Stunden
+        minutes: Minuten
+        submit: Aufladen
+        success: Aufladen erfolgreich
+
+      packages:
+        title: Pakete
+        empty: Es sind keine Pakete vorhanden.
+        success: Bestellung erfolgreich
+        cta: Bestellen
+
+
+component:
+  nav-breadcrumbs:
+    home: Home
+
+
+  project-info:
+    name: Projekt
+    customer: Kunde
+    billing: Verrechnungsart
+    time-total: Totales Guthaben
+    time-unconfirmed: Ausstehende Zeit
+
+
+helper:
+  format-duration:
+    hours: "{count, plural, =0 {} =1 {1 Stunde} other {# Stunden}}"
+    minutes: "{count, plural, =0 {} =1 {1 Minute} other {# Minuten}}"

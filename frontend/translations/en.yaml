@@ -83,7 +83,7 @@ page:
         time-spent: Time used
         time-total: Time total
         details: Details
-        reload: Reload
+        reload: Recharge
 
 
     list:
@@ -119,11 +119,12 @@ page:
 
     detail:
       title: Project details
-      reload: Reload
+      reload: Recharge
 
       orders:
         title: Past charges
         empty: No orders for this project.
+        more: Fetch more
 
         table:
           date: Date
@@ -143,7 +144,7 @@ page:
 
 
     reload:
-      title: Reload subscription
+      title: Recharge subscription
       no-access: Your account is not permitted to place orders.
 
       form:

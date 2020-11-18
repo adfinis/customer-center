@@ -15,10 +15,8 @@ export default class TimedService extends Service {
 
     return projects
       .toArray()
-      .sort((a, b) => {
-        return a.totalTime - b.totalTime;
-      })
-      .slice(0, 2);
+      .sort((a, b) => a.totalTime - b.totalTime)
+      .slice(0, 4);
   }
 
   async getOwnProjects() {

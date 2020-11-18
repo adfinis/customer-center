@@ -18,10 +18,6 @@ const COLORS = [
 export default class StatusBatteryComponent extends Component {
   timer = null;
 
-  get isEmpty() {
-    return this.args.percentage < 0.1;
-  }
-
   @action onInsertBody(element) {
     this.timer = next(() => {
       element.style.height = `${100 * this.args.percentage}%`;

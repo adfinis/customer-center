@@ -31,7 +31,10 @@
                   {{format-duration project.totalTime}}
                 </div>
 
-                <StatusBattery @percentage={{project.percentage}} />
+                <StatusBattery
+                  @percentage={{project.percentage}}
+                  @warning={{project.isTimeAlmostConsumed}}
+                />
               </div>
             </LinkTo>
           </li>

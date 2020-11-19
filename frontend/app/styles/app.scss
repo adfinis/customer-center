@@ -18,6 +18,16 @@ body {
   overflow-y: scroll;
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
 .button {
   @extend .uk-button;
   @extend .uk-button-default;

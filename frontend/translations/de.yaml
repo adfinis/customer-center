@@ -106,9 +106,13 @@ page:
       empty: Keine Bestellungen zu bestätigen.
       accept: Akzeptieren
       deny: Ablehnen
-      accepted: Die Bestellung für "{project}" wurde angenommen.
-      denied: Die Bestellung für "{project}" wurde abgelehnt.
+      accepted: Die Bestellung für {project} von {customer} wurde angenommen.
+      denied: Die Bestellung für {project} von {customer} wurde abgelehnt.
       no-access: Ihr Account ist nicht berechtigt Bestellungen zu bestätigen.
+
+      prompt:
+        accept: Akzeptieren von {hours} Stunden für {project} von {customer}.
+        deny: Ablehnen von {hours} Stunden für {project} von {customer}.
 
       table:
         customer: Kunde
@@ -157,6 +161,7 @@ page:
         empty: Es sind keine Pakete vorhanden.
         success: Bestellung erfolgreich
         cta: Bestellen
+        confirm: Sie bestellen {hours} Stunden.
 
 
 component:

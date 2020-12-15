@@ -2,6 +2,7 @@ import Controller from "@ember/controller";
 import { action } from "@ember/object";
 import { alias } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
+import UIkit from "uikit";
 
 export default class SubscriptionsConfirmController extends Controller {
   @service intl;
@@ -17,12 +18,28 @@ export default class SubscriptionsConfirmController extends Controller {
 
   @action async accept(order) {
     const project = order.project.get("name");
+    const customer = order.project.get("customer.name");
+
+    try {
+      await UIkit.modal.confirm(
+        this.intl.t("page.subscriptions.confirm.prompt.accept", {
+          hours: order.duration.asHours(),
+          customer,
+          project,
+        })
+      );
+    } catch (error) {
+      return;
+    }
 
     try {
       await this.timed.acceptSubscriptionOrder(order);
 
       this.notify.success(
-        this.intl.t("page.subscriptions.confirm.accepted", { project })
+        this.intl.t("page.subscriptions.confirm.accepted", {
+          customer,
+          project,
+        })
       );
     } catch (error) {
       this.notify.fromError(error);
@@ -31,12 +48,25 @@ export default class SubscriptionsConfirmController extends Controller {
 
   @action async deny(order) {
     const project = order.project.get("name");
+    const customer = order.project.get("customer.name");
+
+    try {
+      await UIkit.modal.confirm(
+        this.intl.t("page.subscriptions.confirm.prompt.deny", {
+          hours: order.duration.asHours(),
+          customer,
+          project,
+        })
+      );
+    } catch (error) {
+      return;
+    }
 
     try {
       await this.timed.denySubscriptionOrder(order);
 
       this.notify.success(
-        this.intl.t("page.subscriptions.confirm.denied", { project })
+        this.intl.t("page.subscriptions.confirm.denied", { customer, project })
       );
     } catch (error) {
       this.notify.fromError(error);

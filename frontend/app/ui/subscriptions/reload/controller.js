@@ -4,6 +4,7 @@ import { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
 import { Changeset } from "ember-changeset";
 import moment from "moment";
+import UIkit from "uikit";
 
 export default class SubscriptionsReloadController extends Controller {
   @service account;
@@ -55,6 +56,16 @@ export default class SubscriptionsReloadController extends Controller {
   @action async order(choice) {
     try {
       const duration = choice.duration;
+
+      try {
+        await UIkit.modal.confirm(
+          this.intl.t("page.subscriptions.reload.packages.confirm", {
+            hours: duration.asHours(),
+          })
+        );
+      } catch (error) {
+        return;
+      }
 
       await this.timed.placeSubscriptionOrder(this.project, duration);
 

@@ -3,7 +3,7 @@ import startPaddingTag from "customer-center/utils/start-padding-tag";
 import moment from "moment";
 
 export function formatDurationShort(params) {
-  let [duration] = params;
+  let duration = Array.isArray(params) ? params[0] : params;
 
   //remove "-" from negative numbers
   const negative = duration < 0;

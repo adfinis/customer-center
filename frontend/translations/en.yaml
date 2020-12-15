@@ -90,6 +90,11 @@ page:
       title: All projects
       empty: No project match the filters.
       filter: Only show projects where time is almost up.
+      export:
+        label: Export as CSV
+        hint: |
+          Exports the current view (sorting, filtering)
+          as CSV to be imported in Excel or similar.
 
       table:
         project: Project

@@ -1,0 +1,10 @@
+.subscription-export {
+  &__button {
+    @extend .uk-button;
+    @extend .uk-button-default;
+  }
+
+  &__hint {
+    @extend .uk-text-muted;
+  }
+}

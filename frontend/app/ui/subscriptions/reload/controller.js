@@ -1,6 +1,7 @@
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import { isEmpty } from "@ember/utils";
 import { tracked } from "@glimmer/tracking";
 import { Changeset } from "ember-changeset";
 import moment from "moment";
@@ -39,8 +40,9 @@ export default class SubscriptionsReloadController extends Controller {
 
     try {
       const duration = moment.duration({ hours, minutes });
+      const ordered = isEmpty(date) ? undefined : moment(date);
 
-      await this.timed.placeSubscriptionOrder(this.project, duration);
+      await this.timed.placeSubscriptionOrder(this.project, duration, ordered);
 
       this.notify.success(
         this.intl.t("page.subscriptions.reload.form.success")
@@ -75,6 +77,7 @@ export default class SubscriptionsReloadController extends Controller {
     this.changeset = new Changeset({
       hours: 0,
       minutes: 0,
+      date: "",
     });
   }
 }

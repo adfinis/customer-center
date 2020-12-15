@@ -150,6 +150,7 @@ page:
       form:
         hours: Hours
         minutes: Minutes
+        date: Date
         submit: Submit
         success: Charge successful
 

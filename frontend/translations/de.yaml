@@ -124,6 +124,7 @@ page:
       orders:
         title: Bestellungen
         empty: Keine Bestellungen verbucht.
+        more: Mehr laden
 
         table:
           date: Datum

@@ -83,10 +83,11 @@ export default class TimedService extends Service {
     return packages;
   }
 
-  async placeSubscriptionOrder(project, duration) {
+  async placeSubscriptionOrder(project, duration, ordered) {
     const order = this.store.createRecord("subscription-order", {
       duration,
       project,
+      ordered,
     });
 
     await order.save();

@@ -58,6 +58,20 @@
               />
             </div>
           </p>
+
+          <p class="form__field">
+            <label class="form__label">
+              {{~t "page.subscriptions.reload.form.date"~}}
+            </label>
+
+            <div class="form__input">
+              <Input
+                @value={{this.changeset.date}}
+                class="form__input__text"
+                type="date"
+              />
+            </div>
+          </p>
         </fieldset>
 
         <fieldset class="form__fieldset">

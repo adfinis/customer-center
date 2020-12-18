@@ -150,6 +150,7 @@ page:
       form:
         hours: Stunden
         minutes: Minuten
+        date: Datum
         submit: Aufladen
         success: Aufladen erfolgreich
 

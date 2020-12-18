@@ -2,21 +2,18 @@
 
 # Adfinis AG - Customer Center
 
-This is still very much in progress.
+Adfinis customer support portal with LDAP and Timed integration.
 
 ## Prerequisites
-
-Before you start, please make sure that the following tools are installed:
 
 * Node + Yarn
 * Docker + Docker Compose
 
 ## Setup
 
-* `ln -s config-dev.js backend/config.js` (for development)
-* `make install-frontend install-backend`
-* `docker-compose up -d`
-* `make install`
+* `git clone git@github.com:adfinis-sygroup/customer-center.git`
+* `cd customer-center`
+* `./provisioning/init.sh`
 
 ## Configuration
 

@@ -90,6 +90,11 @@ page:
       title: Alle Projekte
       empty: Keine Projekte entsprechen dem Filter.
       filter: Zeit fast verbraucht
+      export:
+        label: Als CSV exportieren
+        hint: |
+          Exportiert die aktuelle Ansicht (Sortierung, Filterung)
+          als CSV um in Excel oder ähnliches zu importieren.
 
       table:
         project: Projekt

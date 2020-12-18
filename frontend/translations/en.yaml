@@ -111,9 +111,13 @@ page:
       empty: No orders to confirm.
       accept: Accept
       deny: Deny
-      accepted: The order for project "{project}" has been accepted.
-      denied: The order for project "{project}" has been denied.
+      accepted: The order for project {project} of {customer} has been accepted.
+      denied: The order for project {project} of {customer} has been denied.
       no-access: Your account is not permitted to confirm orders.
+
+      prompt:
+        accept: Accepting {hours} hours for {project} of {customer}.
+        deny: Rejecting {hours} hours for {project} of {customer}.
 
       table:
         customer: Customer
@@ -164,6 +168,7 @@ page:
         empty: No packages available.
         success: Charge successful
         cta: Order
+        confirm: You are ordering {hours} hours.
 
 
 component:

@@ -40,7 +40,11 @@ export default class SubscriptionsReloadController extends Controller {
     const { hours = 0, minutes = 0, date } = this.changeset.data;
 
     try {
-      const duration = moment.duration({ hours, minutes });
+      // Creating a duration with a float as hours cannot be combined with
+      // minutes. Moment seems to add up correctly but says that it is invalid.
+      const duration = moment.duration({ hours });
+      duration.add(minutes, "minutes");
+
       const ordered = isEmpty(date) ? undefined : moment(date);
 
       await this.timed.placeSubscriptionOrder(this.project, duration, ordered);

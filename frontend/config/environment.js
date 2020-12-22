@@ -24,8 +24,8 @@ module.exports = function (environment) {
     },
 
     "@sentry/ember": {
-      environment,
-      sentry: {},
+      disablePerformance: true,
+      sentry: { environment },
     },
 
     APP: {
@@ -60,12 +60,15 @@ module.exports = function (environment) {
 
     // If performance is enabled, the tests fail with:
     // Failed to execute 'measure' on 'Performance'
+    // -> Performance is currently disabled by default as we need to adjust
+    //    the response headers from Timed to use this feature. As we will
+    //    probably do that I keep this setting here.
     ENV["@sentry/ember"].disablePerformance = true;
   }
 
   if (environment === "production") {
-    // https://docs.sentry.io/platforms/javascript/guides/ember/configuration/
-    ENV["@sentry/ember"].sentry.dsn = process.env.SENTRY_DSN;
+    // No need to configure the DNS as Sentry already reads from SENTRY_DNS.
+    // https://docs.sentry.io/platforms/javascript/guides/ember/configuration/options/#dsn
   }
 
   return ENV;

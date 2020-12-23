@@ -23,7 +23,7 @@ export default class SubscriptionsListController extends Controller {
     this.projects =
       normalized.length > 0
         ? this._projects.filter((project) => {
-            return project[key].toLowerCase().includes(normalized);
+            return project.get(key).toLowerCase().includes(normalized);
           })
         : this._projects;
   }

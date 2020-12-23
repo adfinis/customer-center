@@ -1,3 +1,6 @@
+init:
+	./provisioning/init.sh
+
 install: install-frontend install-backend knex-migrations setup-timed timed-test-data
 
 install-frontend:
@@ -29,5 +32,5 @@ serve-local:
 	@yarn --cwd=frontend start-proxy
 
 deploy: install-frontend install-backend
-	(cd frontend && yarn build)
+	@yarn --cwd=frontend build
 	(cd backend && make migrations && yarn build && pm2 restart index)

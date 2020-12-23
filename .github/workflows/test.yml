@@ -1,0 +1,56 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  CI: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: [ubuntu-latest]
+
+    strategy:
+      matrix:
+        target: [js, hbs]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: Install dependencies
+        run: yarn --cwd=frontend install
+
+      - name: Lint ${{ matrix.target }}
+        run: yarn --cwd=frontend lint:${{ matrix.target }}
+
+  test:
+    name: Tests
+    needs: [lint]
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: Install dependencies (no lockfile)
+        run: yarn --cwd=frontend install --no-lockfile
+
+      - name: Run tests (floating dependencies)
+        run: yarn --cwd=frontend test
+
+      - name: Install dependencies
+        run: yarn --cwd=frontend install
+
+      - name: Run tests
+        run: yarn --cwd=frontend test

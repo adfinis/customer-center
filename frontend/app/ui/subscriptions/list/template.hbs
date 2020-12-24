@@ -15,7 +15,7 @@
 
     <p class="form__field">
       <Input
-        {{on "change" this.applyFilter}}
+        {{on "change" this.limitCritical}}
         @type="checkbox"
         class="form__input__checkbox"
         id="form-filter"
@@ -31,17 +31,17 @@
         <thead>
           <tr>
             <th>
-              <DataTable::HeadingSearch @onSearch={{fn this.search "customer.name"}}>
+              <DataTable::HeadingSearch @onSearch={{fn this.searchFor "customer.name"}}>
                 {{t "page.subscriptions.list.table.customer"}}
               </DataTable::HeadingSearch>
             </th>
             <th>
-              <DataTable::HeadingSearch @onSearch={{fn this.search "name"}}>
+              <DataTable::HeadingSearch @onSearch={{fn this.searchFor "name"}}>
                 {{t "page.subscriptions.list.table.project"}}<br>
               </DataTable::HeadingSearch>
             </th>
             <th>
-              <DataTable::HeadingSearch @onSearch={{fn this.search "billingType.name"}}>
+              <DataTable::HeadingSearch @onSearch={{fn this.searchFor "billingType.name"}}>
                 {{t "page.subscriptions.list.table.billing"}}
               </DataTable::HeadingSearch>
             </th>

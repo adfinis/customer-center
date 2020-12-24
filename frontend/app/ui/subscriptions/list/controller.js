@@ -54,8 +54,8 @@ export default class SubscriptionsListController extends Controller {
 
   @action export() {
     const headings = [
-      this.intl.t("page.subscriptions.list.table.project"),
       this.intl.t("page.subscriptions.list.table.customer"),
+      this.intl.t("page.subscriptions.list.table.project"),
       this.intl.t("page.subscriptions.list.table.billing"),
       this.intl.t("page.subscriptions.list.table.time-purchased"),
       this.intl.t("page.subscriptions.list.table.time-spent"),
@@ -66,8 +66,8 @@ export default class SubscriptionsListController extends Controller {
     const lines = this.projects
       .toArray()
       .map((project) => [
-        project.get("name"),
         project.get("customer.name"),
+        project.get("name"),
         project.get("billingType.name"),
         formatDurationShort(project.get("purchasedTime")),
         formatDurationShort(project.get("spentTime")),

@@ -31,13 +31,13 @@
         <thead>
           <tr>
             <th>
-              <DataTable::HeadingSearch @onSearch={{fn this.search "name"}}>
-                {{t "page.subscriptions.list.table.project"}}<br>
+              <DataTable::HeadingSearch @onSearch={{fn this.search "customer.name"}}>
+                {{t "page.subscriptions.list.table.customer"}}
               </DataTable::HeadingSearch>
             </th>
             <th>
-              <DataTable::HeadingSearch @onSearch={{fn this.search "customer.name"}}>
-                {{t "page.subscriptions.list.table.customer"}}
+              <DataTable::HeadingSearch @onSearch={{fn this.search "name"}}>
+                {{t "page.subscriptions.list.table.project"}}<br>
               </DataTable::HeadingSearch>
             </th>
             <th>
@@ -71,12 +71,12 @@
         <tbody>
           {{#each this.projects as |project|}}
             <tr class={{if project.isTimeAlmostConsumed "uk-alert-danger"}}>
+              <td>{{project.customer.name}}</td>
               <td>
                 <LinkTo @route="subscriptions.detail" @model={{project.id}}>
                   {{project.name}}
                 </LinkTo>
               </td>
-              <td>{{project.customer.name}}</td>
               <td>{{project.billingType.name}}</td>
               <td>{{format-duration-short project.purchasedTime}}</td>
               <td>{{format-duration-short project.spentTime}}</td>

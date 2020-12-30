@@ -1,12 +1,21 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setupIntl } from "ember-intl/test-support";
 import { setupRenderingTest } from "ember-qunit";
-import { module, skip } from "qunit";
+import moment from "moment";
+import { module, test } from "qunit";
 
 module("Integration | Component | project-info", function (hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks, "en");
 
-  skip("it renders", async function (assert) {
+  test("it renders", async function (assert) {
+    const intl = this.owner.lookup("service:intl");
+    const duration = 1;
+    const durationString = intl.t("helper.format-duration.minutes", {
+      count: duration,
+    });
+
     this.project = {
       name: "Project #1",
       customer: {
@@ -15,11 +24,25 @@ module("Integration | Component | project-info", function (hooks) {
       billingType: {
         name: "Billing type #1",
       },
-      totalTime: "",
-      unconfirmedTime: "",
+      totalTime: moment.duration({ minutes: duration }),
+      unconfirmedTime: moment.duration({ minutes: duration }),
     };
 
     await render(hbs`<ProjectInfo @project={{this.project}} />`);
-    assert.ok(this.element);
+
+    assert.dom(".project-info__item").exists({ count: 5 });
+
+    assert
+      .dom(".project-info__item:nth-child(1) span")
+      .hasText(this.project.name);
+    assert
+      .dom(".project-info__item:nth-child(2) span")
+      .hasText(this.project.customer.name);
+    assert
+      .dom(".project-info__item:nth-child(3) span")
+      .hasText(this.project.billingType.name);
+
+    assert.dom(".project-info__item:nth-child(4) span").hasText(durationString);
+    assert.dom(".project-info__item:nth-child(5) span").hasText(durationString);
   });
 });

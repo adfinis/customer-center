@@ -1,16 +1,25 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setupIntl } from "ember-intl/test-support";
 import { setupRenderingTest } from "ember-qunit";
-import { module, skip } from "qunit";
+import moment from "moment";
+import { module, test } from "qunit";
 
 module("Integration | Helper | format-duration", function (hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks, "en");
 
-  skip("it renders", async function (assert) {
-    this.set("inputValue", "1234");
+  test("it renders", async function (assert) {
+    const intl = this.owner.lookup("service:intl");
+    const duration = 1;
+    const durationString = intl.t("helper.format-duration.minutes", {
+      count: duration,
+    });
 
-    await render(hbs`{{format-duration inputValue}}`);
+    this.duration = moment.duration({ minutes: duration });
 
-    assert.equal(this.element.textContent.trim(), "1234");
+    await render(hbs`{{format-duration this.duration}}`);
+
+    assert.dom(this.element).hasText(durationString);
   });
 });

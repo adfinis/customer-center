@@ -11,34 +11,34 @@
     <strong class="project-info__title">
       {{t "component.project-info.name"}}
     </strong>
-    {{@project.name}}
+    <span>{{@project.name}}</span>
   </li>
 
   <li class="project-info__item">
     <strong class="project-info__title">
       {{t "component.project-info.customer"}}
     </strong>
-    {{@project.customer.name}}
+    <span>{{@project.customer.name}}</span>
   </li>
 
   <li class="project-info__item">
     <strong class="project-info__title">
       {{t "component.project-info.billing"}}
     </strong>
-    {{@project.billingType.name}}
+    <span>{{@project.billingType.name}}</span>
   </li>
 
   <li class="project-info__item">
     <strong class="project-info__title">
       {{t "component.project-info.time-total"}}
     </strong>
-    {{format-duration @project.totalTime}}
+    <span>{{format-duration @project.totalTime}}</span>
   </li>
 
   <li class="project-info__item">
     <strong class="project-info__title">
       {{t "component.project-info.time-unconfirmed"}}
     </strong>
-    {{format-duration @project.unconfirmedTime}}
+    <span>{{format-duration @project.unconfirmedTime}}</span>
   </li>
 </ul>

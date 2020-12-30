@@ -2,6 +2,7 @@ import { A } from "@ember/array";
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import { isEmpty } from "@ember/utils";
 import { tracked } from "@glimmer/tracking";
 import { formatDurationShort } from "customer-center/helpers/format-duration-short";
 import { saveAs } from "file-saver";
@@ -11,21 +12,52 @@ export default class SubscriptionsListController extends Controller {
   @service intl;
 
   @tracked projects;
+  @tracked searches = {};
+  @tracked sortBy = {};
 
   breadcrumbs = [
     { label: this.intl.t("page.subscriptions.title"), route: "subscriptions" },
     { label: this.intl.t("page.subscriptions.list.title") },
   ];
 
-  @action search(key, query) {
-    const normalized = query.trim().toLowerCase();
+  @action searchFor(key, query) {
+    if (isEmpty(query)) {
+      delete this.searches[key];
+    } else {
+      this.searches[key] = query;
+    }
 
-    this.projects =
-      normalized.length > 0
-        ? this._projects.filter((project) => {
-            return project.get(key).toLowerCase().includes(normalized);
-          })
-        : this._projects;
+    this.search();
+  }
+
+  @action limitCritical(event) {
+    const { checked } = event.target;
+
+    if (checked) {
+      this.searches.isTimeAlmostConsumed = "true";
+    } else {
+      delete this.searches.isTimeAlmostConsumed;
+    }
+
+    this.search();
+  }
+
+  @action search() {
+    let projects = this._projects;
+
+    for (const key in this.searches) {
+      const normalized = String(this.searches[key]).trim().toLowerCase();
+
+      if (isEmpty(normalized)) {
+        continue;
+      }
+
+      projects = projects.filter((project) =>
+        String(project.get(key)).toLowerCase().includes(normalized)
+      );
+    }
+
+    this.projects = projects;
   }
 
   @action sort(key, direction = "ASC") {
@@ -42,14 +74,6 @@ export default class SubscriptionsListController extends Controller {
         return direction === "ASC" ? a[key] - b[key] : b[key] - a[key];
       })
     );
-  }
-
-  @action applyFilter(event) {
-    const { checked } = event.target;
-
-    this.projects = checked
-      ? this._projects.filterBy("isTimeAlmostConsumed")
-      : this._projects;
   }
 
   @action export() {

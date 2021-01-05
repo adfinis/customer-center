@@ -15,6 +15,10 @@ const COLORS = [
   "#00E500",
 ];
 
+/**
+ * @arg warning
+ * @arg percentage
+ */
 export default class StatusBatteryComponent extends Component {
   timer = null;
 

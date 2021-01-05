@@ -2,6 +2,9 @@ import { action } from "@ember/object";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 
+/**
+ * @arg onSort
+ */
 export default class DataTableHeadingSortComponent extends Component {
   @tracked order;
 

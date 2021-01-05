@@ -10,24 +10,11 @@
 @import "pages/application";
 @import "pages/index";
 @import "pages/loading";
+@import "pages/account/login";
 @import "pages/subscriptions/detail";
 @import "pages/subscriptions/list";
 @import "pages/subscriptions/own";
 @import "pages/subscriptions/reload";
-
-body {
-  overflow-y: scroll;
-}
-
-html {
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-	box-sizing: inherit;
-}
 
 .button {
   @extend .uk-button;

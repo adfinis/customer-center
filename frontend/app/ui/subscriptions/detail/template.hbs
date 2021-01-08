@@ -8,7 +8,7 @@
         {{~t "page.subscriptions.detail.title"~}}
       </h1>
 
-      {{#if (or this.account.isAdmin this.account.isCustomer)}}
+      {{#if this.showReloadButton}}
         <LinkTo
           @route="subscriptions.reload"
           @model={{this.project.id}}

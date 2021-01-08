@@ -60,7 +60,7 @@
                   {{~t "page.subscriptions.own.projects.details"~}}
                 </LinkTo>
 
-                {{#if this.account.isCustomer}}
+                {{#if this.showReloadLink}}
                   <LinkTo @route="subscriptions.reload" @model={{project.id}}>
                     {{~t "page.subscriptions.own.projects.reload"~}}
                   </LinkTo>

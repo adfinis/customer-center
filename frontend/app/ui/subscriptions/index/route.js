@@ -9,7 +9,7 @@ export default class SubscriptionsIndexRoute extends AuthenticatedRoute {
 
     // Only admins get the full list while customers/users
     // get a simple overview over their own projects.
-    if (this.account.isAdmin) {
+    if (this.account.isInGroups("one", ["adsy-user", "adsy-timed-admin"])) {
       this.transitionTo("subscriptions.list");
     } else {
       this.transitionTo("subscriptions.own");

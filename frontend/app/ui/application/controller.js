@@ -7,6 +7,10 @@ export default class ApplicationController extends Controller {
   @service session;
   @service intl;
 
+  get showConfirmInMenu() {
+    return this.account.isInGroup("adsy-timed-admin");
+  }
+
   get languages() {
     return this.intl.locales.map((locale) => ({
       key: locale,

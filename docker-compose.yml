@@ -47,7 +47,7 @@ services:
       - '6379:6379'
 
   ldap:
-    image: osixia/openldap
+    image: osixia/openldap:1.4.0
     volumes:
       - ./provisioning/ldap/ldap.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom
     environment:
@@ -144,7 +144,7 @@ services:
       ]
 
   mailhog:
-    image: mailhog/mailhog:latest
+    image: mailhog/mailhog:v1.0.1
     ports:
       - '8025:8025'
 

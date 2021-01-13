@@ -4,7 +4,7 @@ module.exports = {
     host: 'localhost:3000'
   },
   ldap: {
-    url: 'ldap://localhost:4389',
+    url: 'ldap://ldap:4389',
     bindDn:
       'uid=Administrator,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
     bindCredentials: 'univention'
@@ -47,7 +47,7 @@ module.exports = {
     secret: 'ponies'
   },
   mailTransporter: {
-    host: 'mailcatcher', // hostname
+    host: 'mailhog', // hostname
     secureConnection: false, // use SSL
     port: 1025, // port for secure SMTP
     secure: false,
@@ -60,10 +60,10 @@ module.exports = {
   database: {
     client: 'pg',
     connection: {
-      host: 'localhost',
+      host: 'postgres',
       user: 'test',
       password: 'test',
-      database: 'customercenter_test'
+      database: 'customercenter'
     },
     pool: {
       min: 2,
@@ -78,7 +78,7 @@ module.exports = {
   },
   smtp: {
     port: 25,
-    host: 'localhost',
+    host: 'mailhog',
     secure: false,
     auth: {
       user: 'username',
@@ -90,7 +90,7 @@ module.exports = {
     authMethod: 'PLAIN'
   },
   redis: {
-    host: 'localhost',
+    host: 'redis',
     port: 6379,
     options: {}
   },

@@ -1,0 +1,73 @@
+name: Test (Backend)
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  CI: true
+
+jobs:
+  test:
+    name: Tests (Backend)
+    runs-on: [ubuntu-latest]
+
+    container:
+      image: node:10
+
+    services:
+      postgres:
+        image: postgres:12
+        volumes:
+          - ${{ github.workspace }}/provisioning/postgres/setup/:/docker-entrypoint-initdb.d/
+          - ${{ github.workspace }}/provisioning/postgres/timed-test-data.sql:/tmp/timed-test-data.sql
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: customercenter
+        ports:
+          - '5432:5432'
+      redis:
+        image: redis:6
+        ports:
+          - '6379:6379'
+      ldap:
+        image: osixia/openldap:1.4.0
+        volumes:
+          - ${{ github.workspace }}/provisioning/ldap/ldap.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom
+        env:
+          LDAP_ORGANISATION: adsy
+          LDAP_DOMAIN: adsy-ext.becs.adfinis-sygroup.ch
+          LDAP_ADMIN_PASSWORD: 123qwe
+          LDAP_OPENLDAP_UID: 1000
+          LDAP_OPENLDAP_GID: 1000
+          LDAP_TLS: false
+          LDAP_BASE_DN: dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+        ports:
+          - '4389:389'
+      mailhog:
+        image: mailhog/mailhog:v1.0.1
+        ports:
+          - '8025:8025'
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 10
+
+      - name: Set test configuration
+        run: ln -s config-test.js config.js
+
+      - name: Install dependencies
+        run: yarn --cwd=backend install
+
+      - name: Run migrations
+        run: make -C backend/ test-migrations
+
+      - name: Run tests
+        run: yarn --cwd=backend test

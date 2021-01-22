@@ -29,6 +29,8 @@ module.exports = function (environment) {
     },
 
     APP: {
+      loginRoute: "account.login",
+
       // Define alertTime in hours.
       // When total time comes close to alertTime, text color changes.
       alertTime: 5,

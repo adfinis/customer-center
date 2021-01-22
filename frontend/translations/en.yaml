@@ -116,8 +116,8 @@ page:
       no-access: Your account is not permitted to confirm orders.
 
       prompt:
-        accept: Accepting {hours} hours for {project} of {customer}.
-        deny: Rejecting {hours} hours for {project} of {customer}.
+        accept: Accepting {duration} for {project} of {customer}.
+        deny: Rejecting {duration} for {project} of {customer}.
 
       table:
         customer: Customer

@@ -5,6 +5,7 @@ import { inject as service } from "@ember/service";
 import UIkit from "uikit";
 
 export default class SubscriptionsConfirmController extends Controller {
+  @service account;
   @service intl;
   @service notify;
   @service timed;
@@ -23,7 +24,7 @@ export default class SubscriptionsConfirmController extends Controller {
     try {
       await UIkit.modal.confirm(
         this.intl.t("page.subscriptions.confirm.prompt.accept", {
-          hours: order.duration.asHours(),
+          duration: order.duration.locale(this.account.language).humanize(),
           customer,
           project,
         })
@@ -53,7 +54,7 @@ export default class SubscriptionsConfirmController extends Controller {
     try {
       await UIkit.modal.confirm(
         this.intl.t("page.subscriptions.confirm.prompt.deny", {
-          hours: order.duration.asHours(),
+          duration: order.duration.locale(this.account.language).humanize(),
           customer,
           project,
         })

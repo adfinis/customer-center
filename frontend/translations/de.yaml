@@ -116,8 +116,8 @@ page:
       no-access: Ihr Account ist nicht berechtigt Bestellungen zu bestätigen.
 
       prompt:
-        accept: Akzeptieren von {hours} Stunden für {project} von {customer}.
-        deny: Ablehnen von {hours} Stunden für {project} von {customer}.
+        accept: Akzeptieren von {duration} für {project} von {customer}.
+        deny: Ablehnen von {duration} für {project} von {customer}.
 
       table:
         customer: Kunde

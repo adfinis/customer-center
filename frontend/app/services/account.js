@@ -16,12 +16,17 @@ export default class AccountService extends Service {
     return this.info ? this.info.get("language") : "en";
   }
 
-  get isAdmin() {
-    return this.info ? this.info.groups.includes(ENV.APP.adminGroup) : false;
+  get groups() {
+    return (this.info && this.info.groups) || [];
   }
 
-  get isCustomer() {
-    return this.info ? this.info.groups.includes(ENV.APP.customerGroup) : false;
+  isInGroup(group) {
+    return this.groups.includes(group);
+  }
+
+  isInGroups(amount, groups) {
+    const method = amount === "one" ? "some" : "every";
+    return this.groups[method]((group) => groups.includes(group));
   }
 
   async fetchCurrentUser() {

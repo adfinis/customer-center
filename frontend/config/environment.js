@@ -29,10 +29,6 @@ module.exports = function (environment) {
     },
 
     APP: {
-      // These are used in the account service.
-      adminGroup: "adsy-timed-admin",
-      customerGroup: "adsy-customer",
-
       // Define alertTime in hours.
       // When total time comes close to alertTime, text color changes.
       alertTime: 5,

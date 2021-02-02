@@ -21,7 +21,7 @@
               </LinkTo>
             </li>
 
-            {{#if this.account.isAdmin}}
+            {{#if this.showConfirmInMenu}}
               <li class="site-header__nav__item">
                 <LinkTo @route="subscriptions.confirm">
                   {{~t "page.application.nav.subscriptions-confirm"~}}

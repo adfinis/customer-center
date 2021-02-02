@@ -15,6 +15,13 @@ export default class SubscriptionsDetailController extends Controller {
   @tracked reports;
   @tracked reportsNext;
 
+  get showReloadButton() {
+    return this.account.isInGroups("one", [
+      "adsy-timed-admin",
+      "adsy-customer",
+    ]);
+  }
+
   get breadcrumbs() {
     return [
       {

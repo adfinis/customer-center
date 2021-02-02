@@ -8,14 +8,14 @@ export default class SubscriptionsReloadRoute extends AuthenticatedRoute {
   @service intl;
 
   beforeModel(transition) {
-    // Normal users cannot recharge the subscription.
-    if (!this.account.isAdmin && !this.account.isCustomer) {
+    if (
+      !this.account.isInGroups("one", ["adsy-timed-admin", "adsy-customer"])
+    ) {
       this.notify.error(this.intl.t("page.subscriptions.reload.no-access"));
       this.transitionTo(
         "subscriptions.detail",
         transition.to.params.project_id
       );
-      return;
     }
   }
 
@@ -24,7 +24,7 @@ export default class SubscriptionsReloadRoute extends AuthenticatedRoute {
 
     // Customers get a list of packages to choose from.
     let packages = [];
-    if (this.account.isCustomer) {
+    if (this.account.isInGroup("adsy-customer")) {
       const billing_type = project.billingType.get("id");
       packages = await this.timed.getReloadPackages(billing_type);
     }

@@ -43,12 +43,6 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install dependencies (no lockfile)
-        run: yarn --cwd=frontend install --no-lockfile
-
-      - name: Run tests (floating dependencies)
-        run: yarn --cwd=frontend test
-
       - name: Install dependencies
         run: yarn --cwd=frontend install
 

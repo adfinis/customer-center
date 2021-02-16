@@ -5,13 +5,13 @@ export function parseDuration(duration) {
 
   let [, days, hours, minutes, seconds, microseconds] = duration
     .match(re)
-    .map(m => Number(m) || 0);
+    .map((m) => Number(m) || 0);
 
   return moment.duration({
     days,
     hours,
     minutes,
     seconds,
-    milliseconds: microseconds * 1000
+    milliseconds: microseconds * 1000,
   });
 }

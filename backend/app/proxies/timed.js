@@ -15,51 +15,51 @@ const routes = {
     access: {
       admin: ['GET'],
       user: ['GET'],
-      customer: ['GET']
-    }
+      customer: ['GET'],
+    },
   },
   subscriptionPackages: {
     path: /^\/subscription-packages$/,
     access: {
-      customer: ['GET']
-    }
+      customer: ['GET'],
+    },
   },
   subscriptionOrders: {
     path: /^\/subscription-orders$/,
     access: {
       admin: ['GET', 'DELETE', 'POST'],
       user: ['GET', 'DELETE'],
-      customer: ['GET', 'POST']
-    }
+      customer: ['GET', 'POST'],
+    },
   },
   subscriptionOrder: {
     path: /^\/subscription-orders\/[1-9][0-9]*$/,
     access: {
       admin: ['DELETE'],
-      user: ['DELETE']
-    }
+      user: ['DELETE'],
+    },
   },
   subscriptionOrderConfirm: {
     path: /^\/subscription-orders\/[1-9][0-9]*\/confirm$/,
     access: {
-      admin: ['POST']
-    }
+      admin: ['POST'],
+    },
   },
   reports: {
     path: /^\/reports$/,
     access: {
       admin: ['GET'],
       user: ['GET'],
-      customer: ['GET']
-    }
+      customer: ['GET'],
+    },
   },
   customer: {
     path: /^\/customers(\/[1-9][0-9]*|)$/,
     access: {
       admin: ['GET'],
-      user: ['GET']
-    }
-  }
+      user: ['GET'],
+    },
+  },
 };
 
 /**
@@ -76,7 +76,9 @@ function checkAccess(request) {
 
   let access = request.user.isAdmin()
     ? 'admin'
-    : request.user.isAdsyUser() ? 'user' : 'customer';
+    : request.user.isAdsyUser()
+    ? 'user'
+    : 'customer';
 
   for (let route in routes) {
     if (request.path.match(routes[route].path)) {
@@ -102,7 +104,7 @@ function checkAccess(request) {
  */
 async function sendMail(request) {
   let mailTransporter = request.app.get('mailTransporter');
-  mailTransporter.verify(async function(error) {
+  mailTransporter.verify(async function (error) {
     if (error) {
       debug.error(`Mail transporter failed: ${error}`);
       return;
@@ -116,20 +118,18 @@ async function sendMail(request) {
         attributes: {
           name: projectName,
           'purchased-time': projectPurchasedTime,
-          'spent-time': projectSpentTime
-        }
-      }
+          'spent-time': projectSpentTime,
+        },
+      },
     } = JSON.parse(
       await rp({
         method: 'get',
-        uri: `${host}${prefix}/subscription-projects/${
-          request.body.data.relationships.project.data.id
-        }`,
+        uri: `${host}${prefix}/subscription-projects/${request.body.data.relationships.project.data.id}`,
         headers: {
           Accept: 'application/vnd.api+json',
           'Content-Type': 'application/vnd.api+json',
-          Authorization: `Bearer ${request.session.timedTokens.access}`
-        }
+          Authorization: `Bearer ${request.session.timedTokens.access}`,
+        },
       })
     );
 
@@ -152,15 +152,15 @@ async function sendMail(request) {
         `Kunde ${customerName} hat für ${projectName} ${hoursAdded} Stunden bestellt.`,
         `Das neue Projekt Total (falls die Bestellung akzeptiert wird) wäre ${hoursTotal} Stunden.`,
         '',
-        `https://my.adfinis-sygroup.ch/timed-admin/confirm-subscriptions`
+        `https://my.adfinis-sygroup.ch/timed-admin/confirm-subscriptions`,
       ].join('\n'),
       html: prepareEmailBody('subscription.de', {
         projectId,
         projectName,
         customerName,
         hoursAdded,
-        hoursTotal
-      })
+        hoursTotal,
+      }),
     });
   });
 }
@@ -201,13 +201,17 @@ export default function createProxy(config) {
 
     proxyReqOptDecorator(
       proxyReqOpts,
-      { session: { timedTokens: { access: token } } }
+      {
+        session: {
+          timedTokens: { access: token },
+        },
+      }
     ) {
       if (token) {
         proxyReqOpts.headers.Authorization = `Bearer ${token}`;
       }
 
       return proxyReqOpts;
-    }
+    },
   });
 }

@@ -17,10 +17,10 @@ describe('User model', () => {
               'dc=adsy-ext',
               'dc=becs',
               'dc=adfinis-sygroup',
-              'dc=ch'
+              'dc=ch',
             ].join(','),
             controls: [],
-            cn: 'adsy-customer'
+            cn: 'adsy-customer',
           },
           {
             dn: [
@@ -30,10 +30,10 @@ describe('User model', () => {
               'dc=adsy-ext',
               'dc=becs',
               'dc=adfinis-sygroup',
-              'dc=ch'
+              'dc=ch',
             ].join(','),
             controls: [],
-            cn: 'customer1-git1-gitlab'
+            cn: 'customer1-git1-gitlab',
           },
           {
             dn: [
@@ -43,18 +43,18 @@ describe('User model', () => {
               'dc=adsy-ext',
               'dc=becs',
               'dc=adfinis-sygroup',
-              'dc=ch'
+              'dc=ch',
             ].join(','),
             controls: [],
-            cn: 'customer1-git2-gitlab'
-          }
-        ]
-      }
+            cn: 'customer1-git2-gitlab',
+          },
+        ],
+      },
     });
 
     expect(user.getGitlabGroups()).to.have.same.members([
       'customer1-git1',
-      'customer1-git2'
+      'customer1-git2',
     ]);
   });
 });

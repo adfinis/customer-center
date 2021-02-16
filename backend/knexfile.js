@@ -6,5 +6,5 @@ module.exports = {
   development: database,
   testing: database,
   staging: database,
-  production: database
+  production: database,
 };

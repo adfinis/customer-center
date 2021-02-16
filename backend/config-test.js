@@ -1,13 +1,13 @@
 module.exports = {
   application: {
     name: 'Customer Center',
-    host: 'localhost:3000'
+    host: 'localhost:3000',
   },
   ldap: {
     url: 'ldap://ldap:4389',
     bindDn:
       'uid=Administrator,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
-    bindCredentials: 'univention'
+    bindCredentials: 'univention',
   },
   login: {
     adminRole: 'adsy-user',
@@ -26,7 +26,7 @@ module.exports = {
       groupSearchAttributes: ['cn'],
 
       usernameField: 'uid',
-      passwordField: 'userPassword'
+      passwordField: 'userPassword',
     },
     ldapCustomer: {
       searchBase: 'ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
@@ -42,20 +42,20 @@ module.exports = {
       groupSearchAttributes: ['cn'],
 
       usernameField: 'uid',
-      passwordField: 'userPassword'
+      passwordField: 'userPassword',
     },
-    secret: 'ponies'
+    secret: 'ponies',
   },
   mailTransporter: {
     host: 'mailhog', // hostname
     secureConnection: false, // use SSL
     port: 1025, // port for secure SMTP
     secure: false,
-    requireTLS: false
+    requireTLS: false,
   },
   mail: {
     from: 'customer-center@ma.il',
-    to: 'person@ma.il'
+    to: 'person@ma.il',
   },
   database: {
     client: 'pg',
@@ -63,18 +63,18 @@ module.exports = {
       host: 'postgres',
       user: 'test',
       password: 'test',
-      database: 'customercenter'
+      database: 'customercenter',
     },
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      tableName: 'migrations'
-    }
+      tableName: 'migrations',
+    },
   },
   passwordReset: {
-    expire: 3600
+    expire: 3600,
   },
   smtp: {
     port: 25,
@@ -82,23 +82,23 @@ module.exports = {
     secure: false,
     auth: {
       user: 'username',
-      pass: 'password'
+      pass: 'password',
     },
     ignoreTLS: false,
     name: 'customer-center.example.com',
     localAddress: '0.0.0.0',
-    authMethod: 'PLAIN'
+    authMethod: 'PLAIN',
   },
   redis: {
     host: 'redis',
     port: 6379,
-    options: {}
+    options: {},
   },
   keycloak: {
     host: 'https://sso.adfinis-sygroup.ch',
     tokenPath: '/auth/realms/adsy/protocol/openid-connect/token',
     clientId: 'timed-confidential',
-    clientSecret: ''
+    clientSecret: '',
   },
   services: {
     timed: {
@@ -106,5 +106,5 @@ module.exports = {
       host: 'http://timedbackend',
       prefix: '/api/v1',
     },
-  }
+  },
 };

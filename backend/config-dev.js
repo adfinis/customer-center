@@ -1,7 +1,7 @@
 module.exports = {
   application: {
     name: 'Customer Center',
-    host: 'customer-center.example.com'
+    host: 'customer-center.example.com',
   },
   ldap: {
     // Further information how to configure LDAP under:
@@ -10,7 +10,7 @@ module.exports = {
     bindDn: 'cn=admin,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch',
     // ldap password
     bindCredentials: '123qwe',
-    cert: ''
+    cert: '',
   },
   login: {
     adminRole: 'adsy-timed-admin',
@@ -30,7 +30,7 @@ module.exports = {
       groupSearchAttributes: ['cn'],
 
       usernameField: 'uid',
-      passwordField: 'userPassword'
+      passwordField: 'userPassword',
     },
     ldapCustomer: {
       // Further information how to configure LDAP under:
@@ -47,9 +47,9 @@ module.exports = {
       groupSearchAttributes: ['cn'],
 
       usernameField: 'uid',
-      passwordField: 'userPassword'
+      passwordField: 'userPassword',
     },
-    secret: 'ponies'
+    secret: 'ponies',
   },
   mailTransporter: {
     host: 'localhost',
@@ -60,7 +60,7 @@ module.exports = {
   },
   mail: {
     from: 'your.service@email.address',
-    to: 'your.target@email.address'
+    to: 'your.target@email.address',
   },
   database: {
     client: 'pg',
@@ -68,18 +68,18 @@ module.exports = {
       host: 'postgres',
       user: 'test',
       password: 'test',
-      database: 'customercenter'
+      database: 'customercenter',
     },
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      tableName: 'migrations'
-    }
+      tableName: 'migrations',
+    },
   },
   passwordReset: {
-    expire: 3600
+    expire: 3600,
   },
   smtp: {
     port: 1025,
@@ -90,13 +90,13 @@ module.exports = {
   redis: {
     host: 'redis',
     port: 6379,
-    options: {}
+    options: {},
   },
   keycloak: {
     host: 'http://keycloak:8080',
     tokenPath: '/auth/realms/master/protocol/openid-connect/token',
     clientId: 'timed-confidential',
-    clientSecret: '802635ae-2395-4419-b15b-b09dc838db14'
+    clientSecret: '802635ae-2395-4419-b15b-b09dc838db14',
   },
   services: {
     timed: {
@@ -104,5 +104,5 @@ module.exports = {
       host: 'http://timedbackend',
       prefix: '/api/v1',
     },
-  }
-}
+  },
+};

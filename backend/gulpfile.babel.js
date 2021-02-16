@@ -10,7 +10,8 @@ function test() {
   return gulp.src(testFiles).pipe(
     mocha({
       reporter: 'spec',
-      compilers: 'js:babel-core/register'
+      require: '@babel/register',
+      exit: true,
     })
   );
 }

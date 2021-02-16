@@ -44,7 +44,7 @@ export default bookshelf.Model.extend(
      */
     getGroupNames() {
       let groups = this.get('groups');
-      return groups && groups.content.map(g => g.cn);
+      return groups && groups.content.map((g) => g.cn);
     },
 
     /**
@@ -55,8 +55,8 @@ export default bookshelf.Model.extend(
      */
     getGitlabGroups() {
       return this.getGroupNames()
-        .filter(group => group.endsWith('-gitlab'))
-        .map(group => group.replace('-gitlab', ''));
+        .filter((group) => group.endsWith('-gitlab'))
+        .map((group) => group.replace('-gitlab', ''));
     },
 
     /**
@@ -99,8 +99,8 @@ export default bookshelf.Model.extend(
      * @public
      */
     hasRedmineAccess() {
-      return this.getGroupNames().find(g => g.endsWith('redmine'));
-    }
+      return this.getGroupNames().find((g) => g.endsWith('redmine'));
+    },
   },
   {
     /**
@@ -135,7 +135,7 @@ export default bookshelf.Model.extend(
       await user.save();
 
       return user;
-    }
+    },
   }
 );
 

@@ -12,14 +12,14 @@ const sessionLifeTime = 24 * 60 * 60; // 1 day
 passport.use(
   'ldapauth-user',
   new LdapStrategy({
-    server: Object.assign({}, config.ldap, config.login.ldap)
+    server: Object.assign({}, config.ldap, config.login.ldap),
   })
 );
 
 passport.use(
   'ldapauth-customer',
   new LdapStrategy({
-    server: Object.assign({}, config.ldap, config.login.ldapCustomer)
+    server: Object.assign({}, config.ldap, config.login.ldapCustomer),
   })
 );
 
@@ -59,7 +59,7 @@ export default function initializePassport(app) {
       maxAge: sessionLifeTime,
       algorithm: 'HS256', // sha256
       requestKey: 'session',
-      requestArg: 'Authorization'
+      requestArg: 'Authorization',
     })
   );
   app.use(passport.initialize());

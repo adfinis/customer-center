@@ -1,7 +1,7 @@
 module.exports = {
   application: {
     name: 'Customer Center',
-    host: 'customer-center.example.com'
+    host: 'customer-center.example.com',
   },
   ldap: {
     // Further information how to configure LDAP under:
@@ -9,7 +9,7 @@ module.exports = {
     url: 'ldap://ucs1:389',
     bindDn: '',
     bindCredentials: '',
-    cert: '/path/to/root_ca_cert.crt'
+    cert: '/path/to/root_ca_cert.crt',
   },
   login: {
     adminRole: 'some-role',
@@ -29,7 +29,7 @@ module.exports = {
       groupSearchAttributes: ['cn'],
 
       usernameField: 'uid',
-      passwordField: 'userPassword'
+      passwordField: 'userPassword',
     },
     ldapCustomer: {
       // Further information how to configure LDAP under:
@@ -45,20 +45,20 @@ module.exports = {
       groupSearchAttributes: ['cn'],
 
       usernameField: 'uid',
-      passwordField: 'userPassword'
+      passwordField: 'userPassword',
     },
-    secret: 'ponies'
+    secret: 'ponies',
   },
   mailTransporter: {
     host: 'yourmailserver', // hostname
     secureConnection: true, // use SSL
     port: 587, // port for secure SMTP
     secure: false,
-    requireTLS: true
+    requireTLS: true,
   },
   mail: {
     from: 'your.service@email.address',
-    to: 'your.target@email.address'
+    to: 'your.target@email.address',
   },
   database: {
     client: 'pg',
@@ -66,18 +66,18 @@ module.exports = {
       host: 'postgres',
       user: 'test',
       password: 'test',
-      database: 'customercenter'
+      database: 'customercenter',
     },
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      tableName: 'migrations'
-    }
+      tableName: 'migrations',
+    },
   },
   passwordReset: {
-    expire: 3600
+    expire: 3600,
   },
   smtp: {
     port: 25,
@@ -85,17 +85,17 @@ module.exports = {
     secure: false,
     auth: {
       user: 'username',
-      pass: 'password'
+      pass: 'password',
     },
     ignoreTLS: false,
     name: 'customer-center.example.com',
     localAddress: '0.0.0.0',
-    authMethod: 'PLAIN'
+    authMethod: 'PLAIN',
   },
   redis: {
     host: 'redis',
     port: 6379,
-    options: {}
+    options: {},
   },
   services: {
     timed: {
@@ -106,7 +106,7 @@ module.exports = {
       prefix: '/api/v1',
       authPath: '/auth/login',
       authRefresh: '/auth/refresh',
-      ttl: 7200 // token TTL in seconds
+      ttl: 7200, // token TTL in seconds
     },
-  }
+  },
 };

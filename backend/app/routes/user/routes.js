@@ -20,7 +20,7 @@ function userToJSON(user) {
     email: user.get('email'),
     language: user.get('language'),
     groups: user.getGroupNames(),
-    emails: user.getEmails()
+    emails: user.getEmails(),
   };
 }
 

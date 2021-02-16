@@ -16,14 +16,14 @@ import {
   setPassword,
   getIdent,
   redisClient,
-  sendMail
+  sendMail,
 } from './helpers';
 
 const router = new Router();
 export default router;
 
 router.post('/login', (request, response, next) => {
-  login('ldapauth-user', request, response, error => {
+  login('ldapauth-user', request, response, (error) => {
     if (error && config.login.ldapCustomer) {
       return login('ldapauth-customer', request, response, next);
     } else if (error) {
@@ -47,7 +47,7 @@ router.post('/send-new-password', async (request, response, next) => {
     let ident = request.body.identification;
     let token = await createToken();
     let user = await new User({
-      username: ident
+      username: ident,
     }).fetch(/*{ required: true }*/);
     let { host } = config.application;
 
@@ -62,15 +62,15 @@ router.post('/send-new-password', async (request, response, next) => {
         to: user.get('email'),
         subject: getMailSubject(language),
         text: await prepareEmailBody(template, {
-          url: `https://${host}/login/new-password/${token}`
-        })
+          url: `https://${host}/login/new-password/${token}`,
+        }),
       });
 
       response.send({
         data: {
           message: 'Great success!',
-          href: 'https://www.youtube.com/watch?v=J88-RdWnNT0'
-        }
+          href: 'https://www.youtube.com/watch?v=J88-RdWnNT0',
+        },
       });
     }
   } catch (error) {

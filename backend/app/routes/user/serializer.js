@@ -9,6 +9,6 @@ export default new JSONAPISerializer('users', {
     'email',
     'language',
     'groups',
-    'emails'
-  ]
+    'emails',
+  ],
 });

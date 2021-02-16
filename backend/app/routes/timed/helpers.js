@@ -14,7 +14,7 @@ export async function timedLogin() {
   const uri = host + tokenPath;
   const options = {
     method: 'POST',
-    body: data
+    body: data,
   };
 
   const response = await fetch(uri, options);
@@ -26,7 +26,7 @@ export async function timedLogin() {
 
   return {
     access: access_token,
-    expires: Date.now() + expires_in * 1000
+    expires: Date.now() + expires_in * 1000,
   };
 }
 
@@ -39,12 +39,12 @@ export async function getCustomer(timedToken, user) {
     headers: {
       accept: 'application/vnd.api+json',
       'content-type': 'application/vnd.api+json',
-      Authorization: `Bearer ${timedToken}`
+      Authorization: `Bearer ${timedToken}`,
     },
     qs: {
-      reference: user.attributes.shortname
+      reference: user.attributes.shortname,
     },
-    json: true
+    json: true,
   });
 
   return response.data[0];

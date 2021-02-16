@@ -61,7 +61,7 @@ jobs:
           node-version: 10
 
       - name: Set test configuration
-        run: ln -s config-test.js config.js
+        run: ln -s config-test.js backend/config.js
 
       - name: Install dependencies
         run: yarn --cwd=backend install

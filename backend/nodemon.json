@@ -1,8 +1,13 @@
 {
   "execMap": {
-    "js": "node_modules/.bin/babel-node",
+    "js": "node_modules/.bin/babel",
     "py": "python",
     "rb": "ruby"
   },
-  "ignore": ["test/*", "knexfile.js", "migrations/*", "gulpfile.js"]
+  "ignore": [
+    "test/*",
+    "knexfile.js",
+    "migrations/*",
+    "gulpfile.js"
+  ]
 }

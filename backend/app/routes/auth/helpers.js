@@ -35,7 +35,7 @@ function getLanguage(acceptLanguage) {
   // Example string: en-US,en-GB;q=0.8,en;q=0.7,de-CH;q=0.5,de-DE;q=0.3,de;q=0.2
   let language = acceptLanguage
     .split(',')
-    .find(l => l.startsWith('en') || l.startsWith('de'));
+    .find((l) => l.startsWith('en') || l.startsWith('de'));
 
   if (!language) {
     return null;
@@ -60,18 +60,18 @@ export function login(strategy, request, response, next) {
 }
 
 function loginSuccessful(request, response, next, ldapUser) {
-  request.login(ldapUser, async loginError => {
+  request.login(ldapUser, async (loginError) => {
     if (loginError) return next(loginError);
 
     let claims = {
       iss: config.application.name,
       aud: config.application.host,
-      uid: users.get(ldapUser).id
+      uid: users.get(ldapUser).id,
     };
 
     const userGroups = users.get(ldapUser).getGroupNames();
-    const isMember = group => userGroups.some(g => g.endsWith(group));
-    const isMemberOrEmployee = group =>
+    const isMember = (group) => userGroups.some((g) => g.endsWith(group));
+    const isMemberOrEmployee = (group) =>
       isMember(group) || users.get(ldapUser).isEmployee();
 
     // If user is in the timed group, get timed token
@@ -179,10 +179,8 @@ export function createToken() {
 
 export function setToken(ident, token) {
   return new Promise((resolve, reject) => {
-    redisClient.set(
-      `pw-reset-token-${token}`,
-      ident,
-      error => (error ? reject(error) : resolve())
+    redisClient.set(`pw-reset-token-${token}`, ident, (error) =>
+      error ? reject(error) : resolve()
     );
     redisClient.expire(`pw-reset-token-${token}`, config.passwordReset.expire);
   });
@@ -190,16 +188,17 @@ export function setToken(ident, token) {
 
 export function getIdent(token) {
   return new Promise((resolve, reject) =>
-    redisClient.get(
-      `pw-reset-token-${token}`,
-      (error, ident) => (error ? reject(error) : resolve(ident))
+    redisClient.get(`pw-reset-token-${token}`, (error, ident) =>
+      error ? reject(error) : resolve(ident)
     )
   );
 }
 
 function ldapBind(ldapClient, dn, password) {
   return new Promise((resolve, reject) =>
-    ldapClient.bind(dn, password, error => (error ? reject(error) : resolve()))
+    ldapClient.bind(dn, password, (error) =>
+      error ? reject(error) : resolve()
+    )
   );
 }
 
@@ -211,7 +210,7 @@ function ldapFindOne(ldapClient, searchBase, options) {
       let searchEntry;
 
       // eslint-disable-next-line no-return-assign
-      response.once('searchEntry', entry => (searchEntry = entry));
+      response.once('searchEntry', (entry) => (searchEntry = entry));
       response.once('error', reject);
       response.once('end', () => resolve(searchEntry));
     })
@@ -220,7 +219,9 @@ function ldapFindOne(ldapClient, searchBase, options) {
 
 function ldapModify(ldapClient, dn, changes) {
   return new Promise((resolve, reject) =>
-    ldapClient.modify(dn, changes, error => (error ? reject(error) : resolve()))
+    ldapClient.modify(dn, changes, (error) =>
+      error ? reject(error) : resolve()
+    )
   );
 }
 
@@ -235,26 +236,26 @@ export async function setPassword(uid, password) {
     let { dn, attributes } = await ldapFindOne(ldapClient, searchBase, {
       filter: searchFilter.replace('{{username}}', uid),
       attributes: ['dn', passwordField],
-      scope: 'sub'
+      scope: 'sub',
     });
 
-    let { vals: [oldPassword] } = attributes.find(
-      attribute => attribute.type === passwordField
-    );
+    let {
+      vals: [oldPassword],
+    } = attributes.find((attribute) => attribute.type === passwordField);
 
     await ldapModify(ldapClient, dn, [
       new ldap.Change({
         operation: 'delete',
         modification: {
-          [passwordField]: oldPassword
-        }
+          [passwordField]: oldPassword,
+        },
       }),
       new ldap.Change({
         operation: 'add',
         modification: {
-          [passwordField]: password
-        }
-      })
+          [passwordField]: password,
+        },
+      }),
     ]);
   } finally {
     ldapClient.unbind();

@@ -3,19 +3,18 @@ import * as path from 'path';
 
 import crypto from 'crypto';
 import passport from 'passport';
-import redis from 'redis';
 import ldap from 'ldapjs';
-import nodemailer from 'nodemailer';
-import transport from 'nodemailer-smtp-transport';
 import Handlebars from 'handlebars';
 import denodeify from 'denodeify';
 
+import { ldapConnection, ldapUsers } from './config';
 import { timedLogin } from '../timed/helpers';
 import { getCustomer as getTimedCustomer } from '../timed/helpers';
 import { users } from '../../initialize/passport';
 import PWGen from '../../utils/pwgen';
-import config from '../../config';
 import debug from '../../debug';
+import config from '../../convict';
+import redisClient from '../../redis';
 
 //  _                _
 // | |    ___   __ _(_)_ __
@@ -64,8 +63,8 @@ function loginSuccessful(request, response, next, ldapUser) {
     if (loginError) return next(loginError);
 
     let claims = {
-      iss: config.application.name,
-      aud: config.application.host,
+      iss: config.get('app.name'),
+      aud: config.get('app.host'),
       uid: users.get(ldapUser).id,
     };
 
@@ -89,17 +88,6 @@ function loginSuccessful(request, response, next, ldapUser) {
     });
   });
 }
-
-// export async function addVaultTokenToSession(session, username, password) {
-//   try {
-//     session.vaultToken = await vaultLogin(username, password);
-//     session.vaultTokenTTL = new Date().getTime();
-//   } catch (error) {
-//     debug.error('vault auth error', error.message);
-//   }
-
-//   return session;
-// }
 
 async function addTimedTokenToSession(session, user) {
   try {
@@ -125,19 +113,10 @@ async function addTimedTokenToSession(session, user) {
 // |_| \_\___||___/\___|\__|
 //
 
-export const redisClient = redis.createClient(
-  config.redis.port,
-  config.redis.host,
-  config.redis.options
-);
-
-const mailer = nodemailer.createTransport(transport(config.smtp));
-
-export const sendMail = denodeify(mailer.sendMail.bind(mailer));
 const readFile = denodeify(fs.readFile);
 
 export function getMailSubject(language = 'en') {
-  let { name } = config.application;
+  let name = config.get('app.name');
 
   switch (language) {
     case 'de':
@@ -182,7 +161,10 @@ export function setToken(ident, token) {
     redisClient.set(`pw-reset-token-${token}`, ident, (error) =>
       error ? reject(error) : resolve()
     );
-    redisClient.expire(`pw-reset-token-${token}`, config.passwordReset.expire);
+    redisClient.expire(
+      `pw-reset-token-${token}`,
+      config.get('auth.expirePassword')
+    );
   });
 }
 
@@ -226,8 +208,8 @@ function ldapModify(ldapClient, dn, changes) {
 }
 
 export async function setPassword(uid, password) {
-  let { url, bindDn, bindCredentials } = config.ldap;
-  let { passwordField, searchBase, searchFilter } = config.login.ldap;
+  let { url, bindDn, bindCredentials } = ldapConnection;
+  let { passwordField, searchBase, searchFilter } = ldapUsers;
   let ldapClient = ldap.createClient({ url });
 
   await ldapBind(ldapClient, bindDn, bindCredentials);

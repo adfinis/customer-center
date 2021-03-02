@@ -1,16 +1,18 @@
 import Bookshelf from 'bookshelf';
-import knex from 'knex';
-import config from '../../config';
 
-const { isArray } = Array;
-const bookshelf = new Bookshelf(knex(config.database));
+import debug from '../../debug';
+import config from '../../convict';
+import database from '../../knex';
+
+const bookshelf = new Bookshelf(database);
 
 /**
  * User model *
  * @class User
  * @public
  */
-export default bookshelf.Model.extend(
+export default bookshelf.model(
+  'User',
   {
     tableName: 'user',
 
@@ -67,7 +69,7 @@ export default bookshelf.Model.extend(
      * @author Jonas Cosandey <jonas.cosandey@adfinis-sygroup.ch>
      */
     isAdmin() {
-      return this.getGroupNames().includes(config.login.adminRole);
+      return this.getGroupNames().includes(config.get('auth.adminRole'));
     },
 
     /**
@@ -78,7 +80,7 @@ export default bookshelf.Model.extend(
      * @author Jonas Cosandey <jonas.cosandey@adfinis-sygroup.ch>
      */
     isAdsyUser() {
-      return this.getGroupNames().includes(config.login.employeeRole);
+      return this.getGroupNames().includes(config.get('auth.employeeRole'));
     },
 
     /**
@@ -110,12 +112,14 @@ export default bookshelf.Model.extend(
      * @return {Promise.<User>}
      * @public
      */
-    // eslint-disable-next-line max-statements
     async syncLdap(ldap) {
-      let user = await new this({ username: ldap.uid }).fetch();
+      let User = bookshelf.model('User');
+      let user = await new User({ username: ldap.uid }).fetch({
+        require: false,
+      });
 
       if (!user) {
-        user = new this();
+        user = new User();
       }
 
       let groups = getGroups(ldap);
@@ -146,7 +150,7 @@ export default bookshelf.Model.extend(
  * @return {string|null} The email address
  */
 function getEmail(ldap) {
-  return isArray(ldap.mail) ? ldap.mail[0] : ldap.mail || null;
+  return Array.isArray(ldap.mail) ? ldap.mail[0] : ldap.mail || null;
 }
 
 /**
@@ -156,5 +160,7 @@ function getEmail(ldap) {
  * @return {Object[]} The ldap group objects
  */
 function getGroups(ldap) {
-  return isArray(ldap._groups) ? ldap._groups : ldap._groups && [ldap._groups];
+  return Array.isArray(ldap._groups)
+    ? ldap._groups
+    : ldap._groups && [ldap._groups];
 }

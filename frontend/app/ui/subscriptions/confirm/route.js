@@ -10,7 +10,7 @@ export default class SubscriptionsConfirmRoute extends AuthenticatedRoute {
   beforeModel(transition) {
     super.beforeModel(transition);
 
-    if (!this.account.isInGroup("adsy-timed-admin")) {
+    if (!this.account.isInGroup("admin")) {
       this.notify.error(this.intl.t("page.subscriptions.confirm.no-access"));
       this.transitionTo("subscriptions.index");
     }

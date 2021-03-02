@@ -1,10 +1,10 @@
 import fetch from 'node-fetch';
 import rp from 'request-promise';
 
-import config from '../../config';
+import config from '../../convict';
 
 export async function timedLogin() {
-  const { host, tokenPath, clientId, clientSecret } = config.keycloak;
+  const { host, tokenPath, clientId, clientSecret } = config.get('idp');
 
   const data = new URLSearchParams();
   data.append('grant_type', 'client_credentials');
@@ -31,7 +31,7 @@ export async function timedLogin() {
 }
 
 export async function getCustomer(timedToken, user) {
-  const { host, prefix } = config.services.timed;
+  const { host, prefix } = config.get('timed');
 
   const response = await rp({
     method: 'get',

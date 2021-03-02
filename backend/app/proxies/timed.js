@@ -3,11 +3,12 @@ import httpProxy from 'express-http-proxy';
 import rp from 'request-promise';
 import queryString from 'qs';
 
-import config from '../config';
-import debug from '../debug';
+import { prepareEmailBody } from '../routes/auth/helpers';
 import { parseDuration } from '../utils/django';
 import { reportInvalidAccess } from '../utils/sentry';
-import { prepareEmailBody } from '../routes/auth/helpers';
+import debug from '../debug';
+import config from '../convict';
+import smtpTransport from '../nodemailer';
 
 const routes = {
   subscriptionProject: {
@@ -103,14 +104,13 @@ function checkAccess(request) {
  * @author Jonas Cosandey <jonas.cosandey@adfinis-sygroup.ch>
  */
 async function sendMail(request) {
-  let mailTransporter = request.app.get('mailTransporter');
-  mailTransporter.verify(async function (error) {
+  smtpTransport.verify(async function (error) {
     if (error) {
       debug.error(`Mail transporter failed: ${error}`);
       return;
     }
 
-    let { host, prefix } = config.services.timed;
+    let { host, prefix } = config.get('timed');
 
     let {
       data: {
@@ -144,9 +144,9 @@ async function sendMail(request) {
       .subtract(parseDuration(projectSpentTime));
     let hoursTotal = newTime.asHours();
 
-    await mailTransporter.sendMail({
-      from: config.mail.from,
-      to: config.mail.to,
+    await smtpTransport.sendMail({
+      from: config.get('smtp.from'),
+      to: config.get('smtp.to'),
       subject: `Customer Center Credits/Reports: ${customerName} hat ${hoursAdded} Stunde/n bestellt.`,
       text: [
         `Kunde ${customerName} hat für ${projectName} ${hoursAdded} Stunden bestellt.`,
@@ -171,7 +171,6 @@ export default function createProxy(config) {
       return checkAccess(request);
     },
 
-    // eslint-disable-next-line max-statements
     proxyReqPathResolver(request) {
       let newPath = `${path.join(config.prefix, request.path)}?`;
       let queryParams = request.query;

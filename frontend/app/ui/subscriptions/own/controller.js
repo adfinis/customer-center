@@ -9,10 +9,7 @@ export default class SubscriptionsOwnController extends Controller {
   @alias("model") projects;
 
   get showReloadLink() {
-    return this.account.isInGroups("one", [
-      "adsy-timed-admin",
-      "adsy-customer",
-    ]);
+    return this.account.isInGroups("one", ["admin", "adsy-customer"]);
   }
 
   breadcrumbs = [

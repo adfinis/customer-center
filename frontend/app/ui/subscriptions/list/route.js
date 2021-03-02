@@ -9,7 +9,7 @@ export default class SubscriptionsListRoute extends AuthenticatedRoute {
     super.beforeModel(transition);
 
     // Customers/users don't have access to the full list.
-    if (!this.account.isInGroups("one", ["adsy-user", "adsy-timed-admin"])) {
+    if (!this.account.isInGroups("one", ["employees", "admin"])) {
       this.transitionTo("subscriptions.own");
     }
   }

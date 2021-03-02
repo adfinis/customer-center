@@ -11,9 +11,7 @@ export default class SubscriptionsReloadRoute extends AuthenticatedRoute {
     super.beforeModel(transition);
 
     // Normal users cannot recharge the subscription.
-    if (
-      !this.account.isInGroups("one", ["adsy-timed-admin", "adsy-customer"])
-    ) {
+    if (!this.account.isInGroups("one", ["admin", "adsy-customer"])) {
       this.notify.error(this.intl.t("page.subscriptions.reload.no-access"));
       this.transitionTo(
         "subscriptions.detail",

@@ -18,7 +18,7 @@ export default class SubscriptionsReloadController extends Controller {
   @tracked changeset;
 
   get showForm() {
-    return this.account.isInGroup("adsy-timed-admin");
+    return this.account.isInGroup("admin");
   }
 
   get showPackages() {

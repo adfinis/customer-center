@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
 import timedToken from './routes/timed/token';
-
 import auth from './routes/auth/routes';
 import services from './routes/services/routes';
 import user from './routes/user/routes';
@@ -16,7 +15,11 @@ function requireAuthentication(request, response, next) {
 }
 
 const router = new Router();
-export default router;
+
+router.use('/api/v1/health', (request, response) => {
+  response.type('application/health+json');
+  response.json({ status: 'pass' });
+});
 
 router.use(timedToken);
 
@@ -33,3 +36,5 @@ router.get('/', (request, response) => {
 });
 
 router.use(error);
+
+export default router;

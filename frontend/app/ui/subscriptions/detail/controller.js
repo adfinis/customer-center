@@ -35,7 +35,10 @@ export default class SubscriptionsDetailController extends Controller {
   @task *fetchNextReports() {
     try {
       this.reportsPage++;
-      const reports = yield this.timed.getProjectReports(this.reportsPage);
+      const reports = yield this.timed.getProjectReports(
+        this.project.id,
+        this.reportsPage
+      );
       this.reports.pushObjects(reports.toArray());
 
       this.reportsNext = Boolean(get(reports, "links.next"));
@@ -48,7 +51,10 @@ export default class SubscriptionsDetailController extends Controller {
   @task *fetchNextOrders() {
     try {
       this.ordersPage++;
-      const orders = yield this.timed.getProjectOrders(this.ordersPage);
+      const orders = yield this.timed.getProjectOrders(
+        this.project.id,
+        this.ordersPage
+      );
       this.orders.pushObjects(orders.toArray());
 
       this.ordersNext = Boolean(get(orders, "links.next"));

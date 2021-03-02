@@ -1,25 +1,29 @@
 import passport from 'passport';
-import redis from 'redis';
 import jwt from 'jwt-redis-session';
 import LdapStrategy from 'passport-ldapauth';
 
-import config from '../config';
+import {
+  ldapConnection,
+  ldapUsers,
+  ldapCustomers,
+} from '../routes/auth/config';
 import User from '../routes/user/model';
+import config from '../convict';
+import redisClient from '../redis';
 
-// eslint-disable-next-line no-magic-numbers
 const sessionLifeTime = 24 * 60 * 60; // 1 day
 
 passport.use(
   'ldapauth-user',
   new LdapStrategy({
-    server: Object.assign({}, config.ldap, config.login.ldap),
+    server: Object.assign({}, ldapConnection, ldapUsers),
   })
 );
 
 passport.use(
   'ldapauth-customer',
   new LdapStrategy({
-    server: Object.assign({}, config.ldap, config.login.ldapCustomer),
+    server: Object.assign({}, ldapConnection, ldapCustomers),
   })
 );
 
@@ -49,12 +53,8 @@ passport.deserializeUser(async (uid, done) => {
 export default function initializePassport(app) {
   app.use(
     jwt({
-      client: redis.createClient(
-        config.redis.port,
-        config.redis.host,
-        config.redis.options
-      ),
-      secret: config.login.secret,
+      client: redisClient,
+      secret: config.get('auth.secret'),
       keyspace: 'session:',
       maxAge: sessionLifeTime,
       algorithm: 'HS256', // sha256

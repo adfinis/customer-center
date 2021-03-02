@@ -33,7 +33,7 @@ cn: groups
 objectclass: organizationalRole
 objectclass: top
 
-# Entry 4: cn=adsy-user,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,...
+# Entry 4: cn=employees,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,...
 dn: cn=adsy-rt,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 cn: adsy-rt
 gidnumber: 533
@@ -45,9 +45,9 @@ objectclass: top
 sambagrouptype: 2
 sambasid: S-1-5-21--2000
 
-# Entry 4: cn=adsy-user,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,...
-dn: cn=adsy-user,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
-cn: adsy-user
+# Entry 4: cn=employees,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,...
+dn: cn=employees,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+cn: employees
 gidnumber: 500
 memberuid: uid=user1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 objectclass: posixGroup
@@ -56,8 +56,8 @@ objectclass: top
 sambagrouptype: 2
 sambasid: S-1-5-21--2000
 
-dn: cn=adsy-timed-admin,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
-cn: adsy-timed-admin
+dn: cn=admin,cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+cn: admin
 gidnumber: 505
 memberuid: uid=admin1,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
 objectclass: posixGroup

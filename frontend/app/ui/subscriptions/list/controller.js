@@ -112,5 +112,8 @@ export default class SubscriptionsListController extends Controller {
   setup(model, transition) {
     this.projects = model;
     this._projects = model;
+
+    this.searches = [];
+    this.sortBy = {};
   }
 }

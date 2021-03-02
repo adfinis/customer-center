@@ -53,15 +53,55 @@ jobs:
         image: mailhog/mailhog:v1.0.1
         ports:
           - '8025:8025'
+    env:
+      APPLICATION_NAME: Customer Center
+      APPLICATION_HOST: loclhost
+
+      IDP_HOST: http://keycloak:8080
+      IDP_TOKEN_PATH: /auth/realms/master/protocol/openid-connect/token
+      IDP_CLIENT_ID: timed-confidential
+      IDP_CLIENT_SECRET: 802635ae-2395-4419-b15b-b09dc838db14
+
+      TIMED_HOST: http://timedbackend
+      TIMED_PREFIX: /api/v1
+
+      POSTGRES_HOST: postgres
+      POSTGRES_USERNAME: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DATABASE: customercenter
+
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+
+      SMTP_PORT: 1025
+      SMTP_HOST: mailhog
+      SMTP_SECURE: false
+      SMTP_REQUIRE_TLS: false
+      SMTP_FROM: from@example.com
+      SMTP_TO: to@example.com
+
+      AUTH_SECRET: ponies
+      AUTH_ROLE_ADMIN: employees
+      AUTH_ROLE_EMPLOYEE: employees
+      AUTH_EXPIRE_PASSWORD: 3600
+      AUTH_USERS_SEARCH_BASE: cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+      AUTH_USERS_SEARCH_FILTER: (uid={{username}})'
+      AUTH_USERS_GROUPSEARCH_BASE: cn=groups,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+      AUTH_USERS_GROUPSEARCH_FILTER: (&(|(uniqueMember={{dn}})(memberUid={{dn}}))(objectClass=posixGroup))
+      AUTH_CUSTOMERS_SEARCH_BASE: ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+      AUTH_CUSTOMERS_SEARCH_FILTER: (uid={{username}})'
+      AUTH_CUSTOMERS_GROUPSEARCH_BASE: ou=customers,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+      AUTH_CUSTOMERS_GROUPSEARCH_FILTER: (&(|(uniqueMember={{dn}})(memberUid={{dn}}))(objectClass=posixGroup))
+
+      LDAP_HOST: ldap://ldap:4389
+      LDAP_BIND_DN: uid=Administrator,cn=users,dc=adsy-ext,dc=becs,dc=adfinis-sygroup,dc=ch
+      LDAP_BIND_CREDENTIALS: univention
 
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 10
-
-      - name: Set test configuration
-        run: ln -s config-test.js backend/config.js
 
       - name: Install dependencies
         run: yarn --cwd=backend install

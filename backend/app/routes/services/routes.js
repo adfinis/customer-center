@@ -1,11 +1,16 @@
 import { Router } from 'express';
 
-import config from '../../config';
 import createTimedProxy from '../../proxies/timed';
+import config from '../../convict';
 
 let router = new Router();
 export default router;
 
-const { timed } = config.services;
-
-router.use('/proxy/timed', createTimedProxy(timed));
+router.use(
+  '/proxy/timed',
+  createTimedProxy({
+    type: 'timed',
+    host: config.get('timed.host'),
+    prefix: config.get('timed.prefix'),
+  })
+);

@@ -3,9 +3,6 @@ import fs from 'fs';
 import { Router } from 'express';
 import rp from 'request-promise';
 
-import debug from '../../debug';
-import config from '../../config';
-import User from '../user/model';
 import {
   login,
   createToken,
@@ -15,16 +12,20 @@ import {
   createPassword,
   setPassword,
   getIdent,
-  redisClient,
   sendMail,
 } from './helpers';
+import { ldapCustomers } from './config';
+import User from '../user/model';
+import debug from '../../debug';
+import config from '../../convict';
+import redisClient from '../../redis';
 
 const router = new Router();
 export default router;
 
 router.post('/login', (request, response, next) => {
   login('ldapauth-user', request, response, (error) => {
-    if (error && config.login.ldapCustomer) {
+    if (error && ldapCustomers) {
       return login('ldapauth-customer', request, response, next);
     } else if (error) {
       return next(error);
@@ -41,7 +42,6 @@ router.post('/logout', async (request, response) => {
 });
 
 // TODO: Should we report errors on this route?
-// eslint-disable-next-line max-statements
 router.post('/send-new-password', async (request, response, next) => {
   try {
     let ident = request.body.identification;
@@ -49,7 +49,7 @@ router.post('/send-new-password', async (request, response, next) => {
     let user = await new User({
       username: ident,
     }).fetch(/*{ required: true }*/);
-    let { host } = config.application;
+    let host = config.get('app.host');
 
     if (user && user.get('email')) {
       await setToken(ident, token);
@@ -78,7 +78,6 @@ router.post('/send-new-password', async (request, response, next) => {
   }
 });
 
-// eslint-disable-next-line max-statements
 router.get('/reset-password/:token', async (request, response, next) => {
   try {
     if (!request.params.token) {

@@ -12,14 +12,14 @@ udm groups/group create --set name=mon --set description="Monitoring-Funktion Ad
 udm groups/group create --set name=timed --set description="timed-Funktion Admin" --position "cn=groups,$ldap_base"
 udm groups/group create --set name=vault --set description="Vault-Funktion Admin" --position "cn=groups,$ldap_base"
 
-udm groups/group create --set name="adsy-user" --set description="adsy user group" --position="cn=groups,$ldap_base"
+udm groups/group create --set name="employees" --set description="adsy user group" --position="cn=groups,$ldap_base"
 udm users/user create \
       --position="cn=users,$ldap_base" \
       --set username="$username" \
       --set firstname="Solaire" \
       --set lastname="Astora" \
       --set description="Solaire of Astora" \
-      --set primaryGroup="cn=adsy-user,cn=groups,$ldap_base" \
+      --set primaryGroup="cn=employees,cn=groups,$ldap_base" \
       --set password="$password"\
       --set e-mail="$username@adfinis-sygroup.ch" \
       --set shell="/bin/bash"\

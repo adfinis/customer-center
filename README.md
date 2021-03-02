@@ -30,6 +30,9 @@ Configure the endpoints as needed.
 Run `make serve-local` to start the frontend directly.
 
 The default password for all users is `123qweasd`.
+### Debugger
+To attach a debugger you need to run the backend with `yarn debug` (in the container). There is a configuration file for VSCode but you can use any Node debugger to attach to the service.
+
 
 ## Deployment
 

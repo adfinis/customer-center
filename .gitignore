@@ -2,7 +2,8 @@
 .directory
 
 # Editors
-.vscode
+.vscode/*
+!.vscode/launch.json
 *.swp
 
 # Node

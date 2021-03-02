@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "start": "node --require=@babel/register app/start.js",
+    "debug": "node --inspect=0.0.0.0:9229 --require=@babel/register app/start.js",
     "watch": "nodemon --exec yarn start",
     "build": "babel app -d dist",
     "serve": "node dist/start.js",

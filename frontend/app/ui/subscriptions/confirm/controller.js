@@ -24,7 +24,9 @@ export default class SubscriptionsConfirmController extends Controller {
     try {
       await UIkit.modal.confirm(
         this.intl.t("page.subscriptions.confirm.prompt.accept", {
-          duration: order.duration.locale(this.account.language).humanize(),
+          duration: order.duration.locale(this.account.language).humanize({
+            h: Infinity,
+          }),
           customer,
           project,
         })
@@ -54,7 +56,9 @@ export default class SubscriptionsConfirmController extends Controller {
     try {
       await UIkit.modal.confirm(
         this.intl.t("page.subscriptions.confirm.prompt.deny", {
-          duration: order.duration.locale(this.account.language).humanize(),
+          duration: order.duration.locale(this.account.language).humanize({
+            h: Infinity,
+          }),
           customer,
           project,
         })

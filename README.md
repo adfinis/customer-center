@@ -15,16 +15,6 @@ Adfinis customer support portal with LDAP and Timed integration.
 * `cd customer-center`
 * `make init`
 
-### Configuration
-
-*Info: for development setup see Development*
-
-Set `ldap.bindCredentials` and `services.timed.password` in `backend/config.js` to their respective passwords.
-
-To use the timedbackend service you need to configure the api user in the django admin.
-
-Configure the endpoints as needed.
-
 ## Development
 
 Run `make serve-local` to start the frontend directly.

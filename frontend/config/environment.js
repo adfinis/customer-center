@@ -2,6 +2,10 @@
 
 const { name } = require("../package");
 
+function env(key, fallback) {
+  return process.env[key] ?? fallback;
+}
+
 module.exports = function (environment) {
   const ENV = {
     environment,
@@ -10,6 +14,11 @@ module.exports = function (environment) {
 
     rootURL: "/",
     locationType: "auto",
+
+    auth: {
+      adminRole: env("AUTH_ROLE_ADMIN", "admin"),
+      employeeRole: env("AUTH_ROLE_EMPLOYEE", "employees"),
+    },
 
     EmberENV: {
       FEATURES: {},

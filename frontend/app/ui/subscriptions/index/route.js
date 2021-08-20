@@ -1,6 +1,6 @@
 import { inject as service } from "@ember/service";
-import AuthenticatedRoute from "customer-center/routes/-authenticated";
 import ENV from "customer-center/config/environment";
+import AuthenticatedRoute from "customer-center/routes/-authenticated";
 
 export default class SubscriptionsIndexRoute extends AuthenticatedRoute {
   @service account;

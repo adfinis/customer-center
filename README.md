@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/adfinis-sygroup/customer-center.svg?branch=master)](https://travis-ci.org/adfinis-sygroup/customer-center)
+[![Build Status](https://travis-ci.org/adfinis-sygroup/customer-center.svg?branch=main)](https://travis-ci.org/adfinis-sygroup/customer-center)
 
 # Adfinis AG - Customer Center
 

@@ -18,7 +18,7 @@ env:
 
 branches:
   only:
-    - master
+    - main
 
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash

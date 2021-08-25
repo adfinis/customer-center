@@ -1,5 +1,7 @@
 FROM node:14-alpine AS builder
 
+ARG AUTH_ROLE_ADMIN
+ARG AUTH_ROLE_EMPLOYEE
 # Install dependencies.
 RUN apk update && \
   apk add --no-cache \

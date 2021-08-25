@@ -132,7 +132,7 @@ jobs:
         with:
           context: ./frontend
           file: ./frontend/Dockerfile
-          build_args: AUTH_ROLE_ADMIN=${{ secrets.AUTH_ROLE_ADMIN}} AUTH_ROLE_EMPLOYEE=${{ secrets.AUTH_ROLE_EMPLOYEE}}
+          build-args: AUTH_ROLE_ADMIN=${{ secrets.AUTH_ROLE_ADMIN }}, AUTH_ROLE_EMPLOYEE=${{ secrets.AUTH_ROLE_EMPLOYEE }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.prep.outputs.tags }}
           labels: |

@@ -16,5 +16,6 @@ provisioning/rt4/var/mason_data
 provisioning/rt4/var/rt4
 millis-test-sync
 frontend/root
+frontend/tmp
 ldap/lib
 ldap/slapd.d

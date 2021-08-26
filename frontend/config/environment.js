@@ -18,6 +18,8 @@ module.exports = function (environment) {
     auth: {
       adminRole: env("AUTH_ROLE_ADMIN", "admin"),
       employeeRole: env("AUTH_ROLE_EMPLOYEE", "employees"),
+      timedRole: env("AUTH_ROLE_TIMED", "timed"),
+      customerRole: env("AUTH_ROLE_CUSTOMER", "adsy-customer"),
     },
 
     EmberENV: {

@@ -2,6 +2,7 @@ import Controller from "@ember/controller";
 import { action, get } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
+import ENV from "customer-center/config/environment";
 import { task } from "ember-concurrency-decorators";
 
 export default class SubscriptionsDetailController extends Controller {
@@ -16,7 +17,10 @@ export default class SubscriptionsDetailController extends Controller {
   @tracked reportsNext;
 
   get showReloadButton() {
-    return this.account.isInGroups("one", ["admin", "adsy-customer"]);
+    return this.account.isInGroups("one", [
+      ENV.auth.adminRole,
+      ENV.auth.customerRole,
+    ]);
   }
 
   get breadcrumbs() {

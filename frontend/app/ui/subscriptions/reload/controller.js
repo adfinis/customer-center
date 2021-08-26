@@ -3,6 +3,7 @@ import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { isEmpty } from "@ember/utils";
 import { tracked } from "@glimmer/tracking";
+import ENV from "customer-center/config/environment";
 import { Changeset } from "ember-changeset";
 import moment from "moment";
 import UIkit from "uikit";
@@ -18,11 +19,14 @@ export default class SubscriptionsReloadController extends Controller {
   @tracked changeset;
 
   get showForm() {
-    return this.account.isInGroup("admin");
+    return this.account.isInGroup(ENV.auth.adminRole);
   }
 
   get showPackages() {
-    return this.account.isInGroups("all", ["timed", "adsy-customer"]);
+    return this.account.isInGroups("all", [
+      ENV.auth.timedRole,
+      ENV.auth.customerRole,
+    ]);
   }
 
   get breadcrumbs() {

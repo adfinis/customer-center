@@ -1,6 +1,7 @@
 import Controller from "@ember/controller";
 import { alias } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
+import ENV from "customer-center/config/environment";
 
 export default class SubscriptionsOwnController extends Controller {
   @service account;
@@ -9,7 +10,10 @@ export default class SubscriptionsOwnController extends Controller {
   @alias("model") projects;
 
   get showReloadLink() {
-    return this.account.isInGroups("one", ["admin", "adsy-customer"]);
+    return this.account.isInGroups("one", [
+      ENV.auth.adminRole,
+      ENV.auth.customerRole,
+    ]);
   }
 
   breadcrumbs = [

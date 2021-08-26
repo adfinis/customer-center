@@ -1,4 +1,5 @@
 import { inject as service } from "@ember/service";
+import ENV from "customer-center/config/environment";
 import AuthenticatedRoute from "customer-center/routes/-authenticated";
 
 export default class SubscriptionsReloadRoute extends AuthenticatedRoute {
@@ -11,7 +12,12 @@ export default class SubscriptionsReloadRoute extends AuthenticatedRoute {
     super.beforeModel(transition);
 
     // Normal users cannot recharge the subscription.
-    if (!this.account.isInGroups("one", ["admin", "adsy-customer"])) {
+    if (
+      !this.account.isInGroups("one", [
+        ENV.auth.adminRole,
+        ENV.auth.customerRole,
+      ])
+    ) {
       this.notify.error(this.intl.t("page.subscriptions.reload.no-access"));
       this.transitionTo(
         "subscriptions.detail",
@@ -25,7 +31,7 @@ export default class SubscriptionsReloadRoute extends AuthenticatedRoute {
 
     // Customers get a list of packages to choose from.
     let packages = [];
-    if (this.account.isInGroup("adsy-customer")) {
+    if (this.account.isInGroup(ENV.auth.customerRole)) {
       const billing_type = project.billingType.get("id");
       packages = await this.timed.getReloadPackages(billing_type);
     }

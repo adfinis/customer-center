@@ -1,6 +1,7 @@
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import ENV from "customer-center/config/environment";
 
 export default class ApplicationController extends Controller {
   @service account;
@@ -8,7 +9,7 @@ export default class ApplicationController extends Controller {
   @service intl;
 
   get showConfirmInMenu() {
-    return this.account.isInGroup("admin");
+    return this.account.isInGroup(ENV.auth.adminRole);
   }
 
   get languages() {

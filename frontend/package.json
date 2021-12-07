@@ -1,6 +1,6 @@
 {
   "name": "customer-center",
-  "description": "Adfinis customer support portal with LDAP and Timed integration.",
+  "description": "Adfinis customer support portal with Timed integration.",
   "repository": "https://github.com/adfinis-sygroup/customer-center",
   "version": "2.0.0",
   "license": "MIT",
@@ -11,7 +11,6 @@
     "url": "https://adfinis.com/"
   },
   "maintainers": [
-    "Florian Mäder <florian.maeder@adfinis.com>",
     "Akanksh Saxena <akanksh.saxena@adfinis.com>",
     "Jonas Cosandey <jonas.cosandey@adfinis.com>"
   ],
@@ -20,7 +19,7 @@
     "test": "tests"
   },
   "engines": {
-    "node": "10.* || >= 12"
+    "node": "12.* || >= 14"
   },
   "ember": {
     "edition": "octane"

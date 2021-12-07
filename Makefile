@@ -1,18 +1,12 @@
 init:
 	./provisioning/init.sh
 
-install: install-frontend install-backend knex-migrations setup-timed timed-test-data
+install: install-frontend knex-migrations setup-timed timed-test-data
 
 install-frontend:
 	@yarn --cwd=frontend install
 
-install-backend:
-	@yarn --cwd=backend install
-
-test: test-backend test-frontend
-
-test-backend:
-	@yarn --cwd=backend test
+test: test-frontend
 
 test-frontend:
 	@yarn --cwd=frontend test
@@ -31,6 +25,5 @@ serve-local:
 	docker-compose stop frontend
 	@yarn --cwd=frontend start-proxy
 
-deploy: install-frontend install-backend
+deploy: install-frontend
 	@yarn --cwd=frontend build
-	(cd backend && make migrations && yarn build && pm2 restart index)

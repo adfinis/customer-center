@@ -10,7 +10,6 @@ module.exports = function (environment) {
   const ENV = {
     environment,
     modulePrefix: name,
-    podModulePrefix: `${name}/ui`,
 
     rootURL: "/",
     locationType: "auto",

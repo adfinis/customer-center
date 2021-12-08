@@ -105,5 +105,5 @@ volumes:
 
 networks:
   default:
-    name: customercenter
+    name: timed.local
     driver: bridge

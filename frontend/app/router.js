@@ -6,14 +6,18 @@ export default class Router extends EmberRouter {
   rootURL = config.rootURL;
 }
 
+const resetNamespace = true;
+
 // eslint-disable-next-line array-callback-return
 Router.map(function () {
+  this.route("login");
+
   this.route("account", function () {
-    this.route("login");
     this.route("password-confirm", { path: "/password-confirm/:token" });
   });
 
   this.route("protected", { path: "/" }, function () {
+    this.route("index", { resetNamespace, path: "/" });
     this.route("subscriptions", function () {
       this.route("own");
       this.route("list");

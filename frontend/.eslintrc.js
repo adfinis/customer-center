@@ -8,5 +8,6 @@ module.exports = {
     "prefer-rest-params": "off",
     "ember/use-brace-expansion": "off",
     "ember/no-get": "off",
+    "ember/no-mixins": "warn",
   },
 };

@@ -60,7 +60,7 @@ module.exports = function (environment) {
 
   if (environment === "development") {
     ENV["ember-simple-auth-oidc"].host =
-      "http://customercenter.local/auth/realms/timed/protocol/openid-connect";
+      "http://timed.local/auth/realms/timed/protocol/openid-connect";
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;

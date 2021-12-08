@@ -30,11 +30,12 @@
             {{/if}}
 
             <li class="site-header__nav__item">
-              <LinkTo
-                @route="account.logout"
+              <a
                 title={{t "page.application.nav.account-logout"}}
+                class="uk-icon-button"
                 uk-icon="sign-out"
-              />
+                {{on "click" this.invalidateSession}}
+              ></a>
             </li>
           {{/if}}
 

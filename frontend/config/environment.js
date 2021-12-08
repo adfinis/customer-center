@@ -46,9 +46,21 @@ module.exports = function (environment) {
       // When total time comes close to alertTime, text color changes.
       alertTime: 5,
     },
+
+    "ember-simple-auth-oidc": {
+      host: "/auth/realms/timed/protocol/openid-connect",
+      clientId: "timed-confidential",
+      authEndpoint: "/auth",
+      tokenEndpoint: "/token",
+      endSessionEndpoint: "/logout",
+      userinfoEndpoint: "/userinfo",
+      afterLogoutUri: "/",
+    },
   };
 
   if (environment === "development") {
+    ENV["ember-simple-auth-oidc"].host =
+      "http://customercenter.local/auth/realms/timed/protocol/openid-connect";
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;

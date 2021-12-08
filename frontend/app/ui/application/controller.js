@@ -22,4 +22,8 @@ export default class ApplicationController extends Controller {
   @action async changeLanguage(language) {
     await this.account.changeLanguage(language);
   }
+
+  @action invalidateSession() {
+    this.session.invalidate();
+  }
 }

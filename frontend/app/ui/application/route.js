@@ -1,8 +1,7 @@
 import { inject as service } from "@ember/service";
-import BaseRoute from "customer-center/routes/-base";
-import moment from "moment";
+import OIDCApplicationRouteMixin from "ember-simple-auth-oidc/mixins/oidc-application-route-mixin";
 
-export default class ApplicationRoute extends BaseRoute {
+export default class ApplicationRoute extends OIDCApplicationRouteMixin {
   @service intl;
   @service moment;
 

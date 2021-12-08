@@ -1,9 +1,0 @@
-{
-  "auxiliaryCommentBefore": "istanbul ignore next",
-  "plugins": [
-    "@babel/plugin-transform-async-to-generator",
-    "@babel/plugin-transform-modules-commonjs",
-    "@babel/plugin-transform-parameters",
-    "@babel/plugin-transform-destructuring"
-  ]
-}

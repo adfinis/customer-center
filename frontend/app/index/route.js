@@ -1,8 +1,8 @@
+import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
-import AuthenticatedRoute from "customer-center/routes/-authenticated";
 import { hash } from "rsvp";
 
-export default class IndexRoute extends AuthenticatedRoute {
+export default class IndexRoute extends Route {
   @service timed;
 
   model() {

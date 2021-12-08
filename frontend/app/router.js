@@ -13,12 +13,14 @@ Router.map(function () {
     this.route("password-confirm", { path: "/password-confirm/:token" });
   });
 
-  this.route("subscriptions", function () {
-    this.route("own");
-    this.route("list");
-    this.route("confirm");
-    this.route("detail", { path: "/detail/:project_id" });
-    this.route("reload", { path: "/reload/:project_id" });
+  this.route("protected", { path: "/" }, function () {
+    this.route("subscriptions", function () {
+      this.route("own");
+      this.route("list");
+      this.route("confirm");
+      this.route("detail", { path: "/detail/:project_id" });
+      this.route("reload", { path: "/reload/:project_id" });
+    });
   });
 
   this.route("notfound", { path: "/*path" });

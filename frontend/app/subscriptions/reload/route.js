@@ -1,8 +1,8 @@
+import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
 import ENV from "customer-center/config/environment";
-import AuthenticatedRoute from "customer-center/routes/-authenticated";
 
-export default class SubscriptionsReloadRoute extends AuthenticatedRoute {
+export default class SubscriptionsReloadRoute extends Route {
   @service timed;
   @service account;
   @service notify;

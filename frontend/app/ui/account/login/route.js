@@ -1,17 +1,3 @@
-import { inject as service } from "@ember/service";
-import BaseRoute from "customer-center/routes/-base";
+import OIDCAuthenticationRouteMixin from "ember-simple-auth-oidc/mixins/oidc-authentication-route-mixin";
 
-export default class AccountLoginRoute extends BaseRoute {
-  @service session;
-
-  beforeModel(transition) {
-    this.session.prohibitAuthentication("index");
-  }
-
-  model() {
-    return {
-      username: "",
-      password: "",
-    };
-  }
-}
+export default class AccountLoginRoute extends OIDCAuthenticationRouteMixin {}

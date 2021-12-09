@@ -15,10 +15,9 @@ module.exports = function (environment) {
     locationType: "auto",
 
     auth: {
-      adminRole: env("AUTH_ROLE_ADMIN", "admin"),
-      employeeRole: env("AUTH_ROLE_EMPLOYEE", "employees"),
-      timedRole: env("AUTH_ROLE_TIMED", "timed"),
-      customerRole: env("AUTH_ROLE_CUSTOMER", "adsy-customer"),
+      adminRole: env("AUTH_ROLE_ADMIN", "/cc-admin"),
+      employeeRole: env("AUTH_ROLE_EMPLOYEE", "/adfinis-users"),
+      customerRole: env("AUTH_ROLE_CUSTOMER", "/access-cc"),
     },
 
     EmberENV: {
@@ -53,7 +52,7 @@ module.exports = function (environment) {
       tokenEndpoint: "/token",
       endSessionEndpoint: "/logout",
       userinfoEndpoint: "/userinfo",
-      afterLogoutUri: "/login",
+      afterLogoutUri: "/",
     },
   };
 

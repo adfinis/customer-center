@@ -11,7 +11,7 @@ export default class SubscriptionsReloadRoute extends Route {
   beforeModel(transition) {
     super.beforeModel(transition);
 
-    // Normal users cannot recharge the subscription.
+    // Employees cannot recharge the subscription.
     if (
       !this.account.isInGroups("one", [
         ENV.auth.adminRole,

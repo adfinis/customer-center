@@ -23,10 +23,7 @@ export default class SubscriptionsReloadController extends Controller {
   }
 
   get showPackages() {
-    return this.account.isInGroups("all", [
-      ENV.auth.timedRole,
-      ENV.auth.customerRole,
-    ]);
+    return this.account.isInGroup(ENV.auth.customerRole);
   }
 
   get breadcrumbs() {

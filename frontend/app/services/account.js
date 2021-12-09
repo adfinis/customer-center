@@ -16,7 +16,7 @@ export default class AccountService extends Service {
   }
 
   get groups() {
-    return (this.user && this.user.groups) || [];
+    return this.session.data.authenticated?.userinfo.groups ?? [];
   }
 
   isInGroup(group) {

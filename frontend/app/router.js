@@ -16,7 +16,7 @@ Router.map(function () {
     this.route("password-confirm", { path: "/password-confirm/:token" });
   });
 
-  this.route("protected", { path: "/" }, function () {
+  this.route("protected", { path: "" }, function () {
     this.route("index", { resetNamespace, path: "/" });
     this.route("subscriptions", { resetNamespace }, function () {
       this.route("own");

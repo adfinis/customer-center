@@ -41,4 +41,10 @@ export default class SubscriptionsReloadRoute extends Route {
       packages,
     };
   }
+
+  setupController(controller, model) {
+    super.setupController(...arguments);
+
+    controller.setup(model);
+  }
 }

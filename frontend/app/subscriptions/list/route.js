@@ -23,4 +23,10 @@ export default class SubscriptionsListRoute extends Route {
   model() {
     return this.timed.getAllProjects();
   }
+
+  setupController(controller, model) {
+    super.setupController(...arguments);
+
+    controller.setup(model);
+  }
 }

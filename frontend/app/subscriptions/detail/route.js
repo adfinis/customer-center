@@ -14,4 +14,10 @@ export default class SubscriptionsDetailRoute extends Route {
       orders: this.timed.getProjectOrders(project_id),
     });
   }
+
+  setupController(controller, model) {
+    super.setupController(...arguments);
+
+    controller.setup(model);
+  }
 }

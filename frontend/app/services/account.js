@@ -1,3 +1,4 @@
+import { reads } from "@ember/object/computed";
 import Service, { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
 
@@ -8,6 +9,7 @@ export default class AccountService extends Service {
   @service intl;
 
   @tracked user;
+  @reads("session.data.authenticated.access_token") accessToken;
 
   get language() {
     return "de";
@@ -30,6 +32,9 @@ export default class AccountService extends Service {
     try {
       const response = await fetch("/api/v1/users/me", {
         method: "GET",
+        headers: {
+          Authorization: `Bearer ${this.accessToken}`,
+        },
       });
 
       const json = await response.json();

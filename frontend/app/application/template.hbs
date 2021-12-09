@@ -30,13 +30,12 @@
             {{/if}}
 
             <li class="site-header__nav__item">
-              <button
-                type="button"
+              <a
+                href=""
                 title={{t "page.application.nav.account-logout"}}
-                class="uk-icon-button"
                 uk-icon="sign-out"
                 {{on "click" this.invalidateSession}}
-              ></button>
+              ></a>
             </li>
           {{/if}}
 

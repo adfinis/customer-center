@@ -26,7 +26,7 @@
   },
   "scripts": {
     "start": "ember serve",
-    "start-proxy": "ember serve --proxy http://localhost",
+    "start-proxy": "ember server --proxy http://localhost:8000",
     "lint": "yarn lint:hbs && yarn lint:js",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",

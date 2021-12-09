@@ -18,7 +18,7 @@ Router.map(function () {
 
   this.route("protected", { path: "/" }, function () {
     this.route("index", { resetNamespace, path: "/" });
-    this.route("subscriptions", function () {
+    this.route("subscriptions", { resetNamespace }, function () {
       this.route("own");
       this.route("list");
       this.route("confirm");

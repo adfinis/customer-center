@@ -48,12 +48,12 @@ module.exports = function (environment) {
 
     "ember-simple-auth-oidc": {
       host: "/auth/realms/timed/protocol/openid-connect",
-      clientId: "timed-confidential",
+      clientId: "timed-public",
       authEndpoint: "/auth",
       tokenEndpoint: "/token",
       endSessionEndpoint: "/logout",
       userinfoEndpoint: "/userinfo",
-      afterLogoutUri: "/",
+      afterLogoutUri: "/login",
     },
   };
 

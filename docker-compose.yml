@@ -52,7 +52,7 @@ services:
       - '5050:5050'
 
   timedbackend:
-    image: adfinissygroup/timed-backend:v1.4.0
+    image: adfinissygroup/timed-backend:latest
     depends_on:
       - postgres
     environment:
@@ -97,6 +97,11 @@ services:
         "-b",
         "0.0.0.0",
       ]
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    ports:
+      - '8025:8025'
 
 volumes:
   postgres:

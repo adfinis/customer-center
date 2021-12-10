@@ -1,7 +1,7 @@
 init:
 	./provisioning/init.sh
 
-install: install-frontend knex-migrations setup-timed timed-test-data
+install: install-frontend setup-timed timed-test-data
 
 install-frontend:
 	@yarn --cwd=frontend install
@@ -10,9 +10,6 @@ test: test-frontend
 
 test-frontend:
 	@yarn --cwd=frontend test
-
-knex-migrations:
-	docker-compose exec backend make -C /usr/src/app migrations
 
 setup-timed:
 	docker-compose exec timedbackend ./manage.py migrate

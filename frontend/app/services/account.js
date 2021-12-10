@@ -7,12 +7,13 @@ export default class AccountService extends Service {
   @service store;
   @service notify;
   @service intl;
+  @service moment;
 
   @tracked user;
   @reads("session.data.authenticated.access_token") accessToken;
 
   get language() {
-    return "de";
+    return this.intl.primaryLocale;
   }
 
   get groups() {
@@ -51,5 +52,10 @@ export default class AccountService extends Service {
       console.error(error);
       this.notify.fromError(error);
     }
+  }
+
+  async changeLanguage(language) {
+    this.intl.setLocale(language);
+    this.moment.setLocale(language);
   }
 }

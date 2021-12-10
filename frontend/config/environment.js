@@ -38,8 +38,8 @@ module.exports = function (environment) {
     },
 
     APP: {
-      loginRoute: "account.login",
-
+      hostStaging: env("TIMED_STAGING_HOST", "http://localhost:8000"),
+      hostProd: env("TIMED_PROD_HOST", "http://localhost:8000"),
       // Define alertTime in hours.
       // When total time comes close to alertTime, text color changes.
       alertTime: 5,

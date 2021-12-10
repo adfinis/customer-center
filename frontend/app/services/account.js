@@ -1,3 +1,4 @@
+import { getOwner } from "@ember/application";
 import { reads } from "@ember/object/computed";
 import Service, { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
@@ -31,12 +32,16 @@ export default class AccountService extends Service {
 
   async fetchCurrentUser() {
     try {
-      const response = await fetch("/api/v1/users/me", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${this.accessToken}`,
-        },
-      });
+      const adapter = getOwner(this).lookup("adapter:application");
+      const response = await fetch(
+        `${adapter.host}/${adapter.namespace}/users/me`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${this.accessToken}`,
+          },
+        }
+      );
 
       const json = await response.json();
       const { id } = json.data;

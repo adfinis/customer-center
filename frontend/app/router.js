@@ -12,10 +12,6 @@ const resetNamespace = true;
 Router.map(function () {
   this.route("login");
 
-  this.route("account", function () {
-    this.route("password-confirm", { path: "/password-confirm/:token" });
-  });
-
   this.route("protected", { path: "" }, function () {
     this.route("index", { resetNamespace, path: "/" });
     this.route("subscriptions", { resetNamespace }, function () {

@@ -86,8 +86,12 @@ module.exports = function (environment) {
   }
 
   if (environment === "production") {
-    // No need to configure the DNS as Sentry already reads from SENTRY_DNS.
-    // https://docs.sentry.io/platforms/javascript/guides/ember/configuration/options/#dsn
+    // Whether Stage or Prod, the OIDC host and client will stay the same
+    ENV["ember-simple-auth-oidc"].host = env(
+      "OIDC_HOST",
+      "http://timed.local/auth/realms/timed/protocol/openid-connect"
+    );
+    ENV["ember-simple-auth-oidc"].clientId = env("OIDC_CLIENT", "timed-public");
   }
 
   return ENV;

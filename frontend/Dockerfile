@@ -2,6 +2,11 @@ FROM node:14-alpine AS builder
 
 ARG AUTH_ROLE_ADMIN
 ARG AUTH_ROLE_EMPLOYEE
+ARG AUTH_ROLE_CUSTOMER
+ARG TIMED_STAGING_HOST
+ARG TIMED_PROD_HOST
+ARG OIDC_HOST
+ARG OIDC_CLIENT
 # Install dependencies.
 RUN apk update && \
   apk add --no-cache \

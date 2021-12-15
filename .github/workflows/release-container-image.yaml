@@ -70,6 +70,8 @@ jobs:
             AUTH_ROLE_EMPLOYEE=${{ secrets.AUTH_ROLE_EMPLOYEE }}
             TIMED_STAGING_HOST=${{ secrets.TIMED_STAGING_HOST }}
             TIMED_PROD_HOST=${{ secrets.TIMED_PROD_HOST }}
+            OIDC_HOST=${{ secrets.OIDC_HOST }}
+            OIDC_CLIENT=${{ secrets.OIDC_CLIENT }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.prep.outputs.tags }}
           labels: |

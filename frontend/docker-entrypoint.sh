@@ -18,6 +18,6 @@ urlencode() {
 
 sed -i \
   -e "s/sso-client-id/$(urlencode ${OIDC_CLIENT})/g" \
-  /var/www/html/index.html
+  /usr/share/nginx/html/index.html
 
 exec "$@"

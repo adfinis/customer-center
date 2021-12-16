@@ -91,7 +91,7 @@ module.exports = function (environment) {
       "OIDC_HOST",
       "http://timed.local/auth/realms/timed/protocol/openid-connect"
     );
-    ENV["ember-simple-auth-oidc"].clientId = env("OIDC_CLIENT", "timed-public");
+    ENV["ember-simple-auth-oidc"].clientId = "sso-client-id";
   }
 
   return ENV;

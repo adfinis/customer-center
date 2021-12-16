@@ -6,7 +6,6 @@ ARG AUTH_ROLE_CUSTOMER
 ARG TIMED_STAGING_HOST
 ARG TIMED_PROD_HOST
 ARG OIDC_HOST
-ARG OIDC_CLIENT
 # Install dependencies.
 RUN apk update && \
   apk add --no-cache \
@@ -32,6 +31,16 @@ FROM nginx:1.18-alpine AS server
 
 # Copy the built application to the new image.
 COPY --from=builder /tmp/project/dist /usr/share/nginx/html
-
 # Copy the NGINX configuration with proper location handling.
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+
+WORKDIR /usr/share/nginx/html
+
+COPY ./docker-entrypoint.sh /
+ENV OIDC_CLIENT cc
+
+EXPOSE 80
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]

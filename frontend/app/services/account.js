@@ -21,13 +21,15 @@ export default class AccountService extends Service {
     return this.session.data.authenticated?.userinfo.groups ?? [];
   }
 
-  isInGroup(group) {
-    return this.groups.includes(group);
+  isInGroup(groupRegex) {
+    return this.groups.some((group) => new RegExp(groupRegex).test(group));
   }
 
-  isInGroups(amount, groups) {
+  isInGroups(amount, groupsRegex) {
     const method = amount === "one" ? "some" : "every";
-    return this.groups[method]((group) => groups.includes(group));
+    return this.groups[method]((group) =>
+      groupsRegex.some((groupRegex) => new RegExp(groupRegex).test(group))
+    );
   }
 
   async fetchCurrentUser() {

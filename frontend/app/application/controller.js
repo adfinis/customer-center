@@ -24,6 +24,6 @@ export default class ApplicationController extends Controller {
   }
 
   @action invalidateSession() {
-    this.session.invalidate();
+    this.session.singleLogout();
   }
 }

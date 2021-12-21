@@ -41,59 +41,60 @@ export default class IndexRoute extends Route {
           address: {
             title: "Adfinis AG",
             streetAddress: "Stampfenbachstrasse 40",
-            postalCode: "8004",
+            postalCode: "8006",
             locality: "Zürich",
             country: "CH",
           },
         },
         {
           title: "Crissier",
-          phone: "+41 43 500 38 90",
+          phone: "+41 31 550 31 11",
           address: {
             title: "Adfinis AG",
             streetAddress: "Rue de la Vernie 12",
-            postalCode: "1023",
+            postalCode: "1032",
             locality: "Crissier",
             country: "CH",
           },
         },
         {
           title: "Netherlands",
-          phone: "+41 43 500 38 90",
+          phone: "+316 249 98 260",
           address: {
-            title: "Adfinis NL",
+            title: "Adfinis NV",
             streetAddress: "Hortensiastraat 10",
-            postalCode: "7555 CS",
+            postalCode: "7555CS",
             locality: "Hengelo",
             country: "NL",
+          },
+        },
+        {
+          title: "Australia",
+          phone: "+61 7 3118 1742",
+          address: {
+            title: "Adfinis IT Australia Pty Ltd",
+            streetAddress: "Building 6, 2404 Logan Road",
+            postalCode: "4113",
+            locality: "Eight Mile Plains",
+            country: "AU",
           },
         },
       ],
       profiles: [
         {
-          title: "Facebook",
-          address: "https://facebook.com/AdfinisSyGroup",
-          icon: "facebook",
-        },
-        {
           title: "LinkedIn",
-          address: "https://linkedin.com/company/2610138",
+          address: "https://www.linkedin.com/company/adfinis-com",
           icon: "linkedin",
-        },
-        {
-          title: "Xing",
-          address: "https://xing.com/companies/adfinissygroupag",
-          icon: "xing",
-        },
-        {
-          title: "GitHub",
-          address: "https://github.com/adfinis-sygroup",
-          icon: "github",
         },
         {
           title: "Twitter",
           address: "https://twitter.com/adfinis",
           icon: "twitter",
+        },
+        {
+          title: "GitHub",
+          address: "https://github.com/adfinis-sygroup",
+          icon: "github",
         },
       ],
     });

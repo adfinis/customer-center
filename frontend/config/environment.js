@@ -52,7 +52,7 @@ module.exports = function (environment) {
       tokenEndpoint: "/token",
       endSessionEndpoint: "/logout",
       userinfoEndpoint: "/userinfo",
-      afterLogoutUri: "/",
+      afterLogoutUri: "/login",
     },
   };
 

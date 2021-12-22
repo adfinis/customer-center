@@ -170,6 +170,15 @@ page:
         cta: Order
         confirm: You are ordering {hours} hours.
 
+  info:
+    title: New Account
+    salutation: Dear Customer,
+    text: |
+      As we have informed you by email, we have created a new login for you to access the Customer Center.<br>
+      Please contact our support via support@adfinis.com for your new login.
+    textEnd: Once you have received the new login from our support, you can proceed with the login.
+    login: Login
+
 
 component:
   nav-breadcrumbs:

@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/frontend"
+    schedule:
+      interval: weekly
+      day: "monday"
+      time: "00:00"
+      timezone: "Europe/Zurich"
+    open-pull-requests-limit: 10
+    reviewers:
+      - aziiee
+    versioning-strategy: increase

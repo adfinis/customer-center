@@ -11,6 +11,7 @@ const resetNamespace = true;
 // eslint-disable-next-line array-callback-return
 Router.map(function () {
   this.route("login");
+  this.route("info");
 
   this.route("protected", { path: "" }, function () {
     this.route("index", { resetNamespace, path: "/" });

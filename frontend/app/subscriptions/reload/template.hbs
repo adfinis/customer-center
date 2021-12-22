@@ -119,10 +119,6 @@
                   </strong>
                 </header>
 
-                <div class="packages__body">
-                  {{format-number package.price style="currency" currency="CHF"}}
-                </div>
-
                 <footer class="packages__footer">
                   <button
                     {{on "click" (fn this.order package)}}

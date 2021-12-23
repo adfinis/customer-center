@@ -8,6 +8,6 @@ module("Unit | Utility | parse-error", function () {
     const expected = "Test";
     const result = parseError(error);
 
-    assert.equal(result, expected);
+    assert.strictEqual(result, expected);
   });
 });

@@ -17,7 +17,7 @@ module("Unit | Controller | subscriptions/list", function (hooks) {
     const model = [];
     controller.setup(model);
 
-    assert.equal(controller.projects, model);
-    assert.equal(controller._projects, model);
+    assert.deepEqual(controller.projects, model);
+    assert.deepEqual(controller._projects, model);
   });
 });

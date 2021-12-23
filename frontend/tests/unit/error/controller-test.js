@@ -6,6 +6,6 @@ module("Unit | Controller | error", function (hooks) {
 
   test("it shows stack in testing", function (assert) {
     const controller = this.owner.lookup("controller:error");
-    assert.equal(controller.showStack, true);
+    assert.true(controller.showStack);
   });
 });

@@ -1,14 +1,24 @@
 import Controller from "@ember/controller";
-import { alias } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 
 export default class IndexController extends Controller {
   @service intl;
 
-  @alias("model.projects") projects;
-  @alias("model.locations") locations;
-  @alias("model.support") support;
-  @alias("model.profiles") profiles;
+  get projects() {
+    return this.model.projects;
+  }
+
+  get locations() {
+    return this.model.locations;
+  }
+
+  get support() {
+    return this.model.support;
+  }
+
+  get profiles() {
+    return this.model.profiles;
+  }
 
   breadcrumbs = [{ label: this.intl.t("page.index.title") }];
 }

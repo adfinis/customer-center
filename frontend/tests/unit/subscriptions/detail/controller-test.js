@@ -24,14 +24,14 @@ module("Unit | Controller | subscriptions/detail", function (hooks) {
     const model = { project, orders, reports };
     controller.setup(model);
 
-    assert.equal(controller.project, project);
+    assert.deepEqual(controller.project, project);
 
     assert.deepEqual(controller.orders, orders.toArray());
-    assert.equal(controller.ordersPage, 1);
-    assert.equal(controller.ordersNext, true);
+    assert.strictEqual(controller.ordersPage, 1);
+    assert.true(controller.ordersNext);
 
     assert.deepEqual(controller.reports, reports.toArray());
-    assert.equal(controller.reportsPage, 1);
-    assert.equal(controller.reportsNext, true);
+    assert.strictEqual(controller.reportsPage, 1);
+    assert.true(controller.reportsNext);
   });
 });

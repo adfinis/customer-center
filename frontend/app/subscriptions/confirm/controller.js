@@ -1,6 +1,5 @@
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
-import { alias } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import UIkit from "uikit";
 
@@ -10,12 +9,14 @@ export default class SubscriptionsConfirmController extends Controller {
   @service notify;
   @service timed;
 
-  @alias("model") orders;
-
   breadcrumbs = [
     { label: this.intl.t("page.subscriptions.title"), route: "subscriptions" },
     { label: this.intl.t("page.subscriptions.confirm.title") },
   ];
+
+  get orders() {
+    return this.model;
+  }
 
   @action async accept(order) {
     const project = order.project.get("name");

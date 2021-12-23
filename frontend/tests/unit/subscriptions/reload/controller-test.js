@@ -20,10 +20,10 @@ module("Unit | Controller | subscriptions/reload", function (hooks) {
     const model = { project, packages };
     controller.setup(model);
 
-    assert.equal(controller.project, project);
-    assert.equal(controller.packages, packages);
+    assert.deepEqual(controller.project, project);
+    assert.deepEqual(controller.packages, packages);
 
-    assert.equal(controller.changeset.get("hours"), 0);
-    assert.equal(controller.changeset.get("minutes"), 0);
+    assert.strictEqual(controller.changeset.get("hours"), 0);
+    assert.strictEqual(controller.changeset.get("minutes"), 0);
   });
 });

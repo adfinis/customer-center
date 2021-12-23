@@ -21,9 +21,9 @@ module("Unit | Controller | index", function (hooks) {
 
     controller.model = { projects, locations, support, profiles };
 
-    assert.equal(controller.projects, projects);
-    assert.equal(controller.locations, locations);
-    assert.equal(controller.support, support);
-    assert.equal(controller.profiles, profiles);
+    assert.deepEqual(controller.projects, projects);
+    assert.deepEqual(controller.locations, locations);
+    assert.deepEqual(controller.support, support);
+    assert.deepEqual(controller.profiles, profiles);
   });
 });

@@ -11,7 +11,7 @@ module("Unit | Utility | start padding tag", function () {
     const expected = "00:00";
     const result = tag`${a}:${b}`;
 
-    assert.equal(result, expected);
+    assert.strictEqual(result, expected);
   });
 
   test("it works with hivens", function (assert) {
@@ -23,7 +23,7 @@ module("Unit | Utility | start padding tag", function () {
     const expected = "-----Hello -----World";
     const result = tag`${a} ${b}`;
 
-    assert.equal(result, expected);
+    assert.strictEqual(result, expected);
   });
 
   test("it wotk with white-spaces", function (assert) {
@@ -35,6 +35,6 @@ module("Unit | Utility | start padding tag", function () {
     const expected = "     Hello      World";
     const result = tag`${a} ${b}`;
 
-    assert.equal(result, expected);
+    assert.strictEqual(result, expected);
   });
 });

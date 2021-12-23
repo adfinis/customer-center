@@ -45,8 +45,8 @@
     "broccoli-asset-rev": "^3.0.0",
     "ember-api-actions": "^0.2.9",
     "ember-auto-import": "^1.11.3",
-    "ember-changeset": "^3.9.2",
-    "ember-changeset-validations": "^3.9.1",
+    "ember-changeset": "3.15.0",
+    "ember-changeset-validations": "3.16.0",
     "ember-cli": "3.28.0",
     "ember-cli-app-version": "^5.0.0",
     "ember-cli-babel": "^7.26.6",
@@ -76,7 +76,7 @@
     "ember-source": "3.28.0",
     "ember-template-lint": "^3.6.0",
     "ember-truth-helpers": "^2.1.0",
-    "ember-uikit": "^2.1.2",
+    "ember-uikit": "4.0.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-ember": "10.5.8",
@@ -89,8 +89,7 @@
     "moment": "^2.29.1",
     "prettier": "2.5.1",
     "qunit": "2.17.2",
-    "qunit-dom": "^1.6.0",
-    "sass": "^1.26.11",
-    "uikit": "^3.5.8"
+    "qunit-dom": "2.0.0",
+    "sass": "1.45.1"
   }
 }

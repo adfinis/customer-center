@@ -17,6 +17,6 @@ module("Unit | Controller | subscriptions/confirm", function (hooks) {
     const expected = [];
     controller.model = expected;
 
-    assert.equal(controller.orders, expected);
+    assert.deepEqual(controller.orders, expected);
   });
 });

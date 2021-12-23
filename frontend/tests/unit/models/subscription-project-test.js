@@ -35,9 +35,9 @@ module("Unit | Model | timed subscription project", function (hooks) {
       ],
     });
 
-    assert.equal(model.totalTime.as("hours"), 2);
-    assert.equal(model.unconfirmedTime.as("hours"), 10);
-    assert.equal(model.percentage, 0.5);
+    assert.strictEqual(model.totalTime.as("hours"), 2);
+    assert.strictEqual(model.unconfirmedTime.as("hours"), 10);
+    assert.strictEqual(model.percentage, 0.5);
   });
 
   test("it warns when time is almost up", function (assert) {
@@ -49,7 +49,7 @@ module("Unit | Model | timed subscription project", function (hooks) {
       spentTime: moment.duration(0, "hours"),
     });
 
-    assert.equal(model_warn.isTimeAlmostConsumed, true);
+    assert.true(model_warn.isTimeAlmostConsumed);
 
     const model_ok = store.createRecord("subscription-project", {
       name: "Project #2",
@@ -57,6 +57,6 @@ module("Unit | Model | timed subscription project", function (hooks) {
       spentTime: moment.duration(0, "hours"),
     });
 
-    assert.equal(model_ok.isTimeAlmostConsumed, false);
+    assert.false(model_ok.isTimeAlmostConsumed);
   });
 });

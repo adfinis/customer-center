@@ -26,8 +26,8 @@ module("Unit | Model | timed user", function (hooks) {
       lastName: "Doe",
     });
 
-    assert.equal(model_full.fullName, "John Doe");
-    assert.equal(model_first.fullName, "John");
-    assert.equal(model_last.fullName, "Doe");
+    assert.strictEqual(model_full.fullName, "John Doe");
+    assert.strictEqual(model_first.fullName, "John");
+    assert.strictEqual(model_last.fullName, "Doe");
   });
 });

@@ -45,13 +45,8 @@ export default class DjangoDurationTransform extends Transform {
       return null;
     }
 
-    const {
-      days,
-      hours,
-      minutes,
-      seconds,
-      microseconds,
-    } = this._getDurationComponentsTimedeltaLike(deserialized);
+    const { days, hours, minutes, seconds, microseconds } =
+      this._getDurationComponentsTimedeltaLike(deserialized);
 
     let string = startPaddingTag(2)`${hours}:${minutes}:${seconds}`;
 

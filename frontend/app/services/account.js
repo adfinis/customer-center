@@ -1,5 +1,4 @@
 import { getOwner } from "@ember/application";
-import { reads } from "@ember/object/computed";
 import Service, { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
 
@@ -11,7 +10,10 @@ export default class AccountService extends Service {
   @service moment;
 
   @tracked user;
-  @reads("session.data.authenticated.access_token") accessToken;
+
+  get accessToken() {
+    return this.session.data.authenticated.access_token;
+  }
 
   get language() {
     return this.intl.primaryLocale;

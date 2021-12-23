@@ -1,9 +1,9 @@
 import Controller from "@ember/controller";
-import { action, get } from "@ember/object";
+import { get } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
 import ENV from "customer-center/config/environment";
-import { task } from "ember-concurrency-decorators";
+import { task } from "ember-concurrency";
 
 export default class SubscriptionsDetailController extends Controller {
   @service account;

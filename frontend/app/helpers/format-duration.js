@@ -1,5 +1,4 @@
 import Helper from "@ember/component/helper";
-import { observer } from "@ember/object";
 import { inject as service } from "@ember/service";
 import moment from "moment";
 

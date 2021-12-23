@@ -6,5 +6,6 @@ module.exports = {
   rules: {
     "no-bare-strings": true,
     "block-indentation": true,
+    "require-input-label": false,
   },
 };

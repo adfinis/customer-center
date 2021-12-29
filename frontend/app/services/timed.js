@@ -62,9 +62,9 @@ export default class TimedService extends Service {
     });
   }
 
-  async getReloadPackages(billing_type) {
-    const packages = await this.store.findAll("subscription-package", {
-      billing_type,
+  async getReloadPackages(billingType) {
+    const packages = await this.store.query("subscription-package", {
+      billing_type: billingType,
     });
 
     const REGEX_PRICE = /^Fr\./;

@@ -32,8 +32,8 @@ export default class SubscriptionsReloadRoute extends Route {
     // Customers get a list of packages to choose from.
     let packages = [];
     if (this.account.isInGroup(ENV.auth.customerRole)) {
-      const billing_type = project.billingType.get("id");
-      packages = await this.timed.getReloadPackages(billing_type);
+      const billingType = project.billingType.get("id");
+      packages = await this.timed.getReloadPackages(billingType);
     }
 
     return {

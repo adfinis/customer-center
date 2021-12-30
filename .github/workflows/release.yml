@@ -2,8 +2,14 @@ name: Release
 
 on: workflow_dispatch
 
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
 jobs:
   release:
+    defaults:
+      run:
+        working-directory: frontend
     name: Release
     runs-on: ubuntu-latest
     steps:
@@ -18,8 +24,7 @@ jobs:
 
       - name: Release on GitHub
         run: yarn semantic-release
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-defaults:
-  run:
-    working-directory: frontend
+
+  release-container-image:
+    name: Release Container Image
+    uses: adfinis-sygroup/customer-center/.github/workflows/release-Container-image.yml@main

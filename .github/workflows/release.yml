@@ -12,6 +12,9 @@ jobs:
         working-directory: frontend
     name: Release
     runs-on: ubuntu-latest
+    outputs:
+      latest-tag-ref: ${{ steps.latest-tag.outputs.tag }}
+      new-tag-ref: ${{ steps.semantic-release-tag.outputs.tag }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -27,6 +30,7 @@ jobs:
         run: |
           TAG=$(git describe --tags --abbrev=0)
           TAG_REF=$(git show-ref --tags $TAG | cut -d" " -f2)
+          echo $TAG_REF
           echo ::set-output name=tag::${TAG_REF}
 
       - name: Release on GitHub
@@ -37,16 +41,17 @@ jobs:
         run: |
           TAG=$(git describe --tags --abbrev=0)
           TAG_REF=$(git show-ref --tags $TAG | cut -d" " -f2)
+          echo $TAG_REF
           echo ::set-output name=tag::${TAG_REF}
 
   release-container-image:
     needs: release
     runs-on: ubuntu-latest
-    if: needs.release.steps.semantic-release-tag.outputs.tag != needs.release.steps.latest-tag.outputs.tag
+    if: needs.release.outputs.new-tag-ref != needs.release.outputs.latest-tag-ref
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
       - name: Release Container Image
         uses: ./.github/workflows/release-container-image.yml
         with:
-          ref: ${{ needs.release.steps.semantic-release-tag.outputs.tag }}
+          ref: ${{ needs.release.outputs.new-tag-ref }}

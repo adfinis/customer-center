@@ -31,11 +31,6 @@ jobs:
 
       - name: Release on GitHub
         run: yarn semantic-release
-        id: semantic-release-tag
-        run: |
-          TAG=$(git describe --tags --abbrev=0)
-          TAG_REF=$(git show-ref --tags $TAG | cut -d" " -f2)
-          echo ::set-output name=tag::${TAG_REF}
 
       - name: Get created tag
         id: semantic-release-tag

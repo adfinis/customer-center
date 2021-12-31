@@ -40,12 +40,13 @@ jobs:
           echo ::set-output name=tag::${TAG_REF}
 
   release-container-image:
+    needs: release
     runs-on: ubuntu-latest
-    if: steps.semantic-release-tag.outputs.tag != steps.latest-tag.outputs.tag
+    if: needs.release.steps.semantic-release-tag.outputs.tag != needs.release.steps.latest-tag.outputs.tag
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
       - name: Release Container Image
         uses: ./.github/workflows/release-container-image.yml
         with:
-          ref: ${{ steps.semantic-release-tag.outputs.tag }}
+          ref: ${{ needs.release.steps.semantic-release-tag.outputs.tag }}

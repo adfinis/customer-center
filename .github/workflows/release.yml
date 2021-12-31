@@ -22,6 +22,13 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Get latest tag
+        id: latest-tag
+        run: |
+          TAG=$(git describe --tags --abbrev=0)
+          TAG_REF=$(git show-ref --tags $TAG | cut -d" " -f2)
+          echo ::set-output name=tag::${TAG_REF}
+
       - name: Release on GitHub
         run: yarn semantic-release
         id: semantic-release-tag
@@ -30,8 +37,20 @@ jobs:
           TAG_REF=$(git show-ref --tags $TAG | cut -d" " -f2)
           echo ::set-output name=tag::${TAG_REF}
 
+      - name: Get created tag
+        id: semantic-release-tag
+        run: |
+          TAG=$(git describe --tags --abbrev=0)
+          TAG_REF=$(git show-ref --tags $TAG | cut -d" " -f2)
+          echo ::set-output name=tag::${TAG_REF}
+
   release-container-image:
-    name: Release Container Image
-    uses: adfinis-sygroup/customer-center/.github/workflows/release-Container-image.yml@main
-    with:
-      ref: ${{ steps.semantic-release-tag.outputs.tag }}
+    runs-on: ubuntu-latest
+    if: steps.semantic-release-tag.outputs.tag != steps.latest-tag.outputs.tag
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+      - name: Release Container Image
+        uses: ./.github/workflows/release-container-image.yml
+        with:
+          ref: ${{ steps.semantic-release-tag.outputs.tag }}

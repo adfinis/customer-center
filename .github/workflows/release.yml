@@ -48,10 +48,6 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     if: needs.release.outputs.new-tag-ref != needs.release.outputs.latest-tag-ref
-    steps:
-      - name: Check out repo
-        uses: actions/checkout@v2
-      - name: Release Container Image
-        uses: ./.github/workflows/release-container-image.yml
-        with:
-          ref: ${{ needs.release.outputs.new-tag-ref }}
+    uses: adfinis-sygroup/customer-center/.github/workflows/release-container-image.yml@main
+    with:
+      ref: ${{ needs.release.outputs.new-tag-ref }}

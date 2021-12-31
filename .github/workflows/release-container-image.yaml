@@ -7,6 +7,21 @@ on:
     inputs:
       ref:
         type: string
+        required: true
+    secrets:
+      AUTH_ROLE_ADMIN:
+        required: true
+      AUTH_ROLE_EMPLOYEE:
+        required: true
+      AUTH_ROLE_CUSTOMER:
+        required: true
+      TIMED_STAGING_HOST:
+        required: true
+      TIMED_PROD_HOST:
+        required: true
+      OIDC_HOST:
+        required: true
+
 
 jobs:
   frontend:

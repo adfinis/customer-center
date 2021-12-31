@@ -50,3 +50,10 @@ jobs:
     uses: adfinis-sygroup/customer-center/.github/workflows/release-container-image.yaml@main
     with:
       ref: ${{ needs.release.outputs.new-tag-ref }}
+    secrets:
+      AUTH_ROLE_ADMIN: ${{ secrets.AUTH_ROLE_ADMIN }}
+      AUTH_ROLE_EMPLOYEE: ${{ secrets.AUTH_ROLE_EMPLOYEE }}
+      AUTH_ROLE_CUSTOMER: ${{ secrets.AUTH_ROLE_CUSTOMER }}
+      TIMED_STAGING_HOST: ${{ secrets.TIMED_STAGING_HOST }}
+      TIMED_PROD_HOST: ${{ secrets.TIMED_PROD_HOST }}
+      OIDC_HOST: ${{ secrets.OIDC_HOST }}

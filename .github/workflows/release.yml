@@ -24,7 +24,14 @@ jobs:
 
       - name: Release on GitHub
         run: yarn semantic-release
+        id: semantic-release-tag
+        run: |
+          TAG=$(git describe --tags --abbrev=0)
+          TAG_REF=$(git show-ref --tags $TAG | cut -d" " -f2)
+          echo ::set-output name=tag::${TAG_REF}
 
   release-container-image:
     name: Release Container Image
     uses: adfinis-sygroup/customer-center/.github/workflows/release-Container-image.yml@main
+    with:
+      ref: ${{ steps.semantic-release-tag.outputs.tag }}

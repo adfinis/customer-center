@@ -172,9 +172,9 @@ page:
 
   info:
     title: Neues Kundenkonto
-    salutation: Sehr geehrter Kunde, sehr geehrte Kundin
+    salutation: Sehr geehrte Kundin, sehr geehrter Kunde
     text: |
-      Wie wir Ihnen per E-Mail mitgeteilt haben, haven wir für Sie ein neues Login für das neue Kundenportal erstellt.<br>
+      Wie wir Ihnen per E-Mail mitgeteilt haben, haben wir für Sie ein neues Login für das neue Kundenportal erstellt.<br>
       Bitte kontaktieren Sie unseren Support via support@adfinis.com für Ihr neues Login.
     textEnd: Sobald sie vom Support das neue Login erhalten haben, können Sie mit dem Login fortfahren.
     login: Login

@@ -66,6 +66,7 @@ page:
         project: Projekt
         customer: Kunde
         billing: Verrechnungsart
+        cost-center: Kostenstelle
         time-purchased: Bestellte Zeit
         time-spent: Gebuchtes Guthaben
         time-total: Totales Guthaben

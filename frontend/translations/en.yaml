@@ -66,6 +66,7 @@ page:
         project: Project
         customer: Customer
         billing: Billing type
+        cost-center: Cost center
         time-purchased: Timed ordered
         time-spent: Time used
         time-total: Time total

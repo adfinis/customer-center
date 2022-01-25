@@ -5,7 +5,7 @@ export default class TimedService extends Service {
 
   async getAllProjects() {
     return await this.store.query("subscription-project", {
-      include: "billing_type,customer,orders",
+      include: "billing_type,customer,orders,cost_center",
       ordering: "name",
     });
   }

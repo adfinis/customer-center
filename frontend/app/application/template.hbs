@@ -10,14 +10,8 @@
         <ul class="site-header__nav__list">
           {{#if this.session.isAuthenticated}}
             <li class="site-header__nav__item">
-              <LinkTo @route="index">
-                {{~t "page.application.nav.index"~}}
-              </LinkTo>
-            </li>
-
-            <li class="site-header__nav__item">
               <LinkTo @route="subscriptions">
-                {{~t "page.application.nav.subscriptions"~}}
+                {{~t "page.application.nav.index"~}}
               </LinkTo>
             </li>
 

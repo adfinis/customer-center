@@ -15,11 +15,6 @@ export default class SubscriptionsListController extends Controller {
   @tracked searches = {};
   @tracked sortBy = {};
 
-  breadcrumbs = [
-    { label: this.intl.t("page.subscriptions.title"), route: "subscriptions" },
-    { label: this.intl.t("page.subscriptions.list.title") },
-  ];
-
   @action searchFor(key, query) {
     if (isEmpty(query)) {
       delete this.searches[key];

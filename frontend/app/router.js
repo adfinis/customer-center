@@ -12,10 +12,11 @@ const resetNamespace = true;
 Router.map(function () {
   this.route("login");
   this.route("info");
+  this.route("contact");
 
   this.route("protected", { path: "" }, function () {
     this.route("index", { resetNamespace, path: "/" });
-    this.route("subscriptions", { resetNamespace }, function () {
+    this.route("subscriptions", { resetNamespace, path: "" }, function () {
       this.route("own");
       this.route("list");
       this.route("confirm");

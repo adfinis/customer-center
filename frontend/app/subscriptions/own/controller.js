@@ -16,9 +16,4 @@ export default class SubscriptionsOwnController extends Controller {
       ENV.auth.customerRole,
     ]);
   }
-
-  breadcrumbs = [
-    { label: this.intl.t("page.subscriptions.title"), route: "subscriptions" },
-    { label: this.intl.t("page.subscriptions.own.title") },
-  ];
 }

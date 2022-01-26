@@ -1,38 +1,4 @@
 page:
-  account:
-    title: Account
-
-
-    login:
-      title: Login
-      form:
-        username: Username
-        password: Password
-        cancel: Cancel
-        submit: Submit
-      success: Login successful
-      reset: Reset password
-
-
-    logout:
-      success: Logout successful
-
-
-    password-reset:
-      title: Reset password
-      form:
-        username: Username
-        cancel: Cancel
-        submit: Submit
-      success: Reset successful
-
-
-    password-confirm:
-      title: Reset confirmation
-      new-password: "Your new password is:"
-      login: Go to login
-
-
   application:
     title: Customer Center
     nav:

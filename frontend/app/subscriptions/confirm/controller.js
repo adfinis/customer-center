@@ -9,10 +9,7 @@ export default class SubscriptionsConfirmController extends Controller {
   @service notify;
   @service timed;
 
-  breadcrumbs = [
-    { label: this.intl.t("page.subscriptions.title"), route: "subscriptions" },
-    { label: this.intl.t("page.subscriptions.confirm.title") },
-  ];
+  breadcrumbs = [{ label: this.intl.t("page.subscriptions.confirm.title") }];
 
   get orders() {
     return this.model;

@@ -24,13 +24,7 @@ export default class SubscriptionsDetailController extends Controller {
   }
 
   get breadcrumbs() {
-    return [
-      {
-        label: this.intl.t("page.subscriptions.title"),
-        route: "subscriptions",
-      },
-      { label: this.project.name },
-    ];
+    return [{ label: this.project.name }];
   }
 
   @task *fetchNextReports() {

@@ -29,10 +29,6 @@ export default class SubscriptionsReloadController extends Controller {
   get breadcrumbs() {
     return [
       {
-        label: this.intl.t("page.subscriptions.title"),
-        route: "subscriptions",
-      },
-      {
         label: this.project.name,
         route: "subscriptions.detail",
         model: this.project.id,

@@ -24,6 +24,16 @@
       <label class="form__label" for="form-filter">
         {{~t "page.subscriptions.list.filter"~}}
       </label>
+      <span class="subscription-export">
+        <button
+          {{on "click" this.export}}
+          class="subscription-export__button"
+          type="button"
+          title={{~t "page.subscriptions.list.export.hint"~}}
+        >
+          {{~t "page.subscriptions.list.export.label"~}}
+        </button>
+      </span>
     </p>
 
     <div class="data-table">
@@ -91,20 +101,5 @@
         </tbody>
       </table>
     </div>
-
-    <p class="subscription-export">
-      <button
-        {{on "click" this.export}}
-        class="subscription-export__button"
-        type="button"
-      >
-        {{~t "page.subscriptions.list.export.label"~}}
-      </button>
-
-      <span class="subscription-export__hint">
-        {{~t "page.subscriptions.list.export.hint"~}}
-      </span>
-    </p>
-
   </div>
 </section>

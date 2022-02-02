@@ -37,105 +37,15 @@
 
 <section class="section">
   <div class="section__inner">
-
-    <div
-      class="
-        uk-child-width-1-1
-        uk-child-width-1-2@m
-      "
-      uk-grid
-    >
-      <div>
-        <h2 class="section__title">
-          {{~t "page.subscriptions.detail.orders.title"~}}
-        </h2>
-
-        {{#if this.orders.length}}
-          <div class="table">
-            <table>
-              <thead>
-                <th>{{t "page.subscriptions.detail.orders.table.date"}}</th>
-                <th>{{t "page.subscriptions.detail.orders.table.duration"}}</th>
-                <th>{{t "page.subscriptions.detail.orders.table.acknowledged"}}</th>
-              </thead>
-              <tbody>
-                {{#each this.orders as |order|}}
-                  <tr>
-                    <td>{{moment-format order.ordered "DD.MM.YYYY"}}</td>
-                    <td>{{format-duration order.duration}}</td>
-                    <td class="order-list--{{if order.acknowledged "acknowledged" "pending"}}">
-                      <span uk-icon={{if order.acknowledged "check" "clock"}}></span>
-                    </td>
-                  </tr>
-                {{/each}}
-
-                {{#if this.ordersNext}}
-                  <tr class="table__fetch-more">
-                    <td colspan="3">
-                      <button
-                        {{on "click" (perform this.fetchNextOrders)}}
-                        type="button"
-                        class="button"
-                        disabled={{this.fetchNextOrders.isRunning}}
-                      >
-                        {{~t "page.subscriptions.detail.orders.more"}}
-                      </button>
-                    </td>
-                  </tr>
-                {{/if}}
-              </tbody>
-            </table>
-          </div>
-        {{else}}
-          <p>{{t "page.subscriptions.detail.orders.empty"}}</p>
-        {{/if}}
-      </div>
-      <div>
-        <h2 class="section__title">
-          {{~t "page.subscriptions.detail.reports.title"~}}
-        </h2>
-
-        {{#if this.reports.length}}
-          <div class="table">
-            <table>
-              <thead>
-                <th>{{t "page.subscriptions.detail.reports.table.date"}}</th>
-                <th>{{t "page.subscriptions.detail.reports.table.duration"}}</th>
-                <th>{{t "page.subscriptions.detail.reports.table.user"}}</th>
-                <th>{{t "page.subscriptions.detail.reports.table.comment"}}</th>
-              </thead>
-              <tbody>
-                {{#each this.reports as |report|}}
-                  <tr>
-                    <td>{{moment-format report.date "DD.MM.YYYY"}}</td>
-                    <td>{{format-duration report.duration}}</td>
-                    <td>{{report.user.fullName}}</td>
-                    <td>{{report.comment}}</td>
-                  </tr>
-                {{/each}}
-
-                {{#if this.reportsNext}}
-                  <tr class="table__fetch-more">
-                    <td colspan="4">
-                      <button
-                        {{on "click" (perform this.fetchNextReports)}}
-                        type="button"
-                        class="button"
-                        disabled={{this.fetchNextReports.isRunning}}
-                      >
-                        {{~t "page.subscriptions.detail.reports.more"}}
-                      </button>
-                    </td>
-                  </tr>
-                {{/if}}
-              </tbody>
-            </table>
-          </div>
-        {{else}}
-          <p>{{t "page.subscriptions.detail.reports.empty"}}</p>
-        {{/if}}
-      </div>
-    </div>
-
+    <SubNav @children={{2}}>
+      <SubNav::Item @route="subscriptions.detail.index">
+        {{t "page.subscriptions.detail.reports.title"}}
+      </SubNav::Item>
+      <SubNav::Item @route="subscriptions.detail.orders">
+        {{t "page.subscriptions.detail.orders.title"}}
+      </SubNav::Item>
+    </SubNav>
   </div>
 </section>
+
+{{outlet}}

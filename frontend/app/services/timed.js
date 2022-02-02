@@ -46,7 +46,7 @@ export default class TimedService extends Service {
       ordering: "-date",
       page: {
         number: page,
-        size: 5,
+        size: 10,
       },
     });
   }
@@ -57,7 +57,7 @@ export default class TimedService extends Service {
       project,
       page: {
         number: page,
-        size: 5,
+        size: 10,
       },
     });
   }

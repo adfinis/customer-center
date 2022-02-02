@@ -25,6 +25,16 @@
 
             <li class="site-header__nav__item">
               <a
+                href="{{if this.isEnglishSelected "https://www.adfinis.com/en/contact" "https://www.adfinis.com/kontakt"}}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{t "page.application.nav.contact"}}
+              </a>
+            </li>
+
+            <li class="site-header__nav__item">
+              <a
                 href="#"
                 title={{t "page.application.nav.account-logout"}}
                 uk-icon="sign-out"

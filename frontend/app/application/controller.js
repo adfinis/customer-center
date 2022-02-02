@@ -19,6 +19,10 @@ export default class ApplicationController extends Controller {
     }));
   }
 
+  get isEnglishSelected() {
+    return this.intl.primaryLocale === "en";
+  }
+
   @action async changeLanguage(language) {
     await this.account.changeLanguage(language);
   }

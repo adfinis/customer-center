@@ -6,6 +6,7 @@ page:
       subscriptions: Subscriptions
       subscriptions-confirm: Confirm subscriptions
       account-logout: Logout
+      contact: Contact
 
 
   error:

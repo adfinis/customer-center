@@ -6,6 +6,7 @@ page:
       subscriptions: Projekte
       subscriptions-confirm: Bestellungen bestätigen
       account-logout: Logout
+      contact: Kontakt
 
 
   error:

@@ -1,0 +1,45 @@
+<section class="section">
+  <div class="section__inner">
+    <div>
+      {{#if this.orders.length}}
+        <div class="table">
+          <table>
+            <thead>
+              <th>{{t "page.subscriptions.detail.orders.table.date"}}</th>
+              <th>{{t "page.subscriptions.detail.orders.table.duration"}}</th>
+              <th>{{t "page.subscriptions.detail.orders.table.acknowledged"}}</th>
+            </thead>
+            <tbody>
+              {{#each this.orders as |order|}}
+                <tr>
+                  <td>{{moment-format order.ordered "DD.MM.YYYY"}}</td>
+                  <td>{{format-duration order.duration}}</td>
+                  <td class="order-list--{{if order.acknowledged "acknowledged" "pending"}}">
+                    <span uk-icon={{if order.acknowledged "check" "clock"}}></span>
+                  </td>
+                </tr>
+              {{/each}}
+
+              {{#if this.ordersNext}}
+                <tr class="table__fetch-more">
+                  <td colspan="3">
+                    <button
+                      {{on "click" (perform this.fetchNextOrders)}}
+                      type="button"
+                      class="button"
+                      disabled={{this.fetchNextOrders.isRunning}}
+                    >
+                      {{~t "page.subscriptions.detail.orders.more"}}
+                    </button>
+                  </td>
+                </tr>
+              {{/if}}
+            </tbody>
+          </table>
+        </div>
+      {{else}}
+        <p>{{t "page.subscriptions.detail.orders.empty"}}</p>
+      {{/if}}
+    </div>
+  </div>
+</section>

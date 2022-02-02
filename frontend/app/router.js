@@ -20,7 +20,9 @@ Router.map(function () {
       this.route("own");
       this.route("list");
       this.route("confirm");
-      this.route("detail", { path: "/detail/:project_id" });
+      this.route("detail", { path: "/detail/:project_id" }, function () {
+        this.route("orders");
+      });
       this.route("reload", { path: "/reload/:project_id" });
     });
   });

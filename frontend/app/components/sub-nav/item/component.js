@@ -5,6 +5,6 @@ export default class SubNavItemComponent extends Component {
   @service router;
 
   get isActive() {
-    return this.router.currentRoute.name.includes(this.args.route);
+    return this.router.currentRoute?.name.includes(this.args.route);
   }
 }

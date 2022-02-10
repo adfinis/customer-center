@@ -141,9 +141,9 @@ page:
     title: New Account
     salutation: Dear Customer,
     text: |
-      As we have informed you by email, we have created a new login for you to access the Customer Center.<br>
-      Please contact our support via support@adfinis.com for your new login.
-    textEnd: Once you have received the new login from our support, you can proceed with the login.
+      You have been informed via e-mail about a new login for the updated Customer Center.<br>
+      Please contact our support for your new login: support@adfinis.com
+    textEnd: Following that, you can use the Customer Center as usual.
     login: Login
 
 

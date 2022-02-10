@@ -22,16 +22,21 @@
 
               {{#if this.reportsNext}}
                 <tr class="table__fetch-more">
-                  <td colspan="4">
-                    <button
-                      {{on "click" (perform this.fetchNextReports)}}
-                      type="button"
-                      class="button"
-                      disabled={{this.fetchNextReports.isRunning}}
+                  {{#if this.fetchNextReports.isRunning}}
+                    <td
+                      colspan="4"
+                      class="uk-text-center"
                     >
-                      {{~t "page.subscriptions.detail.reports.more"}}
-                    </button>
-                  </td>
+                      {{~t "page.subscriptions.detail.reports.loading"}}
+                    </td>
+                  {{else}}
+                    <td
+                      colspan="4"
+                      class="uk-text-center"
+                      {{in-viewport onEnter=(perform this.fetchNextReports)}}
+                    >
+                    </td>
+                  {{/if}}
                 </tr>
               {{/if}}
             </tbody>

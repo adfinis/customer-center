@@ -22,16 +22,21 @@
 
               {{#if this.ordersNext}}
                 <tr class="table__fetch-more">
-                  <td colspan="3">
-                    <button
-                      {{on "click" (perform this.fetchNextOrders)}}
-                      type="button"
-                      class="button"
-                      disabled={{this.fetchNextOrders.isRunning}}
+                  {{#if this.fetchNextOrders.isRunning}}
+                    <td
+                      colspan="4"
+                      class="uk-text-center"
                     >
-                      {{~t "page.subscriptions.detail.orders.more"}}
-                    </button>
-                  </td>
+                      {{~t "page.subscriptions.detail.orders.loading"}}
+                    </td>
+                  {{else}}
+                    <td
+                      colspan="4"
+                      class="uk-text-center"
+                      {{in-viewport onEnter=(perform this.fetchNextOrders)}}
+                    >
+                    </td>
+                  {{/if}}
                 </tr>
               {{/if}}
             </tbody>

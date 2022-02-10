@@ -101,7 +101,7 @@ page:
       orders:
         title: Bestellungen
         empty: Keine Bestellungen verbucht.
-        more: Mehr laden
+        loading: Laden...
 
         table:
           date: Datum
@@ -111,7 +111,7 @@ page:
       reports:
         title: Aufwände
         empty: Keine verbuchten Aufwände.
-        more: Mehr laden
+        loading: Laden...
 
         table:
           date: Datum

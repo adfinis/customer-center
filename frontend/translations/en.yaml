@@ -101,7 +101,7 @@ page:
       orders:
         title: Past charges
         empty: No orders for this project.
-        more: Fetch more
+        loading: Loading...
 
         table:
           date: Date
@@ -111,7 +111,7 @@ page:
       reports:
         title: Expense
         empty: No reports for this project.
-        more: Fetch more
+        loading: Loading...
 
         table:
           date: Date

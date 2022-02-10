@@ -2,7 +2,7 @@ import Controller from "@ember/controller";
 import { get } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
-import { task } from "ember-concurrency";
+import { dropTask } from "ember-concurrency";
 
 export default class SubscriptionsDetailOrdersController extends Controller {
   @service account;
@@ -15,7 +15,7 @@ export default class SubscriptionsDetailOrdersController extends Controller {
   @tracked reports;
   @tracked reportsNext;
 
-  @task *fetchNextOrders() {
+  @dropTask *fetchNextOrders() {
     try {
       this.ordersPage++;
       const orders = yield this.timed.getProjectOrders(

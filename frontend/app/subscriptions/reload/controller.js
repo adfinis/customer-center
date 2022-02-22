@@ -8,6 +8,16 @@ import { Changeset } from "ember-changeset";
 import moment from "moment";
 import UIkit from "uikit";
 
+/**
+ * Format duration to HH:mm. Since duration.hours() is always less or equal to 24,
+ * remaining hours need to be added if the duration exceeds 24 hours.
+ */
+function format(duration) {
+  const totalHours = duration.hours() + 24 * duration.days();
+
+  return `${totalHours}:${duration.minutes()}:00`;
+}
+
 export default class SubscriptionsReloadController extends Controller {
   @service account;
   @service notify;
@@ -78,7 +88,7 @@ export default class SubscriptionsReloadController extends Controller {
         return;
       }
 
-      await this.timed.placeSubscriptionOrder(this.project, duration);
+      await this.timed.placeSubscriptionOrder(this.project, format(duration));
 
       this.notify.success(
         this.intl.t("page.subscriptions.reload.packages.success")

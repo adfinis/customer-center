@@ -48,7 +48,7 @@ page:
       projects:
         time-purchased: Timed ordered
         time-spent: Time used
-        time-total: Time total
+        time-remaining: Time remaining
         details: Details
         reload: Recharge
 
@@ -70,7 +70,7 @@ page:
         cost-center: Cost center
         time-purchased: Timed ordered
         time-spent: Time used
-        time-total: Time total
+        time-remaining: Time remaining
         time-unconfirmed: Needs confirmation
 
 
@@ -159,7 +159,7 @@ component:
     name: Project
     customer: Customer
     billing: Billing type
-    time-total: Time total
+    time-remaining: Time remaining
     time-unconfirmed: Needs confirmation
 
 

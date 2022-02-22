@@ -48,7 +48,7 @@ page:
       projects:
         time-purchased: Bestellte Zeit
         time-spent: Gebuchtes Guthaben
-        time-total: Totales Guthaben
+        time-remaining: Restguthaben
         details: Details
         reload: Aufladen
 
@@ -70,7 +70,7 @@ page:
         cost-center: Kostenstelle
         time-purchased: Bestellte Zeit
         time-spent: Gebuchtes Guthaben
-        time-total: Totales Guthaben
+        time-remaining: Restguthaben
         time-unconfirmed: Ausstehende Zeit
 
 
@@ -159,7 +159,7 @@ component:
     name: Projekt
     customer: Kunde
     billing: Verrechnungsart
-    time-total: Totales Guthaben
+    time-remaining: Restguthaben
     time-unconfirmed: Ausstehende Zeit
 
 

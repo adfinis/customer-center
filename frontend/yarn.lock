@@ -7267,7 +7267,7 @@ ember-cli-update@^1.0.1:
     update-notifier "^5.0.0"
     yargs "^17.0.0"
 
-ember-cli-version-checker@^2.1.0, ember-cli-version-checker@^2.1.1, ember-cli-version-checker@^2.1.2:
+ember-cli-version-checker@^2.1.0, ember-cli-version-checker@^2.1.2:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ember-cli-version-checker/-/ember-cli-version-checker-2.2.0.tgz#47771b731fe0962705e27c8199a9e3825709f3b3"
   integrity sha512-G+KtYIVlSOWGcNaTFHk76xR4GdzDLzAS4uxZUKdASuFX0KJE43C6DaqL+y3VTpUFLI2FIkAS6HZ4I1YBi+S3hg==
@@ -7398,16 +7398,7 @@ ember-cli@3.28.0:
     workerpool "^6.1.4"
     yam "^1.0.0"
 
-ember-compatibility-helpers@^1.1.2, ember-compatibility-helpers@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/ember-compatibility-helpers/-/ember-compatibility-helpers-1.2.1.tgz#87c92c4303f990ff455c28ca39fb3ee11441aa16"
-  integrity sha512-6wzYvnhg1ihQUT5yGqnLtleq3Nv5KNv79WhrEuNU9SwR4uIxCO+KpyC7r3d5VI0EM7/Nmv9Nd0yTkzmTMdVG1A==
-  dependencies:
-    babel-plugin-debug-macros "^0.2.0"
-    ember-cli-version-checker "^2.1.1"
-    semver "^5.4.1"
-
-ember-compatibility-helpers@^1.2.1, ember-compatibility-helpers@^1.2.4, ember-compatibility-helpers@^1.2.5:
+ember-compatibility-helpers@^1.1.2, ember-compatibility-helpers@^1.2.0, ember-compatibility-helpers@^1.2.1, ember-compatibility-helpers@^1.2.4, ember-compatibility-helpers@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/ember-compatibility-helpers/-/ember-compatibility-helpers-1.2.5.tgz#b8363b1d5b8725afa9a4fe2b2986ac28626c6f23"
   integrity sha512-7cddkQQp8Rs2Mqrj0xqZ0uO7eC9tBCKyZNcP2iE1RxQqOGPv8fiPkj1TUeidUB/Qe80lstoVXWMEuqqhW7Yy9A==
@@ -7417,10 +7408,10 @@ ember-compatibility-helpers@^1.2.1, ember-compatibility-helpers@^1.2.4, ember-co
     fs-extra "^9.1.0"
     semver "^5.4.1"
 
-ember-concurrency@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-2.2.0.tgz#0acfb8ca855e0fdfa4c543be150028299a89ba32"
-  integrity sha512-Ns1MH6t08oJqfeWQ4EMxyf6bLsXM87SbUPwGNUsg7idpikvkGr1PWqtvU6qxDTv1mA4Vrwdhv0I9yxN0ShH9Bg==
+ember-concurrency@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-2.2.1.tgz#4ed2e167036d00f7142312bc93c16f13ed9a259c"
+  integrity sha512-a4283Yq+jimxqoD5YaxQu7cXePHKqkNQfsT4fs0nYTz5PYbUd6wzUtelp6k8R1JTNPwDdxyVvUgu7yYoC8Sk5A==
   dependencies:
     "@glimmer/tracking" "^1.0.4"
     ember-cli-babel "^7.26.6"

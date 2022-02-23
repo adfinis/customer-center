@@ -42,7 +42,10 @@ export default class DjangoDurationTransform extends Transform {
    */
   serialize(deserialized) {
     if (!moment.isDuration(deserialized)) {
-      return null;
+      console.warn(
+        "Transform Django Duration: Non-duration value has been received."
+      );
+      return deserialized;
     }
 
     const { days, hours, minutes, seconds, microseconds } =

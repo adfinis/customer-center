@@ -79,7 +79,7 @@ export default class SubscriptionsListController extends Controller {
       this.intl.t("page.subscriptions.list.table.cost-center"),
       this.intl.t("page.subscriptions.list.table.time-purchased"),
       this.intl.t("page.subscriptions.list.table.time-spent"),
-      this.intl.t("page.subscriptions.list.table.time-total"),
+      this.intl.t("page.subscriptions.list.table.time-remaining"),
       this.intl.t("page.subscriptions.list.table.time-unconfirmed"),
     ].join(",");
 

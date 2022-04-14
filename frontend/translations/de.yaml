@@ -105,7 +105,7 @@ page:
 
         table:
           date: Datum
-          duration: Anzahl Stunden
+          duration: Bestellte Zeit
           acknowledged: Bestätigt
 
       reports:

@@ -10,11 +10,8 @@ module("Integration | Component | project-info", function (hooks) {
   setupIntl(hooks, "en");
 
   test("it renders", async function (assert) {
-    const intl = this.owner.lookup("service:intl");
     const duration = 1;
-    const durationString = intl.t("helper.format-duration.minutes", {
-      count: duration,
-    });
+    const expectedFormattedDuration = "00:01";
 
     this.project = {
       name: "Project #1",
@@ -42,7 +39,11 @@ module("Integration | Component | project-info", function (hooks) {
       .dom(".project-info__item:nth-child(3) span")
       .hasText(this.project.billingType.name);
 
-    assert.dom(".project-info__item:nth-child(4) span").hasText(durationString);
-    assert.dom(".project-info__item:nth-child(5) span").hasText(durationString);
+    assert
+      .dom(".project-info__item:nth-child(4) span")
+      .hasText(expectedFormattedDuration);
+    assert
+      .dom(".project-info__item:nth-child(5) span")
+      .hasText(expectedFormattedDuration);
   });
 });

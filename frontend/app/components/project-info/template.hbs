@@ -28,17 +28,17 @@
     <span>{{@project.billingType.name}}</span>
   </li>
 
-  <li class="project-info__item">
+  <li class="project-info__item" title={{"HH:mm"}}>
     <strong class="project-info__title">
       {{t "component.project-info.time-remaining"}}
     </strong>
-    <span>{{format-duration @project.totalTime}}</span>
+    <span>{{format-duration-short @project.totalTime}}</span>
   </li>
 
-  <li class="project-info__item">
+  <li class="project-info__item" title={{"HH:mm"}}>
     <strong class="project-info__title">
       {{t "component.project-info.time-unconfirmed"}}
     </strong>
-    <span>{{format-duration @project.unconfirmedTime}}</span>
+    <span>{{format-duration-short @project.unconfirmedTime}}</span>
   </li>
 </ul>

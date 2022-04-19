@@ -6,7 +6,7 @@
           <table>
             <thead>
               <th>{{t "page.subscriptions.detail.reports.table.date"}}</th>
-              <th>{{t "page.subscriptions.detail.reports.table.duration"}}</th>
+              <th title={{"HH:mm"}}>{{t "page.subscriptions.detail.reports.table.duration"}}</th>
               <th>{{t "page.subscriptions.detail.reports.table.user"}}</th>
               <th>{{t "page.subscriptions.detail.reports.table.comment"}}</th>
             </thead>
@@ -14,7 +14,7 @@
               {{#each this.reports as |report|}}
                 <tr>
                   <td>{{moment-format report.date "DD.MM.YYYY"}}</td>
-                  <td>{{format-duration report.duration}}</td>
+                  <td>{{format-duration-short report.duration}}</td>
                   <td>{{report.user.fullName}}</td>
                   <td>{{report.comment}}</td>
                 </tr>

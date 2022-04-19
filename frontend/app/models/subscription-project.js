@@ -10,6 +10,7 @@ export default class TimedSubscriptionProjectModel extends Model {
   @hasMany("subscription-order") orders;
   @belongsTo("billing-type") billingType;
   @belongsTo("customer") customer;
+  @belongsTo("cost-center") costCenter;
 
   get totalTime() {
     return moment.duration(this.purchasedTime - this.spentTime);

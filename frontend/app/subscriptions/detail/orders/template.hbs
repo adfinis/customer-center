@@ -6,14 +6,14 @@
           <table>
             <thead>
               <th>{{t "page.subscriptions.detail.orders.table.date"}}</th>
-              <th>{{t "page.subscriptions.detail.orders.table.duration"}}</th>
+              <th title={{"HH:mm"}}>{{t "page.subscriptions.detail.orders.table.duration"}}</th>
               <th>{{t "page.subscriptions.detail.orders.table.acknowledged"}}</th>
             </thead>
             <tbody>
               {{#each this.orders as |order|}}
                 <tr>
                   <td>{{moment-format order.ordered "DD.MM.YYYY"}}</td>
-                  <td>{{format-duration order.duration}}</td>
+                  <td>{{format-duration-short order.duration}}</td>
                   <td class="order-list--{{if order.acknowledged "acknowledged" "pending"}}">
                     <span uk-icon={{if order.acknowledged "check" "clock"}}></span>
                   </td>

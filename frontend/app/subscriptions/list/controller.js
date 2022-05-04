@@ -76,7 +76,8 @@ export default class SubscriptionsListController extends Controller {
       this.intl.t("page.subscriptions.list.table.customer"),
       this.intl.t("page.subscriptions.list.table.project"),
       this.intl.t("page.subscriptions.list.table.billing"),
-      this.intl.t("page.subscriptions.list.table.cost-center"),
+      this.intl.t("page.subscriptions.list.table.cost-center-number"),
+      this.intl.t("page.subscriptions.list.table.cost-center-name"),
       this.intl.t("page.subscriptions.list.table.time-purchased"),
       this.intl.t("page.subscriptions.list.table.time-spent"),
       this.intl.t("page.subscriptions.list.table.time-remaining"),
@@ -85,16 +86,25 @@ export default class SubscriptionsListController extends Controller {
 
     const lines = this.projects
       .toArray()
-      .map((project) => [
-        project.get("customer.name"),
-        project.get("name"),
-        project.get("billingType.name"),
-        project.get("costCenter.name"),
-        formatDurationShort(project.get("purchasedTime")),
-        formatDurationShort(project.get("spentTime")),
-        formatDurationShort(project.get("totalTime")),
-        formatDurationShort(project.get("unconfirmedTime")),
-      ])
+      .map((project) => {
+        const costCenterFullName = project.get("costCenter.name").trim();
+        // Cost center name always starts with 5 digits
+        const costCenterSplitName = costCenterFullName.split(
+          new RegExp("^(\\d{5})")
+        );
+
+        return [
+          project.get("customer.name"),
+          project.get("name"),
+          project.get("billingType.name"),
+          costCenterSplitName[1],
+          costCenterSplitName[2].trim(),
+          formatDurationShort(project.get("purchasedTime")),
+          formatDurationShort(project.get("spentTime")),
+          formatDurationShort(project.get("totalTime")),
+          formatDurationShort(project.get("unconfirmedTime")),
+        ];
+      })
       .map((line) => line.join(","))
       .join("\n");
 

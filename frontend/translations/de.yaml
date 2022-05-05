@@ -67,7 +67,8 @@ page:
         project: Projekt
         customer: Kunde
         billing: Verrechnungsart
-        cost-center: Kostenstelle
+        cost-center-name: Kostenstelle
+        cost-center-number: Kostenstelle Nr.
         time-purchased: Bestellte Zeit
         time-spent: Gebuchtes Guthaben
         time-remaining: Restguthaben

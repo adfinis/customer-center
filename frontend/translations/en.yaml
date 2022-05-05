@@ -67,7 +67,8 @@ page:
         project: Project
         customer: Customer
         billing: Billing type
-        cost-center: Cost center
+        cost-center-name: Cost center
+        cost-center-number: Cost center no.
         time-purchased: Timed ordered
         time-spent: Time used
         time-remaining: Time remaining

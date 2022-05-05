@@ -99,9 +99,9 @@
     "husky": "^7.0.4",
     "loader.js": "^4.7.0",
     "moment": "^2.29.1",
-    "prettier": "2.5.1",
+    "prettier": "2.6.2",
     "qunit": "2.17.2",
     "qunit-dom": "2.0.0",
-    "sass": "1.45.1"
+    "sass": "1.51.0"
   }
 }

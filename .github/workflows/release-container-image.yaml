@@ -43,7 +43,7 @@ jobs:
       - name: Prepare Image Metadata
         id: prep
         run: |
-          DOCKER_IMAGE=ghcr.io/adfinis-sygroup/customer-center/frontend
+          DOCKER_IMAGE=ghcr.io/adfinis/customer-center/frontend
           VERSION=noop
           if [ "${{ github.event_name }}" = "schedule" ]; then
             VERSION=nightly

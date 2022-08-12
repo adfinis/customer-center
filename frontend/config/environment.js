@@ -47,7 +47,7 @@ module.exports = function (environment) {
 
     "ember-simple-auth-oidc": {
       host: "/auth/realms/timed/protocol/openid-connect",
-      clientId: "timed-public",
+      clientId: "timed-confidential",
       authEndpoint: "/auth",
       tokenEndpoint: "/token",
       endSessionEndpoint: "/logout",
@@ -58,7 +58,7 @@ module.exports = function (environment) {
 
   if (environment === "development") {
     ENV["ember-simple-auth-oidc"].host =
-      "http://timed.local/auth/realms/timed/protocol/openid-connect";
+      "http://localhost:8080/auth/realms/master/protocol/openid-connect";
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;

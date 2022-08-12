@@ -52,7 +52,7 @@ services:
       - '5050:5050'
 
   timedbackend:
-    image: adfinissygroup/timed-backend:latest
+    image: ghcr.io/adfinis/timed-backend:master
     depends_on:
       - postgres
     environment:

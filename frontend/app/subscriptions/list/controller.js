@@ -87,18 +87,22 @@ export default class SubscriptionsListController extends Controller {
     const lines = this.projects
       .toArray()
       .map((project) => {
-        const costCenterFullName = project.get("costCenter.name").trim();
-        // Cost center name always starts with 5 digits
-        const costCenterSplitName = costCenterFullName.split(
-          new RegExp("^(\\d{5})")
-        );
+        // Example cost center name: 12345 EXPENSE
+        const costCenterFullName = project.get("costCenter.name");
+        let costCenterSplitName = [];
+        if (costCenterFullName) {
+          costCenterSplitName = costCenterFullName
+            .trim()
+            .match(/^(\S*\d{5}\S*) (.+)$/);
+        }
 
         return [
           project.get("customer.name"),
           project.get("name"),
           project.get("billingType.name"),
-          costCenterSplitName[1],
-          costCenterSplitName[2].trim(),
+          ...(costCenterFullName
+            ? [costCenterSplitName[1], costCenterSplitName[2].trim()]
+            : ["", ""]),
           formatDurationShort(project.get("purchasedTime")),
           formatDurationShort(project.get("spentTime")),
           formatDurationShort(project.get("totalTime")),

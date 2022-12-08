@@ -11,13 +11,8 @@ export default class SubscriptionsReloadRoute extends Route {
   beforeModel(transition) {
     super.beforeModel(transition);
 
-    // Employees cannot recharge the subscription.
-    if (
-      !this.account.isInGroups("one", [
-        ENV.auth.adminRole,
-        ENV.auth.customerRole,
-      ])
-    ) {
+    // Employees and customers cannot recharge the subscription.
+    if (!this.account.isInGroups("one", [ENV.auth.adminRole])) {
       this.notify.error(this.intl.t("page.subscriptions.reload.no-access"));
       this.transitionTo(
         "subscriptions.detail",
@@ -29,16 +24,8 @@ export default class SubscriptionsReloadRoute extends Route {
   async model(params) {
     const project = await this.timed.getProjectDetails(params.project_id);
 
-    // Customers get a list of packages to choose from.
-    let packages = [];
-    if (this.account.isInGroup(ENV.auth.customerRole)) {
-      const billingType = project.billingType.get("id");
-      packages = await this.timed.getReloadPackages(billingType);
-    }
-
     return {
       project,
-      packages,
     };
   }
 

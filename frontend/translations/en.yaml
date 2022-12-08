@@ -98,6 +98,7 @@ page:
     detail:
       title: Project details
       reload: Recharge
+      info: To purchase hours, please contact us through your salesperson.
 
       orders:
         title: Past charges

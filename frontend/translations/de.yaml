@@ -98,6 +98,7 @@ page:
     detail:
       title: Projektdetails
       reload: Aufladen
+      info: Um Stunden zu kaufen, melden Sie sich bitte über ihren zuständigen Verkäufer.
 
       orders:
         title: Bestellungen

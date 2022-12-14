@@ -9,11 +9,4 @@ export default class SubscriptionsOwnController extends Controller {
   get projects() {
     return this.model;
   }
-
-  get showReloadLink() {
-    return this.account.isInGroups("one", [
-      ENV.auth.adminRole,
-      ENV.auth.customerRole,
-    ]);
-  }
 }

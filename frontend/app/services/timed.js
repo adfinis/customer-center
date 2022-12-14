@@ -62,27 +62,6 @@ export default class TimedService extends Service {
     });
   }
 
-  async getReloadPackages(billingType) {
-    const packages = await this.store.query("subscription-package", {
-      billing_type: billingType,
-    });
-
-    const REGEX_PRICE = /^Fr\./;
-
-    packages.forEach((item) => {
-      let { price } = item;
-
-      if (REGEX_PRICE.test(price)) {
-        const price_string = price.replace("Fr.", "").replace(",", "");
-        price = parseFloat(price_string);
-      }
-
-      item.set("price", price);
-    });
-
-    return packages;
-  }
-
   async placeSubscriptionOrder(project, duration, ordered) {
     const order = this.store.createRecord("subscription-order", {
       duration,

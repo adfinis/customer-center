@@ -19,6 +19,12 @@
         </LinkTo>
       {{/if}}
     </div>
+    {{#if this.showInfoBanner}}
+      <div uk-alert class="uk-flex uk-flex-bottom">
+        <span uk-icon="info" class="uk-margin-right"></span>
+          {{t "page.subscriptions.detail.info"}}
+      </div>
+    {{/if}}
 
   </div>
 </section>

@@ -78,7 +78,7 @@
     "ember-moment": "9.0.1",
     "ember-notify": "^6.0.0",
     "ember-page-title": "^7.0.0",
-    "ember-qunit": "^5.1.4",
+    "ember-qunit": "^6.2.0",
     "ember-resolver": "^8.0.2",
     "ember-simple-auth": "4.2.2",
     "ember-simple-auth-oidc": "^3.0.1",

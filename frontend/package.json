@@ -17,9 +17,6 @@
     "doc": "doc",
     "test": "tests"
   },
-  "engines": {
-    "node": "12.* || 14.* || 16.*"
-  },
   "release": {
     "extends": "@adfinis/semantic-release-config"
   },
@@ -27,9 +24,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "ember": {
-    "edition": "octane"
   },
   "scripts": {
     "start": "ember serve",
@@ -44,13 +38,15 @@
   "devDependencies": {
     "@adfinis/eslint-config": "^2.0.0",
     "@adfinis/semantic-release-config": "^4.0.0",
+    "@babel/core": "7.21.4",
+    "@babel/eslint-parser": "7.21.3",
+    "@babel/plugin-proposal-decorators": "7.21.0",
     "@ember/optional-features": "^2.0.0",
     "@ember/render-modifiers": "^2.0.4",
     "@ember/test-helpers": "^2.8.1",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
     "@sentry/ember": "^5.26.0",
-    "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-api-actions": "^0.2.9",
     "ember-auto-import": "^1.11.3",
@@ -83,23 +79,31 @@
     "ember-simple-auth": "4.2.2",
     "ember-simple-auth-oidc": "^3.0.1",
     "ember-source": "3.28.11",
-    "ember-template-lint": "^4.6.0",
+    "ember-template-lint": "^5.11.0",
     "ember-truth-helpers": "^3.0.0",
     "ember-uikit": "4.0.0",
-    "eslint": "7.32.0",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-ember": "10.5.8",
-    "eslint-plugin-import": "2.25.3",
+    "eslint": "8.39.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-ember": "11.5.2",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-n": "15.7.0",
+    "babel-eslint": "^10.1.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-qunit": "^7.2.0",
+    "eslint-plugin-qunit": "7.3.4",
     "file-saver": "^2.0.5",
     "husky": "^7.0.4",
     "loader.js": "^4.7.0",
     "moment": "^2.29.1",
-    "prettier": "2.7.1",
+    "prettier": "2.8.8",
     "qunit": "2.17.2",
     "qunit-dom": "2.0.0",
     "sass": "1.51.0"
+  },
+  "engines": {
+    "node": ">= 18"
+  },
+  "ember": {
+    "edition": "octane"
   }
 }

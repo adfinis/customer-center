@@ -1,7 +1,7 @@
 {
   "name": "customer-center",
   "description": "Adfinis customer support portal with Timed integration.",
-  "repository": "https://github.com/adfinis-sygroup/customer-center",
+  "repository": "https://github.com/adfinis/customer-center",
   "version": "3.2.5",
   "license": "MIT",
   "private": true,
@@ -21,7 +21,7 @@
     "node": "12.* || 14.* || 16.*"
   },
   "release": {
-    "extends": "@adfinis-sygroup/semantic-release-config"
+    "extends": "@adfinis/semantic-release-config"
   },
   "commitlint": {
     "extends": [
@@ -42,8 +42,8 @@
     "prepare": "cd .. && husky install"
   },
   "devDependencies": {
-    "@adfinis-sygroup/eslint-config": "^1.5.0",
-    "@adfinis-sygroup/semantic-release-config": "^3.2.0",
+    "@adfinis/eslint-config": "^2.0.0",
+    "@adfinis/semantic-release-config": "^4.0.0",
     "@ember/optional-features": "^2.0.0",
     "@ember/render-modifiers": "^2.0.4",
     "@ember/test-helpers": "^2.8.1",

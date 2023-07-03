@@ -1,13 +1,11 @@
 "use strict";
 
 module.exports = {
-  extends: "@adfinis-sygroup/eslint-config/ember-app",
-
+  settings: {
+    "import/internal-regex": "^customer-center/",
+  },
+  extends: ["@adfinis/eslint-config/ember-addon"],
   rules: {
-    "no-unused-vars": "off",
-    "prefer-rest-params": "off",
-    "ember/use-brace-expansion": "off",
-    "ember/no-get": "off",
-    "ember/no-mixins": "warn",
+    "ember/no-settled-after-test-helper": "warn",
   },
 };

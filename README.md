@@ -13,7 +13,7 @@ Adfinis customer support portal with LDAP and Timed integration.
 
 ## Setup
 
-* `git clone git@github.com:adfinis-sygroup/customer-center.git`
+* `git clone git@github.com:adfinis/customer-center.git`
 * `cd customer-center`
 * `make init`
 

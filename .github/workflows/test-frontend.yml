@@ -10,6 +10,7 @@ on:
 
 env:
   CI: true
+  NODE_VERSION: 18
 
 jobs:
   lint:
@@ -21,10 +22,10 @@ jobs:
         target: [js, hbs]
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install dependencies
         run: yarn --cwd=frontend install
@@ -38,10 +39,10 @@ jobs:
     runs-on: [ubuntu-latest]
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install dependencies
         run: yarn --cwd=frontend install

@@ -8572,7 +8572,7 @@ ember-auto-import@^1.10.1, ember-auto-import@^1.11.3, ember-auto-import@^1.5.3, 
     walk-sync "^0.3.3"
     webpack "^4.43.0"
 
-ember-auto-import@^2.0:
+ember-auto-import@^2.0, ember-auto-import@^2.4.3:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-2.6.3.tgz#f18d1b93dd10b08ba5496518436f9d56dd4e000a"
   integrity sha512-uLhrRDJYWCRvQ4JQ1e64XlSrqAKSd6PXaJ9ZsZI6Tlms9T4DtQFxNXasqji2ZRJBVrxEoLCRYX3RTldsQ0vNGQ==
@@ -9428,20 +9428,20 @@ ember-page-title@^7.0.0:
   dependencies:
     ember-cli-babel "^7.26.6"
 
-ember-qunit@^5.1.4:
-  version "5.1.5"
-  resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-5.1.5.tgz#24a7850f052be24189ff597dfc31b923e684c444"
-  integrity sha512-2cFA4oMygh43RtVcMaBrr086Tpdhgbn3fVZ2awLkzF/rnSN0D0PSRpd7hAD7OdBPerC/ZYRwzVyGXLoW/Zes4A==
+ember-qunit@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-6.1.1.tgz#9e2b7835239e7ffd176e08e536975f66e59f75e5"
+  integrity sha512-3/jCpoecltFV6vm7GCtSDNRxBzWx96nP+QrbereJAnioSaGeLe+slKL3l80mGzMYDTvn7ESobZ+Ba+OQ1vMMKQ==
   dependencies:
     broccoli-funnel "^3.0.8"
     broccoli-merge-trees "^3.0.2"
     common-tags "^1.8.0"
-    ember-auto-import "^1.11.3"
-    ember-cli-babel "^7.26.6"
+    ember-auto-import "^2.4.3"
+    ember-cli-babel "^7.26.11"
     ember-cli-test-loader "^3.0.0"
-    resolve-package-path "^3.1.0"
+    resolve-package-path "^4.0.3"
     silent-error "^1.1.1"
-    validate-peer-dependencies "^1.2.0"
+    validate-peer-dependencies "^2.1.0"
 
 ember-resolver@^8.0.2:
   version "8.0.3"
@@ -19766,13 +19766,21 @@ validate-npm-package-name@^5.0.0:
   dependencies:
     builtins "^5.0.0"
 
-validate-peer-dependencies@^1.1.0, validate-peer-dependencies@^1.2.0:
+validate-peer-dependencies@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/validate-peer-dependencies/-/validate-peer-dependencies-1.2.0.tgz#22aab93c514f4fda457d36c80685e8b1160d2036"
   integrity sha512-nd2HUpKc6RWblPZQ2GDuI65sxJ2n/UqZwSBVtj64xlWjMx0m7ZB2m9b2JS3v1f+n9VWH/dd1CMhkHfP6pIdckA==
   dependencies:
     resolve-package-path "^3.1.0"
     semver "^7.3.2"
+
+validate-peer-dependencies@^2.1.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/validate-peer-dependencies/-/validate-peer-dependencies-2.2.0.tgz#47b8ff008f66a66fc5d8699123844522c1d874f4"
+  integrity sha512-8X1OWlERjiUY6P6tdeU9E0EwO8RA3bahoOVG7ulOZT5MqgNDUO/BQoVjYiHPcNe+v8glsboZRIw9iToMAA2zAA==
+  dependencies:
+    resolve-package-path "^4.0.3"
+    semver "^7.3.8"
 
 validated-changeset@1.0.0, validated-changeset@~1.0.0:
   version "1.0.0"

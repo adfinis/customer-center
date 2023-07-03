@@ -1,7 +1,8 @@
-import ENV from "customer-center/config/environment";
 import { setupTest } from "ember-qunit";
 import moment from "moment";
 import { module, test } from "qunit";
+
+import ENV from "customer-center/config/environment";
 
 module("Unit | Model | timed subscription project", function (hooks) {
   setupTest(hooks);

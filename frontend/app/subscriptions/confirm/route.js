@@ -1,5 +1,6 @@
 import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
+
 import ENV from "customer-center/config/environment";
 
 export default class SubscriptionsConfirmRoute extends Route {

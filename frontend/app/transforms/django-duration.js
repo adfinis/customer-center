@@ -1,6 +1,7 @@
 import Transform from "@ember-data/serializer/transform";
-import startPaddingTag from "customer-center/utils/start-padding-tag";
 import moment from "moment";
+
+import startPaddingTag from "customer-center/utils/start-padding-tag";
 
 /**
  * The django duration transform

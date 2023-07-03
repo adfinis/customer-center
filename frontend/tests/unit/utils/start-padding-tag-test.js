@@ -1,5 +1,6 @@
-import startPaddingTag from "customer-center/utils/start-padding-tag";
 import { module, test } from "qunit";
+
+import startPaddingTag from "customer-center/utils/start-padding-tag";
 
 module("Unit | Utility | start padding tag", function () {
   test("it works", function (assert) {

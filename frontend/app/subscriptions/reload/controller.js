@@ -3,10 +3,11 @@ import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { isEmpty } from "@ember/utils";
 import { tracked } from "@glimmer/tracking";
-import ENV from "customer-center/config/environment";
 import { Changeset } from "ember-changeset";
 import moment from "moment";
 import UIkit from "uikit";
+
+import ENV from "customer-center/config/environment";
 
 /**
  * Format duration to HH:mm. Since duration.hours() is always less or equal to 24,

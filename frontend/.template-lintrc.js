@@ -1,11 +1,11 @@
 "use strict";
 
 module.exports = {
-  extends: "octane",
+  extends: "recommended",
 
   rules: {
-    "no-bare-strings": true,
-    "block-indentation": true,
-    "require-input-label": false,
+    "no-invalid-link-text": "warn",
+    "require-input-label": "warn",
+    "no-autofocus-attribute": "warn",
   },
 };

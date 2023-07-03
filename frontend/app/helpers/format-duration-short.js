@@ -1,6 +1,7 @@
 import { helper } from "@ember/component/helper";
-import startPaddingTag from "customer-center/utils/start-padding-tag";
 import moment from "moment";
+
+import startPaddingTag from "customer-center/utils/start-padding-tag";
 
 export function formatDurationShort(params) {
   let duration = Array.isArray(params) ? params[0] : params;

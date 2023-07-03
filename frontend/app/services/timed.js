@@ -44,6 +44,7 @@ export default class TimedService extends Service {
       project,
       include: "user",
       ordering: "-date",
+      not_billable: 0,
       page: {
         number: page,
         size: 10,

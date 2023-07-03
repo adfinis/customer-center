@@ -1,6 +1,7 @@
 import Model, { attr, hasMany, belongsTo } from "@ember-data/model";
-import ENV from "customer-center/config/environment";
 import moment from "moment";
+
+import ENV from "customer-center/config/environment";
 
 export default class TimedSubscriptionProjectModel extends Model {
   @attr name;

@@ -1,6 +1,7 @@
 import Controller from "@ember/controller";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+
 import ENV from "customer-center/config/environment";
 
 export default class ApplicationController extends Controller {

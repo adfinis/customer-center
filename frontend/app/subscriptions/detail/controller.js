@@ -1,6 +1,7 @@
 import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
+
 import ENV from "customer-center/config/environment";
 
 export default class SubscriptionsDetailController extends Controller {

@@ -1,5 +1,6 @@
-import parseError from "customer-center/utils/parse-error";
 import { module, test } from "qunit";
+
+import parseError from "customer-center/utils/parse-error";
 
 module("Unit | Utility | parse-error", function () {
   test("it works", function (assert) {

@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/adfinis-sygroup/customer-center.svg?branch=main)](https://travis-ci.org/adfinis-sygroup/customer-center)
+[![Test (Frontend)](https://github.com/adfinis/customer-center/actions/workflows/test-frontend.yml/badge.svg?branch=main)](https://github.com/adfinis/customer-center/actions/workflows/test-frontend.yml)
+[![Release](https://github.com/adfinis/customer-center/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/adfinis/customer-center/actions/workflows/release.yml)
+[![GHCR](https://github.com/adfinis/customer-center/actions/workflows/release-container-image.yaml/badge.svg)](https://github.com/adfinis/customer-center/actions/workflows/release-container-image.yaml)
 
 # Adfinis AG - Customer Center
 

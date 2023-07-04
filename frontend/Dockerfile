@@ -1,4 +1,4 @@
-FROM node:14-alpine AS builder
+FROM node:18-alpine AS builder
 
 ARG AUTH_ROLE_ADMIN
 ARG AUTH_ROLE_EMPLOYEE
@@ -9,11 +9,11 @@ ARG OIDC_HOST
 # Install dependencies.
 RUN apk update && \
   apk add --no-cache \
-    --virtual build-dependencies \
-      build-base \
-      gcc \
-      wget \
-      git
+  --virtual build-dependencies \
+  build-base \
+  gcc \
+  wget \
+  git
 
 # Create unprivileged account.
 RUN adduser -D project

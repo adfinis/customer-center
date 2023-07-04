@@ -9,5 +9,5 @@ updates:
       timezone: "Europe/Zurich"
     open-pull-requests-limit: 10
     reviewers:
-      - aziiee
+      - derrabauke
     versioning-strategy: increase

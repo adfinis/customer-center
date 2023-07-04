@@ -26,9 +26,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: "yarn"
+          cache-dependency-path: 'frontend/yarn.lock'
 
       - name: Install dependencies
-        run: yarn --cwd=frontend install
+        run: yarn install --frozen-lockfile --cwd=frontend 
 
       - name: Lint ${{ matrix.target }}
         run: yarn --cwd=frontend lint:${{ matrix.target }}
@@ -43,9 +45,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: "yarn"
+          cache-dependency-path: 'frontend/yarn.lock'
 
       - name: Install dependencies
-        run: yarn --cwd=frontend install
+        run: yarn install --frozen-lockfile --cwd=frontend 
 
       - name: Run tests
         run: yarn --cwd=frontend test

@@ -24,6 +24,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: "yarn"
+          cache-dependency-path: 'frontend/yarn.lock'
 
       - name: Install dependencies
         run: yarn install
@@ -60,3 +62,5 @@ jobs:
       TIMED_STAGING_HOST: ${{ secrets.TIMED_STAGING_HOST }}
       TIMED_PROD_HOST: ${{ secrets.TIMED_PROD_HOST }}
       OIDC_HOST: ${{ secrets.OIDC_HOST }}
+
+

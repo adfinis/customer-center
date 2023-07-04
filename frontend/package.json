@@ -33,7 +33,17 @@
     "lint:js": "eslint .",
     "test": "ember test",
     "build": "ember build --environment=production",
-    "prepare": "cd .. && husky install"
+    "prepare": "cd .. && husky install frontend/.husky"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.hbs": "ember-template-lint --fix",
+    "*.{scss,graphql,json,md,yml}": "prettier --write"
   },
   "devDependencies": {
     "@adfinis/eslint-config": "^2.0.0",
@@ -41,6 +51,8 @@
     "@babel/core": "7.21.4",
     "@babel/eslint-parser": "7.21.3",
     "@babel/plugin-proposal-decorators": "7.21.0",
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
     "@ember/optional-features": "^2.0.0",
     "@ember/render-modifiers": "^2.0.4",
     "@ember/test-helpers": "^2.8.1",
@@ -93,6 +105,7 @@
     "eslint-plugin-qunit": "7.3.4",
     "file-saver": "^2.0.5",
     "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
     "loader.js": "^4.7.0",
     "moment": "^2.29.1",
     "prettier": "2.8.8",

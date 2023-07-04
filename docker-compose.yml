@@ -10,7 +10,7 @@ services:
       - '80:80'
 
   frontend:
-    image: danlynn/ember-cli:3.21.0-node_12.18
+    image: danlynn/ember-cli:4.8.0
     volumes:
       - ./frontend:/myapp
     tmpfs:

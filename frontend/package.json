@@ -2,7 +2,7 @@
   "name": "customer-center",
   "description": "Adfinis customer support portal with Timed integration.",
   "repository": "https://github.com/adfinis/customer-center",
-  "version": "3.2.5",
+  "version": "3.2.6",
   "license": "MIT",
   "private": true,
   "author": {
@@ -34,11 +34,6 @@
     "test": "ember test",
     "build": "ember build --environment=production",
     "prepare": "cd .. && husky install frontend/.husky"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",

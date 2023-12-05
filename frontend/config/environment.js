@@ -87,10 +87,7 @@ module.exports = function (environment) {
 
   if (environment === "production") {
     // Whether Stage or Prod, the OIDC host and client will stay the same
-    ENV["ember-simple-auth-oidc"].host = env(
-      "OIDC_HOST",
-      "http://timed.local/auth/realms/timed/protocol/openid-connect"
-    );
+    ENV["ember-simple-auth-oidc"].host = "sso-client-host";
     ENV["ember-simple-auth-oidc"].clientId = "sso-client-id";
   }
 

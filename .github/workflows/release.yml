@@ -61,6 +61,5 @@ jobs:
       AUTH_ROLE_CUSTOMER: ${{ secrets.AUTH_ROLE_CUSTOMER }}
       TIMED_STAGING_HOST: ${{ secrets.TIMED_STAGING_HOST }}
       TIMED_PROD_HOST: ${{ secrets.TIMED_PROD_HOST }}
-      OIDC_HOST: ${{ secrets.OIDC_HOST }}
 
 

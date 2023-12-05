@@ -19,8 +19,6 @@ on:
         required: true
       TIMED_PROD_HOST:
         required: true
-      OIDC_HOST:
-        required: true
 
 
 jobs:
@@ -89,7 +87,6 @@ jobs:
             AUTH_ROLE_CUSTOMER=${{ secrets.AUTH_ROLE_CUSTOMER }}
             TIMED_STAGING_HOST=${{ secrets.TIMED_STAGING_HOST }}
             TIMED_PROD_HOST=${{ secrets.TIMED_PROD_HOST }}
-            OIDC_HOST=${{ secrets.OIDC_HOST }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.prep.outputs.tags }}
           labels: |

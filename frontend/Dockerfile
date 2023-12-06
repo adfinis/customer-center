@@ -5,7 +5,6 @@ ARG AUTH_ROLE_EMPLOYEE
 ARG AUTH_ROLE_CUSTOMER
 ARG TIMED_STAGING_HOST
 ARG TIMED_PROD_HOST
-ARG OIDC_HOST
 # Install dependencies.
 RUN apk update && \
   apk add --no-cache \
@@ -38,6 +37,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 WORKDIR /usr/share/nginx/html
 
 COPY ./docker-entrypoint.sh /
+ENV OIDC_CLIENT_HOST https://sso.example.com/auth/realms/example/protocol/openid-connect
 ENV OIDC_CLIENT cc
 
 EXPOSE 80

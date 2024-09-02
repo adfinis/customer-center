@@ -44,6 +44,7 @@ page:
 
     own:
       title: Own projects
+      empty: No own projects exist.
 
       projects:
         time-purchased: Timed ordered

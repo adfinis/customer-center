@@ -44,6 +44,7 @@ page:
 
     own:
       title: Eigene Projekte
+      empty: Keine eigenen Projekte vorhanden.
 
       projects:
         time-purchased: Bestellte Zeit

@@ -15,7 +15,7 @@ module.exports = function (environment) {
     locationType: "auto",
 
     auth: {
-      adminRole: env("AUTH_ROLE_ADMIN", "/cc-admin"),
+      adminRole: env("AUTH_ROLE_ADMIN", "/sg-cc-admin"),
       employeeRole: env("AUTH_ROLE_EMPLOYEE", "/adfinis-users"),
       customerRole: env("AUTH_ROLE_CUSTOMER", "/access-cc"),
     },

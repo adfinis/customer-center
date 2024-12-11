@@ -93,9 +93,16 @@ jobs:
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v6
+
         with:
           context: ./frontend/
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: |
             ${{ steps.meta.outputs.labels }}
+          build-args: |
+            AUTH_ROLE_ADMIN=${{ secrets.AUTH_ROLE_ADMIN }}
+            AUTH_ROLE_EMPLOYEE=${{ secrets.AUTH_ROLE_EMPLOYEE }}
+            AUTH_ROLE_CUSTOMER=${{ secrets.AUTH_ROLE_CUSTOMER }}
+            TIMED_STAGING_HOST=${{ secrets.TIMED_STAGING_HOST }}
+            TIMED_PROD_HOST=${{ secrets.TIMED_PROD_HOST }}

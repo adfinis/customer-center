@@ -2,7 +2,7 @@
   "name": "customer-center",
   "description": "Adfinis customer support portal with Timed integration.",
   "repository": "https://github.com/adfinis/customer-center",
-  "version": "3.3.0",
+  "version": "0.0.0",
   "license": "MIT",
   "private": true,
   "author": {

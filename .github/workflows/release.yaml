@@ -10,7 +10,7 @@ jobs:
     permissions:
       actions: none
       checks: none
-      contents: none
+      contents: write
       deployments: none
       issues: none
       packages: none
@@ -44,10 +44,10 @@ jobs:
     permissions:
       actions: none
       checks: none
-      contents: write
+      contents: none
       deployments: none
       issues: none
-      packages: none
+      packages: write
       pull-requests: none
       repository-projects: none
       security-events: none

@@ -13,10 +13,15 @@ export default class SubscriptionsIndexRoute extends Route {
      * Only admins get the full list while customers/users
      * get a simple overview over their own projects.
      */
-    if (this.account.isInGroup(ENV.auth.customerRole)) {
-      this.transitionTo("subscriptions.own");
-    } else {
+    if (
+      this.account.isInGroups("one", [
+        ENV.auth.employeeRole,
+        ENV.auth.adminRole,
+      ])
+    ) {
       this.transitionTo("subscriptions.list");
+    } else {
+      this.transitionTo("subscriptions.own");
     }
   }
 }

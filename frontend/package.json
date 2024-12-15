@@ -100,7 +100,7 @@
     "eslint-plugin-qunit": "7.3.4",
     "file-saver": "^2.0.5",
     "husky": "^8.0.3",
-    "lint-staged": "^12.1.2",
+    "lint-staged": "^15.2.11",
     "loader.js": "^4.7.0",
     "moment": "^2.29.1",
     "prettier": "2.8.8",
